@@ -193,7 +193,7 @@
 				TargetAttributes = {
 					494979201F672BF4005DB65C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8W697TZP33;
+						DevelopmentTeam = PA4Z55BQSM;
 						ProvisioningStyle = Automatic;
 					};
 					494979341F672BF5005DB65C = {
@@ -417,10 +417,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8W697TZP33;
+				DEVELOPMENT_TEAM = PA4Z55BQSM;
 				INFOPLIST_FILE = Showcase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TamuCpse482;
+				PRODUCT_BUNDLE_IDENTIFIER = csce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -430,10 +430,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8W697TZP33;
+				DEVELOPMENT_TEAM = PA4Z55BQSM;
 				INFOPLIST_FILE = Showcase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TamuCpse482;
+				PRODUCT_BUNDLE_IDENTIFIER = csce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
