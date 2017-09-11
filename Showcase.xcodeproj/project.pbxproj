@@ -193,7 +193,7 @@
 				TargetAttributes = {
 					494979201F672BF4005DB65C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 2K7ABR368C;
+						DevelopmentTeam = 8W697TZP33;
 						ProvisioningStyle = Automatic;
 					};
 					494979341F672BF5005DB65C = {
@@ -417,10 +417,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2K7ABR368C;
+				DEVELOPMENT_TEAM = 8W697TZP33;
 				INFOPLIST_FILE = Showcase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TamuCpse482.Showcase;
+				PRODUCT_BUNDLE_IDENTIFIER = TamuCpse482;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -430,10 +430,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2K7ABR368C;
+				DEVELOPMENT_TEAM = 8W697TZP33;
 				INFOPLIST_FILE = Showcase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TamuCpse482.Showcase;
+				PRODUCT_BUNDLE_IDENTIFIER = TamuCpse482;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -516,6 +516,7 @@
 				4949794B1F672BF6005DB65C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4949794C1F672BF6005DB65C /* Build configuration list for PBXNativeTarget "ShowcaseTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +525,7 @@
 				4949794E1F672BF6005DB65C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4949794F1F672BF6005DB65C /* Build configuration list for PBXNativeTarget "ShowcaseUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +534,7 @@
 				494979511F672BF6005DB65C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
