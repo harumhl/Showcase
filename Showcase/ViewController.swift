@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  Showcast
+//  Showcase
 //
-//  Created by Haru Myunghoon Lee on 9/4/17.
-//  Copyright © 2017 CSCE482Showcase. All rights reserved.
+//  Created by Haru Myunghoon Lee on 9/11/17.
+//  Copyright © 2017 TamuCpse482. All rights reserved.
 //
 
 import UIKit

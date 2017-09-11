@@ -1,14 +1,14 @@
 //
-//  ShowcastUITests.swift
-//  ShowcastUITests
+//  ShowcaseUITests.swift
+//  ShowcaseUITests
 //
-//  Created by Haru Myunghoon Lee on 9/4/17.
-//  Copyright © 2017 CSCE482Showcase. All rights reserved.
+//  Created by Haru Myunghoon Lee on 9/11/17.
+//  Copyright © 2017 TamuCpse482. All rights reserved.
 //
 
 import XCTest
 
-class ShowcastUITests: XCTestCase {
+class ShowcaseUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

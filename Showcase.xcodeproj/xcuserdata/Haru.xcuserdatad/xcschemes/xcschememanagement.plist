@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Showcast.xcscheme</key>
+		<key>Showcase.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,17 +12,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>496061BA1F5DEEB900AF011D</key>
+		<key>494979201F672BF4005DB65C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>496061CE1F5DEEBA00AF011D</key>
+		<key>494979341F672BF5005DB65C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>496061D91F5DEEBA00AF011D</key>
+		<key>4949793F1F672BF6005DB65C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

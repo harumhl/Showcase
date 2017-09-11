@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "496061BA1F5DEEB900AF011D"
-               BuildableName = "Showcast.app"
-               BlueprintName = "Showcast"
-               ReferencedContainer = "container:Showcast.xcodeproj">
+               BlueprintIdentifier = "494979201F672BF4005DB65C"
+               BuildableName = "Showcase.app"
+               BlueprintName = "Showcase"
+               ReferencedContainer = "container:Showcase.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "496061CE1F5DEEBA00AF011D"
-               BuildableName = "ShowcastTests.xctest"
-               BlueprintName = "ShowcastTests"
-               ReferencedContainer = "container:Showcast.xcodeproj">
+               BlueprintIdentifier = "494979341F672BF5005DB65C"
+               BuildableName = "ShowcaseTests.xctest"
+               BlueprintName = "ShowcaseTests"
+               ReferencedContainer = "container:Showcase.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "496061D91F5DEEBA00AF011D"
-               BuildableName = "ShowcastUITests.xctest"
-               BlueprintName = "ShowcastUITests"
-               ReferencedContainer = "container:Showcast.xcodeproj">
+               BlueprintIdentifier = "4949793F1F672BF6005DB65C"
+               BuildableName = "ShowcaseUITests.xctest"
+               BlueprintName = "ShowcaseUITests"
+               ReferencedContainer = "container:Showcase.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "496061BA1F5DEEB900AF011D"
-            BuildableName = "Showcast.app"
-            BlueprintName = "Showcast"
-            ReferencedContainer = "container:Showcast.xcodeproj">
+            BlueprintIdentifier = "494979201F672BF4005DB65C"
+            BuildableName = "Showcase.app"
+            BlueprintName = "Showcase"
+            ReferencedContainer = "container:Showcase.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "496061BA1F5DEEB900AF011D"
-            BuildableName = "Showcast.app"
-            BlueprintName = "Showcast"
-            ReferencedContainer = "container:Showcast.xcodeproj">
+            BlueprintIdentifier = "494979201F672BF4005DB65C"
+            BuildableName = "Showcase.app"
+            BlueprintName = "Showcase"
+            ReferencedContainer = "container:Showcase.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,10 +94,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "496061BA1F5DEEB900AF011D"
-            BuildableName = "Showcast.app"
-            BlueprintName = "Showcast"
-            ReferencedContainer = "container:Showcast.xcodeproj">
+            BlueprintIdentifier = "494979201F672BF4005DB65C"
+            BuildableName = "Showcase.app"
+            BlueprintName = "Showcase"
+            ReferencedContainer = "container:Showcase.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
