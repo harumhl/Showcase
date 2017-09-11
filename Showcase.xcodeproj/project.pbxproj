@@ -193,7 +193,7 @@
 				TargetAttributes = {
 					494979201F672BF4005DB65C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = P6TATPT3Q8;
+						DevelopmentTeam = 8W697TZP33;
 						ProvisioningStyle = Automatic;
 					};
 					494979341F672BF5005DB65C = {
@@ -417,11 +417,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = P6TATPT3Q8;
+				DEVELOPMENT_TEAM = 8W697TZP33;
 				INFOPLIST_FILE = Showcase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CSCE482Showcase;
+				PRODUCT_BUNDLE_IDENTIFIER = CSCE482DFDSF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -431,11 +431,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = P6TATPT3Q8;
+				DEVELOPMENT_TEAM = 8W697TZP33;
 				INFOPLIST_FILE = Showcase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CSCE482Showcase;
+				PRODUCT_BUNDLE_IDENTIFIER = CSCE482DFDSF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
