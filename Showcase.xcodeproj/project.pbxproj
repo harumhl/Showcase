@@ -15,6 +15,7 @@
 		4949792F1F672BF5005DB65C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4949792D1F672BF5005DB65C /* LaunchScreen.storyboard */; };
 		4949793A1F672BF6005DB65C /* ShowcaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979391F672BF6005DB65C /* ShowcaseTests.swift */; };
 		494979451F672BF6005DB65C /* ShowcaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979441F672BF6005DB65C /* ShowcaseUITests.swift */; };
+		4EF2F3181F69D40100117769 /* BrandonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2F3171F69D40100117769 /* BrandonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		494979401F672BF6005DB65C /* ShowcaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShowcaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979441F672BF6005DB65C /* ShowcaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseUITests.swift; sourceTree = "<group>"; };
 		494979461F672BF6005DB65C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4EF2F3171F69D40100117769 /* BrandonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				4949792B1F672BF5005DB65C /* Assets.xcassets */,
 				4949792D1F672BF5005DB65C /* LaunchScreen.storyboard */,
 				494979301F672BF5005DB65C /* Info.plist */,
+				4EF2F3171F69D40100117769 /* BrandonViewController.swift */,
 			);
 			path = Showcase;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			files = (
 				494979271F672BF4005DB65C /* ViewController.swift in Sources */,
 				494979251F672BF4005DB65C /* AppDelegate.swift in Sources */,
+				4EF2F3181F69D40100117769 /* BrandonViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
