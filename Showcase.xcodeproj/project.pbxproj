@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30056E6D1F67464C0022649E /* haru.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30056E6C1F67464C0022649E /* haru.storyboard */; };
 		494979251F672BF4005DB65C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979241F672BF4005DB65C /* AppDelegate.swift */; };
 		494979271F672BF4005DB65C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979261F672BF4005DB65C /* ViewController.swift */; };
 		4949792A1F672BF4005DB65C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494979281F672BF4005DB65C /* Main.storyboard */; };
@@ -36,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		30056E6C1F67464C0022649E /* haru.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = haru.storyboard; sourceTree = "<group>"; };
 		494979211F672BF4005DB65C /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979241F672BF4005DB65C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		494979261F672BF4005DB65C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				494979241F672BF4005DB65C /* AppDelegate.swift */,
 				494979261F672BF4005DB65C /* ViewController.swift */,
 				494979281F672BF4005DB65C /* Main.storyboard */,
-				30056E6C1F67464C0022649E /* haru.storyboard */,
 				4949792B1F672BF5005DB65C /* Assets.xcassets */,
 				4949792D1F672BF5005DB65C /* LaunchScreen.storyboard */,
 				494979301F672BF5005DB65C /* Info.plist */,
@@ -199,7 +196,7 @@
 				TargetAttributes = {
 					494979201F672BF4005DB65C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = PA4Z55BQSM;
+						DevelopmentTeam = P6TATPT3Q8;
 						ProvisioningStyle = Automatic;
 					};
 					494979341F672BF5005DB65C = {
@@ -243,7 +240,6 @@
 			files = (
 				4949792F1F672BF5005DB65C /* LaunchScreen.storyboard in Resources */,
 				4949792C1F672BF5005DB65C /* Assets.xcassets in Resources */,
-				30056E6D1F67464C0022649E /* haru.storyboard in Resources */,
 				4949792A1F672BF4005DB65C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,11 +421,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PA4Z55BQSM;
+				DEVELOPMENT_TEAM = P6TATPT3Q8;
 				INFOPLIST_FILE = Showcase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = csce;
+				PRODUCT_BUNDLE_IDENTIFIER = CSCE482Showcase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -439,11 +435,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PA4Z55BQSM;
+				DEVELOPMENT_TEAM = P6TATPT3Q8;
 				INFOPLIST_FILE = Showcase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = csce;
+				PRODUCT_BUNDLE_IDENTIFIER = CSCE482Showcase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
