@@ -28,6 +28,9 @@ Give examples
 * ...
 * ...
 
+## Debugging
+* if given thread error after pulling project and building. Clean it using CMD+SHIFT+K or Product->Clean
+
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used
