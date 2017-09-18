@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BA96DE1F706C71001875BF /* PostScanViewController.swift */; };
 		494979251F672BF4005DB65C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979241F672BF4005DB65C /* AppDelegate.swift */; };
 		494979271F672BF4005DB65C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979261F672BF4005DB65C /* RootViewController.swift */; };
 		4949792A1F672BF4005DB65C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494979281F672BF4005DB65C /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08BA96DE1F706C71001875BF /* PostScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostScanViewController.swift; sourceTree = "<group>"; };
 		494979211F672BF4005DB65C /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979241F672BF4005DB65C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		494979261F672BF4005DB65C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08BA96E01F7071E7001875BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		08BA96E11F7071F4001875BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		08BA96E21F7071F9001875BF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				494979261F672BF4005DB65C /* RootViewController.swift */,
+				08BA96DE1F706C71001875BF /* PostScanViewController.swift */,
+				4E2254791F70514000DE1D93 /* ContributionsViewController.swift */,
+				4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */,
+				4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */,
+				4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		494979181F672BF4005DB65C = {
 			isa = PBXGroup;
 			children = (
@@ -105,13 +134,11 @@
 		494979231F672BF4005DB65C /* Showcase */ = {
 			isa = PBXGroup;
 			children = (
+				08BA96E21F7071F9001875BF /* Controller */,
+				08BA96E11F7071F4001875BF /* View */,
+				08BA96E01F7071E7001875BF /* Model */,
 				494979241F672BF4005DB65C /* AppDelegate.swift */,
-				494979261F672BF4005DB65C /* RootViewController.swift */,
 				494979281F672BF4005DB65C /* Main.storyboard */,
-				4E2254791F70514000DE1D93 /* ContributionsViewController.swift */,
-				4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */,
-				4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */,
-				4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */,
 				4949792B1F672BF5005DB65C /* Assets.xcassets */,
 				4949792D1F672BF5005DB65C /* LaunchScreen.storyboard */,
 				494979301F672BF5005DB65C /* Info.plist */,
@@ -276,6 +303,7 @@
 			files = (
 				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
 				494979271F672BF4005DB65C /* RootViewController.swift in Sources */,
+				08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */,
 				4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */,
 				4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */,
 				4E2254741F7050A300DE1D93 /* UserAccountSettingsViewController.swift in Sources */,

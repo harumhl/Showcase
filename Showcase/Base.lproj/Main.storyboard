@@ -61,7 +61,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="New Searchff"/>
                                 <connections>
-                                    <segue destination="RuQ-d1-mhr" kind="show" id="shh-RK-V0N"/>
+                                    <segue destination="RuQ-d1-mhr" kind="show" identifier="MainMenu" id="shh-RK-V0N"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhV-jU-9hZ">
@@ -108,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tve-02-EYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="760.79999999999995" y="-603.14842578710648"/>
+            <point key="canvasLocation" x="790" y="-631"/>
         </scene>
         <!--Scanner View Controller-->
         <scene sceneID="BbN-d9-MhJ">
@@ -132,10 +132,44 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="uOD-w7-Izs" kind="show" identifier="ScannerToSearch" id="HoW-nj-RgG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHd-WM-TVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="791" y="81"/>
+        </scene>
+        <!--Post Scan View Controller-->
+        <scene sceneID="ECQ-Fc-OxK">
+            <objects>
+                <viewController id="uOD-w7-Izs" customClass="PostScanViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4vd-5v-jcM"/>
+                        <viewControllerLayoutGuide type="bottom" id="iin-Je-ukg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dTH-ht-w43">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Post Scan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="do5-sl-2lT">
+                                <rect key="frame" x="95" y="64" width="185" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="barcodeField" destination="do5-sl-2lT" id="Hg3-tl-pJ5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jCa-wn-RAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1832.8" y="80.50974512743629"/>
         </scene>
         <!--History Table View Controller-->
         <scene sceneID="ZC7-aK-sI1">
