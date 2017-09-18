@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		494979251F672BF4005DB65C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979241F672BF4005DB65C /* AppDelegate.swift */; };
-		494979271F672BF4005DB65C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979261F672BF4005DB65C /* ViewController.swift */; };
+		494979271F672BF4005DB65C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979261F672BF4005DB65C /* RootViewController.swift */; };
 		4949792A1F672BF4005DB65C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494979281F672BF4005DB65C /* Main.storyboard */; };
 		4949792C1F672BF5005DB65C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4949792B1F672BF5005DB65C /* Assets.xcassets */; };
 		4949792F1F672BF5005DB65C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4949792D1F672BF5005DB65C /* LaunchScreen.storyboard */; };
 		4949793A1F672BF6005DB65C /* ShowcaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979391F672BF6005DB65C /* ShowcaseTests.swift */; };
 		494979451F672BF6005DB65C /* ShowcaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979441F672BF6005DB65C /* ShowcaseUITests.swift */; };
-		4EF2F3181F69D40100117769 /* BrandonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2F3171F69D40100117769 /* BrandonViewController.swift */; };
+		4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */; };
+		4E2254741F7050A300DE1D93 /* UserAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */; };
+		4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */; };
+		4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254791F70514000DE1D93 /* ContributionsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +40,7 @@
 /* Begin PBXFileReference section */
 		494979211F672BF4005DB65C /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979241F672BF4005DB65C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		494979261F672BF4005DB65C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		494979261F672BF4005DB65C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		494979291F672BF4005DB65C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4949792B1F672BF5005DB65C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4949792E1F672BF5005DB65C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,7 +51,10 @@
 		494979401F672BF6005DB65C /* ShowcaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShowcaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979441F672BF6005DB65C /* ShowcaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseUITests.swift; sourceTree = "<group>"; };
 		494979461F672BF6005DB65C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4EF2F3171F69D40100117769 /* BrandonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandonViewController.swift; sourceTree = "<group>"; };
+		4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountSettingsViewController.swift; sourceTree = "<group>"; };
+		4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		4E2254791F70514000DE1D93 /* ContributionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributionsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +106,15 @@
 			isa = PBXGroup;
 			children = (
 				494979241F672BF4005DB65C /* AppDelegate.swift */,
-				494979261F672BF4005DB65C /* ViewController.swift */,
+				494979261F672BF4005DB65C /* RootViewController.swift */,
 				494979281F672BF4005DB65C /* Main.storyboard */,
+				4E2254791F70514000DE1D93 /* ContributionsViewController.swift */,
+				4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */,
+				4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */,
+				4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */,
 				4949792B1F672BF5005DB65C /* Assets.xcassets */,
 				4949792D1F672BF5005DB65C /* LaunchScreen.storyboard */,
 				494979301F672BF5005DB65C /* Info.plist */,
-				4EF2F3171F69D40100117769 /* BrandonViewController.swift */,
 			);
 			path = Showcase;
 			sourceTree = "<group>";
@@ -196,7 +205,7 @@
 				TargetAttributes = {
 					494979201F672BF4005DB65C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = P6TATPT3Q8;
+						DevelopmentTeam = PA4Z55BQSM;
 						ProvisioningStyle = Automatic;
 					};
 					494979341F672BF5005DB65C = {
@@ -265,9 +274,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				494979271F672BF4005DB65C /* ViewController.swift in Sources */,
+				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
+				494979271F672BF4005DB65C /* RootViewController.swift in Sources */,
+				4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */,
+				4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */,
+				4E2254741F7050A300DE1D93 /* UserAccountSettingsViewController.swift in Sources */,
 				494979251F672BF4005DB65C /* AppDelegate.swift in Sources */,
-				4EF2F3181F69D40100117769 /* BrandonViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,11 +433,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = P6TATPT3Q8;
+				DEVELOPMENT_TEAM = PA4Z55BQSM;
 				INFOPLIST_FILE = Showcase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CSCE482Showcase;
+				PRODUCT_BUNDLE_IDENTIFIER = csce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -435,11 +447,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = P6TATPT3Q8;
+				DEVELOPMENT_TEAM = PA4Z55BQSM;
 				INFOPLIST_FILE = Showcase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CSCE482Showcase;
+				PRODUCT_BUNDLE_IDENTIFIER = csce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
