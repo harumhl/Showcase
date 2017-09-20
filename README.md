@@ -24,12 +24,12 @@ Give examples
 
 ## Built With
 
-* ...
+* Firebase - Google Cloud Database Platform
 * ...
 * ...
 
 ## Debugging
-* if given thread error after pulling project and building. Clean it using CMD+SHIFT+K or Product->Clean
+* if given thread error after pulling project and building. Clean it using CMD+SHIFT+K or Product->Clean, then Build the application.
 
 ## Acknowledgments
 
