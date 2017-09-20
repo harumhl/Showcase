@@ -33,6 +33,8 @@ Give examples
 
 ## Acknowledgments
 
+* A simple Barcode reader was implemented thanks to, As of now we believe it only reads UPC
+  * https://www.hackingwithswift.com/example-code/media/how-to-scan-a-barcode
 * Hat tip to anyone who's code was used
 * Inspiration
 * etc
