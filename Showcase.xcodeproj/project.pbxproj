@@ -19,6 +19,7 @@
 		4E2254741F7050A300DE1D93 /* UserAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */; };
 		4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */; };
 		4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254791F70514000DE1D93 /* ContributionsViewController.swift */; };
+		5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountSettingsViewController.swift; sourceTree = "<group>"; };
 		4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		4E2254791F70514000DE1D93 /* ContributionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributionsViewController.swift; sourceTree = "<group>"; };
+		5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				4949792B1F672BF5005DB65C /* Assets.xcassets */,
 				4949792D1F672BF5005DB65C /* LaunchScreen.storyboard */,
 				494979301F672BF5005DB65C /* Info.plist */,
+				5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */,
 			);
 			path = Showcase;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4949792F1F672BF5005DB65C /* LaunchScreen.storyboard in Resources */,
+				5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */,
 				4949792C1F672BF5005DB65C /* Assets.xcassets in Resources */,
 				4949792A1F672BF4005DB65C /* Main.storyboard in Resources */,
 			);
