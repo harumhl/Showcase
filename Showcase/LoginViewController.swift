@@ -19,14 +19,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         // Do any additional setup after loading the view.
         emailInput.delegate = self
         emailInput.returnKeyType = UIReturnKeyType.done
-        emailInput.next
         
         passwordInput.delegate = self
         passwordInput.returnKeyType = UIReturnKeyType.done
         
-        // tags allow us to navigate through them
-        emailInput.tag = 0
-        passwordInput.tag = 1
+        // I set these tags in the XCode textField properties
+        //emailInput.tag = 0
+        //passwordInput.tag = 1
+        
+//        emailInput.layer.cornerRadius = 15
+//        passwordInput.layer.cornerRadius = 10
+        
+//        emailInput.layer.borderColor = (UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0) as! CGColor)
+//        emailInput.layer.backgroundColor = (UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0) as! CGColor)
+//        passwordInput.layer.borderColor = (UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0) as! CGColor)
+//        passwordInput.layer.backgroundColor = (UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0) as! CGColor)
+        
+        
         
         
     }
@@ -53,6 +62,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     // Hide keyboard when user touches outside keyboard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
+        print(":")
         
     }
     

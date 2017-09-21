@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BA96DE1F706C71001875BF /* PostScanViewController.swift */; };
 		494979251F672BF4005DB65C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979241F672BF4005DB65C /* AppDelegate.swift */; };
-		494979271F672BF4005DB65C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979261F672BF4005DB65C /* RootViewController.swift */; };
 		4949792A1F672BF4005DB65C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494979281F672BF4005DB65C /* Main.storyboard */; };
 		4949792C1F672BF5005DB65C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4949792B1F672BF5005DB65C /* Assets.xcassets */; };
 		4949792F1F672BF5005DB65C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4949792D1F672BF5005DB65C /* LaunchScreen.storyboard */; };
@@ -23,6 +22,9 @@
 		5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */; };
 		5E0CEEE31F730F29009EADF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE21F730F29009EADF6 /* User.swift */; };
 		5E0CEEE61F730FD7009EADF6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE51F730FD7009EADF6 /* Constants.swift */; };
+		5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E72C1F7383C2002B703D /* RootViewController.swift */; };
+		5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E72E1F7391DB002B703D /* MaterialTextField.swift */; };
+		5E47E7311F739485002B703D /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E7301F739484002B703D /* MaterialButton.swift */; };
 		836BAB31647A371F392EC41D /* Pods_ShowcaseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCDEC596D80F2B0788E83CD /* Pods_ShowcaseUITests.framework */; };
 		D1C69F2E3FF3AA59134FCD6C /* Pods_Showcase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9107313B2F73F59FA96D3745 /* Pods_Showcase.framework */; };
 		F0A103473A77D4E96604AA12 /* Pods_ShowcaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20E198409E5BCE3F72BE52BB /* Pods_ShowcaseTests.framework */; };
@@ -50,7 +52,6 @@
 		20E198409E5BCE3F72BE52BB /* Pods_ShowcaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowcaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979211F672BF4005DB65C /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979241F672BF4005DB65C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		494979261F672BF4005DB65C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		494979291F672BF4005DB65C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4949792B1F672BF5005DB65C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4949792E1F672BF5005DB65C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,6 +70,9 @@
 		5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5E0CEEE21F730F29009EADF6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5E0CEEE51F730FD7009EADF6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5E47E72C1F7383C2002B703D /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		5E47E72E1F7391DB002B703D /* MaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialTextField.swift; sourceTree = "<group>"; };
+		5E47E7301F739484002B703D /* MaterialButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
 		7D3EE552108CD1C997E7B429 /* Pods-Showcase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Showcase.release.xcconfig"; path = "Pods/Target Support Files/Pods-Showcase/Pods-Showcase.release.xcconfig"; sourceTree = "<group>"; };
 		804CA54A5BDCFE26DC8F4CE9 /* Pods-ShowcaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowcaseTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShowcaseTests/Pods-ShowcaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		85F6838B4813AF91F243089B /* Pods-ShowcaseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowcaseUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShowcaseUITests/Pods-ShowcaseUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 		08BA96E11F7071F4001875BF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5E47E72E1F7391DB002B703D /* MaterialTextField.swift */,
+				5E47E7301F739484002B703D /* MaterialButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -135,13 +141,13 @@
 		08BA96E21F7071F9001875BF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				494979261F672BF4005DB65C /* RootViewController.swift */,
 				08BA96DE1F706C71001875BF /* PostScanViewController.swift */,
 				4E2254791F70514000DE1D93 /* ContributionsViewController.swift */,
 				4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */,
 				4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */,
 				4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */,
 				4E257A011F731F4B00012F2D /* LoginViewController.swift */,
+				5E47E72C1F7383C2002B703D /* RootViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -441,11 +447,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Showcase/Pods-Showcase-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,9 +531,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */,
 				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
-				494979271F672BF4005DB65C /* RootViewController.swift in Sources */,
+				5E47E7311F739485002B703D /* MaterialButton.swift in Sources */,
 				08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */,
+				5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */,
 				4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */,
 				5E0CEEE31F730F29009EADF6 /* User.swift in Sources */,
 				4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */,
@@ -590,6 +600,7 @@
 		494979471F672BF6005DB65C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -642,6 +653,7 @@
 		494979481F672BF6005DB65C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
