@@ -18,7 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
 
         // Do any additional setup after loading the view.
         emailInput.delegate = self
-        emailInput.returnKeyType = UIReturnKeyType.done
+        emailInput.returnKeyType = UIReturnKeyType.next
         
         passwordInput.delegate = self
         passwordInput.returnKeyType = UIReturnKeyType.done
@@ -27,17 +27,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         //emailInput.tag = 0
         //passwordInput.tag = 1
         
-//        emailInput.layer.cornerRadius = 15
-//        passwordInput.layer.cornerRadius = 10
+        // border color
+        emailInput.layer.borderColor = UIColor.white.cgColor
+        passwordInput.layer.borderColor = UIColor.white.cgColor
         
-//        emailInput.layer.borderColor = (UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0) as! CGColor)
-//        emailInput.layer.backgroundColor = (UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0) as! CGColor)
-//        passwordInput.layer.borderColor = (UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0) as! CGColor)
-//        passwordInput.layer.backgroundColor = (UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0) as! CGColor)
+        // text field icons
+        emailInput.leftViewMode = UITextFieldViewMode.always
+        passwordInput.leftViewMode = UITextFieldViewMode.always
+        
+                
         
         
-        
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // hide the navigation controller bar
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     override func didReceiveMemoryWarning() {

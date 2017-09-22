@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set the keyboard to use IQKeyboardManager
         IQKeyboardManager.sharedManager().enable = true
         
+        // Navigation controller background color
+        UINavigationBar.appearance().barTintColor = UIColor(red:0.33, green:0.84, blue:0.75, alpha:1.0)
+
+        // Navigation controller text color for "back" button
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
         return true
     }
 

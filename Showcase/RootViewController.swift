@@ -19,6 +19,12 @@ class RootViewController: UIViewController {
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // hide the navigation controller bar
+        self.navigationController?.isNavigationBarHidden = false
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

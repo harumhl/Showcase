@@ -24,8 +24,10 @@ Give examples
 
 ## Built With
 
-* Firebase - Google Cloud Database Platform
-* ...
+* Pods
+	* Firebase - Google Cloud Database Platform
+	* IQKeyboardManager - easily manages all typical keybaord functions
+	* ImageTextField - easily place an image icon in a textfield
 * ...
 
 ## Debugging
