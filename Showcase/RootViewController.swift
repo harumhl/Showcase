@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import CoreLocation
 
-class RootViewController: UIViewController {
+var locManager: CLLocationManager!
+
+class RootViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +21,11 @@ class RootViewController: UIViewController {
         // Remove te "back" button 
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
+        
+        // asking for location permissions
+        locManager = CLLocationManager()
+        locManager.delegate = self
+        locManager.requestWhenInUseAuthorization()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +37,17 @@ class RootViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // When user responds to Locations preferences
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    // do stuff
+                }
+            }
+        }
     }
     
 
