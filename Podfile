@@ -8,6 +8,7 @@ target 'Showcase' do
   # Pods for Showcase
 
 pod 'Firebase/Core'
+pod 'Firebase/Auth'
 pod 'IQKeyboardManagerSwift'
 pod 'ImageTextField'
 

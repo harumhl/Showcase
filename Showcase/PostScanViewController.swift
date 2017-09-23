@@ -44,7 +44,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         // get Longitude and Latitude
         //var locManager = CLLocationManager()
         locManager.delegate = self
-        locManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locManager.desiredAccuracy = kCLLocationAccuracyBest
         locManager.requestWhenInUseAuthorization()
         
         //var currentLocation = CLLocation!.self
@@ -82,9 +82,14 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
                 let address = ABCreateStringWithAddressDictionary(pm.addressDictionary!, false)
                 print("\n\(address)")
                 if ((pm.areasOfInterest?.count)! > 0 ){
-                    let areaOfInterest = pm.areasOfInterest?[0]
-                    print(areaOfInterest!)
-                    self.placeholderText.text = areaOfInterest!
+                    let areaOfInterest = pm.areasOfInterest![0]
+                    print(areaOfInterest)
+                    self.placeholderText.text = areaOfInterest
+                    
+                    for myLoc in pm.areasOfInterest!{
+                        print(myLoc)
+                    }
+                    
                 } else {
                     print("No area of interest found.")
                 }

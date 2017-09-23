@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+
 
 class LoginViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
+    
+    var handle: Auth!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +40,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         emailInput.leftViewMode = UITextFieldViewMode.always
         passwordInput.leftViewMode = UITextFieldViewMode.always
         
-                
-        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // hide the navigation controller bar
         self.navigationController?.isNavigationBarHidden = true
+        
+        handle = Auth.auth().addStateDidChangeListener{ (auth, user) in
+            //..
+        } as! Auth
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,31 +57,52 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        Auth.auth().removeStateDidChangeListener(handle!)
+    }
 
+    // attempt login
     @IBAction func Login(_ sender: Any) {
         
-        // validate credentials
+        // validate credentials. 
+        // If both of these pass then we have an email and a password
+        let email = emailInput.text;
+        let pwd = passwordInput.text;
         
+        if (email != "" && pwd != "") {
+    
+            
+            // handles loging in. Based on response from firebase.
+            // It tells us if user has an accout.
+//            DataService.ds.REF_BASE.authUser(email, password: pwd, withCompletionBock: {
+//                error, authData in
+//                
+//                
+//                if error != nil {
+//                    print(error)
+//                }
+//            })
+//        }
+//        else {
+//             // showErrorAlert("Email and Password Requried", msg: "You must enter an email and a password")
+        
+        
+        
+        }
         // ...
         
         // segue
         
         performSegue(withIdentifier: "loginToRootSegue", sender: nil)
-
-        
     }
     
-    // Hide keyboard when user touches outside keyboard
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        self.view.endEditing(true)
-        print(":")
-        
-    }
+    // resusable function that creates alerts
+//    func showErrorAlert(title: String, msg: String) {
+//        
+//    }
     
     //presses the return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //textField.resignFirstResponder()
-        //return (true)
         // Try to find next responder
         if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
             nextField.becomeFirstResponder()
