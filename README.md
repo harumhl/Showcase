@@ -24,12 +24,21 @@ Give examples
 
 ## Built With
 
+* Pods
+	* Firebase - Google Cloud Database Platform
+	* IQKeyboardManager - easily manages all typical keybaord functions
+	* ImageTextField - easily place an image icon in a textfield
 * ...
-* ...
-* ...
+
+## Debugging
+* if given thread error after pulling project and building. Clean it using CMD+SHIFT+K or Product->Clean, then Build the application.
 
 ## Acknowledgments
 
+* A simple Barcode reader was implemented thanks to, As of now we believe it only reads UPC
+	* https://www.hackingwithswift.com/example-code/media/how-to-scan-a-barcode
+* Reverse Geocoding used in application - !!!! BRANDON ADD THIS SOURCE IN SWIFT FILE !!!!!!
+	* http://mhorga.org/2015/08/14/geocoding-in-ios.html
 * Hat tip to anyone who's code was used
 * Inspiration
 * etc

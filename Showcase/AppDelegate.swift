@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // connect to Firebase
+        FirebaseApp.configure()
+        
+        // Set the keyboard to use IQKeyboardManager
+        IQKeyboardManager.sharedManager().enable = true
+        
+        // Navigation controller background color
+        UINavigationBar.appearance().barTintColor = UIColor(red:0.33, green:0.84, blue:0.75, alpha:1.0)
+
+        // Navigation controller text color for "back" button
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
         return true
     }
 

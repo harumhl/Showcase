@@ -11,28 +11,34 @@ import AVFoundation
 import UIKit
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    var scannedBarcode: String = ""
+    var scannedBarcodeData: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = UIColor.black
+        loadCameraView()
+    }
+    
+    // Initialize the camera view for scanning
+    func loadCameraView() {
         captureSession = AVCaptureSession()
-
         let videoCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         let videoInput: AVCaptureDeviceInput
-
+        
         do {
             videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-        } catch {
+        }
+        catch {
             return
         }
-
+        
         if (captureSession.canAddInput(videoInput)) {
             captureSession.addInput(videoInput)
-        } else {
+        }
+        else {
             failed();
             return;
         }
@@ -42,7 +48,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         if (captureSession.canAddOutput(metadataOutput)) {
             captureSession.addOutput(metadataOutput)
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeEAN8Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypePDF417Code]
+            // Set supported 1D and 2D Barcodes
+            // https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/machine_readable_object_types
+            metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeEAN8Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypePDF417Code,AVMetadataObjectTypeQRCode]
         }
         else {
             failed()
@@ -50,16 +58,16 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
 
                 
-        let size = CGSize(width: 500, height: 300)
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame.size = size
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        view.layer.addSublayer(previewLayer)
-
+        // let size = CGSize(width: 500, height: 300)
         // previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        // previewLayer.frame = view.layer.bounds
+        // previewLayer.frame.size = size
         // previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         // view.layer.addSublayer(previewLayer)
+
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer.frame = view.layer.bounds
+        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        view.layer.addSublayer(previewLayer)
 
         captureSession.startRunning();
     }
@@ -81,7 +89,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         if (captureSession?.isRunning == true) {
             captureSession.stopRunning();
         }
@@ -102,13 +109,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     func found(code: String) {
         print("Finished scanning code: " + code)
-        scannedBarcode = code
+        scannedBarcodeData = code
         performSegue(withIdentifier: "ScannerToSearch", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
-        postScanVC.theBarcode = scannedBarcode
+        postScanVC.theBarcodeData = scannedBarcodeData
     }
     
 
