@@ -49,10 +49,17 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             return
         }
 
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession);
-        previewLayer.frame = view.layer.bounds;
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-        view.layer.addSublayer(previewLayer);
+                
+        let size = CGSize(width: 500, height: 300)
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer.frame.size = size
+        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        view.layer.addSublayer(previewLayer)
+
+        // previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        // previewLayer.frame = view.layer.bounds
+        // previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        // view.layer.addSublayer(previewLayer)
 
         captureSession.startRunning();
     }
