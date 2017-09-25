@@ -17,9 +17,9 @@ and mortar store as a “thank you” for advertising the book and helping the u
 ## Development Information
 
 What things you need to do to setup stuff
-
+* To develop, open the workspace instead of the XCode project.
 ```
-Give examples
+open Showcase.xcworkspace \
 ```
 
 ## Built With
