@@ -80,17 +80,21 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             else if (placemarks?.count)! > 0 {
                 let pm = placemarks![0]
                 let address = ABCreateStringWithAddressDictionary(pm.addressDictionary!, false)
+                //let address = CNPostalAddressFormatter(pm.addressDictionary!, false)
+                
                 print("\n\(address)")
-                if ((pm.areasOfInterest?.count)! > 0 ){
-                    let areaOfInterest = pm.areasOfInterest![0]
-                    print(areaOfInterest)
-                    self.placeholderText.text = areaOfInterest
+                
+                if (pm.areasOfInterest != nil && (pm.areasOfInterest?.count)! > 0){
                     
-                    for myLoc in pm.areasOfInterest!{
-                        print(myLoc)
+                    if(pm.areasOfInterest?[0] == nil){
+                        print("this thing is nil")
+                    } else{
+                        let areaOfInterest = pm.areasOfInterest?[0]
+                        self.placeholderText.text = areaOfInterest
                     }
                     
                 } else {
+                    self.placeholderText.text = "Sorry, No placemarker found"
                     print("No area of interest found.")
                 }
             }

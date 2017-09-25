@@ -36,10 +36,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         emailInput.layer.borderColor = UIColor.white.cgColor
         passwordInput.layer.borderColor = UIColor.white.cgColor
         
-        // text field icons
-        emailInput.leftViewMode = UITextFieldViewMode.always
-        passwordInput.leftViewMode = UITextFieldViewMode.always
-        
         
     }
     
@@ -47,9 +43,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         // hide the navigation controller bar
         self.navigationController?.isNavigationBarHidden = true
         
-        handle = Auth.auth().addStateDidChangeListener{ (auth, user) in
-            //..
-        } as! Auth
+//        handle = Auth.auth().addStateDidChangeListener{ (auth, user) in
+//            //..
+//        } as! Auth
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,7 +54,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        Auth.auth().removeStateDidChangeListener(handle!)
+        //Auth.auth().removeStateDidChangeListener(handle!)
     }
 
     // attempt login
@@ -66,14 +62,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         
         // validate credentials. 
         // If both of these pass then we have an email and a password
-        let email = emailInput.text;
-        let pwd = passwordInput.text;
-        
-        if (email != "" && pwd != "") {
-    
-            
-            // handles loging in. Based on response from firebase.
-            // It tells us if user has an accout.
+//        let email = emailInput.text;
+//        let pwd = passwordInput.text;
+//        
+//        if (email != "" && pwd != "") {
+//    
+//            
+//            // handles loging in. Based on response from firebase.
+//            // It tells us if user has an accout.
 //            DataService.ds.REF_BASE.authUser(email, password: pwd, withCompletionBock: {
 //                error, authData in
 //                
@@ -85,11 +81,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
 //        }
 //        else {
 //             // showErrorAlert("Email and Password Requried", msg: "You must enter an email and a password")
-        
-        
-        
-        }
-        // ...
+//        
+//        
+//        
+//        }
+//        // ...
         
         // segue
         
