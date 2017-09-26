@@ -21,6 +21,22 @@ What things you need to do to setup stuff
 ```
 open Showcase.xcworkspace \
 ```
+* Browser script to remove users from Firebase DB
+```
+var intervalId;
+var clearFunction = function() {
+  if ($('[aria-label="Delete account"]').size() == 0) {
+    console.log("interval cleared")
+    clearInterval(intervalId)
+    return
+  }
+  $('[aria-label="Delete account"]')[0].click();
+  setTimeout(function () {
+     $(".md-raised:contains(Delete)").click()
+  }, 1000);
+};
+intervalId = setInterval(clearFunction, 3000)
+```
 
 ## Built With
 
