@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+    @IBOutlet weak var registerButton: MaterialButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,17 +41,16 @@ class SignUpViewController: UIViewController {
     
     @IBAction func registerUser(_ sender: Any) {
         // Verify password field = confirm password
-        print("Sign Up Fields:")
+        print("*** Sign Up Fields ***")
         print("\tFirst Name: " + firstNameField.text!)
         print("\tLast Name: "  + lastNameField.text!)
         print("\tEmail: "      + emailField.text!)
         print("\tPassword: "   + passwordField.text!)
-    
+        
+        // Check for password confirmation
         if passwordField.text == confirmPasswordField.text {
             // Create the user
             Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
-                // ..
-                // segue into main menu
                 if error != nil {
                     if let errorCode = AuthErrorCode(rawValue: (error?._code)!) {
                         switch errorCode {
@@ -65,20 +65,16 @@ class SignUpViewController: UIViewController {
                                 break
                         }
                     }
-                } else {
-                    print ("Successful")
-                    // self.showAlert(title: "Success", message: "Creating user...")
-                    // Need a way to navigate to the main menu (login) or back so that they can log in.
-                    // _ = self.navigationController?.popToRootViewController(animated: true)
-                    // DispatchQueue.main.async(execute: {
-                    // For some reason this disables the Navigation Bar which breaks the app.
-                       self.performSegue(withIdentifier: "signUpToRootSegue", sender: nil)
-                    // })
+                }
+                // There were no errors from authentication
+                else {
+                    print ("User creation successful.")
+                    self.performSegue(withIdentifier: "signUpToRootSegue", sender: nil)
                 }
             }
         }
         
-        // End registerUser
+        // End registerUser button function
     }
 
     /*

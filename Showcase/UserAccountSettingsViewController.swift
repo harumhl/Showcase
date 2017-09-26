@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UserAccountSettingsViewController: UIViewController {
 
@@ -21,6 +22,18 @@ class UserAccountSettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    @IBAction func signOutButton(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            print("Signed Out!")
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
 
     /*
     // MARK: - Navigation

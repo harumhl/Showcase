@@ -90,7 +90,6 @@
                                 <state key="normal" title="Signup"/>
                                 <connections>
                                     <action selector="signUp:" destination="efm-Pn-EMr" eventType="touchUpInside" id="6mP-0x-YPb"/>
-                                    <segue destination="cMM-Z2-ojU" kind="show" identifier="LoginToSignUp" action="showDetailViewController:sender:" id="k1f-9A-lLv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -101,6 +100,7 @@
                         <outlet property="emailInput" destination="MLa-Pi-8la" id="tRN-6S-0xz"/>
                         <outlet property="passwordInput" destination="2j7-FP-Alm" id="v9K-Rc-muX"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="loginToRootSegue" id="Vbo-XZ-KDs"/>
+                        <segue destination="cMM-Z2-ojU" kind="show" identifier="LoginToSignUp" id="RU6-Xn-iCs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q92-Pf-hMB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,12 +178,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRk-Q7-abZ">
-                                <rect key="frame" x="166" y="200" width="100" height="21"/>
+                                <rect key="frame" x="137" y="202" width="100" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHf-Q1-Vb7">
+                                <rect key="frame" x="157" y="318" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutButton:" destination="0hh-du-6d5" eventType="touchUpInside" id="ICt-Ka-mWm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -423,6 +431,7 @@
                         <outlet property="firstNameField" destination="5Am-YA-1pH" id="Jal-kE-mfb"/>
                         <outlet property="lastNameField" destination="8KJ-2V-Ytr" id="58d-1c-dYf"/>
                         <outlet property="passwordField" destination="sOg-GB-arN" id="TBz-Hg-W10"/>
+                        <outlet property="registerButton" destination="3Wu-N8-IfV" id="udr-N8-FcG"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="signUpToRootSegue" action="showViewController:sender:" id="64y-7R-X3N"/>
                     </connections>
                 </viewController>

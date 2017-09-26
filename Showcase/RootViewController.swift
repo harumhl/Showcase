@@ -17,7 +17,6 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         // Remove te "back" button 
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
