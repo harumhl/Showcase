@@ -29,24 +29,42 @@ class SignUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // Show a popup alert.
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert )
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
+            
         }))
         self.present(alert, animated: true, completion: nil)
     }
     
     
+    // Show a popup alert.
+    // aSegue is an optional parameter, you can supply one if you want to perform
+    // a segue and then show an alert.
+    func performSegueAndShowAlert(title: String, message: String, segueName: String? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            if segueName != nil {
+                self.performSegue(withIdentifier: segueName!, sender: nil)
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    // This function is called after a user hits the register button
+    // Based on Firebase authentication, signups will fail if they don't 
+    // meet a certain criteria (if an errorCode is given)
+    // 
     @IBAction func registerUser(_ sender: Any) {
-        // Verify password field = confirm password
         print("*** Sign Up Fields ***")
         print("\tFirst Name: " + firstNameField.text!)
         print("\tLast Name: "  + lastNameField.text!)
         print("\tEmail: "      + emailField.text!)
         print("\tPassword: "   + passwordField.text!)
-        
+        print("\tConfirm PW: " + confirmPasswordField.text!)
+        print("\n")
         // Check for password confirmation
         if passwordField.text == confirmPasswordField.text {
             // Create the user
@@ -60,8 +78,9 @@ class SignUpViewController: UIViewController {
                             case .weakPassword:
                                 print ("Weak Password")
                                 self.showAlert(title: "Error", message: "Password is too weak. Try 6 or more characters.")
+                            // Type "case ." to see all of the different error codes.
                             default:
-                                print("Check error: ", errorCode)
+                                print("Unknown authentication error: ", errorCode)
                                 break
                         }
                     }
@@ -69,9 +88,12 @@ class SignUpViewController: UIViewController {
                 // There were no errors from authentication
                 else {
                     print ("User creation successful.")
-                    self.performSegue(withIdentifier: "signUpToRootSegue", sender: nil)
+                    self.performSegueAndShowAlert(title: "Success", message: "User creation successful.", segueName: "signUpToRootSegue")
                 }
             }
+        }
+        else {
+            self.showAlert(title: "Error", message: "Password fields did not match.")
         }
         
         // End registerUser button function
