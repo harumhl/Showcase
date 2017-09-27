@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085F5E611F7C5150003200C5 /* SignUpViewController.swift */; };
 		08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BA96DE1F706C71001875BF /* PostScanViewController.swift */; };
 		494979251F672BF4005DB65C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979241F672BF4005DB65C /* AppDelegate.swift */; };
 		4949792A1F672BF4005DB65C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494979281F672BF4005DB65C /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		085F5E611F7C5150003200C5 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		08BA96DE1F706C71001875BF /* PostScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostScanViewController.swift; sourceTree = "<group>"; };
 		20E198409E5BCE3F72BE52BB /* Pods_ShowcaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowcaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979211F672BF4005DB65C /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +150,7 @@
 				4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */,
 				4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */,
 				4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */,
+				085F5E611F7C5150003200C5 /* SignUpViewController.swift */,
 				4E257A011F731F4B00012F2D /* LoginViewController.swift */,
 				5E47E72C1F7383C2002B703D /* RootViewController.swift */,
 			);
@@ -457,6 +460,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Showcase/Pods-Showcase-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -465,6 +473,11 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
@@ -554,6 +567,7 @@
 				5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */,
 				4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */,
 				5E0CEEE31F730F29009EADF6 /* User.swift in Sources */,
+				085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */,
 				4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */,
 				4E2254741F7050A300DE1D93 /* UserAccountSettingsViewController.swift in Sources */,
 				494979251F672BF4005DB65C /* AppDelegate.swift in Sources */,

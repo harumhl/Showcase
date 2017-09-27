@@ -11,6 +11,8 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'IQKeyboardManagerSwift'
 pod 'ImageTextField'
+pod 'FacebookLogin'
+pod 'FacebookCore'
 
   target 'ShowcaseTests' do
     inherit! :search_paths

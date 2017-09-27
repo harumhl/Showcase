@@ -25,6 +25,9 @@
                                 <rect key="frame" x="36" y="188" width="303" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="facebookLogin"/>
+                                <connections>
+                                    <action selector="facebookLogin:" destination="efm-Pn-EMr" eventType="touchUpInside" id="uBU-RO-NmJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbf-vz-oPY">
                                 <rect key="frame" x="36" y="258" width="303" height="52"/>
