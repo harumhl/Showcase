@@ -15,7 +15,9 @@ import AddressBookUI
 class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     
     @IBOutlet weak var barcodeField: UILabel!
-    var theBarcode: String = ""
+    var theBarcode = ""
+    var address = ""
+    var businessName = ""
     
     @IBOutlet weak var longitudeText: UILabel!
     @IBOutlet weak var latitudeText: UILabel!
@@ -39,15 +41,16 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+
+//****************************************** USER-DEFINED FUNCTIONS ******************************************
     
+    
+    // gets the GPS longitude and latitude, then passes to function to determine the business you are in
     func getLocation(){
         // get Longitude and Latitude
-        //var locManager = CLLocationManager()
         locManager.delegate = self
         locManager.desiredAccuracy = kCLLocationAccuracyBest
         locManager.requestWhenInUseAuthorization()
-        
-        //var currentLocation = CLLocation!.self
         
         if( (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse) ||
             (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways)){
@@ -59,46 +62,115 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             longitudeText.text = "Longitude: \(longitude)"
             latitudeText.text = "Latitude: \(latitude)"
             
-            reverseGeocoding(latitude: latitude, longitude: longitude)
+            let originLocation = CLLocation(latitude: latitude, longitude: longitude)
+            getPlacemark(forLocation: originLocation) {
+                (originPlacemark, error) in
+                if let err = error {
+                    print(err)
+                } else if let placemark = originPlacemark {
+                    //print(placemark.name)
+                    self.placemarkToAddress(placemark: placemark)
+                    self.getBusiness()
+                }
+            }
         } else {
             longitudeText.text = "did not allow gps"
             latitudeText.text = "did not allow gps"
         }
-        
-        
-        
     }
     
-    // converts Longitude and Latitude into a Placemaker
-    func reverseGeocoding(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let location = CLLocation(latitude: latitude, longitude: longitude)
-        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
-            if error != nil {
-                print(error ?? "WUB A DUB DUB DUB")
-                return
-            }
-            else if (placemarks?.count)! > 0 {
-                let pm = placemarks![0]
-                let address = ABCreateStringWithAddressDictionary(pm.addressDictionary!, false)
-                //let address = CNPostalAddressFormatter(pm.addressDictionary!, false)
-                
-                print("\n\(address)")
-                
-                if (pm.areasOfInterest != nil && (pm.areasOfInterest?.count)! > 0){
-                    
-                    if(pm.areasOfInterest?[0] == nil){
-                        print("this thing is nil")
-                    } else{
-                        let areaOfInterest = pm.areasOfInterest?[0]
-                        self.placeholderText.text = areaOfInterest
-                    }
-                    
+    func getPlacemark(forLocation location: CLLocation, completionHandler: @escaping (CLPlacemark?, String?) -> ()) {
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(location, completionHandler: {
+            placemarks, error in
+            
+            if let err = error {
+                completionHandler(nil, err.localizedDescription)
+            } else if let placemarkArray = placemarks {
+                if let placemark = placemarkArray.first {
+                    completionHandler(placemark, nil)
                 } else {
-                    self.placeholderText.text = "Sorry, No placemarker found"
-                    print("No area of interest found.")
+                    completionHandler(nil, "Placemark was nil")
                 }
+            } else {
+                completionHandler(nil, "Unknown error")
             }
         })
+    }
+    
+    func placemarkToAddress(placemark: CLPlacemark) -> Void{
+        // Location name
+        if let locationName = placemark.addressDictionary?["Name"] as? String {
+            self.address += locationName + ", "
+        }
+        
+        // Street address
+        // if let street = placemark.addressDictionary?["Thoroughfare"] as? String {
+        //      self.address += street + ", "
+        // }
+        
+        // City
+        if let city = placemark.addressDictionary?["City"] as? String {
+            self.address += city + ", "
+        }
+        if let state = placemark.addressDictionary?["State"] as? String {
+            self.address += state + "  "
+        }
+        
+        // Zip code
+        if let zip = placemark.addressDictionary?["ZIP"] as? String {
+            self.address += zip + ", "
+        }
+        
+        // Country
+        if let country = placemark.addressDictionary?["Country"] as? String {
+            self.address += country
+        }
+    }
+    
+    
+    func getBusiness(){
+        //https://stackoverflow.com/questions/42570636/can-i-get-a-store-name-restaurant-name-with-mapkitswift
+        //https://www.youtube.com/watch?v=VZZ76kAdhNA
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = "bookstores"  // or whatever you're searching for
+        request.region = MKCoordinateRegion()
+        request.region.center = CLLocationCoordinate2D(latitude: 30.626643900000001, longitude: -96.331125900000004)
+        var buisness = ""
+        var foundBusn = false
+        let search = MKLocalSearch(request: request)
+        search.start { response, error in
+            
+            // Prints out a list of the bookstores around you
+            //print(response?.mapItems)
+            print ("-----------------------")
+            print ("getBusiness()\n")
+            for item in (response?.mapItems)! {
+//                print ("-----------------------\n")
+//                print(item.placemark)
+//                print("\n")
+//                print(item.name!)
+//                print("\n")
+//                print(item.placemark.title!)
+//                print("\n")
+                let responseAddr = item.placemark.title!
+                if(responseAddr == self.address){
+                    print("Found Location\n")
+                    buisness = item.name!
+                    foundBusn = true
+                }
+            }
+            if(foundBusn){
+                print("You are in \(buisness) \n")
+                self.placeholderText.text = "placeholder: " + buisness
+                self.businessName = buisness
+            } else {
+                print("Sorry we could not determine your location \n")
+                self.placeholderText.text = "placeholder: Sorry we could not determine your location"
+            }
+        }
+
     }
     
     

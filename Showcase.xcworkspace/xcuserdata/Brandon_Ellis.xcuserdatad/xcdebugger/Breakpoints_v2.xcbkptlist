@@ -17,5 +17,164 @@
             endingLineNumber = "127">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Showcase/PostScanViewController.swift"
+            timestampString = "528238110.724931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "getLocation()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Showcase.PostScanViewController.(getLocation () -&gt; ()).(closure #1)"
+                  moduleName = "Showcase"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Brandon_Ellis/Desktop/Fall%2017/CS%20482/Showcase/Showcase/PostScanViewController.swift"
+                  timestampString = "528236121.475423"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "328">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Showcase.PostScanViewController.(getLocation () -&gt; ()).(closure #1)"
+                  moduleName = "Showcase"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Brandon_Ellis/Desktop/Fall%2017/CS%20482/Showcase/Showcase/PostScanViewController.swift"
+                  timestampString = "528236121.47767"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "340">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Showcase.PostScanViewController.(getLocation () -&gt; ()).(closure #1)"
+                  moduleName = "Showcase"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Brandon_Ellis/Desktop/Fall%2017/CS%20482/Showcase/Showcase/PostScanViewController.swift"
+                  timestampString = "528236121.479733"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "372">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Showcase/PostScanViewController.swift"
+            timestampString = "528235389.129423"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Showcase/PostScanViewController.swift"
+            timestampString = "528238110.724931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "getBusiness()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Showcase/PostScanViewController.swift"
+            timestampString = "528238110.724931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "placemarkToAddress(placemark:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Showcase.PostScanViewController.placemarkToAddress (placemark : __ObjC.CLPlacemark) -&gt; ()"
+                  moduleName = "Showcase"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Brandon_Ellis/Desktop/Fall%2017/CS%20482/Showcase/Showcase/PostScanViewController.swift"
+                  timestampString = "528236121.494605"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "1812">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Showcase.PostScanViewController.placemarkToAddress (placemark : __ObjC.CLPlacemark) -&gt; ()"
+                  moduleName = "Showcase"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Brandon_Ellis/Desktop/Fall%2017/CS%20482/Showcase/Showcase/PostScanViewController.swift"
+                  timestampString = "528236121.496671"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "2316">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Showcase/PostScanViewController.swift"
+            timestampString = "528238110.724931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "getBusiness()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
