@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     
-    var handle: Auth!
+    var handle: AuthStateDidChangeListenerHandle!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +43,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         // hide the navigation controller bar
         self.navigationController?.isNavigationBarHidden = true
         
-//        handle = Auth.auth().addStateDidChangeListener{ (auth, user) in
-//            //..
-//        } as! Auth
+        handle = Auth.auth().addStateDidChangeListener{ (auth, user) in
+            //..
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,17 +57,41 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         //Auth.auth().removeStateDidChangeListener(handle!)
     }
 
-    // attempt login
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    // Attempt login and validate credentials.
+    // If both of these pass then we have an email and a password registered on Firebase
     @IBAction func Login(_ sender: Any) {
-        
-        // validate credentials. 
-        // If both of these pass then we have an email and a password
-//        let email = emailInput.text;
-//        let pwd = passwordInput.text;
+        let email = emailInput.text;
+        let pwd = passwordInput.text;
+        print("Attempting to log in...")
+        print("\tEmail: " + email!)
+        print("\tPW: " + pwd!)
+        Auth.auth().signIn(withEmail: email!, password: pwd!) { (user, error) in
+            // Take user to main menu if login has succeeded
+            if let user = user {
+                print("Login succeeded!")
+                print("\tUserID: " + user.uid)
+                print("\tEmail: " + user.email!)
+                self.performSegue(withIdentifier: "loginToRootSegue", sender: nil)
+            }
+            else {
+                print("Invalid credentials but logging in anyway.")
+                // self.showAlert(title: "Authentication Error", message: "Invalid credentials but logging in anyway.");
+                // Log in anyway for debugging purposes
+                self.performSegue(withIdentifier: "loginToRootSegue", sender: nil)
+            }
+        }
 //        
 //        if (email != "" && pwd != "") {
-//    
-//            
+//
+//
 //            // handles loging in. Based on response from firebase.
 //            // It tells us if user has an accout.
 //            DataService.ds.REF_BASE.authUser(email, password: pwd, withCompletionBock: {
@@ -89,7 +113,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         
         // segue
         
-        performSegue(withIdentifier: "loginToRootSegue", sender: nil)
+        
+    }
+    
+    // Button action to take user to signup form
+    @IBAction func signUp(_ sender: Any) {
+        self.performSegue(withIdentifier: "LoginToSignUp", sender: nil)
     }
     
     // resusable function that creates alerts
@@ -97,7 +126,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
 //        
 //    }
     
-    //presses the return key
+    // presses the return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Try to find next responder
         if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {

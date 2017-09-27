@@ -13,9 +13,8 @@ import AddressBookUI
 
 
 class PostScanViewController: UIViewController, CLLocationManagerDelegate{
-    
-    @IBOutlet weak var barcodeField: UILabel!
-    var theBarcode = ""
+    @IBOutlet weak var barcodeDataField: UILabel!
+    var theBarcodeData: String = ""
     var address = ""
     var businessName = ""
     
@@ -26,21 +25,22 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     var longitude = 0.0
     var latitude = 0.0
     
+    // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        barcodeField.text = theBarcode
-        barcodeField .adjustsFontSizeToFitWidth = true
-        
+        // Print the barcode on a label on the top of the VC
+        barcodeDataField.text = theBarcodeData
+        barcodeDataField.adjustsFontSizeToFitWidth = true
         getLocation()
     }
     
+    // Built in XCode function
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
 //****************************************** USER-DEFINED FUNCTIONS ******************************************
     
@@ -136,7 +136,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = "bookstores"  // or whatever you're searching for
         request.region = MKCoordinateRegion()
-        request.region.center = CLLocationCoordinate2D(latitude: 30.626643900000001, longitude: -96.331125900000004)
+        request.region.center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         var buisness = ""
         var foundBusn = false
         let search = MKLocalSearch(request: request)
@@ -159,6 +159,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
                     print("Found Location\n")
                     buisness = item.name!
                     foundBusn = true
+
                 }
             }
             if(foundBusn){
