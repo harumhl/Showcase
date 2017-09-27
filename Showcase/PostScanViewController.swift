@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import AddressBookUI
-
+import Firebase
 
 class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     
@@ -24,6 +24,9 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     var longitude = 0.0
     var latitude = 0.0
     
+    var ref: DatabaseReference!
+
+    
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,19 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         barcodeDataField.text = theBarcodeData
         barcodeDataField.adjustsFontSizeToFitWidth = true
         getLocation()
+        addDataToDB()
+    }
+    
+    func addDataToDB() {
+        ref = Database.database().reference()
+        let key = ref.childByAutoId().key
+        let key2 = ref.childByAutoId().key
+        let bookData = ["BookID": key, "BookISBN": theBarcodeData, "LocationID": key2]
+        let locationData = ["LocationID": key2, "Long": longitudeText.text as String!, "Lat": latitudeText.text as String!]
+        ref.child(key).setValue(bookData)
+        ref.child(key2).setValue(locationData)
+        print("Data Added:\t" + bookData["BookID"]! + "\t" + bookData["BookISBN"]!)
+        print("LocationID:\t" + locationData["LocationID"]!! + "\t" + locationData["Long"]!! + "\t" + locationData["Lat"]!!)
     }
     
     // Built in XCode function

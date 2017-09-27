@@ -9,10 +9,12 @@ target 'Showcase' do
 
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
+pod 'Firebase/Database'
 pod 'IQKeyboardManagerSwift'
 pod 'ImageTextField'
 pod 'FacebookLogin'
 pod 'FacebookCore'
+
 
   target 'ShowcaseTests' do
     inherit! :search_paths
