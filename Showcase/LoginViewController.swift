@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FacebookCore
+import FacebookLogin
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate{
@@ -35,7 +37,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         // border color
         emailInput.layer.borderColor = UIColor.white.cgColor
         passwordInput.layer.borderColor = UIColor.white.cgColor
-        
+
         
     }
     
@@ -63,6 +65,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             alert.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func facebookLogin(_ sender: Any) {
+        let loginManager = LoginManager()
+        loginManager.logIn([ ReadPermission.publicProfile ], viewController: self) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success( _, _, _):
+                print("Logged in!")
+            }
+        }
     }
 
     // Attempt login and validate credentials.
@@ -123,7 +139,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
     // resusable function that creates alerts
 //    func showErrorAlert(title: String, msg: String) {
-//        
+//
 //    }
     
     // presses the return key
