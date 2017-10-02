@@ -65,6 +65,7 @@
 		494979401F672BF6005DB65C /* ShowcaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShowcaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979441F672BF6005DB65C /* ShowcaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseUITests.swift; sourceTree = "<group>"; };
 		494979461F672BF6005DB65C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49EC73261F82DA49003737F9 /* Showcase-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Showcase-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountSettingsViewController.swift; sourceTree = "<group>"; };
 		4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 				085F5E611F7C5150003200C5 /* SignUpViewController.swift */,
 				4E257A011F731F4B00012F2D /* LoginViewController.swift */,
 				5E47E72C1F7383C2002B703D /* RootViewController.swift */,
+				49EC73261F82DA49003737F9 /* Showcase-Bridging-Header.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -742,6 +744,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = csce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
