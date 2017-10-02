@@ -98,13 +98,33 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     
     func addDataToDB() {
         ref = Database.database().reference()
-        let key = ref.childByAutoId().key
-        let key2 = ref.childByAutoId().key
-        let bookData = ["BookID": key, "BookISBN": theBarcodeData, "LocationID": key2]
-        let locationData = ["LocationID": key2, "Long": longitudeText.text as String!, "Lat": latitudeText.text as String!]
-        ref.child(key).setValue(bookData)
-        ref.child(key2).setValue(locationData)
-        print("Data Added:\t" + bookData["BookID"]! + "\t" + bookData["BookISBN"]!)
+        
+        var email = "testing"
+        
+        let user = Auth.auth().currentUser
+        if let user = user {
+            email = user.email!
+            email = email.substring(to: email.index(of: "@")!)
+            print("substring email: ", email)
+        }
+        
+        let locKey = ref.childByAutoId().key
+        let bookKey = ref.childByAutoId().key
+
+        let bookData = ["BookID": locKey, "BookISBN": theBarcodeData, "LocationID": bookKey, "Purchased": false ] as [String : Any]
+        let locationData = ["LocationID": bookKey, "Long": longitudeText.text as String!, "Lat": latitudeText.text as String!]
+        let userData = ["bookID": "bookKey"+bookKey]
+        
+        ref.child("/book/bookKey"+locKey).setValue(bookData)
+        ref.child("/location/loc"+bookKey).setValue(locationData)
+        
+        // dont override a users books
+        let bookRef = ref.child(byAppendingPath: "/user/"+email+"/books")
+        let thisBookRef = bookRef.childByAutoId()
+        thisBookRef.setValue(userData)
+        
+        
+       // print("Data Added:\t" + bookData["BookID"]! + "\t" + bookData["BookISBN"]!)
         print("LocationID:\t" + locationData["LocationID"]!! + "\t" + locationData["Long"]!! + "\t" + locationData["Lat"]!!)
     }
     
