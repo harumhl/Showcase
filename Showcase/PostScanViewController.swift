@@ -27,7 +27,6 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     var latitude = 0.0
     
     var ref: DatabaseReference!
-
     
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
