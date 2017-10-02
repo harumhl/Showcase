@@ -14,8 +14,7 @@ pod 'IQKeyboardManagerSwift'
 pod 'ImageTextField'
 pod 'FacebookLogin'
 pod 'FacebookCore'
-pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
-
+pod 'SwiftyXMLParser'
 
   target 'ShowcaseTests' do
     inherit! :search_paths

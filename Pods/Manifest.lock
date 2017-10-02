@@ -63,7 +63,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - SwiftyXMLParser (4.0.0)
+  - SwiftyXMLParser (3.0.3)
 
 DEPENDENCIES:
   - FacebookCore
@@ -73,16 +73,7 @@ DEPENDENCIES:
   - Firebase/Database
   - ImageTextField
   - IQKeyboardManagerSwift
-  - SwiftyXMLParser (from `https://github.com/yahoojapan/SwiftyXMLParser.git`)
-
-EXTERNAL SOURCES:
-  SwiftyXMLParser:
-    :git: https://github.com/yahoojapan/SwiftyXMLParser.git
-
-CHECKOUT OPTIONS:
-  SwiftyXMLParser:
-    :commit: 08b070206ff6750101ad3f0e51ff5670fdb693b1
-    :git: https://github.com/yahoojapan/SwiftyXMLParser.git
+  - SwiftyXMLParser
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -102,8 +93,8 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  SwiftyXMLParser: 42cf1c5de8bcdfa0218eb7f054b536635cb64b77
+  SwiftyXMLParser: 9c6cc0310e778266a63d8eba50d9e07925aab0fb
 
-PODFILE CHECKSUM: 98d8c420982df0f47a5cc93ef3aa432f16ff658d
+PODFILE CHECKSUM: 7ad25bd5bd09aefee15c1fc171abcd960bade145
 
 COCOAPODS: 1.3.1

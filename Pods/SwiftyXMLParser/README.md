@@ -1,7 +1,6 @@
 # SwiftyXMLParser
 
-![Swift 4.0+](https://img.shields.io/badge/Swift-4.0+-orange.svg)
-![Swift 3.2](https://img.shields.io/badge/Swift-3.2-orange.svg)
+![Swift 3.0+](https://img.shields.io/badge/Swift-3.0+-orange.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/SwiftyXMLParser.svg?style=flat)](http://cocoapods.org/pods/SwiftyXMLParser)
 [![License](https://img.shields.io/cocoapods/l/SwiftyXMLParser.svg?style=flat)](http://cocoapods.org/pods/SwiftyXMLParser)
@@ -22,7 +21,7 @@ This is a XML parser inspired by [SwiftyJSON](https://github.com/SwiftyJSON/Swif
 # Requirement
 + iOS 8.0+
 + tvOS 9.0+
-+ Swift 4.0+ (or Swift 3.2)
++ Swift3.0+ (There is Swift 2.3 version for iOS, too)
 
 # Installation
 
@@ -198,9 +197,9 @@ In addition, there is the extension of Alamofire to combine with SwiftyXMLPraser
 
 * [Alamofire-SwiftyXMLParser](https://github.com/kazuhiro4949/Alamofire-SwiftyXMLParser)
 
-# Migration Guide
-[Current master branch](https://github.com/yahoojapan/SwiftyXMLParser/tree/master) is supporting Xcode9.
-If you wanna use this library with legacy swift version, read [release notes](https://github.com/yahoojapan/SwiftyXMLParser/releases) and install the last compatible version.
+# Swift 2.3 & 3.0 Migration Guide
+[Current master branch](https://github.com/yahoojapan/SwiftyXMLParser/tree/master) and [the latest release package](https://github.com/yahoojapan/SwiftyXMLParser/releases/tag/3.0.0) are supporting Xcode8. You can install Swift 3.0 package in the usual process.
+If you wanna install [Swift 2.3 branch](https://github.com/yahoojapan/SwiftyXMLParser/tree/swift2.3), pull swift2.3 branch or install version [2.3.0](https://github.com/yahoojapan/SwiftyXMLParser/releases/tag/2.3.0).
 
 # License
 
