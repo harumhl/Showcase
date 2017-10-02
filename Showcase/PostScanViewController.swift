@@ -408,9 +408,11 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
              }*/
         }
         task.resume()
-        
-        
-        
+    }
+    func goodReadsSearch() {
+        var url = "https://www.goodreads.com/search/index.html?"
+        url += url + "q=" + theBarcodeData
+        //url += url + "key=" + 
     }
     
     

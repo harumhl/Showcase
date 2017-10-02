@@ -9,6 +9,6 @@
 import Foundation
 
 
-let accessKeyId = "AKIAJXLX6W6LUGN3SS7A"
+let accessKeyId = ""
 let associateTag = "showcasetamu4-20"
-let accessSecretKey = "qWq8mWBaBIJQx1e9k3aHmWCoYavtz7yom/1OAmpE"
+let accessSecretKey = ""
