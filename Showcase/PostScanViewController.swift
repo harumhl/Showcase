@@ -133,12 +133,12 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         let locKey = ref.childByAutoId().key
         let bookKey = ref.childByAutoId().key
 
-        let bookData = ["BookID": locKey, "BookISBN": theBarcodeData, "LocationID": bookKey, "Purchased": false ] as [String : Any]
-        let locationData = ["LocationID": bookKey, "Long": longitudeText.text as String!, "Lat": latitudeText.text as String!]
+        let bookData = ["BookID": bookKey, "BookISBN": theBarcodeData, "LocationID": locKey, "Purchased": false ] as [String : Any]
+        let locationData = ["LocationID": locKey, "Long": longitudeText.text as String!, "Lat": latitudeText.text as String!]
         let userData = ["bookID": "bookKey"+bookKey]
         
-        ref.child("/book/bookKey"+locKey).setValue(bookData)
-        ref.child("/location/loc"+bookKey).setValue(locationData)
+        ref.child("/book/bookKey"+bookKey).setValue(bookData)
+        ref.child("/location/loc"+locKey).setValue(locationData)
         
         // dont override a users books
         let bookRef = ref.child(byAppendingPath: "/user/"+email+"/books")
