@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '82A1AE0EB45B6790328C5F5CF604B606'
-               BlueprintName = 'Pods-ShowcaseTests'
+               BlueprintIdentifier = 'A23155ABC1D9201A58EDCC9EB3141753'
+               BlueprintName = 'SwiftyXMLParser'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods-ShowcaseTests.framework'>
+               BuildableName = 'SwiftyXMLParser.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
