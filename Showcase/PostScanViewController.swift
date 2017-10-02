@@ -107,6 +107,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         getLocation()
         addDataToDB()
         SearchButtonClicked()
+        goodReadsSearch()
     }
     
     // Built in XCode function
@@ -379,7 +380,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
                 //print(parser.Items.Request.ItemLookupRequest.ItemId)
             }
             else {
-                print("parse failure")
+                print("Amazon rest call parse failure")
             }
             
             // parse the result as JSON, since that's what the API provides
@@ -410,9 +411,43 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         task.resume()
     }
     func goodReadsSearch() {
-        var url = "https://www.goodreads.com/search/index.html?"
-        url += url + "q=" + theBarcodeData
-        //url += url + "key=" + 
+        var theURL = "https://www.goodreads.com/search/index.html?"
+        theURL += theURL + "q=" + theBarcodeData + "&"
+        theURL += theURL + "key=" + goodReadsKey
+        
+        // Check the validity of the URL ("guard" checks it)
+        guard let url = URL(string: theURL) else {
+            print("Error: cannot create URL")
+            return
+        }
+        // Start URL session
+        let urlRequest = URLRequest(url: url)
+        let session = URLSession.shared
+        
+        // Unpack the returned XML data
+        let task = session.dataTask(with: urlRequest) {
+            (data, response, error) in
+            // check for any errors
+            guard error == nil else {
+                print("error calling GET on /todos/1")
+                print(error!)
+                return
+            }
+            // make sure we got data
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return
+            }
+            let parser = XMLParser(data: responseData)
+            if parser.parse() {
+                print("GoodReads HTTP call parse success")
+                //print(parser.Items.Request.ItemLookupRequest.ItemId)
+            }
+            else {
+                print("GoodReads HTTP call parse failure")
+            }
+        }
+        task.resume()
     }
     
     
