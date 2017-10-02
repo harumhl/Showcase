@@ -41,6 +41,15 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         addDataToDB()
     }
     
+    // Built in XCode function
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+//****************************************** USER-DEFINED FUNCTIONS ******************************************
+
+//****************************************** Database Functions **********************************************
     func addDataToDB() {
         ref = Database.database().reference()
         let key = ref.childByAutoId().key
@@ -53,15 +62,8 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         print("LocationID:\t" + locationData["LocationID"]!! + "\t" + locationData["Long"]!! + "\t" + locationData["Lat"]!!)
     }
     
-    // Built in XCode function
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-//****************************************** USER-DEFINED FUNCTIONS ******************************************
-    
-    
+//****************************************** GPS Functions ***************************************************
     // gets the GPS longitude and latitude, then passes to function to determine the business you are in
     func getLocation(){
         // get Longitude and Latitude
@@ -99,6 +101,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         }
     }
     
+    // Gets the placemarker data
     func getPlacemark(forLocation location: CLLocation, completionHandler: @escaping (CLPlacemark?, String?) -> ()) {
         let geocoder = CLGeocoder()
         
@@ -119,6 +122,8 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         })
     }
     
+    
+    // Converts placemarker to a physical address
     func placemarkToAddress(placemark: CLPlacemark) -> Void{
         // Location name
         if let locationName = placemark.addressDictionary?["Name"] as? String {
@@ -155,7 +160,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         }
     }
     
-    
+    // Determines if user is in a bookstore
     func getBusiness(){
         //https://stackoverflow.com/questions/42570636/can-i-get-a-store-name-restaurant-name-with-mapkitswift
         //https://www.youtube.com/watch?v=VZZ76kAdhNA
