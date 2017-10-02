@@ -12,6 +12,61 @@ import CoreLocation
 import AddressBookUI
 import Firebase
 
+/******** HMAC algorithm for Amazon REST call Signature ********/
+enum HMACAlgorithm {
+    case MD5, SHA1, SHA224, SHA256, SHA384, SHA512
+    
+    func toCCHmacAlgorithm() -> CCHmacAlgorithm {
+        var result: Int = 0
+        switch self {
+        case .MD5:
+            result = kCCHmacAlgMD5
+        case .SHA1:
+            result = kCCHmacAlgSHA1
+        case .SHA224:
+            result = kCCHmacAlgSHA224
+        case .SHA256:
+            result = kCCHmacAlgSHA256
+        case .SHA384:
+            result = kCCHmacAlgSHA384
+        case .SHA512:
+            result = kCCHmacAlgSHA512
+        }
+        return CCHmacAlgorithm(result)
+    }
+    
+    func digestLength() -> Int {
+        var result: CInt = 0
+        switch self {
+        case .MD5:
+            result = CC_MD5_DIGEST_LENGTH
+        case .SHA1:
+            result = CC_SHA1_DIGEST_LENGTH
+        case .SHA224:
+            result = CC_SHA224_DIGEST_LENGTH
+        case .SHA256:
+            result = CC_SHA256_DIGEST_LENGTH
+        case .SHA384:
+            result = CC_SHA384_DIGEST_LENGTH
+        case .SHA512:
+            result = CC_SHA512_DIGEST_LENGTH
+        }
+        return Int(result)
+    }
+}
+extension String {
+    func hmac(algorithm: HMACAlgorithm, key: String) -> String {
+        let cKey = key.cString(using: String.Encoding.utf8)
+        let cData = self.cString(using: String.Encoding.utf8)
+        var result = [CUnsignedChar](repeating: 0, count: Int(algorithm.digestLength()))
+        CCHmac(algorithm.toCCHmacAlgorithm(), cKey!, Int(strlen(cKey!)), cData!, Int(strlen(cData!)), &result)
+        let hmacData:NSData = NSData(bytes: result, length: (Int(algorithm.digestLength())))
+        let hmacBase64 = hmacData.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength76Characters)
+        return String(hmacBase64)
+    }
+}
+/******** (end of) HMAC algorithm for Amazon REST call Signature ********/
+
 class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var barcodeDataField: UILabel!
     var theBarcodeData: String = ""
@@ -38,6 +93,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         barcodeDataField.adjustsFontSizeToFitWidth = true
         getLocation()
         addDataToDB()
+        SearchButtonClicked()
     }
     
     func addDataToDB() {
@@ -188,6 +244,132 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             }
         }
 
+    }
+    
+    func SearchButtonClicked() {
+        /* http://docs.aws.amazon.com/AWSECommerceService/latest/DG/rest-signature.html */
+        
+        /************************************************ SECRET INFO ********************************************************************************/
+        let accessKeyId = "AKIAJNFTA6SDQBSMBQ7Q"
+        let associateTag = "showcasetamu4-20"
+        let accessSecretKey = "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"
+        /************************************************ SECRET INFO ********************************************************************************/
+        
+        // Other ingo
+        var itemId = theBarcodeData // = TextField.text!
+        
+        // 1. Get time stamp ready
+        let dateFormatter = DateFormatter()
+        let timeFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        timeFormatter.dateFormat = "HH:mm:ss"
+        timeFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        let timeStamp = dateFormatter.string(from: Date()) + "T" +
+            timeFormatter.string(from: Date()) + "Z"
+        
+        // 2. Split parameter-value pairs & Sort by byte value
+        //    (not alphabetically, lowercase parameters will be listed after uppercase ones)
+        // https://console.aws.amazon.com/iam/home?#/security_credential
+        var parameters = ""
+        parameters += "AWSAccessKeyId=" + accessKeyId + "&"
+        parameters += "AssociateTag=" + associateTag + "&"
+        parameters += "IdType=ISBN&"
+        parameters += "ItemId=" + itemId + "&"
+        parameters += "Operation=ItemLookup&"
+        parameters += "SearchIndex=All&"
+        parameters += "Service=AWSECommerceService" + "&"
+        //parameters += "Sort=relevancerank&"
+        parameters += "Timestamp=" + timeStamp + "&"
+        parameters += "Version=2013-08-01"
+        
+        // 3. Encode URL request's comma (,) and colon (:) characters
+        parameters = parameters.replacingOccurrences(of: ":", with: "%3A")
+        parameters = parameters.replacingOccurrences(of: ",", with: "%2C")
+        
+        // 4. Get GET request portion for encryption
+        let getRequest = "GET\n" + "webservices.amazon.com\n" + "/onca/xml\n"
+        
+        // 5. Create a string to sign
+        let stringToSign = getRequest + parameters
+        
+        // 6. Sign the string - Generating Signature
+        var hmacResult:String = stringToSign.hmac(algorithm: HMACAlgorithm.SHA256, key: accessSecretKey)
+        
+        // 7. Encode URL request's plus (+) and equal (=) characters
+        hmacResult = hmacResult.replacingOccurrences(of: "+", with: "%2B")
+        hmacResult = hmacResult.replacingOccurrences(of: "=", with: "%3D")
+        
+        // 8. Complete the REST call URL
+        let theURL = "http://webservices.amazon.com/onca/xml?" + parameters + "&Signature=" + hmacResult
+        
+        // 9. Display the Rest call URL
+        print("The URL: " + theURL + "\n\n")
+        
+        /* Unpacking the XML (returned) data */
+        /* https://grokswift.com/simple-rest-with-swift/ */
+        
+        // Check the validity of the URL ("guard" checks it)
+        guard let url = URL(string: theURL) else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        // Start URL session
+        let urlRequest = URLRequest(url: url)
+        let session = URLSession.shared
+        
+        // Unpack the returned XML data
+        let task = session.dataTask(with: urlRequest) {
+            (data, response, error) in
+            // check for any errors
+            guard error == nil else {
+                print("error calling GET on /todos/1")
+                print(error!)
+                return
+            }
+            // make sure we got data
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return
+            }
+            let parser = XMLParser(data: responseData)
+            if parser.parse() {
+                print("Amazon rest call parse success")
+                //print(parser.Items.Request.ItemLookupRequest.ItemId)
+            }
+            else {
+                print("parse failure")
+            }
+            
+            // parse the result as JSON, since that's what the API provides
+            /*
+             do {
+             guard let todo = try JSONSerialization.jsonObject(with: responseData, options: [])
+             as? [String: Any] else {
+             print("error trying to convert data to JSON")
+             return
+             }
+             // now we have the todo
+             // let's just print it to prove we can access it
+             print("The todo is: " + todo.description)
+             
+             // the todo object is a dictionary
+             // so we just access the title using the "title" key
+             // so check for a title and print it if we have one
+             guard let todoTitle = todo["title"] as? String else {
+             print("Could not get todo title from JSON")
+             return
+             }
+             print("The title is: " + todoTitle)
+             } catch  {
+             print("error trying to convert data to JSON")
+             return
+             }*/
+        }
+        task.resume()
+        
+        
+        
     }
     
     
