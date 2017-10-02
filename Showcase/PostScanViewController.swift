@@ -283,12 +283,6 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     func SearchButtonClicked() {
         /* http://docs.aws.amazon.com/AWSECommerceService/latest/DG/rest-signature.html */
         
-        /************************************************ SECRET INFO ********************************************************************************/
-        let accessKeyId = "AKIAJNFTA6SDQBSMBQ7Q"
-        let associateTag = "showcasetamu4-20"
-        let accessSecretKey = "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"
-        /************************************************ SECRET INFO ********************************************************************************/
-        
         // Other ingo
         var itemId = theBarcodeData // = TextField.text!
         
