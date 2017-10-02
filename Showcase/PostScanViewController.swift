@@ -17,7 +17,7 @@ class Book {
     var ISBN: String
     //var price: Double
     //var image - string url or actual image?
-    //var reviews?
+    //var reviews? 
     
     init() {
         title = "N/A"
