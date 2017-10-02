@@ -20,6 +20,7 @@
 		4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */; };
 		4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254791F70514000DE1D93 /* ContributionsViewController.swift */; };
 		4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E257A011F731F4B00012F2D /* LoginViewController.swift */; };
+		4E9B7D071F82E60000B838BC /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B7D061F82E60000B838BC /* Keys.swift */; };
 		5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */; };
 		5E0CEEE31F730F29009EADF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE21F730F29009EADF6 /* User.swift */; };
 		5E0CEEE61F730FD7009EADF6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE51F730FD7009EADF6 /* Constants.swift */; };
@@ -71,6 +72,7 @@
 		4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		4E2254791F70514000DE1D93 /* ContributionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributionsViewController.swift; sourceTree = "<group>"; };
 		4E257A011F731F4B00012F2D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4E9B7D061F82E60000B838BC /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5E0CEEE21F730F29009EADF6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5E0CEEE51F730FD7009EADF6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				5E0CEEE51F730FD7009EADF6 /* Constants.swift */,
+				4E9B7D061F82E60000B838BC /* Keys.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */,
 				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
 				5E47E7311F739485002B703D /* MaterialButton.swift in Sources */,
+				4E9B7D071F82E60000B838BC /* Keys.swift in Sources */,
 				08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */,
 				5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */,
 				4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */,
