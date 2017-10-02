@@ -17,6 +17,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     var theBarcodeData: String = ""
     var address = ""
     var businessName = ""
+    var currentAddr = [String : String]()
     
     @IBOutlet weak var longitudeText: UILabel!
     @IBOutlet weak var latitudeText: UILabel!
@@ -79,6 +80,9 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             latitudeText.text = "Latitude: \(latitude)"
             
             let originLocation = CLLocation(latitude: latitude, longitude: longitude)
+            //let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)
+            //let originLocation = CLLocation(latitude: 30.624211, longitude: -96.329536)
+            
             getPlacemark(forLocation: originLocation) {
                 (originPlacemark, error) in
                 if let err = error {
@@ -119,29 +123,35 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         // Location name
         if let locationName = placemark.addressDictionary?["Name"] as? String {
             self.address += locationName + ", "
+            currentAddr["locationName"] = locationName
         }
         
         // Street address
         // if let street = placemark.addressDictionary?["Thoroughfare"] as? String {
         //      self.address += street + ", "
+        //      currentAddr["street"] = street
         // }
         
         // City
         if let city = placemark.addressDictionary?["City"] as? String {
             self.address += city + ", "
+            currentAddr["city"] = city
         }
         if let state = placemark.addressDictionary?["State"] as? String {
             self.address += state + "  "
+            currentAddr["state"] = state
         }
         
         // Zip code
         if let zip = placemark.addressDictionary?["ZIP"] as? String {
             self.address += zip + ", "
+            currentAddr["zip"] = zip
         }
         
         // Country
         if let country = placemark.addressDictionary?["Country"] as? String {
             self.address += country
+            currentAddr["country"] = country
         }
     }
     
