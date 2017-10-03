@@ -9,7 +9,7 @@
 import Foundation
 
 
-let accessKeyId = "test"
+let accessKeyId = "test 2"
 let associateTag = "showcasetamu4-20"
 let accessSecretKey = "test"
 let goodReadsKey = "test"
