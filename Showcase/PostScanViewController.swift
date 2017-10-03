@@ -12,19 +12,6 @@ import CoreLocation
 import AddressBookUI
 import Firebase
 
-class Book {
-    var title: String
-    var ISBN: String
-    //var price: Double
-    //var image - string url or actual image?
-    //var reviews? 
-    
-    init() {
-        title = "N/A"
-        ISBN = "N/A"
-    }
-}
-
 /******** HMAC algorithm for Amazon REST call Signature ********/
 enum HMACAlgorithm {
     case MD5, SHA1, SHA224, SHA256, SHA384, SHA512
