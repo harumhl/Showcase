@@ -306,6 +306,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         parameters += "IdType=ISBN&"
         parameters += "ItemId=" + itemId + "&"
         parameters += "Operation=ItemLookup&"
+        parameters += "ResponseGroup=Images,ItemAttributes,Reviews&"
         parameters += "SearchIndex=All&"
         parameters += "Service=AWSECommerceService" + "&"
         //parameters += "Sort=relevancerank&"
