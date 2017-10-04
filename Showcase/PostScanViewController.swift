@@ -84,6 +84,15 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     
     var ref: DatabaseReference!
     
+    @IBOutlet weak var bookImage: UIImageView!
+    @IBOutlet weak var bookTitle: UILabel!
+    @IBOutlet weak var bookAuthor: UILabel!
+    @IBOutlet weak var bookRating: UILabel!
+    @IBOutlet weak var bookPrice: UILabel!
+    @IBOutlet weak var bookPurchase: UIButton!
+    @IBOutlet weak var bookReviews: UITableView!
+    
+    
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
