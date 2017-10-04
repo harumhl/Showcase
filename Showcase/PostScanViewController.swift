@@ -84,6 +84,15 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     
     var ref: DatabaseReference!
     
+    @IBOutlet weak var bookImage: UIImageView!
+    @IBOutlet weak var bookTitle: UILabel!
+    @IBOutlet weak var bookAuthor: UILabel!
+    @IBOutlet weak var bookRating: UILabel!
+    @IBOutlet weak var bookPrice: UILabel!
+    @IBOutlet weak var bookPurchase: UIButton!
+    @IBOutlet weak var bookReviews: UITableView!
+    
+    
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,6 +136,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         let tempBook = Book()
         tempBook.ISBN = theBarcodeData
         user.books.append(tempBook)
+        print(user.books);
         
         // dont override a users books
         let bookRef = ref.child(byAppendingPath: "/user/"+email+"/books")
@@ -304,6 +314,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         parameters += "IdType=ISBN&"
         parameters += "ItemId=" + itemId + "&"
         parameters += "Operation=ItemLookup&"
+        parameters += "ResponseGroup=Images,ItemAttributes,Reviews&"
         parameters += "SearchIndex=All&"
         parameters += "Service=AWSECommerceService" + "&"
         //parameters += "Sort=relevancerank&"
@@ -418,9 +429,17 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         task.resume()
     }
     func goodReadsSearch() {
-        var theURL = "https://www.goodreads.com/search/index.html?"
+        // https://www.goodreads.com/api
+        /*
+         var theURL = "https://www.goodreads.com/search/index.html?"
+         theURL += "key=" + goodReadsKey + "&"
+         theURL += "q=" + theBarcodeData
+         print("good reads URL: " + theURL)
+         */
+        var theURL = "https://www.goodreads.com/book/isbn/ISBN?"
+        theURL += "format=xml&"
         theURL += "key=" + goodReadsKey + "&"
-        theURL += "q=" + theBarcodeData
+        theURL += "isbn=" + theBarcodeData
         print("good reads URL: " + theURL)
         
         // Check the validity of the URL ("guard" checks it)
