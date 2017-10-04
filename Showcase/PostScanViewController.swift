@@ -94,7 +94,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         barcodeDataField.adjustsFontSizeToFitWidth = true
         getLocation()
         addDataToDB()
-        SearchButtonClicked()
+        amazonSearch()
         goodReadsSearch()
     }
     
@@ -282,7 +282,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
 
     }
     
-    func SearchButtonClicked() {
+    func amazonSearch() {
         /* http://docs.aws.amazon.com/AWSECommerceService/latest/DG/rest-signature.html */
         
         // Other ingo
@@ -408,8 +408,11 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             let requestId = xml["ItemLookupResponse"]["OperationRequest"]["RequestId"].text
             
             // this is the list of items or books in the reponse
-            // will have to loop through this to find the correct item
             let responseItems = xml["ItemLookupResponse"]["Items"]
+            
+            // loop through responseItems to find the correct Book
+            // TODO..
+            
             
             // This stores the author, book title, etc
             let responseBook = responseItems["Item"]["ItemAttributes"]
@@ -418,8 +421,9 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     }
     func goodReadsSearch() {
         var theURL = "https://www.goodreads.com/search/index.html?"
-        theURL += theURL + "q=" + theBarcodeData + "&"
-        theURL += theURL + "key=" + goodReadsKey
+        theURL = theURL + "key=" + goodReadsKey + "&"
+        theURL = theURL + "q=" + theBarcodeData
+        print("good reads URL: " + theURL)
         
         // Check the validity of the URL ("guard" checks it)
         guard let url = URL(string: theURL) else {
@@ -452,6 +456,10 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             else {
                 print("GoodReads HTTP call parse failure")
             }
+            
+            // data gives:
+                // author, book title, image url default size and small
+            
             
         }
         task.resume()
