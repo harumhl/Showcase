@@ -69,16 +69,11 @@ extension String {
 /******** (end of) HMAC algorithm for Amazon REST call Signature ********/
 
 class PostScanViewController: UIViewController, CLLocationManagerDelegate{
-    @IBOutlet weak var barcodeDataField: UILabel!
     var theBarcodeData: String = ""
     var address = ""
     var businessName = ""
     var currentAddr = [String : String]()
-    
-    @IBOutlet weak var longitudeText: UILabel!
-    @IBOutlet weak var latitudeText: UILabel!
-    @IBOutlet weak var placeholderText: UILabel!
-    
+  
     var longitude = 0.0
     var latitude = 0.0
     
@@ -99,8 +94,6 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         
         // Do any additional setup after loading the view.
         // Print the barcode on a label on the top of the VC
-        barcodeDataField.text = theBarcodeData
-        barcodeDataField.adjustsFontSizeToFitWidth = true
         getLocation()
         addDataToDB()
         amazonSearch()
@@ -132,7 +125,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         let bookKey = ref.childByAutoId().key
 
         let bookData = ["BookID": bookKey, "BookISBN": theBarcodeData, "LocationID": locKey, "Purchased": false ] as [String : Any]
-        let locationData = ["LocationID": locKey, "Long": longitudeText.text as String!, "Lat": latitudeText.text as String!]
+        let locationData = ["LocationID": locKey, "Long": longitude, "Lat": latitude] as [String : Any]
         let userData = ["bookID": "bookKey"+bookKey]
         
         ref.child("/book/bookKey"+bookKey).setValue(bookData)
@@ -145,7 +138,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         
         
        // print("Data Added:\t" + bookData["BookID"]! + "\t" + bookData["BookISBN"]!)
-        print("LocationID:\t" + locationData["LocationID"]!! + "\t" + locationData["Long"]!! + "\t" + locationData["Lat"]!!)
+        //print("LocationID:\t" + locationData["LocationID"] as String! + "\t" + locationData["Long"] as String! + "\t" + locationData["Lat"] as String!)
     }
     
 
@@ -164,8 +157,8 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             longitude = (locManager.location?.coordinate.longitude)!
             latitude = (locManager.location?.coordinate.latitude)!
             
-            longitudeText.text = "Longitude: \(longitude)"
-            latitudeText.text = "Latitude: \(latitude)"
+            print("Longitude: \(longitude)")
+            print("Latitude: \(latitude)")
             
             let originLocation = CLLocation(latitude: latitude, longitude: longitude)
             //let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)
@@ -182,8 +175,9 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
                 }
             }
         } else {
-            longitudeText.text = "did not allow gps"
-            latitudeText.text = "did not allow gps"
+            
+            // Ask Brian how did a pop up
+            print("did not allow gps")
         }
     }
     
@@ -281,11 +275,11 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             }
             if(foundBusn){
                 print("You are in \(buisness) \n")
-                self.placeholderText.text = "placeholder: " + buisness
+                print("placeholder: " + buisness)
                 self.businessName = buisness
             } else {
                 print("Sorry we could not determine your location \n")
-                self.placeholderText.text = "placeholder: Sorry we could not determine your location"
+                print("placeholder: Sorry we could not determine your location")
             }
         }
 
