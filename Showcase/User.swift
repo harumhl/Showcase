@@ -13,6 +13,7 @@ class User {
     var lastName: String
     var email: String
     var books: Array<Book>
+    var isSignedIn: Bool
     //var reviews = array of Review Objects
     
     init() {
@@ -20,6 +21,7 @@ class User {
         lastName = ""
         email = ""
         books = []
+        isSignedIn = false
     }
     
     init(fname: String, lname: String, e: String) {
@@ -27,6 +29,11 @@ class User {
         lastName = lname;
         email = e;
         books = []
+        isSignedIn = false
+    }
+    
+    func loadPrevBooks() {
+        
     }
     
     func addBook(b: Book) {

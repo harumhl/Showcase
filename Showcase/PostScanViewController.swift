@@ -113,9 +113,11 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         ref = Database.database().reference()
         
         let user = getUser()
-        let email = user.email.substring(to: user.email.index(of: "@")!)
-        print("substring email: ", email)
-        
+        var email = ""
+        if user.isSignedIn {
+            email = user.email.substring(to: user.email.index(of: "@")!)
+            print("substring email: ", email)
+        }
         let locKey = ref.childByAutoId().key
         let bookKey = ref.childByAutoId().key
 
@@ -128,8 +130,11 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         
         let tempBook = Book()
         tempBook.ISBN = theBarcodeData
-        user.books.append(tempBook)
-        print(user.books);
+        user.addBook(b: tempBook)
+        print("book size ", user.books.count)
+        for book in user.books {
+            print ("book " + book.ISBN)
+        }
         
         // dont override a users books
         let bookRef = ref.child(byAppendingPath: "/user/"+email+"/books")
