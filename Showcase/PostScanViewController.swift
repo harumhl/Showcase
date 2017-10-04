@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import AddressBookUI
 import Firebase
+import SwiftyXMLParser
 
 /******** HMAC algorithm for Amazon REST call Signature ********/
 enum HMACAlgorithm {
@@ -361,14 +362,14 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
                 print("Error: did not receive data")
                 return
             }
-            let parser = XMLParser(data: responseData)
-            if parser.parse() {
-                print("Amazon rest call parse success")
-                //print(parser.Items.Request.ItemLookupRequest.ItemId)
-            }
-            else {
-                print("Amazon rest call parse failure")
-            }
+//            let parser = XMLParser(data: responseData)
+//            if parser.parse() {
+//                print("Amazon rest call parse success")
+//                //print(parser.Items.Request.ItemLookupRequest.ItemId)
+//            }
+//            else {
+//                print("Amazon rest call parse failure")
+//            }
             
             // parse the result as JSON, since that's what the API provides
             /*
@@ -394,6 +395,24 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
              print("error trying to convert data to JSON")
              return
              }*/
+            
+            
+            
+            
+            
+            //SwiftyXMLParser
+//                var dataAsString = String(data: data!, encoding: String.Encoding.utf8) as String!
+//                print("the data:")
+//                print(dataAsString)
+            let xml = XML.parse(data!)
+            let requestId = xml["ItemLookupResponse"]["OperationRequest"]["RequestId"].text
+            
+            // this is the list of items or books in the reponse
+            // will have to loop through this to find the correct item
+            let responseItems = xml["ItemLookupResponse"]["Items"]
+            
+            // This stores the author, book title, etc
+            let responseBook = responseItems["Item"]["ItemAttributes"]
         }
         task.resume()
     }
@@ -433,6 +452,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             else {
                 print("GoodReads HTTP call parse failure")
             }
+            
         }
         task.resume()
     }

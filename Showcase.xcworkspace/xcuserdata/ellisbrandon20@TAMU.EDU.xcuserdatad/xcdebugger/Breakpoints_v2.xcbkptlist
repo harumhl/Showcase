@@ -10,13 +10,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Showcase/PostScanViewController.swift"
-            timestampString = "528667046.896536"
+            timestampString = "528832185.821994"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "getPlacemark(forLocation:completionHandler:)"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
+            landmarkName = "SearchButtonClicked()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Showcase/PostScanViewController.swift"
+            timestampString = "528832185.822359"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
+            landmarkName = "SearchButtonClicked()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Showcase.PostScanViewController.SearchButtonClicked() -&gt; ()"
+                  moduleName = "Showcase"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Domain/continuum.tamu.edu/Users/ellisbrandon20/Desktop/Showcase/Showcase/PostScanViewController.swift"
+                  timestampString = "528832185.93541"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "411"
+                  endingLineNumber = "411"
+                  offsetFromSymbolStart = "5108">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__ObjC.URLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Showcase.PostScanViewController.SearchButtonClicked() -&gt; ()"
+                  moduleName = "Showcase"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Domain/continuum.tamu.edu/Users/ellisbrandon20/Desktop/Showcase/Showcase/PostScanViewController.swift"
+                  timestampString = "528832185.936767"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "411"
+                  endingLineNumber = "411"
+                  offsetFromSymbolStart = "2020">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
