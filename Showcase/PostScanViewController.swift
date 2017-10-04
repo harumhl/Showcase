@@ -421,8 +421,8 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     }
     func goodReadsSearch() {
         var theURL = "https://www.goodreads.com/search/index.html?"
-        theURL = theURL + "key=" + goodReadsKey + "&"
-        theURL = theURL + "q=" + theBarcodeData
+        theURL += "key=" + goodReadsKey + "&"
+        theURL += "q=" + theBarcodeData
         print("good reads URL: " + theURL)
         
         // Check the validity of the URL ("guard" checks it)
