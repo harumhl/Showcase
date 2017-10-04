@@ -7,3 +7,30 @@
 //
 
 import Foundation
+
+class User {
+    var firstName: String
+    var lastName: String
+    var email: String
+    var books: Array<Book>
+    //var reviews = array of Review Objects
+    
+    init() {
+        firstName = ""
+        lastName = ""
+        email = ""
+        books = []
+    }
+    
+    init(fname: String, lname: String, e: String) {
+        firstName = fname;
+        lastName = lname;
+        email = e;
+        books = []
+    }
+    
+    func addBook(b: Book) {
+        books.append(b)
+    }
+    
+}

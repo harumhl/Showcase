@@ -8,11 +8,12 @@
 
 import UIKit
 import CoreLocation
+import Firebase
 
 var locManager: CLLocationManager!
 
 class RootViewController: UIViewController, CLLocationManagerDelegate {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,6 +49,7 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
+    
     
 
     /*

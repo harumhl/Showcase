@@ -20,7 +20,8 @@
 		4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */; };
 		4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254791F70514000DE1D93 /* ContributionsViewController.swift */; };
 		4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E257A011F731F4B00012F2D /* LoginViewController.swift */; };
-		4EE612811F853E1F008B9A04 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE612801F853E1E008B9A04 /* Keys.swift */; };
+		50E6B23D1F85782C008B790F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E6B23C1F85782C008B790F /* Keys.swift */; };
+		50E6B2401F85805A008B790F /* UIViewController+CurUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E6B23F1F85805A008B790F /* UIViewController+CurUser.swift */; };
 		5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */; };
 		5E0CEEE31F730F29009EADF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE21F730F29009EADF6 /* User.swift */; };
 		5E0CEEE61F730FD7009EADF6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE51F730FD7009EADF6 /* Constants.swift */; };
@@ -73,7 +74,8 @@
 		4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		4E2254791F70514000DE1D93 /* ContributionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributionsViewController.swift; sourceTree = "<group>"; };
 		4E257A011F731F4B00012F2D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		4EE612801F853E1E008B9A04 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../Downloads/Keys.swift; sourceTree = "<group>"; };
+		50E6B23C1F85782C008B790F /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../Downloads/Keys.swift; sourceTree = "<group>"; };
+		50E6B23F1F85805A008B790F /* UIViewController+CurUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+CurUser.swift"; sourceTree = "<group>"; };
 		5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5E0CEEE21F730F29009EADF6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5E0CEEE51F730FD7009EADF6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		494979231F672BF4005DB65C /* Showcase */ = {
 			isa = PBXGroup;
 			children = (
+				50E6B23E1F858027008B790F /* Extensions */,
 				5E6C47091F758833002FE561 /* Services */,
 				5E0CEEE41F730FBD009EADF6 /* Utils */,
 				08BA96E21F7071F9001875BF /* Controller */,
@@ -222,10 +225,18 @@
 			path = ShowcaseUITests;
 			sourceTree = "<group>";
 		};
+		50E6B23E1F858027008B790F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				50E6B23F1F85805A008B790F /* UIViewController+CurUser.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		5E0CEEE41F730FBD009EADF6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4EE612801F853E1E008B9A04 /* Keys.swift */,
+				50E6B23C1F85782C008B790F /* Keys.swift */,
 				5E0CEEE51F730FD7009EADF6 /* Constants.swift */,
 			);
 			name = Utils;
@@ -572,7 +583,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF3FBC71F8453D800118D00 /* Book.swift in Sources */,
-				4EE612811F853E1F008B9A04 /* Keys.swift in Sources */,
+				50E6B23D1F85782C008B790F /* Keys.swift in Sources */,
 				5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */,
 				5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */,
 				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
@@ -581,6 +592,7 @@
 				5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */,
 				4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */,
 				5E0CEEE31F730F29009EADF6 /* User.swift in Sources */,
+				50E6B2401F85805A008B790F /* UIViewController+CurUser.swift in Sources */,
 				085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */,
 				4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */,
 				4E2254741F7050A300DE1D93 /* UserAccountSettingsViewController.swift in Sources */,

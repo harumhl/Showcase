@@ -110,14 +110,9 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     func addDataToDB() {
         ref = Database.database().reference()
         
-        var email = "testing"
-        
-        let user = Auth.auth().currentUser
-        if let user = user {
-            email = user.email!
-            email = email.substring(to: email.index(of: "@")!)
-            print("substring email: ", email)
-        }
+        let user = getUser()
+        let email = user.email.substring(to: user.email.index(of: "@")!)
+        print("substring email: ", email)
         
         let locKey = ref.childByAutoId().key
         let bookKey = ref.childByAutoId().key
@@ -129,11 +124,14 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         ref.child("/book/bookKey"+bookKey).setValue(bookData)
         ref.child("/location/loc"+locKey).setValue(locationData)
         
+        let tempBook = Book()
+        tempBook.ISBN = theBarcodeData
+        user.books.append(tempBook)
+        
         // dont override a users books
         let bookRef = ref.child(byAppendingPath: "/user/"+email+"/books")
         let thisBookRef = bookRef.childByAutoId()
         thisBookRef.setValue(userData)
-        
         
        // print("Data Added:\t" + bookData["BookID"]! + "\t" + bookData["BookISBN"]!)
         print("LocationID:\t" + locationData["LocationID"]!! + "\t" + locationData["Long"]!! + "\t" + locationData["Lat"]!!)
