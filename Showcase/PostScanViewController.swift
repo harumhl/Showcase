@@ -86,8 +86,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var bookPrice: UILabel!
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
-    
-    
+        
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -420,6 +419,14 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             
             // This stores the author, book title, etc
             let responseBook = responseItems["Item"]["ItemAttributes"]
+            
+            
+            
+            if let url = NSURL(string: "https://images-na.ssl-images-amazon.com/images/I/51wJ%2BUKIhJL._SL160_.jpg") {
+                if let data = NSData(contentsOf: url as URL) {
+                    self.bookImage.image = UIImage(data: data as Data)
+                }
+            }
         }
         task.resume()
     }
