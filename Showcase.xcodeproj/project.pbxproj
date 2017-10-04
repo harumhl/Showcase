@@ -20,7 +20,7 @@
 		4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */; };
 		4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254791F70514000DE1D93 /* ContributionsViewController.swift */; };
 		4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E257A011F731F4B00012F2D /* LoginViewController.swift */; };
-		4E5921FA1F857821000942FA /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5921F91F857821000942FA /* Keys.swift */; };
+		4E5921FF1F85A0A2000942FA /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5921FE1F85A0A2000942FA /* Keys.swift */; };
 		5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */; };
 		5E0CEEE31F730F29009EADF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE21F730F29009EADF6 /* User.swift */; };
 		5E0CEEE61F730FD7009EADF6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE51F730FD7009EADF6 /* Constants.swift */; };
@@ -73,7 +73,7 @@
 		4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		4E2254791F70514000DE1D93 /* ContributionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributionsViewController.swift; sourceTree = "<group>"; };
 		4E257A011F731F4B00012F2D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		4E5921F91F857821000942FA /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../Downloads/Keys.swift; sourceTree = "<group>"; };
+		4E5921FE1F85A0A2000942FA /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5E0CEEE21F730F29009EADF6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5E0CEEE51F730FD7009EADF6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -173,6 +173,7 @@
 				494979221F672BF4005DB65C /* Products */,
 				A22327CB2893E27A54A426C6 /* Pods */,
 				03AABFC905E3DD3127FDD7BE /* Frameworks */,
+				4E5921FB1F859FD7000942FA /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,11 +223,19 @@
 			path = ShowcaseUITests;
 			sourceTree = "<group>";
 		};
-		5E0CEEE41F730FBD009EADF6 /* Utils */ = {
+		4E5921FB1F859FD7000942FA /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				4E5921F91F857821000942FA /* Keys.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		5E0CEEE41F730FBD009EADF6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
 				5E0CEEE51F730FD7009EADF6 /* Constants.swift */,
+				4E5921FE1F85A0A2000942FA /* Keys.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -571,7 +580,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E5921FA1F857821000942FA /* Keys.swift in Sources */,
+				4E5921FF1F85A0A2000942FA /* Keys.swift in Sources */,
 				5EF3FBC71F8453D800118D00 /* Book.swift in Sources */,
 				5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */,
 				5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */,

@@ -69,25 +69,26 @@ extension String {
 /******** (end of) HMAC algorithm for Amazon REST call Signature ********/
 
 class PostScanViewController: UIViewController, CLLocationManagerDelegate{
-    @IBOutlet weak var barcodeDataField: UILabel!
     var theBarcodeData: String = ""
     var address = ""
     var businessName = ""
     var currentAddr = [String : String]()
-    var scannedBook: Book?
-    
-    @IBOutlet weak var longitudeText: UILabel!
-    @IBOutlet weak var latitudeText: UILabel!
-    @IBOutlet weak var placeholderText: UILabel!
-    
+
     var longitude = 0.0
     var latitude = 0.0
     
     var ref: DatabaseReference!
-    
+
     var scanBookArray = [Book]()
     
-    
+    @IBOutlet weak var bookImage: UIImageView!
+    @IBOutlet weak var bookTitle: UILabel!
+    @IBOutlet weak var bookAuthor: UILabel!
+    @IBOutlet weak var bookRating: UILabel!
+    @IBOutlet weak var bookPrice: UILabel!
+    @IBOutlet weak var bookPurchase: UIButton!
+    @IBOutlet weak var bookReviews: UITableView!
+        
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,8 +97,6 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         
         // Do any additional setup after loading the view.
         // Print the barcode on a label on the top of the VC
-        barcodeDataField.text = theBarcodeData
-        barcodeDataField.adjustsFontSizeToFitWidth = true
         getLocation()
         addDataToDB()
         amazonSearch()
@@ -130,7 +129,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         let bookKey = ref.childByAutoId().key
 
         let bookData = ["BookID": bookKey, "BookISBN": theBarcodeData, "LocationID": locKey, "Purchased": false ] as [String : Any]
-        let locationData = ["LocationID": locKey, "Long": longitudeText.text as String!, "Lat": latitudeText.text as String!]
+        let locationData = ["LocationID": locKey, "Long": longitude, "Lat": latitude] as [String : Any]
         let userData = ["bookID": "bookKey"+bookKey]
         
         ref.child("/book/bookKey"+bookKey).setValue(bookData)
@@ -143,7 +142,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         
         
        // print("Data Added:\t" + bookData["BookID"]! + "\t" + bookData["BookISBN"]!)
-        print("LocationID:\t" + locationData["LocationID"]!! + "\t" + locationData["Long"]!! + "\t" + locationData["Lat"]!!)
+        //print("LocationID:\t" + locationData["LocationID"] as String! + "\t" + locationData["Long"] as String! + "\t" + locationData["Lat"] as String!)
     }
     
 
@@ -162,8 +161,8 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             longitude = (locManager.location?.coordinate.longitude)!
             latitude = (locManager.location?.coordinate.latitude)!
             
-            longitudeText.text = "Longitude: \(longitude)"
-            latitudeText.text = "Latitude: \(latitude)"
+            print("Longitude: \(longitude)")
+            print("Latitude: \(latitude)")
             
             let originLocation = CLLocation(latitude: latitude, longitude: longitude)
             //let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)
@@ -180,8 +179,9 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
                 }
             }
         } else {
-            longitudeText.text = "did not allow gps"
-            latitudeText.text = "did not allow gps"
+            
+            // Ask Brian how did a pop up
+            print("did not allow gps")
         }
     }
     
@@ -279,11 +279,11 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             }
             if(foundBusn){
                 print("You are in \(buisness) \n")
-                self.placeholderText.text = "placeholder: " + buisness
+                print("placeholder: " + buisness)
                 self.businessName = buisness
             } else {
                 print("Sorry we could not determine your location \n")
-                self.placeholderText.text = "placeholder: Sorry we could not determine your location"
+                print("placeholder: Sorry we could not determine your location")
             }
         }
 
@@ -452,13 +452,29 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             
             // This stores the author, book title, etc
             let responseBook = responseItems["Item"]["ItemAttributes"]
+            
+            
+            
+            if let url = NSURL(string: "https://images-na.ssl-images-amazon.com/images/I/51wJ%2BUKIhJL._SL160_.jpg") {
+                if let data = NSData(contentsOf: url as URL) {
+                    self.bookImage.image = UIImage(data: data as Data)
+                }
+            }
         }
         task.resume()
     }
     func goodReadsSearch() {
-        var theURL = "https://www.goodreads.com/search/index.html?"
+        // https://www.goodreads.com/api
+        /*
+         var theURL = "https://www.goodreads.com/search/index.html?"
+         theURL += "key=" + goodReadsKey + "&"
+         theURL += "q=" + theBarcodeData
+         print("good reads URL: " + theURL)
+         */
+        var theURL = "https://www.goodreads.com/book/isbn/ISBN?"
+        theURL += "format=xml&"
         theURL += "key=" + goodReadsKey + "&"
-        theURL += "q=" + theBarcodeData
+        theURL += "isbn=" + theBarcodeData
         print("good reads URL: " + theURL)
         
         // Check the validity of the URL ("guard" checks it)
