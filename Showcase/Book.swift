@@ -23,16 +23,29 @@ Book class will store all relevant information that we need to display on the Po
 
 class Book {
     var title: String
+    var author: String
     var ISBN: String
-    var price: Double
+    var price: String
     var imageURL: String
+    var rating: Double
     //var reviews = array of Review Objects
     
     init() {
         title = "N/A"
+        author = "N/A"
         ISBN = "N/A"
-        price = 0.0
+        price = "Price Not Available"
         imageURL = "N/A"
+        rating = -1
         //reviews = "N/A"
+    }
+    
+    init(_title: String, _author:String, _ISBN: String, _price: String, _imageURL: String, _rating: Double){
+        self.title = _title
+        self.author = _author
+        self.ISBN = _ISBN
+        self.price = _price
+        self.imageURL = _imageURL
+        self.rating = _rating
     }
 }

@@ -73,11 +73,13 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     var address = ""
     var businessName = ""
     var currentAddr = [String : String]()
-  
+
     var longitude = 0.0
     var latitude = 0.0
     
     var ref: DatabaseReference!
+
+    var scanBookArray = [Book]()
     
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
@@ -86,11 +88,12 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var bookPrice: UILabel!
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
-    
-    
+        
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         // Do any additional setup after loading the view.
         // Print the barcode on a label on the top of the VC
@@ -98,6 +101,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         addDataToDB()
         amazonSearch()
         goodReadsSearch()
+        
     }
     
     // Built in XCode function
@@ -293,7 +297,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
         /* http://docs.aws.amazon.com/AWSECommerceService/latest/DG/rest-signature.html */
         
         // Other ingo
-        var itemId = theBarcodeData // = TextField.text!
+        var itemId = "9780439708180" //theBarcodeData // = TextField.text!
         
         // 1. Get time stamp ready
         let dateFormatter = DateFormatter()
@@ -408,10 +412,7 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             
             
             
-            //SwiftyXMLParser
-//                var dataAsString = String(data: data!, encoding: String.Encoding.utf8) as String!
-//                print("the data:")
-//                print(dataAsString)
+            // SwiftyXMLParser convert the XML data into an array of Book objects
             let xml = XML.parse(data!)
             let requestId = xml["ItemLookupResponse"]["OperationRequest"]["RequestId"].text
             
@@ -419,11 +420,50 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             let responseItems = xml["ItemLookupResponse"]["Items"]
             
             // loop through responseItems to find the correct Book
-            // TODO..
+            for items in xml["ItemLookupResponse", "Items", "Item"]{
+                let itemAttributes = items["ItemAttributes"]
+                var itemISBN = "-1"
+                itemISBN ?= itemAttributes["EAN"].text
+                if(itemISBN != nil && itemId == itemISBN){
+                    // create a book object
+                    var title = "Title Not Available"
+                    title ?= itemAttributes["Title"].text!
+                    
+                    var author = "Author Not Available"
+                    author ?= itemAttributes["Author"].text!
+                    
+                    let ISBN = self.theBarcodeData
+                    
+                    var price = "Price Not Available"
+                    price ?= itemAttributes["ListPrice", "FormattedPrice"].text
+                    
+                    var imageURL = "DefaultImage.jpg"
+                    imageURL ?= items["MediumImage", "URL"].text!
+                    
+                    let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1)
+                    
+                    // insert item into array of books
+                    self.scanBookArray.append(tmpBook)
+                    
+                }
+                else{
+                    print("NOPE NOTE EQUAL")
+                }
+            }
+            
+            print("CHECK THE BOOKS")
             
             
             // This stores the author, book title, etc
             let responseBook = responseItems["Item"]["ItemAttributes"]
+            
+            
+            
+            if let url = NSURL(string: "https://images-na.ssl-images-amazon.com/images/I/51wJ%2BUKIhJL._SL160_.jpg") {
+                if let data = NSData(contentsOf: url as URL) {
+                    self.bookImage.image = UIImage(data: data as Data)
+                }
+            }
         }
         task.resume()
     }
@@ -475,6 +515,11 @@ class PostScanViewController: UIViewController, CLLocationManagerDelegate{
             
             // data gives:
                 // author, book title, image url default size and small
+            let xml = XML.parse(data!)
+            
+            
+            
+            
             
             
         }
