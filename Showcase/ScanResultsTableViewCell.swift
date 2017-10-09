@@ -1,5 +1,5 @@
 //
-//  LoadScanTableViewCell.swift
+//  ScanResultsTableViewCell.swift
 //  Showcase
 //
 //  Created by ellisbrandon20 on 10/9/17.
@@ -8,12 +8,11 @@
 
 import UIKit
 
-class LoadScanTableViewCell: UITableViewCell {
+class ScanResultsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var bookImage: UIView!
-    @IBOutlet weak var bookTitle: UIView!
-    
-    
+   
+    @IBOutlet weak var bookImage: UIImageView!
+    @IBOutlet weak var bookTitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

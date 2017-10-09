@@ -68,10 +68,8 @@ extension String {
 /******************************** (end of) HMAC algorithm for Amazon REST call Signature ******************************/
 
 
-class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     
-    @IBOutlet weak var controllerTitle: UILabel!
-    @IBOutlet weak var resultsTbl: UITableView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loadingLbl: UILabel!
     
@@ -88,10 +86,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // controllerTitle and resultsTbl should stay hidden unless they are needed
-        self.controllerTitle.isHidden = true
-        self.resultsTbl.isHidden = true
         
         // Start the spinning of the inidicator - stop it if we show the table
         self.loadingIndicator.hidesWhenStopped = true
@@ -113,44 +107,17 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITab
         // Dispose of any resources that can be recreated.
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return scanBookArray.count
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LoadScanTableViewCell
-        
-        //cell.bookImage
-        
-        if let url = NSURL(string: "https://images-na.ssl-images-amazon.com/images/I/51wJ%2BUKIhJL._SL160_.jpg") {
-            if let data = NSData(contentsOf: url as URL) {
-                //self.bookImage.image = UIImage(data: data as Data)
-                cell.bookImage = UIImage(data: data as Data) as! UIView
-            }
-        }
-        
-        cell.bookTitle = scanBookArray[indexPath.row].title as! UIView
-        
-        return cell
-    }
-    
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
+        if(scanBookArray.count == 1){
+            let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
         
-        // Pass in the Book object that the user selects
-        postScanVC.bookData = scanBookArray[bookToPass]
-        //performSegue(withIdentifier: "LoadToPost", sender: nil)
-        
+            // Pass in the Book object that the user selects
+            postScanVC.bookData = scanBookArray[bookToPass]
+        }else if(scanBookArray.count > 1){
+            let resultsTblVC: ScanResultsTableViewController = segue.destination as! ScanResultsTableViewController
+            resultsTblVC.scanBookArray = scanBookArray
+        }
     }
-    
-    
-    
-    
-    
-    
-    
     
     // ACTION - If only one book - perform segue to PostScanViewController for the user..
     //          otherwise we will display a table of the matching books we found and give them the option
@@ -162,22 +129,16 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITab
         }else if(scanBookArray.count > 1){
             // hide load label and animaiton
             self.loadingIndicator.stopAnimating()
+            self.loadingIndicator.isHidden = true
             self.loadingLbl.isHidden = true
             
-            // display the table
-            self.controllerTitle.isHidden = false
-            self.resultsTbl.isHidden = false
-            
             // load the table with scanBookArray
-            fillResultsTbl()
+            // segue to resultstable view controller
+            performSegue(withIdentifier: "LoadToResults", sender: nil)
         } else{
             // OOPS we did not find there book.
             // segue to the scanner or the main menu and notify user that we did not find the book
         }
-    }
-    
-    func fillResultsTbl() {
-        
     }
     
 // ****************************************** GPS Functions ***************************************************
