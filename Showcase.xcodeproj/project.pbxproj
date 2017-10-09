@@ -23,7 +23,7 @@
 		4E24E08A1F8BDF8B005D1EAD /* LoadScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */; };
 		4E24E08C1F8BF754005D1EAD /* LoadScanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24E08B1F8BF754005D1EAD /* LoadScanTableViewCell.swift */; };
 		4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E257A011F731F4B00012F2D /* LoginViewController.swift */; };
-		50E6B23D1F85782C008B790F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		50E6B23D1F85782C008B790F /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		50ED73B01F85ACE100E4531F /* UIViewController+CurUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */; };
 		5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */; };
 		5E0CEEE31F730F29009EADF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE21F730F29009EADF6 /* User.swift */; };
@@ -31,7 +31,6 @@
 		5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E72C1F7383C2002B703D /* RootViewController.swift */; };
 		5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E72E1F7391DB002B703D /* MaterialTextField.swift */; };
 		5E47E7311F739485002B703D /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E7301F739484002B703D /* MaterialButton.swift */; };
-		5E62A5251F8C04F100F35191 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E62A5241F8C04F100F35191 /* Keys.swift */; };
 		5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6C470A1F7588B6002FE561 /* DataService.swift */; };
 		5EF3FBC71F8453D800118D00 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF3FBC61F8453D800118D00 /* Book.swift */; };
 		836BAB31647A371F392EC41D /* Pods_ShowcaseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCDEC596D80F2B0788E83CD /* Pods_ShowcaseUITests.framework */; };
@@ -498,6 +497,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Showcase/Pods-Showcase-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
@@ -513,6 +513,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
@@ -601,7 +602,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF3FBC71F8453D800118D00 /* Book.swift in Sources */,
-				50E6B23D1F85782C008B790F /* (null) in Sources */,
+				50E6B23D1F85782C008B790F /* BuildFile in Sources */,
 				5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */,
 				5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */,
 				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,

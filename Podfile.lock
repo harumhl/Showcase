@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Cosmos (12.0.1)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.15)
@@ -66,6 +67,7 @@ PODS:
   - SwiftyXMLParser (3.0.3)
 
 DEPENDENCIES:
+  - Cosmos
   - FacebookCore
   - FacebookLogin
   - Firebase/Auth
@@ -77,6 +79,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Cosmos: 4a9f57998a08788a1062c7b8eefbc62d2b590f39
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FBSDKCoreKit: ebc6c5f5b3f0e72396041050e2266781a38ac587
@@ -95,6 +98,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftyXMLParser: 9c6cc0310e778266a63d8eba50d9e07925aab0fb
 
-PODFILE CHECKSUM: 7ad25bd5bd09aefee15c1fc171abcd960bade145
+PODFILE CHECKSUM: d963c55635c7b0685d0bfeb0e1e5f8e37fa6a349
 
 COCOAPODS: 1.3.1
