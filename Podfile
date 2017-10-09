@@ -15,6 +15,7 @@ pod 'ImageTextField'
 pod 'FacebookLogin'
 pod 'FacebookCore'
 pod 'SwiftyXMLParser'
+pod 'Cosmos'
 
   target 'ShowcaseTests' do
     inherit! :search_paths
