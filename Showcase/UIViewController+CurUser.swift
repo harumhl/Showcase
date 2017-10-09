@@ -12,11 +12,42 @@ import UIKit
 import Firebase
 
 extension UIViewController {
+    // Load in a user's books (by email)
+    func loadUserBooks(email: String) {
+      var dbRef: DatabaseReference!
+      dbRef = Database.database().reference()
+      dbRef.child("user").child(email+"/books").observeSingleEvent(of: .value, with: { (snapshot) in
+        // Grab the list user's book list
+        let userBooks = snapshot.value as? NSDictionary
+        if (userBooks != nil) {
+            // print("value: ", userBooks!)
+            dbRef.child("book").observeSingleEvent(of: .value, with: { (snapshot) in
+                // Grab the list of ALL books
+                let allBooks = snapshot.value as? NSDictionary
+                if (allBooks != nil) {
+                    // print("All books: ", allBooks!)
+                    // Loop through the user's books and grab the bookKey value
+                    for (_, value) in userBooks!{
+                        // A user's book entry is a dictionary ('bookID' -> 'bookKey')
+                        let userBook = value as! NSDictionary
+                        let theUserBookKey = userBook["bookID"]
+                        print("Book Key: ", theUserBookKey as Any)
+                        // See if we can find the user's book in the main book list.
+                        if allBooks![theUserBookKey as Any] != nil {
+                            let aUserBook =  allBooks![theUserBookKey!] as! NSDictionary
+                            print ("The acutal book ISBN:", aUserBook["BookISBN"] as Any, "\n")
+                        } else {
+                            print ("\nInvalid Book!")
+                        }
+                    }
+                }
+            })
+         }
+      })
+    }
     
-    
+    // Check authentication and grab the currently signed in user.
     func getUser() -> User {
-        var ref2: DatabaseReference!
-        ref2 = Database.database().reference()
         let curUser = User()
         var email = "heyman"
         let user = Auth.auth().currentUser
@@ -24,38 +55,11 @@ extension UIViewController {
             curUser.isSignedIn = true
             email = user.email!
             email = email.substring(to: email.index(of: "@")!)
-            print("substring email: ", email)
+            print("Username: ", email)
             curUser.email = (user.email!)
-            print("current user email " + curUser.email)
+            print("Current user eMail " + curUser.email)
             // Populate the current user's book list
-            ref2.child("user").child(email+"/books").observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get user value
-                let bookDict = snapshot.value as? NSDictionary
-                if (bookDict != nil) {
-                    print("value: ", bookDict!)
-                    ref2.child("book").observeSingleEvent(of: .value, with: { (snapshot) in
-                        let bookDict2 = snapshot.value as? NSDictionary
-                        if (bookDict2 != nil) {
-                            print("All books: ", bookDict2!)
-                            for (key, value) in bookDict!{
-                                let eachBook = value as! NSDictionary
-                                // var bookObj = bookDict2![id]
-                                // let bookKey = value as? [String: AnyObject]
-                                let theKey = eachBook["bookID"]
-                                print("Book Key: ", theKey)
-                                
-                                // print("New Value: ", newValue)
-                                if var bookObj = bookDict2![theKey] {
-                                    let bookObj2 =  bookDict2![theKey] as! NSDictionary
-                                    print ("The acutal book:", bookObj2["BookISBN"], "\n")
-                                } else {
-                                    print ("Invalid Book!")
-                                }
-                            }
-                        }
-                    })
-                }
-            })
+            loadUserBooks(email: email)
         }
         else {
             curUser.isSignedIn = false
