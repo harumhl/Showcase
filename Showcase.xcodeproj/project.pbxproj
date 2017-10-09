@@ -24,10 +24,9 @@
 		4E7825CB1F8C23B300F1B0EB /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7825CA1F8C23B300F1B0EB /* Keys.swift */; };
 		4E7825CD1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7825CC1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift */; };
 		4E7825D11F8C371300F1B0EB /* ScanResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7825D01F8C371300F1B0EB /* ScanResultsTableViewCell.swift */; };
-		50E6B23D1F85782C008B790F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		50ED73B01F85ACE100E4531F /* UIViewController+CurUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */; };
 		5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */; };
-		5E0CEEE31F730F29009EADF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE21F730F29009EADF6 /* User.swift */; };
+		5E0CEEE31F730F29009EADF6 /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE21F730F29009EADF6 /* UserClass.swift */; };
 		5E0CEEE61F730FD7009EADF6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE51F730FD7009EADF6 /* Constants.swift */; };
 		5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E72C1F7383C2002B703D /* RootViewController.swift */; };
 		5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E72E1F7391DB002B703D /* MaterialTextField.swift */; };
@@ -84,7 +83,7 @@
 		4E7825D01F8C371300F1B0EB /* ScanResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultsTableViewCell.swift; sourceTree = "<group>"; };
 		50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+CurUser.swift"; path = "Showcase/UIViewController+CurUser.swift"; sourceTree = SOURCE_ROOT; };
 		5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5E0CEEE21F730F29009EADF6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5E0CEEE21F730F29009EADF6 /* UserClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
 		5E0CEEE51F730FD7009EADF6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5E47E72C1F7383C2002B703D /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5E47E72E1F7391DB002B703D /* MaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialTextField.swift; sourceTree = "<group>"; };
@@ -142,7 +141,7 @@
 		08BA96E01F7071E7001875BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5E0CEEE21F730F29009EADF6 /* User.swift */,
+				5E0CEEE21F730F29009EADF6 /* UserClass.swift */,
 				5EF3FBC61F8453D800118D00 /* Book.swift */,
 			);
 			name = Model;
@@ -491,6 +490,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Showcase/Pods-Showcase-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
@@ -506,6 +506,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
@@ -595,7 +596,6 @@
 			files = (
 				5EF3FBC71F8453D800118D00 /* Book.swift in Sources */,
 				4E7825CD1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift in Sources */,
-				50E6B23D1F85782C008B790F /* (null) in Sources */,
 				5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */,
 				5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */,
 				4E7825CB1F8C23B300F1B0EB /* Keys.swift in Sources */,
@@ -605,7 +605,7 @@
 				08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */,
 				5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */,
 				4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */,
-				5E0CEEE31F730F29009EADF6 /* User.swift in Sources */,
+				5E0CEEE31F730F29009EADF6 /* UserClass.swift in Sources */,
 				085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */,
 				50ED73B01F85ACE100E4531F /* UIViewController+CurUser.swift in Sources */,
 				4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */,

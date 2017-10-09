@@ -432,7 +432,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     price ?= itemAttributes["ListPrice", "FormattedPrice"].text
                     
                     var imageURL = "DefaultImage.jpg"
-                    imageURL ?= items["MediumImage", "URL"].text!
+                    imageURL ?= items["MediumImage", "URL"].text
                     
                     let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1)
                     

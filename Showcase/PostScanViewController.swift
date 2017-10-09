@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import Cosmos
 
 
 
@@ -24,7 +24,8 @@ class PostScanViewController: UIViewController{
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var bookAuthor: UILabel!
-    @IBOutlet weak var bookRating: UILabel!
+    @IBOutlet weak var cosmosView: CosmosView!
+    
     @IBOutlet weak var bookPrice: UILabel!
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
@@ -41,6 +42,16 @@ class PostScanViewController: UIViewController{
         print("FINALLY MADE IT HERE")
         print(bookData.title)
         
+        // Getting the setting for Star Rating display
+        cosmosView.settings.updateOnTouch = false
+        cosmosView.settings.fillMode = .precise
+        cosmosView.settings.filledColor = UIColor.yellow
+        cosmosView.settings.emptyBorderColor = UIColor.black
+        cosmosView.settings.filledBorderColor = UIColor.black
+        
+        // Updating the Display
+        displayBookInfo()
+        
         addDataToDB()
     }
     
@@ -51,6 +62,23 @@ class PostScanViewController: UIViewController{
     }
 
 //****************************************** USER-DEFINED FUNCTIONS ******************************************
+    func displayBookInfo() {
+        // Get image from online using the given URL
+        if let url = NSURL(string: bookData.imageURL) {
+            if let data = NSData(contentsOf: url as URL) {
+                self.bookImage.image = UIImage(data: data as Data)
+            }
+        }
+        
+        bookTitle.text = bookData.title
+        bookAuthor.text = bookData.author
+        bookPrice.text = bookData.price
+        
+        // Display the rating with stars (not the number)
+        // https://github.com/evgenyneu/Cosmos
+        cosmosView.rating = bookData.rating
+        cosmosView.text = String(format:"%.2f", bookData.rating)
+    }
 
 //****************************************** Database Functions **********************************************
     func addDataToDB() {

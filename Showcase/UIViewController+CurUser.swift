@@ -13,9 +13,10 @@ import Firebase
 
 extension UIViewController {
     // Load in a user's books (by email)
-    func loadUserBooks(email: String) {
+    func loadUserBooks(user: UserClass) {
       var dbRef: DatabaseReference!
       dbRef = Database.database().reference()
+      let email = user.email.substring(to: user.email.index(of: "@")!)
       dbRef.child("user").child(email+"/books").observeSingleEvent(of: .value, with: { (snapshot) in
         // Grab the list user's book list
         let userBooks = snapshot.value as? NSDictionary
@@ -32,23 +33,33 @@ extension UIViewController {
                         let userBook = value as! NSDictionary
                         let theUserBookKey = userBook["bookID"]
                         print("Book Key: ", theUserBookKey as Any)
+                        
                         // See if we can find the user's book in the main book list.
                         if allBooks![theUserBookKey as Any] != nil {
                             let aUserBook =  allBooks![theUserBookKey!] as! NSDictionary
-                            print ("The acutal book ISBN:", aUserBook["BookISBN"] as Any, "\n")
+                            let tempBook = Book()
+                            tempBook.ISBN = aUserBook.value(forKey: "BookISBN") as! String
+                            user.addBook(b: tempBook)
+                            print("cur count ", user.books.count)
+                            
+                            
+                            
+                            print ("The acutal book ISBN:", aUserBook.value(forKey: "BookISBN") as Any, "\n")
                         } else {
                             print ("\nInvalid Book!")
                         }
                     }
                 }
             })
+            
+            print("user book count is ", user.books.count)
          }
       })
     }
     
     // Check authentication and grab the currently signed in user.
-    func getUser() -> User {
-        let curUser = User()
+    func getUser() -> UserClass {
+        let curUser = UserClass()
         var email = "heyman"
         let user = Auth.auth().currentUser
         if let user = user {
@@ -59,7 +70,7 @@ extension UIViewController {
             curUser.email = (user.email!)
             print("Current user eMail " + curUser.email)
             // Populate the current user's book list
-            loadUserBooks(email: email)
+            loadUserBooks(user: curUser)
         }
         else {
             curUser.isSignedIn = false
