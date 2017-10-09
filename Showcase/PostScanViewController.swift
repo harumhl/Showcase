@@ -12,19 +12,15 @@ import Firebase
 
 
 
-class PostScanViewController: UIViewController, CLLocationManagerDelegate{
+class PostScanViewController: UIViewController{
     var theBarcodeData: String = ""
     
-    var bookData: Book
-    
-    
+    var bookData = Book()
+    var longitude = 0.0
+    var latitude = 0.0
 
-    
-    
     var ref: DatabaseReference!
 
-    
-    
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var bookAuthor: UILabel!

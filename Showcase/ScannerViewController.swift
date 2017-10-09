@@ -110,7 +110,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     func found(code: String) {
         print("Finished scanning code: " + code)
         scannedBarcodeData = code
-        performSegue(withIdentifier: "ScannerToSearch", sender: nil)
+        performSegue(withIdentifier: "ScanToLoad", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
