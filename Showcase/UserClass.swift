@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  UserClass.swift
 //  Showcase
 //
 //  Created by Brandon Ellis on 9/20/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User {
+class UserClass {
     var firstName: String
     var lastName: String
     var email: String
@@ -38,6 +38,7 @@ class User {
     
     func addBook(b: Book) {
         books.append(b)
+        print("appended book")
     }
     
 }

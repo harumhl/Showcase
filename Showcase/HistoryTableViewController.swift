@@ -18,6 +18,9 @@ class HistoryTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        let u = getUser().books
+        print("number of rows in table is = ", u.count)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +37,8 @@ class HistoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        print("number of rows in table is = ", getUser().books.count)
+        return getUser().books.count
     }
 
     /*
