@@ -38,7 +38,8 @@ class PostScanViewController: UIViewController{
         // Do any additional setup after loading the view.
         // Print the barcode on a label on the top of the VC
         
-        
+        print("FINALLY MADE IT HERE")
+        print(bookData.title)
         
         addDataToDB()
     }

@@ -19,7 +19,6 @@
 		4E2254741F7050A300DE1D93 /* UserAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */; };
 		4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */; };
 		4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254791F70514000DE1D93 /* ContributionsViewController.swift */; };
-		4E24E0881F8BDA81005D1EAD /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24E0871F8BDA81005D1EAD /* Keys.swift */; };
 		4E24E08A1F8BDF8B005D1EAD /* LoadScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */; };
 		4E24E08C1F8BF754005D1EAD /* LoadScanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24E08B1F8BF754005D1EAD /* LoadScanTableViewCell.swift */; };
 		4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E257A011F731F4B00012F2D /* LoginViewController.swift */; };
@@ -31,6 +30,7 @@
 		5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E72C1F7383C2002B703D /* RootViewController.swift */; };
 		5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E72E1F7391DB002B703D /* MaterialTextField.swift */; };
 		5E47E7311F739485002B703D /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47E7301F739484002B703D /* MaterialButton.swift */; };
+		5E62A5251F8C04F100F35191 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E62A5241F8C04F100F35191 /* Keys.swift */; };
 		5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6C470A1F7588B6002FE561 /* DataService.swift */; };
 		5EF3FBC71F8453D800118D00 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF3FBC61F8453D800118D00 /* Book.swift */; };
 		836BAB31647A371F392EC41D /* Pods_ShowcaseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCDEC596D80F2B0788E83CD /* Pods_ShowcaseUITests.framework */; };
@@ -76,7 +76,6 @@
 		4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountSettingsViewController.swift; sourceTree = "<group>"; };
 		4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		4E2254791F70514000DE1D93 /* ContributionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributionsViewController.swift; sourceTree = "<group>"; };
-		4E24E0871F8BDA81005D1EAD /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScanViewController.swift; sourceTree = "<group>"; };
 		4E24E08B1F8BF754005D1EAD /* LoadScanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScanTableViewCell.swift; sourceTree = "<group>"; };
 		4E257A011F731F4B00012F2D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +86,7 @@
 		5E47E72C1F7383C2002B703D /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5E47E72E1F7391DB002B703D /* MaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialTextField.swift; sourceTree = "<group>"; };
 		5E47E7301F739484002B703D /* MaterialButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
+		5E62A5241F8C04F100F35191 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		5E6C470A1F7588B6002FE561 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		5EF3FBC61F8453D800118D00 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		7D3EE552108CD1C997E7B429 /* Pods-Showcase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Showcase.release.xcconfig"; path = "Pods/Target Support Files/Pods-Showcase/Pods-Showcase.release.xcconfig"; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				5E0CEEE51F730FD7009EADF6 /* Constants.swift */,
-				4E24E0871F8BDA81005D1EAD /* Keys.swift */,
+				5E62A5241F8C04F100F35191 /* Keys.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -605,9 +605,9 @@
 				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
 				5E47E7311F739485002B703D /* MaterialButton.swift in Sources */,
 				08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */,
-				4E24E0881F8BDA81005D1EAD /* Keys.swift in Sources */,
 				5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */,
 				4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */,
+				5E62A5251F8C04F100F35191 /* Keys.swift in Sources */,
 				5E0CEEE31F730F29009EADF6 /* User.swift in Sources */,
 				085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */,
 				50ED73B01F85ACE100E4531F /* UIViewController+CurUser.swift in Sources */,

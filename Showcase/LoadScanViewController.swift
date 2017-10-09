@@ -97,10 +97,14 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITab
         self.loadingIndicator.hidesWhenStopped = true
         self.loadingIndicator.startAnimating()
         
+        // user defined functions
         getLocation()
-        amazonSearch()
-        goodReadsSearch()
-        selectBook()
+        // using closures to construct our object then perform the function selectBook()
+        self.amazonSearch { () -> () in
+            self.goodReadsSearch { () -> () in
+                self.selectBook()
+            }
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -137,7 +141,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITab
         
         // Pass in the Book object that the user selects
         postScanVC.bookData = scanBookArray[bookToPass]
-        performSegue(withIdentifier: "LoadToPost", sender: nil)
+        //performSegue(withIdentifier: "LoadToPost", sender: nil)
         
     }
     
@@ -154,7 +158,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITab
         if(scanBookArray.count == 1){
             // send the book data to the controller using prepare()
             bookToPass = 0
-            performSegue(withIdentifier: "LoadScanToPostScan", sender: nil)
+            performSegue(withIdentifier: "LoadToPost", sender: nil)
         }else if(scanBookArray.count > 1){
             // hide load label and animaiton
             self.loadingIndicator.stopAnimating()
@@ -321,7 +325,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITab
   
     
 // ****************************************** Book Search Functions ***************************************************
-    func amazonSearch() {
+    func amazonSearch(handleComplete:@escaping (()->())) {
         /* http://docs.aws.amazon.com/AWSECommerceService/latest/DG/rest-signature.html */
         
         // Other ingo
@@ -480,7 +484,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITab
                     print("NOPE NOTE EQUAL")
                 }
             }
-            
+            handleComplete()
             print("CHECK THE BOOKS")
             
             
@@ -497,7 +501,9 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITab
         }
         task.resume()
     }
-    func goodReadsSearch() {
+    
+    
+    func goodReadsSearch(handleComplete:(()->())) {
         // https://www.goodreads.com/api
         /*
          var theURL = "https://www.goodreads.com/search/index.html?"
@@ -554,6 +560,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate, UITab
             
         }
         task.resume()
+        handleComplete()
     }
 
     /*
