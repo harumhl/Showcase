@@ -311,10 +311,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="75T-Y8-RwE" id="yhY-Uw-XpX"/>
-                            <outlet property="delegate" destination="75T-Y8-RwE" id="CyT-z7-YGJ"/>
-                        </connections>
                     </tableView>
                     <connections>
                         <segue destination="uOD-w7-Izs" kind="show" identifier="ResultsToPost" id="HVC-8x-x04"/>
