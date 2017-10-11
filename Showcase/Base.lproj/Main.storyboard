@@ -554,16 +554,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PD3-tr-tjw">
-                                <rect key="frame" x="0.0" y="65" width="375" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PD3-tr-tjw">
+                                <rect key="frame" x="0.0" y="64" width="375" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="sOg-GB-arN" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="9" y="323" width="350" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="sOg-GB-arN" customClass="ImageTextField" customModule="ImageTextField">
+                                <rect key="frame" x="9" y="323" width="350" height="31"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
@@ -577,9 +575,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="L9X-Pl-bpN" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="9" y="266" width="350" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="L9X-Pl-bpN" customClass="ImageTextField" customModule="ImageTextField">
+                                <rect key="frame" x="9" y="266" width="350" height="31"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
@@ -593,9 +590,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Last Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="8KJ-2V-Ytr" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="9" y="213" width="350" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Last Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="8KJ-2V-Ytr" customClass="ImageTextField" customModule="ImageTextField">
+                                <rect key="frame" x="9" y="213" width="350" height="31"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -608,9 +604,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" First Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Am-YA-1pH" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="9" y="170" width="350" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" First Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Am-YA-1pH" customClass="ImageTextField" customModule="ImageTextField">
+                                <rect key="frame" x="9" y="170" width="350" height="31"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -623,9 +618,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Confirm Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="YFW-Ug-bbJ" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="9" y="378" width="350" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Confirm Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="YFW-Ug-bbJ" customClass="ImageTextField" customModule="ImageTextField">
+                                <rect key="frame" x="9" y="378" width="350" height="31"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
@@ -639,9 +633,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Wu-N8-IfV" customClass="MaterialButton" customModule="Showcase" customModuleProvider="target">
-                                <rect key="frame" x="29" y="463" width="303" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Wu-N8-IfV" customClass="MaterialButton" customModule="Showcase" customModuleProvider="target">
+                                <rect key="frame" x="29" y="463" width="303" height="35"/>
                                 <color key="backgroundColor" red="0.18039215689999999" green="0.36862745099999999" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -652,6 +645,29 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.33333333329999998" green="0.83921568629999999" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="sOg-GB-arN" secondAttribute="trailing" constant="16" id="BqK-Pu-izS"/>
+                            <constraint firstItem="L9X-Pl-bpN" firstAttribute="leading" secondItem="9QP-xk-zrK" secondAttribute="leading" constant="9" id="LOa-VK-djh"/>
+                            <constraint firstItem="3Wu-N8-IfV" firstAttribute="leading" secondItem="9QP-xk-zrK" secondAttribute="leadingMargin" constant="13" id="Mcb-IA-awX"/>
+                            <constraint firstItem="sOg-GB-arN" firstAttribute="top" secondItem="L9X-Pl-bpN" secondAttribute="bottom" constant="26" id="PIX-Of-wj7"/>
+                            <constraint firstItem="5Am-YA-1pH" firstAttribute="top" secondItem="PD3-tr-tjw" secondAttribute="bottom" constant="52" id="Seq-Ue-JwI"/>
+                            <constraint firstItem="L9X-Pl-bpN" firstAttribute="top" secondItem="8KJ-2V-Ytr" secondAttribute="bottom" constant="22" id="XwZ-mI-zAF"/>
+                            <constraint firstItem="PD3-tr-tjw" firstAttribute="leading" secondItem="9QP-xk-zrK" secondAttribute="leading" id="aZF-PZ-wIH"/>
+                            <constraint firstItem="8KJ-2V-Ytr" firstAttribute="top" secondItem="5Am-YA-1pH" secondAttribute="bottom" constant="12" id="cPY-Nc-Xx4"/>
+                            <constraint firstAttribute="trailing" secondItem="PD3-tr-tjw" secondAttribute="trailing" id="cYD-pg-8os"/>
+                            <constraint firstItem="YFW-Ug-bbJ" firstAttribute="leading" secondItem="9QP-xk-zrK" secondAttribute="leading" constant="9" id="fs0-og-ZXE"/>
+                            <constraint firstAttribute="trailing" secondItem="L9X-Pl-bpN" secondAttribute="trailing" constant="16" id="kK2-R9-tny"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3Wu-N8-IfV" secondAttribute="trailing" constant="27" id="l6H-0H-Soh"/>
+                            <constraint firstAttribute="trailing" secondItem="8KJ-2V-Ytr" secondAttribute="trailing" constant="16" id="nYc-f2-Md3"/>
+                            <constraint firstItem="PD3-tr-tjw" firstAttribute="top" secondItem="A0L-PG-Xoa" secondAttribute="bottom" id="r3n-E4-Ddk"/>
+                            <constraint firstItem="YFW-Ug-bbJ" firstAttribute="top" secondItem="sOg-GB-arN" secondAttribute="bottom" constant="24" id="vAG-3f-bfe"/>
+                            <constraint firstItem="8KJ-2V-Ytr" firstAttribute="leading" secondItem="9QP-xk-zrK" secondAttribute="leading" constant="9" id="wLp-PJ-fCu"/>
+                            <constraint firstAttribute="trailing" secondItem="5Am-YA-1pH" secondAttribute="trailing" constant="16" id="wPY-vi-lQb"/>
+                            <constraint firstItem="3Wu-N8-IfV" firstAttribute="top" secondItem="YFW-Ug-bbJ" secondAttribute="bottom" constant="54" id="wQn-wl-XXV"/>
+                            <constraint firstItem="sOg-GB-arN" firstAttribute="leading" secondItem="9QP-xk-zrK" secondAttribute="leading" constant="9" id="x9r-j4-KZ9"/>
+                            <constraint firstItem="5Am-YA-1pH" firstAttribute="leading" secondItem="9QP-xk-zrK" secondAttribute="leading" constant="9" id="xg7-YZ-Acu"/>
+                            <constraint firstAttribute="trailing" secondItem="YFW-Ug-bbJ" secondAttribute="trailing" constant="16" id="yXR-2y-UTC"/>
+                        </constraints>
                     </view>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -721,7 +737,7 @@
         <image name="password" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HJt-qb-diX"/>
-        <segue reference="Vbo-XZ-KDs"/>
+        <segue reference="c9n-G5-1Sd"/>
+        <segue reference="64y-7R-X3N"/>
     </inferredMetricsTieBreakers>
 </document>
