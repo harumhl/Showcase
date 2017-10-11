@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import AddressBookUI
 import SwiftyXMLParser
+import SwiftSoup
 
 /******************************** HMAC algorithm for Amazon REST call Signature ********************************/
 enum HMACAlgorithm {
@@ -109,11 +110,12 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(scanBookArray.count == 1){
             let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
+        
             // Pass in the Book object that the user selects
             postScanVC.bookData = scanBookArray[bookToPass]
         }else if(scanBookArray.count > 1){
-            let resultsVC: ResultsViewController = segue.destination as! ResultsViewController
-            resultsVC.scanBookArray = scanBookArray
+            let resultsTblVC: ScanResultsTableViewController = segue.destination as! ScanResultsTableViewController
+            resultsTblVC.scanBookArray = scanBookArray
         }
     }
     
@@ -123,8 +125,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         if(scanBookArray.count == 1){
             // send the book data to the controller using prepare()
             bookToPass = 0
-            print ("Barcode data in LoadScan: ", theBarcodeData)
-            // loadToPost.theBarcodeData = theBarcodeData
             performSegue(withIdentifier: "LoadToPost", sender: nil)
         }else if(scanBookArray.count > 1){
             // hide load label and animaiton
@@ -156,8 +156,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             longitude = (locManager.location?.coordinate.longitude)!
             latitude = (locManager.location?.coordinate.latitude)!
             
-            print("Longitude: \(longitude)")
-            print("Latitude: \(latitude)")
+            //print("Longitude: \(longitude)")
+            //print("Latitude: \(latitude)")
             
             let originLocation = CLLocation(latitude: latitude, longitude: longitude)
             //let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)
@@ -255,7 +255,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             // Prints out a list of the bookstores around you
             //print(response?.mapItems)
             print ("-----------------------")
-            print ("getBusiness()\n")
+            //print ("getBusiness()\n")
             for item in (response?.mapItems)! {
                 //                print ("-----------------------\n")
                 //                print(item.placemark)
@@ -277,8 +277,9 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 print("placeholder: " + buisness)
                 self.businessName = buisness
             } else {
-                print("Sorry we could not determine your location \n")
-                print("placeholder: Sorry we could not determine your location")
+                //print("Sorry we could not determine your location \n")
+                print("placeholder: Sorry we could not determine your location"
+                        + "\n-----------------------")
             }
         }
         
@@ -291,7 +292,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         
         // Other ingo
         var itemId = theBarcodeData
-        //"9780439708180"  // = TextField.text!
         
         // 1. Get time stamp ready
         let dateFormatter = DateFormatter()
@@ -339,7 +339,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         let theURL = "http://webservices.amazon.com/onca/xml?" + parameters + "&Signature=" + hmacResult
         
         // 9. Display the Rest call URL
-        print("The URL: " + theURL + "\n\n")
+        print("The URL: " + theURL + "\n-----------------------")
         
         /* Unpacking the XML (returned) data */
         /* https://grokswift.com/simple-rest-with-swift/ */
@@ -406,7 +406,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     
                     // insert item into array of books
                     self.scanBookArray.append(tmpBook)
-                    print("book: Found a Match")
+                    //print("book: Found a Match")
                     
                 }
                 else{
@@ -414,7 +414,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 }
             }
             handleComplete()
-            print("CHECK THE BOOKS")
+            //print("CHECK THE BOOKS")
             
             // This stores the author, book title, etc
             let responseBook = responseItems["Item"]["ItemAttributes"]
@@ -422,13 +422,17 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         task.resume() // start the XML parser
     }
     
+    
+    
+    
+    
     func getReviewsFromReviewURL() {
-        print("getReviewsFromReviewURL")
         
         for book in scanBookArray {
             let theURL = book.reviewURL
-            print(theURL)
+            print("Review URL: " + theURL)
             
+            // Skip if the book has no reviews
             if (theURL == "Reviews Not Available") {
                 continue
             }
@@ -438,7 +442,24 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 print("Error: cannot create URL")
                 return
             }
+
+            // Get the HTML source from the URL
+            var myHTMLString = ""
+            do {
+                myHTMLString = try String(contentsOf: url)
+                print("HTML : \(myHTMLString)")
+            } catch let error as NSError {
+                print("Error: \(error)")
+            }
             
+            // Use Swift Soup to parse the HTML source
+            do {
+                let docSS = try SwiftSoup.parse(myHTMLString)
+                let docText = try docSS.text()
+            } catch {
+                print("error")
+            }
+
             // Start URL session
             let urlRequest = URLRequest(url: url)
             let session = URLSession.shared
@@ -459,18 +480,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 }
                 // SwiftyXMLParser convert the XML data into an array of Book objects
                 let xml = XML.parse(data!)
-                print("Print Reviews")
-                print(data)
             }
             task.resume()
-            /*
-            print("another try") // this works
-            do {
-                let myHTMLString = try String(contentsOf: url)
-                print("HTML : \(myHTMLString)")
-            } catch let error as NSError {
-                print("Error: \(error)")
-            }*/
         }
     }
     
