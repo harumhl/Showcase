@@ -16,6 +16,7 @@ pod 'FacebookLogin'
 pod 'FacebookCore'
 pod 'SwiftyXMLParser'
 pod 'Cosmos'
+pod 'Kanna'
 
   target 'ShowcaseTests' do
     inherit! :search_paths
