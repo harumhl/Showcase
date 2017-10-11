@@ -32,11 +32,14 @@ class ScanResultsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print ("numRows Book Count: \(scanBookArray.count)")
         return scanBookArray.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print ("Book Count: \(scanBookArray.count)")
+        print ("Book title:" + scanBookArray[indexPath.row].title)
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ScanResultsTableViewCell
         
         

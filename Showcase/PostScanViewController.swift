@@ -34,8 +34,6 @@ class PostScanViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         // Do any additional setup after loading the view.
         // Print the barcode on a label on the top of the VC
         
