@@ -26,7 +26,7 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
         locManager = CLLocationManager()
         locManager.delegate = self
         locManager.requestWhenInUseAuthorization()
-        getUser()
+        // getUser()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -38,7 +38,7 @@ class UserClass {
     
     func addBook(b: Book) {
         books.append(b)
-        print("appended book")
+        print("Appended book with ISBN: ", b.ISBN)
     }
     
 }
