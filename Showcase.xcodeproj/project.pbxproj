@@ -23,7 +23,9 @@
 		4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E257A011F731F4B00012F2D /* LoginViewController.swift */; };
 		4E7825CD1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7825CC1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift */; };
 		4E7825D11F8C371300F1B0EB /* ScanResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7825D01F8C371300F1B0EB /* ScanResultsTableViewCell.swift */; };
-		50DC3AE51F8E9AA50026FD5C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DC3AE41F8E9AA50026FD5C /* Keys.swift */; };
+		4ED24B4C1F8E9501000407C2 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED24B4B1F8E9501000407C2 /* Keys.swift */; };
+		4ED24BC81F8EB216000407C2 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED24BC71F8EB216000407C2 /* ResultsViewController.swift */; };
+		4ED24BCE1F8EB40B000407C2 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED24BCD1F8EB40B000407C2 /* ResultsTableViewCell.swift */; };
 		50ED73B01F85ACE100E4531F /* UIViewController+CurUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */; };
 		5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */; };
 		5E0CEEE31F730F29009EADF6 /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE21F730F29009EADF6 /* UserClass.swift */; };
@@ -80,7 +82,9 @@
 		4E257A011F731F4B00012F2D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4E7825CC1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultsTableViewController.swift; sourceTree = "<group>"; };
 		4E7825D01F8C371300F1B0EB /* ScanResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultsTableViewCell.swift; sourceTree = "<group>"; };
-		50DC3AE41F8E9AA50026FD5C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		4ED24B4B1F8E9501000407C2 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		4ED24BC71F8EB216000407C2 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		4ED24BCD1F8EB40B000407C2 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+CurUser.swift"; path = "Showcase/UIViewController+CurUser.swift"; sourceTree = SOURCE_ROOT; };
 		5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5E0CEEE21F730F29009EADF6 /* UserClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 				5E47E72E1F7391DB002B703D /* MaterialTextField.swift */,
 				5E47E7301F739484002B703D /* MaterialButton.swift */,
 				4E7825D01F8C371300F1B0EB /* ScanResultsTableViewCell.swift */,
+				4ED24BCD1F8EB40B000407C2 /* ResultsTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 				49EC73261F82DA49003737F9 /* Showcase-Bridging-Header.h */,
 				4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */,
 				4E7825CC1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift */,
+				4ED24BC71F8EB216000407C2 /* ResultsViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -247,7 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				5E0CEEE51F730FD7009EADF6 /* Constants.swift */,
-				50DC3AE41F8E9AA50026FD5C /* Keys.swift */,
+				4ED24B4B1F8E9501000407C2 /* Keys.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -499,6 +505,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageTextField/ImageTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -515,6 +522,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyXMLParser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -598,12 +606,13 @@
 				4E7825CD1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift in Sources */,
 				5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */,
 				5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */,
+				4ED24BCE1F8EB40B000407C2 /* ResultsTableViewCell.swift in Sources */,
+				4ED24B4C1F8E9501000407C2 /* Keys.swift in Sources */,
 				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
 				5E47E7311F739485002B703D /* MaterialButton.swift in Sources */,
 				4E7825D11F8C371300F1B0EB /* ScanResultsTableViewCell.swift in Sources */,
 				08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */,
 				5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */,
-				50DC3AE51F8E9AA50026FD5C /* Keys.swift in Sources */,
 				4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */,
 				5E0CEEE31F730F29009EADF6 /* UserClass.swift in Sources */,
 				085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */,
@@ -611,6 +620,7 @@
 				4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */,
 				4E2254741F7050A300DE1D93 /* UserAccountSettingsViewController.swift in Sources */,
 				494979251F672BF4005DB65C /* AppDelegate.swift in Sources */,
+				4ED24BC81F8EB216000407C2 /* ResultsViewController.swift in Sources */,
 				4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */,
 				4E24E08A1F8BDF8B005D1EAD /* LoadScanViewController.swift in Sources */,
 				5E0CEEE61F730FD7009EADF6 /* Constants.swift in Sources */,
