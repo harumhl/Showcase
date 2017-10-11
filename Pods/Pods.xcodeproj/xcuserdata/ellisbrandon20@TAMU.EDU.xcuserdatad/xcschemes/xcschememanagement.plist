@@ -54,6 +54,11 @@
 			<key>orderHint</key>
 			<integer>12</integer>
 		</dict>
+		<key>Kanna.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
 		<key>Pods-Showcase.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -72,12 +77,12 @@
 		<key>SwiftyXMLParser.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>16</integer>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>15</integer>
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>

@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Navigation controller text color for "back" button
         UINavigationBar.appearance().tintColor = UIColor.white
         
+        // Navigation controller text color for title
+        
         // Facebook stuff
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         

@@ -109,12 +109,11 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(scanBookArray.count == 1){
             let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
-        
             // Pass in the Book object that the user selects
             postScanVC.bookData = scanBookArray[bookToPass]
         }else if(scanBookArray.count > 1){
-            let resultsTblVC: ScanResultsTableViewController = segue.destination as! ScanResultsTableViewController
-            resultsTblVC.scanBookArray = scanBookArray
+            let resultsVC: ResultsViewController = segue.destination as! ResultsViewController
+            resultsVC.scanBookArray = scanBookArray
         }
     }
     
@@ -124,6 +123,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         if(scanBookArray.count == 1){
             // send the book data to the controller using prepare()
             bookToPass = 0
+            print ("Barcode data in LoadScan: ", theBarcodeData)
+            // loadToPost.theBarcodeData = theBarcodeData
             performSegue(withIdentifier: "LoadToPost", sender: nil)
         }else if(scanBookArray.count > 1){
             // hide load label and animaiton

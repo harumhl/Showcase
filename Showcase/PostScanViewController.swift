@@ -33,8 +33,6 @@ class PostScanViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         // Do any additional setup after loading the view.
         // Print the barcode on a label on the top of the VC
         
@@ -91,20 +89,18 @@ class PostScanViewController: UIViewController{
         let locKey = ref.childByAutoId().key
         let bookKey = ref.childByAutoId().key
 
-        let bookData = ["BookID": bookKey, "BookISBN": theBarcodeData, "LocationID": locKey, "Purchased": false ] as [String : Any]
+        let bookData = ["BookID": bookKey, "title": self.bookData.title, "author": self.bookData.author, "BookISBN": self.bookData.ISBN, "LocationID": locKey, "Purchased": false ] as [String : Any]
         let locationData = ["LocationID": locKey, "Long": longitude, "Lat": latitude] as [String : Any]
         let userData = ["bookID": "bookKey"+bookKey]
         
         ref.child("/book/bookKey"+bookKey).setValue(bookData)
         ref.child("/location/loc"+locKey).setValue(locationData)
         
-        let tempBook = Book()
-        tempBook.ISBN = theBarcodeData
-        user.addBook(b: tempBook)
-        print("book size ", user.books.count)
-        for book in user.books {
-            print ("book " + book.ISBN)
-        }
+//        user.addBook(b: tempBook)
+//        print("book size ", user.books.count)
+//        for book in user.books {
+//            print ("book " + book.ISBN)
+//        }
         
         // dont override a users books
         let bookRef = ref.child(byAppendingPath: "/user/"+email+"/books")
