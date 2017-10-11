@@ -28,6 +28,7 @@ class Book {
     var price: String
     var imageURL: String
     var rating: Double
+    var reviewURL: String
     //var reviews = array of Review Objects
     
     init() {
@@ -37,15 +38,17 @@ class Book {
         price = "Price Not Available"
         imageURL = "N/A"
         rating = -1
+        reviewURL = "N/A"
         //reviews = "N/A"
     }
     
-    init(_title: String, _author:String, _ISBN: String, _price: String, _imageURL: String, _rating: Double){
+    init(_title: String, _author:String, _ISBN: String, _price: String, _imageURL: String, _rating: Double, _reviewURL: String){
         self.title = _title
         self.author = _author
         self.ISBN = _ISBN
         self.price = _price
         self.imageURL = _imageURL
         self.rating = _rating
+        self.reviewURL = _reviewURL
     }
 }

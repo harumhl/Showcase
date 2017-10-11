@@ -24,8 +24,7 @@ class PostScanViewController: UIViewController{
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var bookAuthor: UILabel!
-    @IBOutlet weak var cosmosView: CosmosView!
-    
+    @IBOutlet weak var cosmosView: CosmosView! // book rating in stars
     @IBOutlet weak var bookPrice: UILabel!
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
@@ -39,7 +38,6 @@ class PostScanViewController: UIViewController{
         // Do any additional setup after loading the view.
         // Print the barcode on a label on the top of the VC
         
-        print("FINALLY MADE IT HERE")
         print(bookData.title)
         
         // Getting the setting for Star Rating display

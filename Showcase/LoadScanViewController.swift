@@ -95,9 +95,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         getLocation()
         // using closures to construct our object then perform the function selectBook()
         self.amazonSearch { () -> () in
-            self.goodReadsSearch { () -> () in
-                self.selectBook()
-            }
+            self.getReviewsFromReviewURL() // TEMP TEMP TEMP
+            self.selectBook()
         }
         // Do any additional setup after loading the view.
     }
@@ -368,44 +367,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 print("Error: did not receive data")
                 return
             }
-            //            let parser = XMLParser(data: responseData)
-            //            if parser.parse() {
-            //                print("Amazon rest call parse success")
-            //                //print(parser.Items.Request.ItemLookupRequest.ItemId)
-            //            }
-            //            else {
-            //                print("Amazon rest call parse failure")
-            //            }
-            
-            // parse the result as JSON, since that's what the API provides
-            /*
-             do {
-             guard let todo = try JSONSerialization.jsonObject(with: responseData, options: [])
-             as? [String: Any] else {
-             print("error trying to convert data to JSON")
-             return
-             }
-             // now we have the todo
-             // let's just print it to prove we can access it
-             print("The todo is: " + todo.description)
-             
-             // the todo object is a dictionary
-             // so we just access the title using the "title" key
-             // so check for a title and print it if we have one
-             guard let todoTitle = todo["title"] as? String else {
-             print("Could not get todo title from JSON")
-             return
-             }
-             print("The title is: " + todoTitle)
-             } catch  {
-             print("error trying to convert data to JSON")
-             return
-             }*/
-            
-            
-            
-            
-            
             // SwiftyXMLParser convert the XML data into an array of Book objects
             let xml = XML.parse(data!)
             let requestId = xml["ItemLookupResponse"]["OperationRequest"]["RequestId"].text
@@ -418,8 +379,9 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 let itemAttributes = items["ItemAttributes"]
                 var itemISBN = "-1"
                 itemISBN ?= itemAttributes["EAN"].text
+                
+                // create a book object when a match is found (can be more than one)
                 if(itemISBN != nil && itemId == itemISBN){
-                    // create a book object
                     var title = "Title Not Available"
                     title ?= itemAttributes["Title"].text!
                     
@@ -434,7 +396,12 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     var imageURL = "DefaultImage.jpg"
                     imageURL ?= items["MediumImage", "URL"].text
                     
-                    let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1)
+                    var reviewURL = "Reviews Not Available"
+                    if (items["CustomerReviews", "HasReviews"].text == "true") {
+                        reviewURL ?= items["CustomerReviews", "IFrameURL"].text
+                    }
+                    
+                    let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL)
                     
                     // insert item into array of books
                     self.scanBookArray.append(tmpBook)
@@ -448,30 +415,68 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             handleComplete()
             print("CHECK THE BOOKS")
             
-            
             // This stores the author, book title, etc
             let responseBook = responseItems["Item"]["ItemAttributes"]
-            
-            
-            
-//            if let url = NSURL(string: "https://images-na.ssl-images-amazon.com/images/I/51wJ%2BUKIhJL._SL160_.jpg") {
-//                if let data = NSData(contentsOf: url as URL) {
-//                    self.bookImage.image = UIImage(data: data as Data)
-//                }
-//            }
         }
-        task.resume()
+        task.resume() // start the XML parser
     }
     
+    func getReviewsFromReviewURL() {
+        print("getReviewsFromReviewURL")
+        
+        for book in scanBookArray {
+            let theURL = book.reviewURL
+            print(theURL)
+            
+            if (theURL == "Reviews Not Available") {
+                continue
+            }
+            
+            // Check the validity of the URL ("guard" checks it)
+            guard let url = URL(string: theURL) else {
+                print("Error: cannot create URL")
+                return
+            }
+            
+            // Start URL session
+            let urlRequest = URLRequest(url: url)
+            let session = URLSession.shared
+            
+            // Unpack the returned XML data
+            let task = session.dataTask(with: urlRequest) {
+                (data, response, error) in
+                // check for any errors
+                guard error == nil else {
+                    print("error calling GET on /todos/1")
+                    print(error!)
+                    return
+                }
+                // make sure we got data
+                guard let responseData = data else {
+                    print("Error: did not receive data")
+                    return
+                }
+                // SwiftyXMLParser convert the XML data into an array of Book objects
+                let xml = XML.parse(data!)
+                print("Print Reviews")
+                print(data)
+            }
+            task.resume()
+            /*
+            print("another try") // this works
+            do {
+                let myHTMLString = try String(contentsOf: url)
+                print("HTML : \(myHTMLString)")
+            } catch let error as NSError {
+                print("Error: \(error)")
+            }*/
+        }
+    }
     
+    // Will not be used
+    /*
     func goodReadsSearch(handleComplete:(()->())) {
         // https://www.goodreads.com/api
-        /*
-         var theURL = "https://www.goodreads.com/search/index.html?"
-         theURL += "key=" + goodReadsKey + "&"
-         theURL += "q=" + theBarcodeData
-         print("good reads URL: " + theURL)
-         */
         var theURL = "https://www.goodreads.com/book/isbn/ISBN?"
         theURL += "format=xml&"
         theURL += "key=" + goodReadsKey + "&"
@@ -513,16 +518,10 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             // data gives:
             // author, book title, image url default size and small
             let xml = XML.parse(data!)
-            
-            
-            
-            
-            
-            
         }
         task.resume()
         handleComplete()
-    }
+    } */ // End of goodReadsSearch()
 
     /*
     // MARK: - Navigation
