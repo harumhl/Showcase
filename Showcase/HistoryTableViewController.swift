@@ -7,20 +7,83 @@
 //
 
 import UIKit
+import Firebase
 
 class HistoryTableViewController: UITableViewController {
 
+    var userBookArray = [Book]()
+    var ref:DatabaseReference?
+    var databaseHandle:DatabaseHandle?
+    @IBOutlet var historyTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        historyTable.delegate = self
+        historyTable.dataSource = self
+        
+        // Set Firebase DB reference
+        ref = Database.database().reference()
+        
+        // Set up user account
+        let user = Auth.auth().currentUser
+        var email = ""
+        if let user = user {
+            email = user.email!
+            email = email.substring(to: email.index(of: "@")!)
+        }
+        
+
+        
+        // Get data
+        ref?.child("user").child(email + "/books").observe(DataEventType.value, with: { (snapshot) in
+            // Grab the list user's book list (UniqueKey -> bookID)
+            self.userBookArray = [Book]()
+            let userBooks = snapshot.value as? NSDictionary
+            if (userBooks == nil) { return }
+            self.ref?.child("book").observe(DataEventType.value, with: { (snapshot2) in
+                // grab the list of all books
+                let allBooks = snapshot2.value as? NSDictionary
+                if (allBooks == nil) { return }
+                
+                // Loop through the user's books and grab the bookKey value
+                // A user's book entry is a dictionary ('bookID' -> 'bookKey')
+                for (_, value) in userBooks!{
+                    // See if we can find the user's book in the main book list.
+                    let userBook = value as! NSDictionary
+                    let theUserBookKey = userBook["bookID"]
+                    // find the users book from the set of all books
+                    if allBooks![theUserBookKey as Any] != nil {
+                        let tempBook = Book()
+                        let aUserBook = allBooks![theUserBookKey!] as! NSDictionary
+                        tempBook.ISBN = aUserBook.value(forKey: "BookISBN") as! String
+                        self.userBookArray.append(tempBook)
+                        // reload the table view
+                        self.historyTable.reloadData()
+                    }
+                }
+            })
+        })
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        let u = getUser().books
-        print("on load, number of rows in table is = ", u.count)
+        //let u = getUser().books
         
+        
+        
+    
+        
+        
+       // print("on load, number of rows in table is = ", curUser.count)
+        
+    }
+    
+    func test(bookArray: [Book]?)->() {
+        print("hello")
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,24 +95,26 @@ class HistoryTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("number of rows in table is = ", getUser().books.count)
-        return getUser().books.count
+        return userBookArray.count
     }
 
-    /*
+  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = userBookArray[indexPath.row].ISBN
+        // let label = UILabel(frame: CGRect(x:0, y:0, width:200, height:50))
+        // label.text = "text"
+        // cell.addSubview(label)
         // Configure the cell...
 
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

@@ -418,7 +418,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UM5-yL-sbF">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="UM5-yL-sbF">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UM5-yL-sbF" id="ots-VW-D02">
@@ -432,6 +432,9 @@
                             <outlet property="delegate" destination="sUN-fA-4rZ" id="MBs-5q-GZk"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="historyTable" destination="UU6-PC-bAv" id="FjX-wl-bB7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Xx-Ga-cDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -616,7 +619,7 @@
         <image name="password" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HVC-8x-x04"/>
+        <segue reference="c9n-G5-1Sd"/>
         <segue reference="Vbo-XZ-KDs"/>
     </inferredMetricsTieBreakers>
 </document>

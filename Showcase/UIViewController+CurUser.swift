@@ -50,7 +50,7 @@ extension UIViewController {
                 }
             })
          }
-      })
+      }, withCancel: nil)
       // This isn't being called after our DB read, it's being call before.
     }
     
@@ -58,39 +58,48 @@ extension UIViewController {
     // Check authentication and grab the currently signed in user.
     func getUser() -> UserClass {
         let curUser = UserClass()
-        var email = "heyman"
+        var email = "csce482@gmail.com"
         let user = Auth.auth().currentUser
-    
+        
         if let user = user {
-            curUser.isSignedIn = true
+            print("starting...")
             email = user.email!
             email = email.substring(to: email.index(of: "@")!)
-            // print("Username: ", email)
+            curUser.isSignedIn = true
             curUser.email = (user.email!)
-            // print("Current user eMail " + curUser.email)
+            
             // Populate the current user's book list
             // The callback ensures that the data is loaded before we continue on
+            /*
+            print("loading data")
             loadUserBooks(user: curUser, callback: { (data:[Book]) -> Void in
+                
                 for book in data {
                     print("Book ISBN: ", book.ISBN + "\n")
                     curUser.addBook(b: book)
                 }
+ 
                 // self.printUserBooks(bookList: curUser.books)
                 print("Finished Loading, the book count is ", data.count)
                 self.finalizeUserBooks(user: curUser, bookList: data)
             })
+      
+            print("here", curUser.books.count)
+             */
         }
         else {
             curUser.isSignedIn = false
         }
+        
+       // print("verifying the book count is ", curUser.books.count)
         return curUser
     }
     
     func finalizeUserBooks(user: UserClass, bookList: Array<Book>) {
-        print("Printing user books...")
+        //print("Printing user books...")
         for book in bookList {
             user.addBook(b: book)
-            print ("Book: ", book, "\n")
+            //print ("Book: ", book, "\n")
         }
     }
 }
