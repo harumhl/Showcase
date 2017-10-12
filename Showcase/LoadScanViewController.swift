@@ -114,7 +114,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             // Pass in the Book object that the user selects
             postScanVC.bookData = scanBookArray[bookToPass]
         }else if(scanBookArray.count > 1){
-            let resultsTblVC: ScanResultsTableViewController = segue.destination as! ScanResultsTableViewController
+            let resultsTblVC: ResultsViewController = segue.destination as! ResultsViewViewController
             resultsTblVC.scanBookArray = scanBookArray
         }
     }
