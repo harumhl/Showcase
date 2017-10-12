@@ -19,7 +19,7 @@ enum HMACAlgorithm {
     
     func toCCHmacAlgorithm() -> CCHmacAlgorithm {
         var result: Int = 0
-        switch self {
+        switch self { 
         case .MD5:
             result = kCCHmacAlgMD5
         case .SHA1:
