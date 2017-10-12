@@ -447,15 +447,59 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             var myHTMLString = ""
             do {
                 myHTMLString = try String(contentsOf: url)
-                print("HTML : \(myHTMLString)")
+                //print("HTML : \(myHTMLString)")
             } catch let error as NSError {
                 print("Error: \(error)")
             }
             
             // Use Swift Soup to parse the HTML source
             do {
-                let docSS = try SwiftSoup.parse(myHTMLString)
-                let docText = try docSS.text()
+                let doc = try SwiftSoup.parse(myHTMLString)
+                
+                let docText = try doc.text()
+                //print("Doc Text: ")
+                //print(docText)
+                //print("\n\n")
+                
+                let docBody = doc.body()
+                //print("Doc Body: ")
+                //print(docBody)
+                //print("\n\n")
+                
+                let elem = try doc.getElementsByClass("crIframeReviewList").get(0)
+                let table = try elem.getElementsByTag("table").get(0)
+                let tbody = try table.getElementsByTag("tbody").get(0)
+                let tr = try tbody.getElementsByTag("tr").get(0)
+                let td = try tr.getElementsByTag("td").get(0)
+                let divs = try td.getElementsByTag("div")
+
+                print("Doc elem: ")
+                for div in divs { // each review
+                    print("11")
+                    //print(div)
+                    //print(try div.text())
+                    print(div)
+                    print("\n\n\n")
+                    
+                    let div_ = try div.getElementsByTag("b")
+                    print("div_")
+                    print(div_)
+                    if (div_.array().count > 0) {
+                        let title = try div_.get(0).text()
+                        print(title)
+                    }
+                }
+                /*
+                //print(try divs.array()[0].text() + "\n\n\n")
+                let aaa = try divs.get(0).getElementsByTag("div").get(0)
+                let bbb = try aaa.getElementsByTag("div").array()[0]
+                let ccc = try bbb.getElementsByTag("div")
+                print(bbb)
+                let title = try ccc.get(1).getElementsByTag("b")
+                print(try title.text())
+                //let author = try aaa.get(2).getElementsbyTag("div").get
+                */
+                    
             } catch {
                 print("error")
             }
