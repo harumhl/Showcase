@@ -428,7 +428,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     
     
     func getReviewsFromReviewURL() {
-        /*
+        
         for book in scanBookArray {
             let theURL = book.reviewURL
             print("Review URL: " + theURL)
@@ -476,18 +476,27 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
 
                 print("Doc elem: ")
                 for div in divs { // each review
-                    print("11")
+                    //print("hmm?????")
                     //print(div)
                     //print(try div.text())
-                    print(div)
-                    print("\n\n\n")
                     
-                    let div_ = try div.getElementsByTag("b")
-                    print("div_")
-                    print(div_)
-                    if (div_.array().count > 0) {
-                        let title = try div_.get(0).text()
-                        print(title)
+                    if (try div.getElementsByTag("b").array().count > 0) {
+                        print(try div.getElementsByTag("b").get(0))
+                    }
+                    
+                    if (try div.getElementsByTag("div").array().count > 0) {
+                        let div_ = try div.getElementsByTag("div").get(0)
+                        let div__ = try div_.getElementsByTag("div")
+                        //print(div_)
+                        
+                        if (div__.array().count > 1) {
+                            let div1 = div__.get(1)
+                            let div1b = try div1.getElementsByTag("b")
+                            if (div1b.array().count > 0) {
+                                let title = try div1b.array()[0].text() // NOT ALWAYS!!!!
+                                print("Title:: " + title)
+                            }
+                        }
                     }
                 }
                 /*
@@ -527,7 +536,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 let xml = XML.parse(data!)
             }
             task.resume()
-        }*/
+        }
     }
     
     // Will not be used
