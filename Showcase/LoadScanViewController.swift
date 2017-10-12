@@ -110,11 +110,10 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(scanBookArray.count == 1){
             let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
-        
             // Pass in the Book object that the user selects
             postScanVC.bookData = scanBookArray[bookToPass]
         }else if(scanBookArray.count > 1){
-            let resultsTblVC: ScanResultsTableViewController = segue.destination as! ScanResultsTableViewController
+            let resultsTblVC: ResultsViewController = segue.destination as! ResultsViewController
             resultsTblVC.scanBookArray = scanBookArray
         }
     }

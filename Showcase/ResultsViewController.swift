@@ -71,24 +71,12 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
         //var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
-        let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow as! NSIndexPath
+        let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow! as NSIndexPath
         var bookToPass : Book
         bookToPass = scanBookArray[indexPath.row]
         postScanVC.bookData = bookToPass
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     override func didReceiveMemoryWarning() {

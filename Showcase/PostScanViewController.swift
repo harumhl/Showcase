@@ -79,36 +79,47 @@ class PostScanViewController: UIViewController{
 //****************************************** Database Functions **********************************************
     func addDataToDB() {
         ref = Database.database().reference()
-        
         let user = getUser()
         var email = ""
         if user.isSignedIn {
             email = user.email.substring(to: user.email.index(of: "@")!)
             print("substring email: ", email)
         }
+        
+        /*************** WRITTEN TO DB ****************/
+        
         let locKey = ref.childByAutoId().key
         let bookKey = ref.childByAutoId().key
-
-        let bookData = ["BookID": bookKey, "title": self.bookData.title, "author": self.bookData.author, "BookISBN": self.bookData.ISBN, "LocationID": locKey, "Purchased": false ] as [String : Any]
-        let locationData = ["LocationID": locKey, "Long": longitude, "Lat": latitude] as [String : Any]
-        let userData = ["bookID": "bookKey"+bookKey]
         
-        ref.child("/book/bookKey"+bookKey).setValue(bookData)
-        ref.child("/location/loc"+locKey).setValue(locationData)
+        let bookData =  ["BookID"    : bookKey,
+                         "title"     : self.bookData.title,
+                         "author"    : self.bookData.author,
+                         "BookISBN"  : self.bookData.ISBN,
+                         "LocationID": locKey,
+                         "Purchased" : false,
+                         "ImageURL"  : self.bookData.imageURL,
+                         "ReviewURL" : self.bookData.reviewURL
+        ] as [String : Any]
         
-//        user.addBook(b: tempBook)
-//        print("book size ", user.books.count)
-//        for book in user.books {
-//            print ("book " + book.ISBN)
-//        }
+        let locationData = ["LocationID": locKey,
+                            "Long": longitude,
+                            "Lat": latitude
+        ] as [String : Any]
         
-        // dont override a users books
-        let bookRef = ref.child(byAppendingPath: "/user/"+email+"/books")
+        let userBookData = ["bookID": "bookKey" + bookKey]
+        
+        // Write a book to the DB
+        ref.child("/book/bookKey" + bookKey).setValue(bookData)
+        
+        // Write a location to the DB
+        ref.child("/location/loc" + locKey).setValue(locationData)
+        
+        // Ensure that no book gets overwritten for a user
+        let bookRef = ref.child("/user/" + email + "/books")
         let thisBookRef = bookRef.childByAutoId()
-        thisBookRef.setValue(userData)
+        thisBookRef.setValue(userBookData)
         
-       // print("Data Added:\t" + bookData["BookID"]! + "\t" + bookData["BookISBN"]!)
-        //print("LocationID:\t" + locationData["LocationID"] as String! + "\t" + locationData["Long"] as String! + "\t" + locationData["Lat"] as String!)
+        /***********************************************/
     }
     
 

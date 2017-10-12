@@ -15,10 +15,12 @@ class HistoryTableViewController: UITableViewController {
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
     @IBOutlet var historyTable: UITableView!
+    let cellReuseIdentifier = "cell"
+    var selectedBookIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         historyTable.delegate = self
         historyTable.dataSource = self
         
@@ -32,10 +34,8 @@ class HistoryTableViewController: UITableViewController {
             email = user.email!
             email = email.substring(to: email.index(of: "@")!)
         }
-        
-
-        
-        // Get data
+        self.title = "Scan history for " + email
+        // Get book data from database
         ref?.child("user").child(email + "/books").observe(DataEventType.value, with: { (snapshot) in
             // Grab the list user's book list (UniqueKey -> bookID)
             self.userBookArray = [Book]()
@@ -45,7 +45,6 @@ class HistoryTableViewController: UITableViewController {
                 // grab the list of all books
                 let allBooks = snapshot2.value as? NSDictionary
                 if (allBooks == nil) { return }
-                
                 // Loop through the user's books and grab the bookKey value
                 // A user's book entry is a dictionary ('bookID' -> 'bookKey')
                 for (_, value) in userBooks!{
@@ -54,38 +53,34 @@ class HistoryTableViewController: UITableViewController {
                     let theUserBookKey = userBook["bookID"]
                     // find the users book from the set of all books
                     if allBooks![theUserBookKey as Any] != nil {
-                        let tempBook = Book()
                         let aUserBook = allBooks![theUserBookKey!] as! NSDictionary
-                        tempBook.ISBN = aUserBook.value(forKey: "BookISBN") as! String
-                        self.userBookArray.append(tempBook)
-                        // reload the table view
+                        // Grab Book fields from DB
+                        self.getBookAttributes(aUserBook: aUserBook)
+                        // Reload the table view
                         self.historyTable.reloadData()
                     }
                 }
             })
         })
         
+
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        //let u = getUser().books
-        
-        
-        
-    
-        
-        
-       // print("on load, number of rows in table is = ", curUser.count)
-        
-    }
-    
-    func test(bookArray: [Book]?)->() {
-        print("hello")
     }
 
+    func getBookAttributes(aUserBook: NSDictionary) {
+        let tempBook = Book()
+        tempBook.ISBN = aUserBook.value(forKey: "BookISBN") as! String
+        tempBook.author = aUserBook.value(forKey: "author") as! String
+        tempBook.title = aUserBook.value(forKey: "title") as! String
+        tempBook.imageURL = aUserBook.value(forKey: "ImageURL") as! String
+        self.userBookArray.append(tempBook)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -93,10 +88,10 @@ class HistoryTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 1
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -105,16 +100,34 @@ class HistoryTableViewController: UITableViewController {
 
   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = userBookArray[indexPath.row].ISBN
-        // let label = UILabel(frame: CGRect(x:0, y:0, width:200, height:50))
-        // label.text = "text"
-        // cell.addSubview(label)
-        // Configure the cell...
-
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell:HistoryTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! HistoryTableViewCell
+        cell.bookTitle.text = userBookArray[indexPath.row].title
+        cell.author.text = userBookArray[indexPath.row].author
+        cell.bookPrice.text = userBookArray[indexPath.row].price
+        if let url = NSURL(string: userBookArray[indexPath.row].imageURL) {
+            if let data = NSData(contentsOf: url as URL) {
+                cell.bookImage.image = UIImage(data: data as Data)
+            }
+        }
+        
         return cell
     }
  
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("you tapped cell number \(indexPath.row)")
+        selectedBookIndex = indexPath.row
+        //performSegue(withIdentifier: "HistoryToPost", sender: self)
+    }
+ 
+ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
+        let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow! as NSIndexPath
+        var bookToPass : Book
+        bookToPass = userBookArray[indexPath.row]
+        print("Book from History to Post: ", bookToPass)
+        postScanVC.bookData = bookToPass
+    }
 
     /*
     // Override to support conditional editing of the table view.
