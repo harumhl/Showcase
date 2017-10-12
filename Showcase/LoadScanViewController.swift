@@ -297,6 +297,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         let dateFormatter = DateFormatter()
         let timeFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         timeFormatter.dateFormat = "HH:mm:ss"
         timeFormatter.timeZone = TimeZone(abbreviation: "GMT")
         let timeStamp = dateFormatter.string(from: Date()) + "T" +
@@ -427,7 +428,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     
     
     func getReviewsFromReviewURL() {
-        
+        /*
         for book in scanBookArray {
             let theURL = book.reviewURL
             print("Review URL: " + theURL)
@@ -526,7 +527,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 let xml = XML.parse(data!)
             }
             task.resume()
-        }
+        }*/
     }
     
     // Will not be used
