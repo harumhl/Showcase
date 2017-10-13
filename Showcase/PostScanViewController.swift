@@ -95,6 +95,7 @@ class PostScanViewController: UIViewController{
                          "title"     : self.bookData.title,
                          "author"    : self.bookData.author,
                          "BookISBN"  : self.bookData.ISBN,
+                         "Price"     : self.bookData.price,
                          "LocationID": locKey,
                          "Purchased" : false,
                          "ImageURL"  : self.bookData.imageURL,

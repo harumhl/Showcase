@@ -113,6 +113,7 @@
                             <constraint firstItem="2EU-Yq-cev" firstAttribute="top" secondItem="2j7-FP-Alm" secondAttribute="bottom" constant="37" id="0Rx-0b-g1E"/>
                             <constraint firstItem="2EU-Yq-cev" firstAttribute="top" secondItem="2j7-FP-Alm" secondAttribute="bottom" constant="37" id="3EI-lA-jg8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LLC-Dz-aAa" secondAttribute="trailing" constant="20" id="7AV-Ut-eG7"/>
+                            <constraint firstAttribute="trailing" secondItem="Bht-av-sMR" secondAttribute="trailing" id="8Od-Pm-wo8"/>
                             <constraint firstItem="vbf-vz-oPY" firstAttribute="top" secondItem="M6k-NX-WaW" secondAttribute="bottom" constant="28" id="9EF-DB-Ybm"/>
                             <constraint firstItem="vbf-vz-oPY" firstAttribute="leading" secondItem="GfD-9F-tbl" secondAttribute="leadingMargin" constant="20" id="Et2-jI-LsH"/>
                             <constraint firstItem="M6k-NX-WaW" firstAttribute="top" secondItem="Bht-av-sMR" secondAttribute="bottom" constant="42" id="M6Y-Uy-Hlh"/>
@@ -123,6 +124,7 @@
                             <constraint firstItem="Bht-av-sMR" firstAttribute="top" secondItem="Z10-bX-sa2" secondAttribute="bottom" id="TLO-tr-HYs"/>
                             <constraint firstItem="MLa-Pi-8la" firstAttribute="leading" secondItem="GfD-9F-tbl" secondAttribute="leading" constant="12" id="Vz3-ie-tj9"/>
                             <constraint firstItem="LLC-Dz-aAa" firstAttribute="leading" secondItem="GfD-9F-tbl" secondAttribute="leadingMargin" constant="20" id="WAs-Md-R8o"/>
+                            <constraint firstItem="Bht-av-sMR" firstAttribute="leading" secondItem="GfD-9F-tbl" secondAttribute="leading" id="a6G-D3-F2h"/>
                             <constraint firstItem="LLC-Dz-aAa" firstAttribute="top" secondItem="2EU-Yq-cev" secondAttribute="bottom" constant="27" id="b0I-KE-azu"/>
                             <constraint firstItem="LLC-Dz-aAa" firstAttribute="top" secondItem="2EU-Yq-cev" secondAttribute="bottom" constant="27" id="d2R-aV-Omq"/>
                             <constraint firstAttribute="trailing" secondItem="MLa-Pi-8la" secondAttribute="trailing" constant="13" id="dbM-ta-lTa"/>
@@ -307,44 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNW-9Y-ZTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3672.8000000000002" y="167.76611694152925"/>
-        </scene>
-        <!--Scan Results Table View Controller-->
-        <scene sceneID="qHh-tu-FTA">
-            <objects>
-                <tableViewController id="75T-Y8-RwE" customClass="ScanResultsTableViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4cI-T4-Ggz" userLabel="tableView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="158" id="Igr-oB-OgS" customClass="ScanResultsTableViewCell" customModule="Showcase" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="158"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Igr-oB-OgS" id="dWP-1X-SAL">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="157.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fd9-Fw-hXA">
-                                            <rect key="frame" x="16" y="20" width="85" height="100"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bookTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-7q-hiS">
-                                            <rect key="frame" x="184" y="43" width="154" height="54"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lqs-iy-aaQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3566" y="1639"/>
+            <point key="canvasLocation" x="3470" y="168"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="7CB-Yp-oea">
@@ -771,7 +736,7 @@
         <image name="password" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SMw-y1-bM6"/>
-        <segue reference="64y-7R-X3N"/>
+        <segue reference="c9n-G5-1Sd"/>
+        <segue reference="Vbo-XZ-KDs"/>
     </inferredMetricsTieBreakers>
 </document>

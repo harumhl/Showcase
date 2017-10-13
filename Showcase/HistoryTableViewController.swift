@@ -78,6 +78,7 @@ class HistoryTableViewController: UITableViewController {
         tempBook.author = aUserBook.value(forKey: "author") as! String
         tempBook.title = aUserBook.value(forKey: "title") as! String
         tempBook.imageURL = aUserBook.value(forKey: "ImageURL") as! String
+        tempBook.price = aUserBook.value(forKey: "Price") as! String
         self.userBookArray.append(tempBook)
     }
     
@@ -119,8 +120,8 @@ class HistoryTableViewController: UITableViewController {
         selectedBookIndex = indexPath.row
         //performSegue(withIdentifier: "HistoryToPost", sender: self)
     }
- 
- override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
         let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow! as NSIndexPath
         var bookToPass : Book

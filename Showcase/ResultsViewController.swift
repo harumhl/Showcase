@@ -9,14 +9,9 @@
 import UIKit
 
 class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
+
     var scanBookArray = [Book]()
     var selectedBookIndex = -1
-    
-    let animals: [String] = ["Horse", "Cow", "Camel","Horse", "Cow", "Camel","Horse", "Cow", "Camel","Horse", "Cow", "Camel"]
-    
-    let colors = [UIColor.blue, UIColor.yellow, UIColor.magenta,UIColor.blue, UIColor.yellow, UIColor.magenta,UIColor.blue, UIColor.yellow, UIColor.magenta,UIColor.blue, UIColor.yellow, UIColor.magenta]
     
      let cellReuseIdentifier = "cell"
     

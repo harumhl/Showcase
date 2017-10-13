@@ -96,7 +96,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         getLocation()
         // using closures to construct our object then perform the function selectBook()
         self.amazonSearch { () -> () in
-            self.getReviewsFromReviewURL() // TEMP TEMP TEMP
+            //self.getReviewsFromReviewURL() // TEMP TEMP TEMP
             self.selectBook()
         }
         // Do any additional setup after loading the view.
