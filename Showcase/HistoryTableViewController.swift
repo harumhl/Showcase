@@ -118,7 +118,7 @@ class HistoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("you tapped cell number \(indexPath.row)")
         selectedBookIndex = indexPath.row
-        //performSegue(withIdentifier: "HistoryToPost", sender: self)
+        performSegue(withIdentifier: "HistoryToPost", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -128,6 +128,7 @@ class HistoryTableViewController: UITableViewController {
         bookToPass = userBookArray[indexPath.row]
         print("Book from History to Post: ", bookToPass)
         postScanVC.bookData = bookToPass
+        postScanVC.fromHistory = true
     }
 
     /*

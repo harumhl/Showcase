@@ -14,6 +14,7 @@ import Cosmos
 
 class PostScanViewController: UIViewController{
     var theBarcodeData: String = ""
+    var fromHistory: Bool = false
     
     var bookData = Book()
     var longitude = 0.0
@@ -47,8 +48,9 @@ class PostScanViewController: UIViewController{
         
         // Updating the Display
         displayBookInfo()
-        
-        addDataToDB()
+        if !fromHistory {
+            addDataToDB()
+        }
     }
     
     // Built in XCode function
