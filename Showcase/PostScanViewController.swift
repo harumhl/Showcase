@@ -15,6 +15,7 @@ import SwiftSoup
 
 class PostScanViewController: UIViewController{
     var theBarcodeData: String = ""
+    var fromHistory: Bool = false
     
     var bookData = Book()
     var longitude = 0.0
@@ -49,8 +50,9 @@ class PostScanViewController: UIViewController{
         // Updating the Display
         getReviewsFromReviewURL()
         displayBookInfo()
-        
-        addDataToDB()
+        if !fromHistory {
+            addDataToDB()
+        }
     }
     
     // Built in XCode function
