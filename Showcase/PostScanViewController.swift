@@ -132,17 +132,30 @@ class PostScanViewController: UIViewController{
                 let reviewDoc = try SwiftSoup.parse(reviewURlHTMLString)
                 
                 
-                // "a-section review" gives us the entire review data
-                
-                // $(".review .a-link-normal").title; gives you the rating ex: "5.0 out of 5 stars"
-                    // then we can check for the first part of that string to assign to a Double variable
-                
-                
-                // get the array of "review-text" elements
-                let elems: Elements = try reviewDoc.getElementsByClass("review-text")
+                // "review" gives us the entire review data
+                let elems: Elements = try reviewDoc.getElementsByClass("review")
                 for review: Element in elems.array(){
-                    let reviewText = try review.text()
+                    
+                    // "review-title" gives us the <a> tag which has the title text
+                    let reviewTitle = try review.getElementsByClass("review-title").text()
+                    print("Review Title: " + reviewTitle)
+                    
+                    // "a-icon-alt" gives you the rating ex: "5.0 out of 5 stars"
+                        // then we can check for the first part of that string to assign to a Double variable
+                    var reviewRatingStr = try review.getElementsByClass("review-rating").text()
+                    //email = email.substring(to: email.index(of: "@")!)
+                    reviewRatingStr = reviewRatingStr.substring(to: reviewRatingStr.index(of: " ")!)
+                    let reviewRating = Double(reviewRatingStr)
+                    print ("Review Rating: \(String(describing: reviewRating))")
+                
+                    // "review-date"
+                    let reviewDate = try review.getElementsByClass("review-date").text()
+                    print("Review Date: " + reviewDate)
+                
+                
+                    let reviewText = try review.getElementsByClass("review-text").text()
                     print("Review: " + reviewText)
+                    print("---------------------------------------------")
                 }
                 
                 
