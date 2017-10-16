@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085F5E611F7C5150003200C5 /* SignUpViewController.swift */; };
 		08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BA96DE1F706C71001875BF /* PostScanViewController.swift */; };
-		08C66B0E1F8F0B5E0036FA82 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C66B0D1F8F0B5E0036FA82 /* Keys.swift */; };
 		08C66B101F8F16120036FA82 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C66B0F1F8F16120036FA82 /* HistoryTableViewCell.swift */; };
 		494979251F672BF4005DB65C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979241F672BF4005DB65C /* AppDelegate.swift */; };
 		4949792A1F672BF4005DB65C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494979281F672BF4005DB65C /* Main.storyboard */; };
@@ -23,8 +22,7 @@
 		4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254791F70514000DE1D93 /* ContributionsViewController.swift */; };
 		4E24E08A1F8BDF8B005D1EAD /* LoadScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */; };
 		4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E257A011F731F4B00012F2D /* LoginViewController.swift */; };
-		4E7825CD1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7825CC1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift */; };
-		4E7825D11F8C371300F1B0EB /* ScanResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7825D01F8C371300F1B0EB /* ScanResultsTableViewCell.swift */; };
+		4E38CC631F9549B200216F0B /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E38CC621F9549B200216F0B /* Keys.swift */; };
 		4ED24BC81F8EB216000407C2 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED24BC71F8EB216000407C2 /* ResultsViewController.swift */; };
 		4ED24BCE1F8EB40B000407C2 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED24BCD1F8EB40B000407C2 /* ResultsTableViewCell.swift */; };
 		50ED73B01F85ACE100E4531F /* UIViewController+CurUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */; };
@@ -61,7 +59,6 @@
 /* Begin PBXFileReference section */
 		085F5E611F7C5150003200C5 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		08BA96DE1F706C71001875BF /* PostScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostScanViewController.swift; sourceTree = "<group>"; };
-		08C66B0D1F8F0B5E0036FA82 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../../Downloads/Keys.swift; sourceTree = "<group>"; };
 		08C66B0F1F8F16120036FA82 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		20E198409E5BCE3F72BE52BB /* Pods_ShowcaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowcaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979211F672BF4005DB65C /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,8 +80,7 @@
 		4E2254791F70514000DE1D93 /* ContributionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributionsViewController.swift; sourceTree = "<group>"; };
 		4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScanViewController.swift; sourceTree = "<group>"; };
 		4E257A011F731F4B00012F2D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		4E7825CC1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultsTableViewController.swift; sourceTree = "<group>"; };
-		4E7825D01F8C371300F1B0EB /* ScanResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultsTableViewCell.swift; sourceTree = "<group>"; };
+		4E38CC621F9549B200216F0B /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../Downloads/Keys.swift; sourceTree = "<group>"; };
 		4ED24BC71F8EB216000407C2 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		4ED24BCD1F8EB40B000407C2 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+CurUser.swift"; path = "Showcase/UIViewController+CurUser.swift"; sourceTree = SOURCE_ROOT; };
@@ -158,7 +154,6 @@
 			children = (
 				5E47E72E1F7391DB002B703D /* MaterialTextField.swift */,
 				5E47E7301F739484002B703D /* MaterialButton.swift */,
-				4E7825D01F8C371300F1B0EB /* ScanResultsTableViewCell.swift */,
 				4ED24BCD1F8EB40B000407C2 /* ResultsTableViewCell.swift */,
 				08C66B0F1F8F16120036FA82 /* HistoryTableViewCell.swift */,
 			);
@@ -178,7 +173,6 @@
 				5E47E72C1F7383C2002B703D /* RootViewController.swift */,
 				49EC73261F82DA49003737F9 /* Showcase-Bridging-Header.h */,
 				4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */,
-				4E7825CC1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift */,
 				4ED24BC71F8EB216000407C2 /* ResultsViewController.swift */,
 			);
 			name = Controller;
@@ -256,7 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				5E0CEEE51F730FD7009EADF6 /* Constants.swift */,
-				08C66B0D1F8F0B5E0036FA82 /* Keys.swift */,
+				4E38CC621F9549B200216F0B /* Keys.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -606,13 +600,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF3FBC71F8453D800118D00 /* Book.swift in Sources */,
-				4E7825CD1F8C2F5E00F1B0EB /* ScanResultsTableViewController.swift in Sources */,
 				5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */,
 				5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */,
 				4ED24BCE1F8EB40B000407C2 /* ResultsTableViewCell.swift in Sources */,
 				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
 				5E47E7311F739485002B703D /* MaterialButton.swift in Sources */,
-				4E7825D11F8C371300F1B0EB /* ScanResultsTableViewCell.swift in Sources */,
 				08C66B101F8F16120036FA82 /* HistoryTableViewCell.swift in Sources */,
 				08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */,
 				5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */,
@@ -621,7 +613,7 @@
 				085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */,
 				50ED73B01F85ACE100E4531F /* UIViewController+CurUser.swift in Sources */,
 				4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */,
-				08C66B0E1F8F0B5E0036FA82 /* Keys.swift in Sources */,
+				4E38CC631F9549B200216F0B /* Keys.swift in Sources */,
 				4E2254741F7050A300DE1D93 /* UserAccountSettingsViewController.swift in Sources */,
 				494979251F672BF4005DB65C /* AppDelegate.swift in Sources */,
 				4ED24BC81F8EB216000407C2 /* ResultsViewController.swift in Sources */,
