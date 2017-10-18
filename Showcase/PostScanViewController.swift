@@ -13,14 +13,19 @@ import SwiftSoup
 
 
 
-class PostScanViewController: UIViewController{
+class PostScanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var theBarcodeData: String = ""
     var fromHistory: Bool = false
     
     var bookData = Book()
     var longitude = 0.0
     var latitude = 0.0
-
+    
+    var reviewArray = [Review]()
+    
+    let cellReuseIdentifier = "cell"
+    @IBOutlet weak var reviewsTable: UITableView!
+    
     var ref: DatabaseReference!
 
     @IBOutlet weak var bookImage: UIImageView!
@@ -36,29 +41,56 @@ class PostScanViewController: UIViewController{
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        // Print the barcode on a label on the top of the VC
-        
-        print(bookData.title)
         
         // Getting the setting for Star Rating display
         cosmosView.settings.updateOnTouch = false
         cosmosView.settings.fillMode = .precise
-        cosmosView.settings.filledColor = UIColor.yellow
-        cosmosView.settings.emptyBorderColor = UIColor.black
-        cosmosView.settings.filledBorderColor = UIColor.black
+//        cosmosView.settings.filledColor = UIColor.yellow
+//        cosmosView.settings.emptyBorderColor = UIColor.black
+//        cosmosView.settings.filledBorderColor = UIColor.black
         
         // Updating the Display
-        getReviewsFromReviewURL()
-        displayBookInfo()
+        self.getReviewsFromReviewURL()
+        self.displayBookInfo()
         if !fromHistory {
             addDataToDB()
         }
+        
+        // for the ReviewTable
+        reviewsTable.delegate = self
+        reviewsTable.dataSource = self
+        
+        reviewsTable.rowHeight = 125.0
+//        self.reviewsTable.estimatedRowHeight = 125.0
+//        self.reviewsTable.rowHeight = UITableViewAutomaticDimension
     }
     
     // Built in XCode function
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+//****************************************** REVIEW TABLE FUNCTIONS ******************************************
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return reviewArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //let cell:ReviewTableViewCell = self.reviewsTable.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ReviewTableViewCell
+        let cell:ReviewTableViewCell = self.reviewsTable.dequeueReusableCell(withIdentifier: "cell") as! ReviewTableViewCell
+        
+        cell.reviewTitle.text = reviewArray[indexPath.row].title
+        
+        cell.reviewDate.text = reviewArray[indexPath.row].date
+        
+        cell.reviewText.text = reviewArray[indexPath.row].review
+        
+        cell.reviewRating.rating = reviewArray[indexPath.row].rating
+        cell.reviewRating.settings.updateOnTouch = false
+        
+        return cell
     }
 
 //****************************************** USER-DEFINED FUNCTIONS ******************************************
@@ -137,103 +169,21 @@ class PostScanViewController: UIViewController{
                     print ("Review Rating: \(String(describing: reviewRating))")
                 
                     // "review-date"
-                    let reviewDate = try review.getElementsByClass("review-date").text()
+                    var reviewDate = try review.getElementsByClass("review-date").text()
+                    reviewDate = reviewDate.substring(from: reviewDate.index(of: " ")!)
                     print("Review Date: " + reviewDate)
                 
                 
                     let reviewText = try review.getElementsByClass("review-text").text()
                     print("Review: " + reviewText)
                     print("---------------------------------------------")
+                    
+                    let tmpReview = Review.init(_title: reviewTitle, _rating: reviewRating!, _date: reviewDate, _review: reviewText)
+                    self.reviewArray.append(tmpReview)
                 }
-                
-                
-                
-
-//                let link: Elements = try doc.select("a[href]")
-//                let linkHref: String = try! link.attr("href");
-                
-//                let elems: Elements = try doc.select("reviewText")
-//                for review: Element in elems.array(){
-//                    let reviewStr: String =  try review.text()
-//                    print("reviewSTR: " + reviewStr)
-//                }
-                
-                
-                
-                
-                
-//                let docBody = doc.body()
-//                //print("Doc Body: ")
-//                //print(docBody)
-//                //print("\n\n")
-//
-//                let elem = try doc.getElementsByClass("crIframeReviewList").get(0)
-//                let table = try elem.getElementsByTag("table").get(0)
-//                let tbody = try table.getElementsByTag("tbody").get(0)
-//                let tr = try tbody.getElementsByTag("tr").get(0)
-//                let td = try tr.getElementsByTag("td").get(0)
-//                let divs = try td.getElementsByTag("div")
-//
-//                print("Doc elem: ")
-//                for div in divs { // each review
-//                    //print("hmm?????")
-//                    //print(div)
-//                    //print(try div.text())
-//
-//                    if (try div.getElementsByTag("b").array().count > 0) {
-//                        print(try div.getElementsByTag("b").get(0))
-//                    }
-//
-//                    if (try div.getElementsByTag("div").array().count > 0) {
-//                        let div_ = try div.getElementsByTag("div").get(0)
-//                        let div__ = try div_.getElementsByTag("div")
-//                        //print(div_)
-//
-//                        if (div__.array().count > 1) {
-//                            let div1 = div__.get(1)
-//                            let div1b = try div1.getElementsByTag("b")
-//                            if (div1b.array().count > 0) {
-//                                let title = try div1b.array()[0].text() // NOT ALWAYS!!!!
-//                                print("Title:: " + title)
-//                            }
-//                        }
-//                    }
-//                }
-                /*
-                 //print(try divs.array()[0].text() + "\n\n\n")
-                 let aaa = try divs.get(0).getElementsByTag("div").get(0)
-                 let bbb = try aaa.getElementsByTag("div").array()[0]
-                 let ccc = try bbb.getElementsByTag("div")
-                 print(bbb)
-                 let title = try ccc.get(1).getElementsByTag("b")
-                 print(try title.text())
-                 //let author = try aaa.get(2).getElementsbyTag("div").get
-                 */
-                
             } catch {
                 print("error")
             }
-            
-//            // Start URL session
-//            let urlRequest = URLRequest(url: url)
-//            let session = URLSession.shared
-//
-//            // Unpack the returned XML data
-//            let task = session.dataTask(with: urlRequest) {
-//                (data, response, error) in
-//                // check for any errors
-//                guard error == nil else {
-//                    print("error calling GET on /todos/1")
-//                    print(error!)
-//                    return
-//                }
-//                // make sure we got data
-//                guard let responseData = data else {
-//                    print("Error: did not receive data")
-//                    return
-//                }
-//            }
-//            task.resume()
     }
 
 //****************************************** Database Functions **********************************************
