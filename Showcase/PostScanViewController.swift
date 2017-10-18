@@ -50,6 +50,7 @@ class PostScanViewController: UIViewController{
         displayBookInfo()
         if !fromHistory {
             addDataToDB()
+            fromHistory = false
         }
     }
     
@@ -101,8 +102,11 @@ class PostScanViewController: UIViewController{
                          "LocationID": locKey,
                          "Purchased" : false,
                          "ImageURL"  : self.bookData.imageURL,
-                         "ReviewURL" : self.bookData.reviewURL
+                         "ReviewURL" : self.bookData.reviewURL,
+                         "DateCreated" : self.bookData.DateCreatedAt,
+                         "CreationSecondsSince1970" : self.bookData.SecondsSince1970
         ] as [String : Any]
+        
         
         let locationData = ["LocationID": locKey,
                             "Long": longitude,

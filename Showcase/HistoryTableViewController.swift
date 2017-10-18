@@ -11,7 +11,7 @@ import Firebase
 
 class HistoryTableViewController: UITableViewController {
 
-    var userBookArray = [Book]()
+    var userBookArray : [Book] = []
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
     @IBOutlet var historyTable: UITableView!
@@ -34,7 +34,10 @@ class HistoryTableViewController: UITableViewController {
             email = user.email!
             email = email.substring(to: email.index(of: "@")!)
         }
+        
         self.title = "Scan history for " + email
+        
+        
         // Get book data from database
         ref?.child("user").child(email + "/books").observe(DataEventType.value, with: { (snapshot) in
             // Grab the list user's book list (UniqueKey -> bookID)
@@ -45,8 +48,7 @@ class HistoryTableViewController: UITableViewController {
                 // grab the list of all books
                 let allBooks = snapshot2.value as? NSDictionary
                 if (allBooks == nil) { return }
-                // Loop through the user's books and grab the bookKey value
-                // A user's book entry is a dictionary ('bookID' -> 'bookKey')
+                // Loop through the user's books and grab the bookKey value. A user's book entry is a dictionary ('bookID' -> 'bookKey')
                 for (_, value) in userBooks!{
                     // See if we can find the user's book in the main book list.
                     let userBook = value as! NSDictionary
@@ -56,12 +58,16 @@ class HistoryTableViewController: UITableViewController {
                         let aUserBook = allBooks![theUserBookKey!] as! NSDictionary
                         // Grab Book fields from DB
                         self.getBookAttributes(aUserBook: aUserBook)
-                        // Reload the table view
-                        self.historyTable.reloadData()
                     }
                 }
+                // Reload the table view
+                // If the seconds since 1970 is a greater value, then it is more recent
+                self.userBookArray.sort { $0.SecondsSince1970 > $1.SecondsSince1970 }
+                self.historyTable.reloadData()
             })
         })
+        
+        
         
 
         

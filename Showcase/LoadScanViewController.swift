@@ -12,6 +12,7 @@ import CoreLocation
 import AddressBookUI
 import SwiftyXMLParser
 import SwiftSoup
+import Firebase
 
 /******************************** HMAC algorithm for Amazon REST call Signature ********************************/
 enum HMACAlgorithm {
@@ -402,7 +403,14 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                         reviewURL ?= items["CustomerReviews", "IFrameURL"].text
                     }
                     
-                    let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL)
+                    let dateCreatedAt = dateFormatter.string(from: Date()) + " " +
+                        timeFormatter.string(from: Date())
+                    
+                    let secsSince1970 = UInt(Date().timeIntervalSince1970)
+                    
+                    print("Book was created at: ", dateCreatedAt)
+                    
+                    let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL, _DateCreatedAt: dateCreatedAt, _SecondsSince1970: secsSince1970)
                     
                     // insert item into array of books
                     self.scanBookArray.append(tmpBook)
