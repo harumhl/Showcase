@@ -11,8 +11,6 @@ import Firebase
 import Cosmos
 import SwiftSoup
 
-
-
 class PostScanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var theBarcodeData: String = ""
     var fromHistory: Bool = false
@@ -36,6 +34,10 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
         
+    @IBAction func PurchaseBook(_ sender: Any) {
+        performSegue(withIdentifier: "PostToBrowser", sender: self)
+    }
+    
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         self.displayBookInfo()
         if !fromHistory {
             addDataToDB()
+            fromHistory = false
         }
         
         // for the ReviewTable
@@ -209,8 +212,12 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                          "LocationID": locKey,
                          "Purchased" : false,
                          "ImageURL"  : self.bookData.imageURL,
-                         "ReviewURL" : self.bookData.reviewURL
+                         "ReviewURL" : self.bookData.reviewURL,
+                         "DateCreated" : self.bookData.DateCreatedAt,
+                         "CreationSecondsSince1970" : self.bookData.SecondsSince1970,
+                         "PurchaseURL": self.bookData.purchaseURL
         ] as [String : Any]
+        
         
         let locationData = ["LocationID": locKey,
                             "Long": longitude,
@@ -233,6 +240,11 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         /***********************************************/
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let browserVC: BrowserViewController = segue.destination as! BrowserViewController
+        browserVC.bookData = self.bookData
+    }
 
     /*
      // MARK: - Navigation

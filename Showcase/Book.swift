@@ -29,6 +29,9 @@ class Book {
     var imageURL: String
     var rating: Double
     var reviewURL: String
+    var DateCreatedAt: String
+    var SecondsSince1970: UInt
+    var purchaseURL: String
     //var reviews = array of Review Objects
     
     init() {
@@ -39,10 +42,13 @@ class Book {
         imageURL = "N/A"
         rating = -1
         reviewURL = "N/A"
+        DateCreatedAt = "N/A"
+        SecondsSince1970 = 0
+        purchaseURL = "N/A"
         //reviews = "N/A"
     }
     
-    init(_title: String, _author:String, _ISBN: String, _price: String, _imageURL: String, _rating: Double, _reviewURL: String){
+    init(_title: String, _author:String, _ISBN: String, _price: String, _imageURL: String, _rating: Double, _reviewURL: String, _DateCreatedAt: String, _SecondsSince1970: UInt, _purchaseURL: String){
         self.title = _title
         self.author = _author
         self.ISBN = _ISBN
@@ -50,5 +56,8 @@ class Book {
         self.imageURL = _imageURL
         self.rating = _rating
         self.reviewURL = _reviewURL
+        self.DateCreatedAt = _DateCreatedAt
+        self.SecondsSince1970 = UInt(_SecondsSince1970)
+        self.purchaseURL = _purchaseURL
     }
 }
