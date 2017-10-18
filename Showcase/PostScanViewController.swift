@@ -12,7 +12,6 @@ import Cosmos
 import SwiftSoup
 
 
-
 class PostScanViewController: UIViewController{
     var theBarcodeData: String = ""
     var fromHistory: Bool = false
@@ -31,6 +30,10 @@ class PostScanViewController: UIViewController{
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
         
+    @IBAction func PurchaseBook(_ sender: Any) {
+        performSegue(withIdentifier: "PostToBrowser", sender: self)
+    }
+    
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -283,6 +286,11 @@ class PostScanViewController: UIViewController{
         /***********************************************/
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let browserVC: BrowserViewController = segue.destination as! BrowserViewController
+        browserVC.bookData = self.bookData
+    }
 
     /*
      // MARK: - Navigation

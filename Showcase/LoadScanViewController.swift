@@ -405,7 +405,10 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                         }
                     }
                     
-                    let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL)
+                    var purchaseURL = "Purchase URL Not Available"
+                    purchaseURL ?= items["DetailPageURL"].text
+
+                    let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL, _purchaseURL: purchaseURL)
                     
                     // insert item into array of books
                     self.scanBookArray.append(tmpBook)
