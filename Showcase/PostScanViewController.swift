@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import Cosmos
-
+import SwiftSoup
 
 
 class PostScanViewController: UIViewController{
@@ -30,6 +30,10 @@ class PostScanViewController: UIViewController{
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
         
+    @IBAction func PurchaseBook(_ sender: Any) {
+        performSegue(withIdentifier: "PostToBrowser", sender: self)
+    }
+    
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +51,7 @@ class PostScanViewController: UIViewController{
         cosmosView.settings.filledBorderColor = UIColor.black
         
         // Updating the Display
+        getReviewsFromReviewURL()
         displayBookInfo()
         if !fromHistory {
             addDataToDB()
@@ -78,6 +83,162 @@ class PostScanViewController: UIViewController{
         cosmosView.rating = bookData.rating
         cosmosView.text = String(format:"%.2f", bookData.rating)
     }
+    
+    
+    func getReviewsFromReviewURL() {
+        
+        
+            let theURL = bookData.reviewURL
+            print("Review URL: " + theURL)
+            
+            // Skip if the book has no reviews
+            if (theURL == "Reviews Not Available") {
+                print("Reviews Not Available")
+            }
+            
+            // Check the validity of the URL ("guard" checks it)
+            guard let url = URL(string: theURL) else {
+                print("Error: cannot create URL")
+                return
+            }
+            
+            // Get the HTML source from the URL
+            var myHTMLString = ""
+            do {
+                myHTMLString = try String(contentsOf: url)
+                //print("HTML : \(myHTMLString)")
+            } catch let error as NSError {
+                print("Error: \(error)")
+            }
+            
+            // Use Swift Soup to parse the HTML source
+            do {
+                // Parse the HTML
+                let reviewDoc = try SwiftSoup.parse(myHTMLString)
+                print("review URL: \(theURL)")
+                
+                //get the total review for the book by using "arp-rating-out-of-text"
+                var ratingStr: String = try reviewDoc.getElementsByClass("arp-rating-out-of-text").text()
+                ratingStr = ratingStr.substring(to: ratingStr.index(of: " ")!)
+                let ratingUnformatted = Double(ratingStr)
+                bookData.rating = Double(String(format: "%.1f", ratingUnformatted!))!
+                
+                
+                // "review" gives us the entire review data
+                let elems: Elements = try reviewDoc.getElementsByClass("review")
+                for review: Element in elems.array(){
+                    
+                    // "review-title" gives us the <a> tag which has the title text
+                    let reviewTitle = try review.getElementsByClass("review-title").text()
+                    print("Review Title: " + reviewTitle)
+                    
+                    // "a-icon-alt" gives you the rating ex: "5.0 out of 5 stars"
+                        // then we can check for the first part of that string to assign to a Double variable
+                    var reviewRatingStr = try review.getElementsByClass("review-rating").text()
+                    //email = email.substring(to: email.index(of: "@")!)
+                    reviewRatingStr = reviewRatingStr.substring(to: reviewRatingStr.index(of: " ")!)
+                    let reviewRating = Double(reviewRatingStr)
+                    print ("Review Rating: \(String(describing: reviewRating))")
+                
+                    // "review-date"
+                    let reviewDate = try review.getElementsByClass("review-date").text()
+                    print("Review Date: " + reviewDate)
+                
+                
+                    let reviewText = try review.getElementsByClass("review-text").text()
+                    print("Review: " + reviewText)
+                    print("---------------------------------------------")
+                }
+                
+                
+                
+
+//                let link: Elements = try doc.select("a[href]")
+//                let linkHref: String = try! link.attr("href");
+                
+//                let elems: Elements = try doc.select("reviewText")
+//                for review: Element in elems.array(){
+//                    let reviewStr: String =  try review.text()
+//                    print("reviewSTR: " + reviewStr)
+//                }
+                
+                
+                
+                
+                
+//                let docBody = doc.body()
+//                //print("Doc Body: ")
+//                //print(docBody)
+//                //print("\n\n")
+//
+//                let elem = try doc.getElementsByClass("crIframeReviewList").get(0)
+//                let table = try elem.getElementsByTag("table").get(0)
+//                let tbody = try table.getElementsByTag("tbody").get(0)
+//                let tr = try tbody.getElementsByTag("tr").get(0)
+//                let td = try tr.getElementsByTag("td").get(0)
+//                let divs = try td.getElementsByTag("div")
+//
+//                print("Doc elem: ")
+//                for div in divs { // each review
+//                    //print("hmm?????")
+//                    //print(div)
+//                    //print(try div.text())
+//
+//                    if (try div.getElementsByTag("b").array().count > 0) {
+//                        print(try div.getElementsByTag("b").get(0))
+//                    }
+//
+//                    if (try div.getElementsByTag("div").array().count > 0) {
+//                        let div_ = try div.getElementsByTag("div").get(0)
+//                        let div__ = try div_.getElementsByTag("div")
+//                        //print(div_)
+//
+//                        if (div__.array().count > 1) {
+//                            let div1 = div__.get(1)
+//                            let div1b = try div1.getElementsByTag("b")
+//                            if (div1b.array().count > 0) {
+//                                let title = try div1b.array()[0].text() // NOT ALWAYS!!!!
+//                                print("Title:: " + title)
+//                            }
+//                        }
+//                    }
+//                }
+                /*
+                 //print(try divs.array()[0].text() + "\n\n\n")
+                 let aaa = try divs.get(0).getElementsByTag("div").get(0)
+                 let bbb = try aaa.getElementsByTag("div").array()[0]
+                 let ccc = try bbb.getElementsByTag("div")
+                 print(bbb)
+                 let title = try ccc.get(1).getElementsByTag("b")
+                 print(try title.text())
+                 //let author = try aaa.get(2).getElementsbyTag("div").get
+                 */
+                
+            } catch {
+                print("error")
+            }
+            
+//            // Start URL session
+//            let urlRequest = URLRequest(url: url)
+//            let session = URLSession.shared
+//
+//            // Unpack the returned XML data
+//            let task = session.dataTask(with: urlRequest) {
+//                (data, response, error) in
+//                // check for any errors
+//                guard error == nil else {
+//                    print("error calling GET on /todos/1")
+//                    print(error!)
+//                    return
+//                }
+//                // make sure we got data
+//                guard let responseData = data else {
+//                    print("Error: did not receive data")
+//                    return
+//                }
+//            }
+//            task.resume()
+    }
 
 //****************************************** Database Functions **********************************************
     func addDataToDB() {
@@ -104,7 +265,8 @@ class PostScanViewController: UIViewController{
                          "ImageURL"  : self.bookData.imageURL,
                          "ReviewURL" : self.bookData.reviewURL,
                          "DateCreated" : self.bookData.DateCreatedAt,
-                         "CreationSecondsSince1970" : self.bookData.SecondsSince1970
+                         "CreationSecondsSince1970" : self.bookData.SecondsSince1970,
+                         "PurchaseURL": self.bookData.purchaseURL
         ] as [String : Any]
         
         
@@ -129,6 +291,11 @@ class PostScanViewController: UIViewController{
         /***********************************************/
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let browserVC: BrowserViewController = segue.destination as! BrowserViewController
+        browserVC.bookData = self.bookData
+    }
 
     /*
      // MARK: - Navigation

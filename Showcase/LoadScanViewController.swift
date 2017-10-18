@@ -399,8 +399,11 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     imageURL ?= items["MediumImage", "URL"].text
                     
                     var reviewURL = "Reviews Not Available"
-                    if (items["CustomerReviews", "HasReviews"].text == "true") {
-                        reviewURL ?= items["CustomerReviews", "IFrameURL"].text
+                    
+                    for itemLink in items["ItemLinks", "ItemLink"]{
+                        if (itemLink["Description"].text == "All Customer Reviews"){
+                            reviewURL ?= itemLink["URL"].text
+                        }
                     }
                     
                     let dateCreatedAt = dateFormatter.string(from: Date()) + " " +
@@ -410,7 +413,12 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     
                     print("Book was created at: ", dateCreatedAt)
                     
-                    let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL, _DateCreatedAt: dateCreatedAt, _SecondsSince1970: secsSince1970)
+                    var purchaseURL = "Purchase URL Not Available"
+                    
+                    purchaseURL ?= items["DetailPageURL"].text
+                    
+                    let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL,
+                                            _DateCreatedAt: dateCreatedAt, _SecondsSince1970: secsSince1970, _purchaseURL: purchaseURL)
                     
                     // insert item into array of books
                     self.scanBookArray.append(tmpBook)
