@@ -109,29 +109,15 @@ class PostScanViewController: UIViewController{
             
             // Use Swift Soup to parse the HTML source
             do {
-                let doc = try SwiftSoup.parse(myHTMLString)
-                
-                // get the All Reviews Link
-                let reviewElem: Elements = try doc.getElementsByClass("asinReviewsSummary")
-                let reviewTag: Elements = try reviewElem.select("a")
-                let reviewLink: String = try! reviewTag.attr("href")
-                print("reviewLink: " + reviewLink)
-                
-                
-                // get the HTML code from the All Reviews URL
-                guard let reviewURL = URL(string: reviewLink) else {
-                    print("Error: cannot create URL")
-                    return
-                }
-                var reviewURlHTMLString = ""
-                do {
-                    reviewURlHTMLString = try String(contentsOf: reviewURL)
-                } catch let error as NSError {
-                    print("Error: \(error)")
-                }
-                
                 // Parse the HTML
-                let reviewDoc = try SwiftSoup.parse(reviewURlHTMLString)
+                let reviewDoc = try SwiftSoup.parse(myHTMLString)
+                print("review URL: \(theURL)")
+                
+                //get the total review for the book by using "arp-rating-out-of-text"
+                var ratingStr: String = try reviewDoc.getElementsByClass("arp-rating-out-of-text").text()
+                ratingStr = ratingStr.substring(to: ratingStr.index(of: " ")!)
+                let ratingUnformatted = Double(ratingStr)
+                bookData.rating = Double(String(format: "%.1f", ratingUnformatted!))!
                 
                 
                 // "review" gives us the entire review data
