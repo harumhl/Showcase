@@ -150,6 +150,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 //get the total review for the book by using "arp-rating-out-of-text"
                 var ratingStr: String = try reviewDoc.getElementsByClass("arp-rating-out-of-text").text()
+                print("RatingStr: ", ratingStr)
                 ratingStr = ratingStr.substring(to: ratingStr.index(of: " ")!)
                 let ratingUnformatted = Double(ratingStr)
                 bookData.rating = Double(String(format: "%.1f", ratingUnformatted!))!

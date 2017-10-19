@@ -77,7 +77,9 @@ class HistoryTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
+    // Update the local copy of the user's book array.
+    // Make sure to update this function as more attributes are gathered from the Database
     func getBookAttributes(aUserBook: NSDictionary) {
         let tempBook = Book()
         tempBook.ISBN = aUserBook.value(forKey: "BookISBN") as! String
@@ -85,6 +87,8 @@ class HistoryTableViewController: UITableViewController {
         tempBook.title = aUserBook.value(forKey: "title") as! String
         tempBook.imageURL = aUserBook.value(forKey: "ImageURL") as! String
         tempBook.price = aUserBook.value(forKey: "Price") as! String
+        tempBook.reviewURL = aUserBook.value(forKey: "ReviewURL") as! String
+        tempBook.SecondsSince1970 = UInt(aUserBook.value(forKey: "CreationSecondsSince1970") as! Int)
         self.userBookArray.append(tempBook)
     }
     
