@@ -63,9 +63,9 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         reviewsTable.delegate = self
         reviewsTable.dataSource = self
         
-        reviewsTable.rowHeight = 125.0
-//        self.reviewsTable.estimatedRowHeight = 125.0
-//        self.reviewsTable.rowHeight = UITableViewAutomaticDimension
+//        reviewsTable.rowHeight = 125.0
+        self.reviewsTable.estimatedRowHeight = 100.0
+        self.reviewsTable.rowHeight = UITableViewAutomaticDimension
     }
     
     // Built in XCode function
