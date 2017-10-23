@@ -83,8 +83,8 @@ class HistoryTableViewController: UITableViewController {
     func getBookAttributes(aUserBook: NSDictionary) {
         let tempBook = Book()
         tempBook.ISBN = aUserBook.value(forKey: "BookISBN") as! String
-        tempBook.author = aUserBook.value(forKey: "author") as! String
-        tempBook.title = aUserBook.value(forKey: "title") as! String
+        tempBook.author = aUserBook.value(forKey: "Author") as! String
+        tempBook.title = aUserBook.value(forKey: "Title") as! String
         tempBook.imageURL = aUserBook.value(forKey: "ImageURL") as! String
         tempBook.price = aUserBook.value(forKey: "Price") as! String
         tempBook.reviewURL = aUserBook.value(forKey: "ReviewURL") as! String

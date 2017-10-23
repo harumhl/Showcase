@@ -206,8 +206,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         let bookKey = ref.childByAutoId().key
         
         let bookData =  ["BookID"    : bookKey,
-                         "title"     : self.bookData.title,
-                         "author"    : self.bookData.author,
+                         "Title"     : self.bookData.title,
+                         "Author"    : self.bookData.author,
                          "BookISBN"  : self.bookData.ISBN,
                          "Price"     : self.bookData.price,
                          "LocationID": locKey,
