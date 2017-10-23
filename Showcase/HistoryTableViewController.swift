@@ -89,6 +89,7 @@ class HistoryTableViewController: UITableViewController {
         tempBook.price = aUserBook.value(forKey: "Price") as! String
         tempBook.reviewURL = aUserBook.value(forKey: "ReviewURL") as! String
         tempBook.SecondsSince1970 = UInt(aUserBook.value(forKey: "CreationSecondsSince1970") as! Int)
+        tempBook.purchaseURL = aUserBook.value(forKey: "PurchaseURL") as! String
         self.userBookArray.append(tempBook)
     }
     
