@@ -52,20 +52,27 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
 //        cosmosView.settings.filledBorderColor = UIColor.black
         
         // Updating the Display
-        self.getReviewsFromReviewURL()
         self.displayBookInfo()
+        
         if !fromHistory {
             addDataToDB()
             fromHistory = false
         }
         
         // for the ReviewTable
-        reviewsTable.delegate = self
-        reviewsTable.dataSource = self
+        self.reviewsTable.delegate = self
+        self.reviewsTable.dataSource = self
         
-//        reviewsTable.rowHeight = 125.0
+        //        reviewsTable.rowHeight = 125.0
         self.reviewsTable.estimatedRowHeight = 100.0
         self.reviewsTable.rowHeight = UITableViewAutomaticDimension
+        
+        DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
+            self.getReviewsFromReviewURL()
+            //self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true)
+            self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+
+        }
     }
     
     // Built in XCode function

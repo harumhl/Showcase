@@ -480,7 +480,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="359" height="121.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y3o-uj-WJm" customClass="CosmosView" customModule="Cosmos">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3o-uj-WJm" customClass="CosmosView" customModule="Cosmos">
                                                     <rect key="frame" x="8" y="8" width="124" height="17"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
@@ -928,7 +928,7 @@
         <image name="password" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SMw-y1-bM6"/>
+        <segue reference="c9n-G5-1Sd"/>
         <segue reference="Vbo-XZ-KDs"/>
     </inferredMetricsTieBreakers>
 </document>
