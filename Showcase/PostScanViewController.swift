@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import Cosmos
 import SwiftSoup
+import SafariServices
+
 
 class PostScanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var theBarcodeData: String = ""
@@ -37,7 +39,9 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     @IBAction func PurchaseBook(_ sender: Any) {
-        performSegue(withIdentifier: "PostToBrowser", sender: self)
+        // performSegue(withIdentifier: "PostToBrowser", sender: self)
+        let svc = SFSafariViewController(url: URL(string: bookData.purchaseURL)!)
+        self.present(svc, animated: true, completion: nil)
     }
     
     // Stuff that runs when the VC is loaded

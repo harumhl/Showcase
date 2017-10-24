@@ -408,25 +408,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcb-Rb-vlH" userLabel="bookTitle">
-                                <rect key="frame" x="191" y="92" width="176" height="21"/>
+                                <rect key="frame" x="191" y="72" width="176" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHh-Fk-zx1" userLabel="bookAuthor">
-                                <rect key="frame" x="191" y="121" width="168" height="21"/>
+                                <rect key="frame" x="191" y="101" width="168" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-39-3Da" userLabel="bookPrice">
-                                <rect key="frame" x="191" y="182" width="176" height="21"/>
+                                <rect key="frame" x="191" y="162" width="176" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.91943359375" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbE-A1-Uej" userLabel="bookRating" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="191" y="150" width="168" height="21"/>
+                                <rect key="frame" x="191" y="130" width="168" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
@@ -450,14 +450,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kos-cJ-pRp" userLabel="bookImage">
-                                <rect key="frame" x="8" y="92" width="175" height="201"/>
+                                <rect key="frame" x="8" y="72" width="175" height="201"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="201" id="XP5-Yn-i07"/>
                                     <constraint firstAttribute="width" constant="175" id="k2N-4G-5tm"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-5t-S0o" userLabel="bookPurchase">
-                                <rect key="frame" x="8" y="301" width="359" height="30"/>
+                                <rect key="frame" x="8" y="281" width="359" height="30"/>
                                 <color key="backgroundColor" red="0.5483074104403991" green="1" blue="0.56352840300104834" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Purchase">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -467,7 +467,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WIh-V4-VKh">
-                                <rect key="frame" x="8" y="371.5" width="359" height="251.5"/>
+                                <rect key="frame" x="8" y="351.5" width="359" height="271.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="359" id="FEZ-KG-tvM"/>
@@ -559,7 +559,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3K-a8-zfc">
-                                <rect key="frame" x="147.5" y="344" width="79" height="25"/>
+                                <rect key="frame" x="147.5" y="324" width="79" height="25"/>
                                 <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
