@@ -34,6 +34,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
         
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     @IBAction func PurchaseBook(_ sender: Any) {
         performSegue(withIdentifier: "PostToBrowser", sender: self)
     }
@@ -53,6 +55,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Updating the Display
         self.displayBookInfo()
+        self.activityIndicatorView.startAnimating()
+
         
         if !fromHistory {
             addDataToDB()
@@ -69,9 +73,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         
         DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
             self.getReviewsFromReviewURL()
-            //self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true)
-            self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-
+            
+            self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
         }
     }
     
@@ -191,10 +194,16 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                     
                     let tmpReview = Review.init(_title: reviewTitle, _rating: reviewRating!, _date: reviewDate, _review: reviewText)
                     self.reviewArray.append(tmpReview)
+                    
+                    self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
                 }
+                self.activityIndicatorView.stopAnimating()
+                self.activityIndicatorView.isHidden = true
+
             } catch {
                 print("error")
             }
+
     }
 
 //****************************************** Database Functions **********************************************

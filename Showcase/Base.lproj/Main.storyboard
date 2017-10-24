@@ -564,6 +564,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CXx-0F-cG1">
+                                <rect key="frame" x="177" y="355" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -607,6 +611,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="CXx-0F-cG1" id="Ute-cI-VUH"/>
                         <outlet property="bookAuthor" destination="zHh-Fk-zx1" id="Wjw-jg-v2W"/>
                         <outlet property="bookImage" destination="kos-cJ-pRp" id="2EF-nf-WPc"/>
                         <outlet property="bookPrice" destination="x0h-39-3Da" id="NLH-UB-UWV"/>
