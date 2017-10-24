@@ -119,10 +119,6 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         bookAuthor.text = bookData.author
         bookPrice.text = bookData.price
         
-        // Display the rating with stars (not the number)
-        // https://github.com/evgenyneu/Cosmos
-        cosmosView.rating = bookData.rating
-        cosmosView.text = String(format:"%.2f", bookData.rating)
     }
     
     
@@ -165,6 +161,11 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 let ratingUnformatted = Double(ratingStr)
                 bookData.rating = Double(String(format: "%.1f", ratingUnformatted!))!
                 
+                // Display the rating with stars (not the number)
+                // https://github.com/evgenyneu/Cosmos
+                cosmosView.rating = bookData.rating
+                cosmosView.text = String(format:"%.2f", bookData.rating)
+
                 
                 // "review" gives us the entire review data
                 let elems: Elements = try reviewDoc.getElementsByClass("review")
