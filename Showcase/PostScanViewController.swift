@@ -11,13 +11,17 @@ import Firebase
 import Cosmos
 import SwiftSoup
 import SafariServices
-
+import FacebookCore
+import FacebookLogin
+import FBSDKCoreKit
 
 class PostScanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var theBarcodeData: String = ""
     var fromHistory: Bool = false
     
     var bookData = Book()
+    var storeAddress: String = ""
+    var storeAssociateTag: String = ""
     var longitude = 0.0
     var latitude = 0.0
     
@@ -39,9 +43,42 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     @IBAction func PurchaseBook(_ sender: Any) {
-        // performSegue(withIdentifier: "PostToBrowser", sender: self)
-        let svc = SFSafariViewController(url: URL(string: bookData.purchaseURL)!)
-        self.present(svc, animated: true, completion: nil)
+        // Set Firebase DB reference
+        ref = Database.database().reference()
+        self.ref?.child("store").observe(DataEventType.value, with: { (snapshot) in
+            // grab the list of all books
+            let allStores = snapshot.value as? NSDictionary
+            if (allStores == nil) { return }
+            
+            // Loop through the stores and grab the storeKey value. A store entry is a dictionary ('storeID' -> 'storeKey')
+            print("self store address")
+            print(self.storeAddress)
+            for (_, value) in allStores! {
+                let dbStore = value as! NSDictionary
+                let dbStoreAddress = dbStore["address"] as! String
+                print(dbStoreAddress)
+                
+                if (dbStoreAddress == self.storeAddress) { // storeAddress is the current store address
+                    self.storeAssociateTag = dbStore["associateTag"] as! String
+                }
+            }
+            
+            if (self.storeAssociateTag != "") {
+                self.bookData.purchaseURL = ""
+                self.bookData.purchaseURL = "https://www.amazon.com/gp/product/"
+                self.bookData.purchaseURL += self.bookData.ASIN
+                self.bookData.purchaseURL += "/ref=as_li_tl?ie=UTF8&tag="
+                self.bookData.purchaseURL += self.storeAssociateTag
+                self.bookData.purchaseURL += "&camp=1789&creative=9325&linkCode=as2&creativeASIN="
+                self.bookData.purchaseURL += self.bookData.ASIN
+            }
+            
+            //storeAddress
+            print("Purchase clicked")
+            print(self.bookData.purchaseURL)
+            let svc = SFSafariViewController(url: URL(string: self.bookData.purchaseURL)!)
+            self.present(svc, animated: true, completion: nil)
+        })
     }
     
     // Stuff that runs when the VC is loaded
@@ -245,54 +282,75 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         if user.isSignedIn {
             email = user.email.substring(to: user.email.index(of: "@")!)
             print("substring email: ", email)
+        } else {
+             // The user might be logged in with Facebook
+        
+            let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
+            
+                req.start({ (response, result) in
+                    switch result {
+                    case .success(let graphResponse) :
+                        if let resultDict = graphResponse.dictionaryValue {
+                            email = resultDict["email"] as! String
+                            print("FB Email1: ", email)
+                            email = email.substring(to: email.index(of: "@")!)
+                            print("FB Email2: ", email)
+                        }
+                    case .failed(_): break
+                        
+                    }
+                })
+            
         }
+
+            print("FB Email3: ", email)
+            
         
-        /*************** WRITTEN TO DB ****************/
-        
-        let locKey = ref.childByAutoId().key
-        let bookKey = ref.childByAutoId().key
-        
-        let bookData =  ["BookID"    : bookKey,
-                         "Title"     : self.bookData.title,
-                         "Author"    : self.bookData.author,
-                         "BookISBN"  : self.bookData.ISBN,
-                         "Price"     : self.bookData.price,
-                         "LocationID": locKey,
-                         "Purchased" : false,
-                         "ImageURL"  : self.bookData.imageURL,
-                         "ReviewURL" : self.bookData.reviewURL,
-                         "DateCreated" : self.bookData.DateCreatedAt,
-                         "CreationSecondsSince1970" : self.bookData.SecondsSince1970,
-                         "PurchaseURL": self.bookData.purchaseURL
-        ] as [String : Any]
-        
-        
-        let locationData = ["LocationID": locKey,
-                            "Long": longitude,
-                            "Lat": latitude
-        ] as [String : Any]
-        
-        let userBookData = ["bookID": "bookKey" + bookKey]
-        
-        // Write a book to the DB
-        ref.child("/book/bookKey" + bookKey).setValue(bookData)
-        
-        // Write a location to the DB
-        ref.child("/location/loc" + locKey).setValue(locationData)
-        
-        // Ensure that no book gets overwritten for a user
-        let bookRef = ref.child("/user/" + email + "/books")
-        let thisBookRef = bookRef.childByAutoId()
-        thisBookRef.setValue(userBookData)
-        
-        /***********************************************/
+            /*************** WRITTEN TO DB ****************/
+            
+            let locKey = ref.childByAutoId().key
+            let bookKey = ref.childByAutoId().key
+            
+            let bookData =  ["BookID"    : bookKey,
+                             "Title"     : self.bookData.title,
+                             "Author"    : self.bookData.author,
+                             "BookISBN"  : self.bookData.ISBN,
+                             "Price"     : self.bookData.price,
+                             "LocationID": locKey,
+                             "Purchased" : false,
+                             "ImageURL"  : self.bookData.imageURL,
+                             "ReviewURL" : self.bookData.reviewURL,
+                             "DateCreated" : self.bookData.DateCreatedAt,
+                             "CreationSecondsSince1970" : self.bookData.SecondsSince1970,
+                             "PurchaseURL": self.bookData.purchaseURL
+            ] as [String : Any]
+            
+            
+            let locationData = ["LocationID": locKey,
+                                "Long": longitude,
+                                "Lat": latitude
+            ] as [String : Any]
+            
+            let userBookData = ["bookID": "bookKey" + bookKey]
+            
+            // Write a book to the DB
+            ref.child("/book/bookKey" + bookKey).setValue(bookData)
+            
+            // Write a location to the DB
+            ref.child("/location/loc" + locKey).setValue(locationData)
+            
+            // Ensure that no book gets overwritten for a user
+            // Embrace nature of syncrhnous programming
+            let when = DispatchTime.now() + 0.1
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                print ("Writing to user: ", email)
+                let bookRef = self.ref.child("/user/" + email + "/books")
+                let thisBookRef = bookRef.childByAutoId()
+                thisBookRef.setValue(userBookData)
+            }
+            /***********************************************/
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        let browserVC: BrowserViewController = segue.destination as! BrowserViewController
-        browserVC.bookData = self.bookData
-    }
 
     /*
      // MARK: - Navigation

@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FacebookCore
 import FacebookLogin
+import FBSDKCoreKit
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate{
@@ -69,14 +70,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func facebookLogin(_ sender: Any) {
         let loginManager = LoginManager()
-        loginManager.logIn([ ReadPermission.publicProfile ], viewController: self) { loginResult in
+        loginManager.logIn([ ReadPermission.publicProfile, ReadPermission.email, ReadPermission.userFriends ], viewController: self) { loginResult in
             switch loginResult {
             case .failed(let error):
                 print(error)
             case .cancelled:
                 print("User cancelled login.")
-            case .success( _, _, _):
-                print("Logged in!")
+            case .success(_, _, _):
+                print("Logged in!\n")
+                self.performSegue(withIdentifier: "loginToRootSegue", sender: nil)
             }
         }
     }
@@ -104,31 +106,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 self.performSegue(withIdentifier: "loginToRootSegue", sender: nil)
             }
         }
-//        
-//        if (email != "" && pwd != "") {
-//
-//
-//            // handles loging in. Based on response from firebase.
-//            // It tells us if user has an accout.
-//            DataService.ds.REF_BASE.authUser(email, password: pwd, withCompletionBock: {
-//                error, authData in
-//                
-//                
-//                if error != nil {
-//                    print(error)
-//                }
-//            })
-//        }
-//        else {
-//             // showErrorAlert("Email and Password Requried", msg: "You must enter an email and a password")
-//        
-//        
-//        
-//        }
-//        // ...
-        
-        // segue
-        
         
     }
     
@@ -137,10 +114,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         self.performSegue(withIdentifier: "LoginToSignUp", sender: nil)
     }
     
-    // resusable function that creates alerts
-//    func showErrorAlert(title: String, msg: String) {
-//
-//    }
     
     // presses the return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
