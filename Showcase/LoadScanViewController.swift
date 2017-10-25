@@ -94,11 +94,12 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         self.loadingIndicator.startAnimating()
         
         // user defined functions
-        getLocation()
-        // using closures to construct our object then perform the function selectBook()
-        self.amazonSearch { () -> () in
-            //self.getReviewsFromReviewURL() // TEMP TEMP TEMP
-            self.selectBook()
+        self.getLocation{ () -> () in
+            // using closures to construct our object then perform the function selectBook()
+            self.amazonSearch { () -> () in
+                //self.getReviewsFromReviewURL() // TEMP TEMP TEMP
+                self.selectBook()
+            }
         }
         // Do any additional setup after loading the view.
     }
@@ -113,9 +114,13 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
             // Pass in the Book object that the user selects
             postScanVC.bookData = scanBookArray[bookToPass]
+            print("segue")
+            print(self.address)
+            postScanVC.storeAddress = self.address
         }else if(scanBookArray.count > 1){
             let resultsTblVC: ResultsViewController = segue.destination as! ResultsViewController
             resultsTblVC.scanBookArray = scanBookArray
+            resultsTblVC.storeAddress = self.address
         }
     }
     
@@ -143,7 +148,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     
 // ****************************************** GPS Functions ***************************************************
     // gets the GPS longitude and latitude, then passes to function to determine the business you are in
-    func getLocation(){
+    func getLocation(handleComplete:@escaping (()->())){
         // get Longitude and Latitude
         locManager.delegate = self as! CLLocationManagerDelegate
         locManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -159,8 +164,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             //print("Longitude: \(longitude)")
             //print("Latitude: \(latitude)")
             
-            let originLocation = CLLocation(latitude: latitude, longitude: longitude)
-            //let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)
+            //let originLocation = CLLocation(latitude: latitude, longitude: longitude)
+            let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)
             //let originLocation = CLLocation(latitude: 30.624211, longitude: -96.329536)
             
             getPlacemark(forLocation: originLocation) {
@@ -178,6 +183,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             // Ask Brian how did a pop up
             print("did not allow gps")
         }
+        handleComplete()
     }
     
     // Gets the placemarker data
@@ -414,11 +420,13 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     print("Book was created at: ", dateCreatedAt)
                     
                     var purchaseURL = "Purchase URL Not Available"
-                    
                     purchaseURL ?= items["DetailPageURL"].text
                     
+                    var ASIN = "ASIN Not Available"
+                    ASIN ?= items["ASIN"].text
+                    
                     let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL,
-                                            _DateCreatedAt: dateCreatedAt, _SecondsSince1970: secsSince1970, _purchaseURL: purchaseURL)
+                                            _DateCreatedAt: dateCreatedAt, _SecondsSince1970: secsSince1970, _purchaseURL: purchaseURL, _ASIN: ASIN)
                     
                     // insert item into array of books
                     self.scanBookArray.append(tmpBook)
