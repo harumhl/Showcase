@@ -18,6 +18,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     var fromHistory: Bool = false
     
     var bookData = Book()
+    var storeAddress: String = ""
+    var storeAssociateTag: String = ""
     var longitude = 0.0
     var latitude = 0.0
     
@@ -39,9 +41,42 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     @IBAction func PurchaseBook(_ sender: Any) {
-        // performSegue(withIdentifier: "PostToBrowser", sender: self)
-        let svc = SFSafariViewController(url: URL(string: bookData.purchaseURL)!)
-        self.present(svc, animated: true, completion: nil)
+        // Set Firebase DB reference
+        ref = Database.database().reference()
+        self.ref?.child("store").observe(DataEventType.value, with: { (snapshot) in
+            // grab the list of all books
+            let allStores = snapshot.value as? NSDictionary
+            if (allStores == nil) { return }
+            
+            // Loop through the stores and grab the storeKey value. A store entry is a dictionary ('storeID' -> 'storeKey')
+            print("self store address")
+            print(self.storeAddress)
+            for (_, value) in allStores! {
+                let dbStore = value as! NSDictionary
+                let dbStoreAddress = dbStore["address"] as! String
+                print(dbStoreAddress)
+                
+                if (dbStoreAddress == self.storeAddress) { // storeAddress is the current store address
+                    self.storeAssociateTag = dbStore["associateTag"] as! String
+                }
+            }
+            
+            if (self.storeAssociateTag != "") {
+                self.bookData.purchaseURL = ""
+                self.bookData.purchaseURL = "https://www.amazon.com/gp/product/"
+                self.bookData.purchaseURL += self.bookData.ASIN
+                self.bookData.purchaseURL += "/ref=as_li_tl?ie=UTF8&tag="
+                self.bookData.purchaseURL += self.storeAssociateTag
+                self.bookData.purchaseURL += "&camp=1789&creative=9325&linkCode=as2&creativeASIN="
+                self.bookData.purchaseURL += self.bookData.ASIN
+            }
+            
+            //storeAddress
+            print("Purchase clicked")
+            print(self.bookData.purchaseURL)
+            let svc = SFSafariViewController(url: URL(string: self.bookData.purchaseURL)!)
+            self.present(svc, animated: true, completion: nil)
+        })
     }
     
     // Stuff that runs when the VC is loaded
