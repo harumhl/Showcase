@@ -11,7 +11,9 @@ import Firebase
 import Cosmos
 import SwiftSoup
 import SafariServices
-
+import FacebookCore
+import FacebookLogin
+import FBSDKCoreKit
 
 class PostScanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var theBarcodeData: String = ""
@@ -219,54 +221,75 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         if user.isSignedIn {
             email = user.email.substring(to: user.email.index(of: "@")!)
             print("substring email: ", email)
+        } else {
+             // The user might be logged in with Facebook
+        
+            let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
+            
+                req.start({ (response, result) in
+                    switch result {
+                    case .success(let graphResponse) :
+                        if let resultDict = graphResponse.dictionaryValue {
+                            email = resultDict["email"] as! String
+                            print("FB Email1: ", email)
+                            email = email.substring(to: email.index(of: "@")!)
+                            print("FB Email2: ", email)
+                        }
+                    case .failed(_): break
+                        
+                    }
+                })
+            
         }
+
+            print("FB Email3: ", email)
+            
         
-        /*************** WRITTEN TO DB ****************/
-        
-        let locKey = ref.childByAutoId().key
-        let bookKey = ref.childByAutoId().key
-        
-        let bookData =  ["BookID"    : bookKey,
-                         "Title"     : self.bookData.title,
-                         "Author"    : self.bookData.author,
-                         "BookISBN"  : self.bookData.ISBN,
-                         "Price"     : self.bookData.price,
-                         "LocationID": locKey,
-                         "Purchased" : false,
-                         "ImageURL"  : self.bookData.imageURL,
-                         "ReviewURL" : self.bookData.reviewURL,
-                         "DateCreated" : self.bookData.DateCreatedAt,
-                         "CreationSecondsSince1970" : self.bookData.SecondsSince1970,
-                         "PurchaseURL": self.bookData.purchaseURL
-        ] as [String : Any]
-        
-        
-        let locationData = ["LocationID": locKey,
-                            "Long": longitude,
-                            "Lat": latitude
-        ] as [String : Any]
-        
-        let userBookData = ["bookID": "bookKey" + bookKey]
-        
-        // Write a book to the DB
-        ref.child("/book/bookKey" + bookKey).setValue(bookData)
-        
-        // Write a location to the DB
-        ref.child("/location/loc" + locKey).setValue(locationData)
-        
-        // Ensure that no book gets overwritten for a user
-        let bookRef = ref.child("/user/" + email + "/books")
-        let thisBookRef = bookRef.childByAutoId()
-        thisBookRef.setValue(userBookData)
-        
-        /***********************************************/
+            /*************** WRITTEN TO DB ****************/
+            
+            let locKey = ref.childByAutoId().key
+            let bookKey = ref.childByAutoId().key
+            
+            let bookData =  ["BookID"    : bookKey,
+                             "Title"     : self.bookData.title,
+                             "Author"    : self.bookData.author,
+                             "BookISBN"  : self.bookData.ISBN,
+                             "Price"     : self.bookData.price,
+                             "LocationID": locKey,
+                             "Purchased" : false,
+                             "ImageURL"  : self.bookData.imageURL,
+                             "ReviewURL" : self.bookData.reviewURL,
+                             "DateCreated" : self.bookData.DateCreatedAt,
+                             "CreationSecondsSince1970" : self.bookData.SecondsSince1970,
+                             "PurchaseURL": self.bookData.purchaseURL
+            ] as [String : Any]
+            
+            
+            let locationData = ["LocationID": locKey,
+                                "Long": longitude,
+                                "Lat": latitude
+            ] as [String : Any]
+            
+            let userBookData = ["bookID": "bookKey" + bookKey]
+            
+            // Write a book to the DB
+            ref.child("/book/bookKey" + bookKey).setValue(bookData)
+            
+            // Write a location to the DB
+            ref.child("/location/loc" + locKey).setValue(locationData)
+            
+            // Ensure that no book gets overwritten for a user
+            // Embrace nature of syncrhnous programming
+            let when = DispatchTime.now() + 0.1
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                print ("Writing to user: ", email)
+                let bookRef = self.ref.child("/user/" + email + "/books")
+                let thisBookRef = bookRef.childByAutoId()
+                thisBookRef.setValue(userBookData)
+            }
+            /***********************************************/
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        let browserVC: BrowserViewController = segue.destination as! BrowserViewController
-        browserVC.bookData = self.bookData
-    }
 
     /*
      // MARK: - Navigation

@@ -11,14 +11,14 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1872963443019797</string>
+				<string>fb1662856460444866</string>
 			</array>
 		</dict>
 	</array>
 	<key>FacebookDisplayName</key>
-	<string>Showcase</string>
+	<string>Showcase482</string>
 	<key>FacebookAppID</key>
-	<string>1872963443019797</string>
+	<string>1662856460444866</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Your permission is required to properly use this application.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

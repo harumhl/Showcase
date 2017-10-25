@@ -620,30 +620,11 @@
                         <outlet property="bookTitle" destination="Gcb-Rb-vlH" id="nZu-xR-zH6"/>
                         <outlet property="cosmosView" destination="ZbE-A1-Uej" id="ADQ-fM-nsN"/>
                         <outlet property="reviewsTable" destination="WIh-V4-VKh" id="7jq-bd-7aC"/>
-                        <segue destination="2b9-t6-zE9" kind="show" identifier="PostToBrowser" id="J9e-Qx-LPL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCa-wn-RAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4768.8000000000002" y="167.76611694152925"/>
-        </scene>
-        <!--Browser View Controller-->
-        <scene sceneID="CyW-AL-wYf">
-            <objects>
-                <viewController id="2b9-t6-zE9" customClass="BrowserViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eYG-wm-wtF"/>
-                        <viewControllerLayoutGuide type="bottom" id="dDW-0o-Ii9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6Wn-tQ-wtC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2zG-HG-7Zy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5545" y="168"/>
         </scene>
         <!--History Table View Controller-->
         <scene sceneID="ZC7-aK-sI1">

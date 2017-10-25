@@ -8,6 +8,10 @@
 
 import UIKit
 import Firebase
+import FacebookCore
+import FacebookLogin
+import FBSDKCoreKit
+
 
 class HistoryTableViewController: UITableViewController {
 
@@ -33,42 +37,59 @@ class HistoryTableViewController: UITableViewController {
         if let user = user {
             email = user.email!
             email = email.substring(to: email.index(of: "@")!)
+        } else {
+            // The user might be logged in with Facebook
+            let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
+                req.start({ (response, result) in
+                    switch result {
+                    case .success(let graphResponse) :
+                        if let resultDict = graphResponse.dictionaryValue {
+                            email = resultDict["email"] as! String
+                            print("FB Email1: ", email)
+                            email = email.substring(to: email.index(of: "@")!)
+                            print("FB Email2: ", email)
+                        }
+                    case .failed(_): break
+                        
+                    }
+                })
+            
         }
         
-        self.title = "Scan history for " + email
-        
-        
-        // Get book data from database
-        ref?.child("user").child(email + "/books").observe(DataEventType.value, with: { (snapshot) in
-            // Grab the list user's book list (UniqueKey -> bookID)
-            self.userBookArray = [Book]()
-            let userBooks = snapshot.value as? NSDictionary
-            if (userBooks == nil) { return }
-            self.ref?.child("book").observe(DataEventType.value, with: { (snapshot2) in
-                // grab the list of all books
-                let allBooks = snapshot2.value as? NSDictionary
-                if (allBooks == nil) { return }
-                // Loop through the user's books and grab the bookKey value. A user's book entry is a dictionary ('bookID' -> 'bookKey')
-                for (_, value) in userBooks!{
-                    // See if we can find the user's book in the main book list.
-                    let userBook = value as! NSDictionary
-                    let theUserBookKey = userBook["bookID"]
-                    // find the users book from the set of all books
-                    if allBooks![theUserBookKey as Any] != nil {
-                        let aUserBook = allBooks![theUserBookKey!] as! NSDictionary
-                        // Grab Book fields from DB
-                        self.getBookAttributes(aUserBook: aUserBook)
+        // Embrace nature of syncrhnous programming
+        let when = DispatchTime.now() + 0.5
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            print("FB Email3: ", email)
+            self.title = "Scan history for " + email
+            // Get book data from database
+            self.ref?.child("user").child(email + "/books").observe(DataEventType.value, with: { (snapshot) in
+                // Grab the list user's book list (UniqueKey -> bookID)
+                self.userBookArray = [Book]()
+                let userBooks = snapshot.value as? NSDictionary
+                if (userBooks == nil) { return }
+                self.ref?.child("book").observe(DataEventType.value, with: { (snapshot2) in
+                    // grab the list of all books
+                    let allBooks = snapshot2.value as? NSDictionary
+                    if (allBooks == nil) { return }
+                    // Loop through the user's books and grab the bookKey value. A user's book entry is a dictionary ('bookID' -> 'bookKey')
+                    for (_, value) in userBooks!{
+                        // See if we can find the user's book in the main book list.
+                        let userBook = value as! NSDictionary
+                        let theUserBookKey = userBook["bookID"]
+                        // find the users book from the set of all books
+                        if allBooks![theUserBookKey as Any] != nil {
+                            let aUserBook = allBooks![theUserBookKey!] as! NSDictionary
+                            // Grab Book fields from DB
+                            self.getBookAttributes(aUserBook: aUserBook)
+                        }
                     }
-                }
-                // Reload the table view
-                // If the seconds since 1970 is a greater value, then it is more recent
-                self.userBookArray.sort { $0.SecondsSince1970 > $1.SecondsSince1970 }
-                self.historyTable.reloadData()
+                    // Reload the table view
+                    // If the seconds since 1970 is a greater value, then it is more recent
+                    self.userBookArray.sort { $0.SecondsSince1970 > $1.SecondsSince1970 }
+                    self.historyTable.reloadData()
+                })
             })
-        })
-        
-        
-        
+        }
 
         
         // Uncomment the following line to preserve selection between presentations
