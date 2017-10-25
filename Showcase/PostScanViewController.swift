@@ -35,7 +35,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var bookPrice: UILabel!
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
-        
+    
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     @IBAction func PurchaseBook(_ sender: Any) {
@@ -47,6 +47,10 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     // Stuff that runs when the VC is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+ 
+        
         
         // Do any additional setup after loading the view.
         
@@ -71,15 +75,25 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         self.reviewsTable.delegate = self
         self.reviewsTable.dataSource = self
         
-        //        reviewsTable.rowHeight = 125.0
+        // reviewsTable.rowHeight = 125.0
         self.reviewsTable.estimatedRowHeight = 100.0
         self.reviewsTable.rowHeight = UITableViewAutomaticDimension
         
-        DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
-            self.getReviewsFromReviewURL()
-            
-            self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
-        }
+        
+        self.getReviewsFromReviewURL()  
+//
+//        DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
+//            self.getReviewsFromReviewURL()
+//            DispatchQueue.main.async {
+//                self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
+//                self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+//            }
+//
+//        }
+//        DispatchQueue.main.async {
+//            self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
+//            self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+//        }
     }
     
     // Built in XCode function
@@ -127,8 +141,6 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func getReviewsFromReviewURL() {
-        
-        
             let theURL = bookData.reviewURL
             print("Review URL: " + theURL)
             
@@ -136,13 +148,16 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             if (theURL == "Reviews Not Available") {
                 print("Reviews Not Available")
             }
-            
+        
+            print("validating URL....")
             // Check the validity of the URL ("guard" checks it)
             guard let url = URL(string: theURL) else {
                 print("Error: cannot create URL")
                 return
             }
-            
+            print("Done")
+        
+            print("get HTML String...")
             // Get the HTML source from the URL
             var myHTMLString = ""
             do {
@@ -151,12 +166,14 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             } catch let error as NSError {
                 print("Error: \(error)")
             }
+            print("Done ")
             
             // Use Swift Soup to parse the HTML source
             do {
                 // Parse the HTML
+                print("parsing....")
                 let reviewDoc = try SwiftSoup.parse(myHTMLString)
-                print("review URL: \(theURL)")
+                print("done parsing")
                 
                 //get the total review for the book by using "arp-rating-out-of-text"
                 var ratingStr: String = try reviewDoc.getElementsByClass("arp-rating-out-of-text").text()
@@ -169,6 +186,10 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 // https://github.com/evgenyneu/Cosmos
                 cosmosView.rating = bookData.rating
                 cosmosView.text = String(format:"%.2f", bookData.rating)
+//                DispatchQueue.main.async {
+                    self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
+//                }
+                
 
                 
                 // "review" gives us the entire review data
@@ -200,7 +221,12 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                     let tmpReview = Review.init(_title: reviewTitle, _rating: reviewRating!, _date: reviewDate, _review: reviewText)
                     self.reviewArray.append(tmpReview)
                     
-                    self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+                    
+//                    DispatchQueue.main.async {
+//                        // refreshes tableView with data
+                        self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+//                    }
+                    
                 }
                 self.activityIndicatorView.stopAnimating()
                 self.activityIndicatorView.isHidden = true

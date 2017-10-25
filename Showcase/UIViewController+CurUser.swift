@@ -15,7 +15,7 @@ extension UIViewController {
     // Check authentication and grab the currently signed in user.
     func getUser() -> UserClass {
         let curUser = UserClass()
-        var email = "csce482@gmail.com"
+        var email = ""
         let user = Auth.auth().currentUser
         if let user = user {
             print("starting...")
