@@ -21,6 +21,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     
     var bookData = Book()
     var storeAddress: String = ""
+    var storeName: String = "nnnnn"
     var storeAssociateTag: String = ""
     var longitude = 0.0
     var latitude = 0.0
@@ -39,7 +40,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var bookPrice: UILabel!
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
-        
+    @IBOutlet weak var storeLoc: UILabel!
+    
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     @IBAction func PurchaseBook(_ sender: Any) {
@@ -85,6 +87,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("****** store: \(self.storeName)")
+        
         // Do any additional setup after loading the view.
         
         // Getting the setting for Star Rating display
@@ -97,6 +101,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         // Updating the Display
         self.displayBookInfo()
         self.activityIndicatorView.startAnimating()
+        
+        //self.title = self.storeName
 
         
         if !fromHistory {
@@ -157,9 +163,9 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         bookTitle.text = bookData.title
-        bookAuthor.text = bookData.author
+        bookAuthor.text = self.storeName//bookData.author
         bookPrice.text = bookData.price
-        
+        //storeLoc.text = self.storeName
     }
     
     
