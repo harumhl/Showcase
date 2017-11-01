@@ -14,7 +14,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var previewLayerCameraUI: AVCaptureVideoPreviewLayer!
     var scannedBarcodeData: String = ""
+    
+    @IBOutlet weak var cameraUIview: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +71,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         view.layer.addSublayer(previewLayer)
+
+        cameraUIview.image = UIImage(named: "cameraUI")
+        self.view.bringSubview(toFront: cameraUIview)
 
         captureSession.startRunning();
     }
