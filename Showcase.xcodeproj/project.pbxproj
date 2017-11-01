@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		081A46CE1FAA7DD700A4FBEA /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081A46CD1FAA7DD600A4FBEA /* Keys.swift */; };
+		081A46D01FAA881100A4FBEA /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081A46CF1FAA881000A4FBEA /* Keys.swift */; };
 		085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085F5E611F7C5150003200C5 /* SignUpViewController.swift */; };
 		08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BA96DE1F706C71001875BF /* PostScanViewController.swift */; };
 		08C66B101F8F16120036FA82 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C66B0F1F8F16120036FA82 /* HistoryTableViewCell.swift */; };
@@ -59,7 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		081A46CD1FAA7DD600A4FBEA /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../../Downloads/Keys.swift; sourceTree = "<group>"; };
+		081A46CF1FAA881000A4FBEA /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../../Downloads/Keys.swift; sourceTree = "<group>"; };
 		085F5E611F7C5150003200C5 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		08BA96DE1F706C71001875BF /* PostScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostScanViewController.swift; sourceTree = "<group>"; };
 		08C66B0F1F8F16120036FA82 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 		5E0CEEE41F730FBD009EADF6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				081A46CD1FAA7DD600A4FBEA /* Keys.swift */,
+				081A46CF1FAA881000A4FBEA /* Keys.swift */,
 				5E0CEEE51F730FD7009EADF6 /* Constants.swift */,
 			);
 			name = Utils;
@@ -611,7 +611,7 @@
 				5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */,
 				5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */,
 				4ED24BCE1F8EB40B000407C2 /* ResultsTableViewCell.swift in Sources */,
-				081A46CE1FAA7DD700A4FBEA /* Keys.swift in Sources */,
+				081A46D01FAA881100A4FBEA /* Keys.swift in Sources */,
 				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
 				5E47E7311F739485002B703D /* MaterialButton.swift in Sources */,
 				08C66B101F8F16120036FA82 /* HistoryTableViewCell.swift in Sources */,
