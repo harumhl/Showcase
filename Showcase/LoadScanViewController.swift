@@ -69,11 +69,7 @@ extension String {
 }
 /******************************** (end of) HMAC algorithm for Amazon REST call Signature ******************************/
 
-
 class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
-    
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var loadingLbl: UILabel!
     
     var theBarcodeData: String = ""
     
@@ -90,8 +86,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         // Start the spinning of the inidicator - stop it if we show the table
-        self.loadingIndicator.hidesWhenStopped = true
-        self.loadingIndicator.startAnimating()
+        ViewControllerUtils().showActivityIndicator(uiView: self.view)
         
         // user defined functions
         self.getLocation{ () -> () in
@@ -136,10 +131,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             bookToPass = 0
             performSegue(withIdentifier: "LoadToPost", sender: nil)
         }else if(scanBookArray.count > 1){
-            // hide load label and animaiton
-            self.loadingIndicator.stopAnimating()
-            self.loadingIndicator.isHidden = true
-            self.loadingLbl.isHidden = true
+            // hide load indicator animaiton
+            ViewControllerUtils().hideActivityIndicator(uiView: self.view)
             
             // load the table with scanBookArray
             // segue to resultstable view controller

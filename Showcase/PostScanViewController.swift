@@ -94,13 +94,10 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         // Getting the setting for Star Rating display
         cosmosView.settings.updateOnTouch = false
         cosmosView.settings.fillMode = .precise
-//        cosmosView.settings.filledColor = UIColor.yellow
-//        cosmosView.settings.emptyBorderColor = UIColor.black
-//        cosmosView.settings.filledBorderColor = UIColor.black
         
         // Updating the Display
         self.displayBookInfo()
-        self.activityIndicatorView.startAnimating()
+        ViewControllerUtils().showActivityIndicator(uiView: self.view)
         
         //self.title = self.storeName
 
@@ -114,25 +111,28 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         self.reviewsTable.delegate = self
         self.reviewsTable.dataSource = self
         
-        // reviewsTable.rowHeight = 125.0
         self.reviewsTable.estimatedRowHeight = 100.0
         self.reviewsTable.rowHeight = UITableViewAutomaticDimension
         
         
-        self.getReviewsFromReviewURL()  
-//
-//        DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
-//            self.getReviewsFromReviewURL()
+        //self.getReviewsFromReviewURL()
+
+        DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
+            self.getReviewsFromReviewURL()
 //            DispatchQueue.main.async {
-//                self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
-//                self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+                self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
+                self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
 //            }
-//
-//        }
+            
+
+        }
 //        DispatchQueue.main.async {
 //            self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
 //            self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
 //        }
+//        print("hide activity")
+//        //ViewControllerUtils().hideActivityIndicator(uiView: self.view)
+//        print("hide activity 2")
     }
     
     // Built in XCode function
@@ -267,8 +267,16 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
 //                    }
                     
                 }
-                self.activityIndicatorView.stopAnimating()
-                self.activityIndicatorView.isHidden = true
+                
+                // hide the activity indicator once all reviews are loaded
+                print("hide manaul")
+                ViewControllerUtils().container.isHidden = true
+                ViewControllerUtils().activityIndicator.stopAnimating()
+                ViewControllerUtils().activityIndicator.isHidden = true
+                ViewControllerUtils().loadingView.isHidden = true
+                print("hide man")
+//                self.activityIndicatorView.stopAnimating()
+//                self.activityIndicatorView.isHidden = true
 
             } catch {
                 print("error")
