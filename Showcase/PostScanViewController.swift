@@ -121,7 +121,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
             self.getReviewsFromReviewURL()
             DispatchQueue.main.async {
-                self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
+                //self.cosmosView.performSelector(onMainThread: #selector(CosmosView.update), with: nil, waitUntilDone: true)
                 self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
             }
             
@@ -226,9 +226,9 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 // https://github.com/evgenyneu/Cosmos
                 cosmosView.rating = bookData.rating
                 cosmosView.text = String(format:"%.2f", bookData.rating)
-//                DispatchQueue.main.async {
-//                    self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
-//                }
+                DispatchQueue.main.async {
+                    self.cosmosView.performSelector(onMainThread: #selector(CosmosView.update), with: nil, waitUntilDone: true)
+                }
                 
 
                 
