@@ -15,6 +15,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var storeAddress: String = ""
     let cellReuseIdentifier = "cell"
+    var storeName: String = ""
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -72,6 +73,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         bookToPass = scanBookArray[indexPath.row]
         postScanVC.bookData = bookToPass
         postScanVC.storeAddress = self.storeAddress
+        postScanVC.storeName = self.storeName
         
     }
     

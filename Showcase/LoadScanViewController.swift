@@ -97,7 +97,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         self.getLocation{ () -> () in
             // using closures to construct our object then perform the function selectBook()
             self.amazonSearch { () -> () in
-                //self.getReviewsFromReviewURL() // TEMP TEMP TEMP
                 self.selectBook()
             }
         }
@@ -111,16 +110,21 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(scanBookArray.count == 1){
-            let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
             // Pass in the Book object that the user selects
+            let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
             postScanVC.bookData = scanBookArray[bookToPass]
             print("segue")
             print(self.address)
+            // Need to pass longitude and latitude
             postScanVC.storeAddress = self.address
+            print("*** store nme prepare \(self.businessName)")
+            postScanVC.storeName = self.businessName
         }else if(scanBookArray.count > 1){
             let resultsTblVC: ResultsViewController = segue.destination as! ResultsViewController
             resultsTblVC.scanBookArray = scanBookArray
             resultsTblVC.storeAddress = self.address
+            print("*** store nme prepare \(self.businessName)")
+            resultsTblVC.storeName = self.businessName
         }
     }
     
@@ -173,6 +177,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     //print(placemark.name)
                     self.placemarkToAddress(placemark: placemark)
                     self.getBusiness()
+                    print("done getting business")
                 }
             }
         } else {
@@ -180,6 +185,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             // Ask Brian how did a pop up
             print("did not allow gps")
         }
+        print("handle complete")
+        
         handleComplete()
     }
     
@@ -277,8 +284,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             }
             if(foundBusn){
                 print("You are in \(buisness) \n")
-                print("placeholder: " + buisness)
                 self.businessName = buisness
+                print("placeholder: " + self.businessName)
             } else {
                 //print("Sorry we could not determine your location \n")
                 print("placeholder: Sorry we could not determine your location"
