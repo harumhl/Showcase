@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,14 +47,6 @@
                                 <connections>
                                     <action selector="facebookLogin:" destination="efm-Pn-EMr" eventType="touchUpInside" id="uBU-RO-NmJ"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbf-vz-oPY">
-                                <rect key="frame" x="36" y="240" width="303" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="52" id="dyl-SD-9FT"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="303" id="kkv-Tb-Wur"/>
-                                </constraints>
-                                <state key="normal" image="googleLogin"/>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="MLa-Pi-8la" customClass="ImageTextField" customModule="ImageTextField">
                                 <rect key="frame" x="12" y="392" width="350" height="37"/>
@@ -121,8 +113,6 @@
                             <constraint firstItem="2EU-Yq-cev" firstAttribute="top" secondItem="2j7-FP-Alm" secondAttribute="bottom" constant="37" id="0Rx-0b-g1E"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LLC-Dz-aAa" secondAttribute="trailing" constant="20" id="7AV-Ut-eG7"/>
                             <constraint firstAttribute="trailing" secondItem="Bht-av-sMR" secondAttribute="trailing" id="8Od-Pm-wo8"/>
-                            <constraint firstItem="vbf-vz-oPY" firstAttribute="top" secondItem="M6k-NX-WaW" secondAttribute="bottom" constant="28" id="9EF-DB-Ybm"/>
-                            <constraint firstItem="vbf-vz-oPY" firstAttribute="leading" secondItem="GfD-9F-tbl" secondAttribute="leadingMargin" constant="20" id="Et2-jI-LsH"/>
                             <constraint firstItem="M6k-NX-WaW" firstAttribute="top" secondItem="Bht-av-sMR" secondAttribute="bottom" constant="42" id="M6Y-Uy-Hlh"/>
                             <constraint firstItem="2j7-FP-Alm" firstAttribute="leading" secondItem="GfD-9F-tbl" secondAttribute="leading" constant="12" id="PN3-0N-7Tc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="M6k-NX-WaW" secondAttribute="trailing" constant="20" id="QqM-ne-Tll"/>
@@ -138,8 +128,8 @@
                             <constraint firstAttribute="trailing" secondItem="MLa-Pi-8la" secondAttribute="trailing" constant="13" id="dbM-ta-lTa"/>
                             <constraint firstAttribute="trailing" secondItem="2j7-FP-Alm" secondAttribute="trailing" constant="13" id="djZ-I7-fyy"/>
                             <constraint firstItem="2EU-Yq-cev" firstAttribute="leading" secondItem="GfD-9F-tbl" secondAttribute="leadingMargin" constant="20" id="g43-Sv-lIi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vbf-vz-oPY" secondAttribute="trailing" constant="20" id="jOa-b9-Ev4"/>
                             <constraint firstItem="M6k-NX-WaW" firstAttribute="leading" secondItem="GfD-9F-tbl" secondAttribute="leadingMargin" constant="20" id="jrq-V3-pDE"/>
+                            <constraint firstItem="Bht-av-sMR" firstAttribute="centerX" secondItem="GfD-9F-tbl" secondAttribute="centerX" id="onH-XD-URy"/>
                             <constraint firstItem="Bht-av-sMR" firstAttribute="leading" secondItem="GfD-9F-tbl" secondAttribute="leading" id="s9z-rV-Q1y"/>
                             <constraint firstAttribute="trailing" secondItem="Bht-av-sMR" secondAttribute="trailing" id="yXq-Ro-BCk"/>
                         </constraints>
@@ -428,25 +418,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcb-Rb-vlH" userLabel="bookTitle">
-                                <rect key="frame" x="191" y="72" width="176" height="21"/>
+                                <rect key="frame" x="191" y="92" width="176" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHh-Fk-zx1" userLabel="bookAuthor">
-                                <rect key="frame" x="191" y="101" width="168" height="21"/>
+                                <rect key="frame" x="191" y="121" width="168" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-39-3Da" userLabel="bookPrice">
-                                <rect key="frame" x="191" y="162" width="176" height="21"/>
+                                <rect key="frame" x="191" y="182" width="176" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.91943359375" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbE-A1-Uej" userLabel="bookRating" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="191" y="130" width="168" height="21"/>
+                                <rect key="frame" x="191" y="150" width="168" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
@@ -470,14 +460,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kos-cJ-pRp" userLabel="bookImage">
-                                <rect key="frame" x="8" y="72" width="175" height="201"/>
+                                <rect key="frame" x="8" y="92" width="175" height="201"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="201" id="XP5-Yn-i07"/>
                                     <constraint firstAttribute="width" constant="175" id="k2N-4G-5tm"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-5t-S0o" userLabel="bookPurchase">
-                                <rect key="frame" x="8" y="281" width="359" height="30"/>
+                                <rect key="frame" x="8" y="301" width="359" height="30"/>
                                 <color key="backgroundColor" red="0.5483074104403991" green="1" blue="0.56352840300104834" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Purchase">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -487,7 +477,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WIh-V4-VKh">
-                                <rect key="frame" x="8" y="351.5" width="359" height="271.5"/>
+                                <rect key="frame" x="8" y="371.5" width="359" height="251.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="359" id="FEZ-KG-tvM"/>
@@ -580,7 +570,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3K-a8-zfc">
-                                <rect key="frame" x="147.5" y="324" width="79" height="25"/>
+                                <rect key="frame" x="147.5" y="344" width="79" height="25"/>
                                 <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -932,7 +922,6 @@
         <image name="barcode-scan" width="200" height="200"/>
         <image name="email" width="256" height="256"/>
         <image name="facebookLogin" width="574" height="100"/>
-        <image name="googleLogin" width="574" height="101"/>
         <image name="password" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
