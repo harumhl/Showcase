@@ -70,6 +70,7 @@ extension String {
 /******************************** (end of) HMAC algorithm for Amazon REST call Signature ******************************/
 
 class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
+    //@IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
     
     var theBarcodeData: String = ""
     
@@ -158,8 +159,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             longitude = (locManager.location?.coordinate.longitude)!
             latitude = (locManager.location?.coordinate.latitude)!
             
-            let originLocation = CLLocation(latitude: latitude, longitude: longitude)
-            //let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)   
+            // let originLocation = CLLocation(latitude: latitude, longitude: longitude)
+               let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)
             //let originLocation = CLLocation(latitude: 30.624211, longitude: -96.329536)
             
             getPlacemark(forLocation: originLocation) {
@@ -178,9 +179,14 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             // Ask Brian how did a pop up
             print("did not allow gps")
         }
-        print("handle complete")
         
-        handleComplete()
+        // wait a little bit for the gps to get the book store address.
+        let when = DispatchTime.now() + 2.0
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            print("handle complete")
+            handleComplete()
+        }
+   
     }
     
     // Gets the placemarker data

@@ -64,6 +64,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - NVActivityIndicatorView (4.0.0):
+    - NVActivityIndicatorView/Presenter (= 4.0.0)
+  - NVActivityIndicatorView/Presenter (4.0.0)
   - SwiftSoup (1.5.4)
   - SwiftyXMLParser (3.0.3)
 
@@ -76,6 +79,7 @@ DEPENDENCIES:
   - Firebase/Database
   - ImageTextField
   - IQKeyboardManagerSwift
+  - NVActivityIndicatorView
   - SwiftSoup
   - SwiftyXMLParser
 
@@ -98,9 +102,10 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
   SwiftSoup: f8e924cd65a1d74eb7ba1b6f0a9a61feacaff690
   SwiftyXMLParser: 9c6cc0310e778266a63d8eba50d9e07925aab0fb
 
-PODFILE CHECKSUM: a5d3fc1a9a6dda9731cbe5ecb995289dad57c118
+PODFILE CHECKSUM: 4c4c71143a1aa00c35d3399138ec3c52fc6a41f9
 
 COCOAPODS: 1.3.1

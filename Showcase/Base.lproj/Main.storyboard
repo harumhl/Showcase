@@ -305,7 +305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNW-9Y-ZTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3470" y="168"/>
+            <point key="canvasLocation" x="3469.5999999999999" y="167.76611694152925"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="7CB-Yp-oea">
@@ -563,6 +563,11 @@
                                 <rect key="frame" x="177" y="355" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7m8-TO-bHc" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="16" y="123" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -606,7 +611,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="CXx-0F-cG1" id="Ute-cI-VUH"/>
+                        <outlet property="activityIndicatorView" destination="7m8-TO-bHc" id="cSA-Ib-9MI"/>
                         <outlet property="bookAuthor" destination="zHh-Fk-zx1" id="Wjw-jg-v2W"/>
                         <outlet property="bookImage" destination="kos-cJ-pRp" id="2EF-nf-WPc"/>
                         <outlet property="bookPrice" destination="x0h-39-3Da" id="NLH-UB-UWV"/>

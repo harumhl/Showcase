@@ -14,11 +14,11 @@ import SafariServices
 import FacebookCore
 import FacebookLogin
 import FBSDKCoreKit
+import NVActivityIndicatorView
 
 class PostScanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var theBarcodeData: String = ""
     var fromHistory: Bool = false
-    
     var bookData = Book()
     var storeAddress: String = ""
     var storeName: String = "nnnnn"
@@ -42,7 +42,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var bookReviews: UITableView!
     @IBOutlet weak var storeLoc: UILabel!
     
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
     
     @IBAction func PurchaseBook(_ sender: Any) {
         // Set Firebase DB reference
@@ -97,7 +97,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Updating the Display
         self.displayBookInfo()
-        ViewControllerUtils().showActivityIndicator(uiView: self.view)
+        activityIndicatorView.startAnimating()
+        //ViewControllerUtils().showActivityIndicator(uiView: self.view)
         
         //self.title = self.storeName
 
@@ -270,10 +271,17 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 // hide the activity indicator once all reviews are loaded
                 print("hide manaul")
-                ViewControllerUtils().container.isHidden = true
-                ViewControllerUtils().activityIndicator.stopAnimating()
-                ViewControllerUtils().activityIndicator.isHidden = true
-                ViewControllerUtils().loadingView.isHidden = true
+                var animating = activityIndicatorView.animating
+                if(animating){
+                    activityIndicatorView.stopAnimating()
+                }
+                
+                
+                
+//                ViewControllerUtils().container.isHidden = true
+//                ViewControllerUtils().activityIndicator.stopAnimating()
+//                ViewControllerUtils().activityIndicator.isHidden = true
+//                ViewControllerUtils().loadingView.isHidden = true
                 print("hide man")
 //                self.activityIndicatorView.stopAnimating()
 //                self.activityIndicatorView.isHidden = true
