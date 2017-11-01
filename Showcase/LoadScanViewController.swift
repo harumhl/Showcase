@@ -165,8 +165,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             longitude = (locManager.location?.coordinate.longitude)!
             latitude = (locManager.location?.coordinate.latitude)!
             
-            let originLocation = CLLocation(latitude: latitude, longitude: longitude)
-            //let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)   
+            // let originLocation = CLLocation(latitude: latitude, longitude: longitude)
+            let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)   
             //let originLocation = CLLocation(latitude: 30.624211, longitude: -96.329536)
             
             getPlacemark(forLocation: originLocation) {

@@ -17,6 +17,7 @@ pod 'FacebookCore'
 pod 'SwiftyXMLParser'
 pod 'Cosmos'
 pod 'SwiftSoup'
+pod 'NVActivityIndicatorView'
 
   target 'ShowcaseTests' do
       
