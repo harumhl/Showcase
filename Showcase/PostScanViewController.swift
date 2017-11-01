@@ -120,10 +120,10 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
 
         DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
             self.getReviewsFromReviewURL()
-//            DispatchQueue.main.async {
+            DispatchQueue.main.async {
                 self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
                 self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-//            }
+            }
             
 
         }
@@ -227,7 +227,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 cosmosView.rating = bookData.rating
                 cosmosView.text = String(format:"%.2f", bookData.rating)
 //                DispatchQueue.main.async {
-                    self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
+//                    self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
 //                }
                 
 
@@ -262,29 +262,22 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                     self.reviewArray.append(tmpReview)
                     
                     
-//                    DispatchQueue.main.async {
-//                        // refreshes tableView with data
+                    DispatchQueue.main.async {
+                        // refreshes tableView with data
                         self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-//                    }
+                    }
                     
                 }
                 
-                // hide the activity indicator once all reviews are loaded
-                print("hide manaul")
-                var animating = activityIndicatorView.animating
-                if(animating){
-                    activityIndicatorView.stopAnimating()
+                DispatchQueue.main.async {
+                    // hide the activity indicator once all reviews are loaded
+                    let animating = self.activityIndicatorView.animating
+                    if(animating){
+                        self.self.activityIndicatorView.stopAnimating()
+                    }
                 }
                 
-                
-                
-//                ViewControllerUtils().container.isHidden = true
-//                ViewControllerUtils().activityIndicator.stopAnimating()
-//                ViewControllerUtils().activityIndicator.isHidden = true
-//                ViewControllerUtils().loadingView.isHidden = true
-                print("hide man")
-//                self.activityIndicatorView.stopAnimating()
-//                self.activityIndicatorView.isHidden = true
+               
 
             } catch {
                 print("error")
