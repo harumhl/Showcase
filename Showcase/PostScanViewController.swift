@@ -100,12 +100,13 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         activityIndicatorView.startAnimating()
         //ViewControllerUtils().showActivityIndicator(uiView: self.view)
         
-        //self.title = self.storeName
-
-        
         if !fromHistory {
+            self.title = "Store: " + self.storeName
             addDataToDB()
             fromHistory = false
+        } else {
+            // Maybe our Location object will have this information.
+            self.title = self.bookData.location.storeName
         }
         
         // for the ReviewTable
@@ -172,11 +173,9 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 self.bookImage.image = UIImage(data: data as Data)
             }
         }
-        
         bookTitle.text = bookData.title
-        bookAuthor.text = self.storeName//bookData.author
+        bookAuthor.text = bookData.author
         bookPrice.text = bookData.price
-        //storeLoc.text = self.storeName
     }
     
     
@@ -313,15 +312,15 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 })
             
         }
-
-            print("FB Email3: ", email)
             
         
             /*************** WRITTEN TO DB ****************/
             
             let locKey = ref.childByAutoId().key
             let bookKey = ref.childByAutoId().key
-            
+        
+            print("Location Object in current book: ", self.bookData.location)
+        
             let bookData =  ["BookID"    : bookKey,
                              "Title"     : self.bookData.title,
                              "Author"    : self.bookData.author,
@@ -338,8 +337,9 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             
             
             let locationData = ["LocationID": locKey,
-                                "Long": longitude,
-                                "Lat": latitude
+                                "Long": self.bookData.location.long,
+                                "Lat": self.bookData.location.lat,
+                                "StoreName": self.bookData.location.storeName
             ] as [String : Any]
             
             let userBookData = ["bookID": "bookKey" + bookKey]

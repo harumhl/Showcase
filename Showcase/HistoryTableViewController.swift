@@ -59,7 +59,6 @@ class HistoryTableViewController: UITableViewController {
         // Embrace nature of syncrhnous programming
         let when = DispatchTime.now() + 0.5
         DispatchQueue.main.asyncAfter(deadline: when) {
-            print("FB Email3: ", email)
             self.title = "Scan history for " + email
             // Get book data from database
             self.ref?.child("user").child(email + "/books").observe(DataEventType.value, with: { (snapshot) in
@@ -111,6 +110,13 @@ class HistoryTableViewController: UITableViewController {
         tempBook.reviewURL = aUserBook.value(forKey: "ReviewURL") as! String
         tempBook.SecondsSince1970 = UInt(aUserBook.value(forKey: "CreationSecondsSince1970") as! Int)
         tempBook.purchaseURL = aUserBook.value(forKey: "PurchaseURL") as! String
+        
+        let locationKey = aUserBook.value(forKey: "LocationID") as! String
+        self.ref?.child("location").child("loc" + locationKey).observe(DataEventType.value, with: { (snapshot) in
+            let theLocation = snapshot.value as! NSDictionary
+            // Grab Location StoreName field from DB
+            tempBook.location.storeName = theLocation.value(forKey: "StoreName") as! String
+        })
         self.userBookArray.append(tempBook)
     }
     

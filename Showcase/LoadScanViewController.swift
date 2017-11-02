@@ -181,11 +181,11 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // wait a little bit for the gps to get the book store address.
-        let when = DispatchTime.now() + 2.0
-        DispatchQueue.main.asyncAfter(deadline: when) {
+         let when = DispatchTime.now() + 2.0
+         DispatchQueue.main.asyncAfter(deadline: when) {
             print("handle complete")
             handleComplete()
-        }
+         }
    
     }
     
@@ -428,8 +428,13 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     var ASIN = "ASIN Not Available"
                     ASIN ?= items["ASIN"].text
                     
+                    let loc = Location()
+                    loc.lat = self.latitude
+                    loc.long = self.longitude
+                    loc.storeName = self.businessName
+                    
                     let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL,
-                                            _DateCreatedAt: dateCreatedAt, _SecondsSince1970: secsSince1970, _purchaseURL: purchaseURL, _ASIN: ASIN)
+                                            _DateCreatedAt: dateCreatedAt, _SecondsSince1970: secsSince1970, _purchaseURL: purchaseURL, _ASIN: ASIN, _location: loc)
                     
                     // insert item into array of books
                     self.scanBookArray.append(tmpBook)

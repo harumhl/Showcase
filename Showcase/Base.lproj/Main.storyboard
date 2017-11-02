@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -167,21 +167,20 @@
                                     <segue destination="kZz-Sd-FxZ" kind="show" id="9gN-9x-Xt4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i89-DW-OFU">
-                                <rect key="frame" x="228" y="381" width="119" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="History"/>
-                                <connections>
-                                    <segue destination="sUN-fA-4rZ" kind="show" id="ALg-8O-h9S"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyS-qF-zx0">
                                 <rect key="frame" x="40" y="357" width="111" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="New Search" image="barcode-scan"/>
                                 <connections>
                                     <segue destination="RuQ-d1-mhr" kind="show" identifier="MainMenu" id="shh-RK-V0N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i89-DW-OFU">
+                                <rect key="frame" x="222" y="367" width="111" height="103"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="History" image="historyIcon"/>
+                                <connections>
+                                    <segue destination="sUN-fA-4rZ" kind="show" id="ALg-8O-h9S"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -413,13 +412,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-39-3Da" userLabel="bookPrice">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="book price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-39-3Da" userLabel="bookPrice">
                                 <rect key="frame" x="191" y="162" width="176" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.91943359375" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbE-A1-Uej" userLabel="bookRating" customClass="CosmosView" customModule="Cosmos">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZbE-A1-Uej" userLabel="bookRating" customClass="CosmosView" customModule="Cosmos">
                                 <rect key="frame" x="191" y="130" width="168" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -659,8 +658,8 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-Rd-3Mf">
                                             <rect key="frame" x="8" y="8" width="83" height="109"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alp-yF-Bne">
-                                            <rect key="frame" x="102" y="66" width="181" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alp-yF-Bne">
+                                            <rect key="frame" x="102" y="66" width="38.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.91764705882352937" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -668,16 +667,12 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="ZWH-n3-GGM" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="11" id="6A3-Ny-YNe"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="alp-yF-Bne" secondAttribute="trailing" constant="84" id="7yn-hA-GYH"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="alp-yF-Bne" secondAttribute="bottom" constant="35.5" id="O0R-JN-llM"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="g4x-Rd-3Mf" secondAttribute="bottom" constant="5.5" id="SyZ-8Q-bnC"/>
                                         <constraint firstItem="PR4-bn-yUP" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="11" id="VJs-rs-ett"/>
                                         <constraint firstItem="ZWH-n3-GGM" firstAttribute="trailing" secondItem="ots-VW-D02" secondAttribute="trailingMargin" id="ZPO-W3-XKB"/>
                                         <constraint firstItem="g4x-Rd-3Mf" firstAttribute="leading" secondItem="ots-VW-D02" secondAttribute="leadingMargin" id="f0U-nU-bJO"/>
                                         <constraint firstItem="alp-yF-Bne" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="11" id="iei-TA-Emc"/>
-                                        <constraint firstItem="ZWH-n3-GGM" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="11" id="io1-RA-vRC"/>
                                         <constraint firstItem="ZWH-n3-GGM" firstAttribute="top" secondItem="PR4-bn-yUP" secondAttribute="bottom" constant="8.5" id="nmN-fn-Gji"/>
-                                        <constraint firstItem="ZWH-n3-GGM" firstAttribute="top" secondItem="PR4-bn-yUP" secondAttribute="bottom" constant="8" id="sTA-SW-ZCp"/>
                                         <constraint firstItem="PR4-bn-yUP" firstAttribute="top" secondItem="ots-VW-D02" secondAttribute="topMargin" id="uYJ-Kx-RUB"/>
                                         <constraint firstItem="alp-yF-Bne" firstAttribute="top" secondItem="ZWH-n3-GGM" secondAttribute="bottom" constant="8" id="uZd-UR-FEQ"/>
                                         <constraint firstItem="g4x-Rd-3Mf" firstAttribute="top" secondItem="ots-VW-D02" secondAttribute="topMargin" id="wnZ-f3-qK1"/>
@@ -907,10 +902,11 @@
         <image name="barcode-scan" width="200" height="200"/>
         <image name="email" width="256" height="256"/>
         <image name="facebookLogin" width="574" height="100"/>
+        <image name="historyIcon" width="512" height="512"/>
         <image name="password" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c9n-G5-1Sd"/>
+        <segue reference="SMw-y1-bM6"/>
         <segue reference="Vbo-XZ-KDs"/>
     </inferredMetricsTieBreakers>
 </document>
