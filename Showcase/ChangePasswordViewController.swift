@@ -26,6 +26,15 @@ class ChangePasswordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Show a popup alert.
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     /* TODO: resets password but does not check old password */
     @IBAction func changePasswordClicked(_ sender: Any) {
         print("*** change password Fields ***")
@@ -36,7 +45,7 @@ class ChangePasswordViewController: UIViewController {
         
         // check to see if new password and confirmation password are the same
         if newPasswordField.text != confirmNewPasswordField.text {
-            //self.showAlert(title: "Error", message: "Password fields did not match.")
+            self.showAlert(title: "Error", message: "Password fields did not match.\nTry again.")
             print("old and new passwords do not match")
             return
         }
@@ -72,7 +81,7 @@ class ChangePasswordViewController: UIViewController {
                     switch errorCode {
                         case .weakPassword:
                             print ("Weak Password")
-                            //self.showAlert(title: "Error", message: "Password is too weak. Try 6 or more characters.")
+                            self.showAlert(title: "Error", message: "Password is too weak. Try 6 or more characters.")
                         default:
                             print("Unknown authentication error: ", errorCode)
                             break
@@ -81,12 +90,24 @@ class ChangePasswordViewController: UIViewController {
             }
             else {
                 print ("Password succesfully changed.")
+                self.performSegueAndShowAlert(title: "Success", message: "Password successfully updated.", segueName: "signUpToRootSegue")
                 
             }
         }
  
         // seque to root screen
     }
+    
+    func performSegueAndShowAlert(title: String, message: String, segueName: String? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            if segueName != nil {
+                // self.performSegue(withIdentifier: segueName!, sender: nil)
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     /*
     // MARK: - Navigation
