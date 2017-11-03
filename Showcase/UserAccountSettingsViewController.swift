@@ -34,6 +34,13 @@ class UserAccountSettingsViewController: UIViewController {
             print ("Error signing out: %@", signOutError)
         }
     }
+    
+    @IBAction func ChangePasswordClicked(_ sender: Any) {
+        // once you click on change password
+    }
+    
+    
+    
 
     /*
     // MARK: - Navigation
