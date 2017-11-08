@@ -83,6 +83,12 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PostScanViewController.backToRoot(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
         
+        // Grey out the Purchase button and disable it
+        if (storeAssociateTag == "") {
+            bookPurchase.backgroundColor = UIColor.gray
+            bookPurchase.isEnabled = false
+        }
+
         // Getting the setting for Star Rating display
         cosmosView.settings.updateOnTouch = false
         cosmosView.settings.fillMode = .precise
