@@ -45,7 +45,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     override func viewWillAppear(_ animated: Bool) {
         // hide the navigation controller bar
         self.navigationController?.isNavigationBarHidden = true
-        
+        emailInput.text = nil
+        passwordInput.text = nil
         handle = Auth.auth().addStateDidChangeListener{ (auth, user) in
             //..
         }

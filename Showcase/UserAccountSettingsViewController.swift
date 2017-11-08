@@ -25,14 +25,22 @@ class UserAccountSettingsViewController: UIViewController {
 
     @IBAction func signOutButton(_ sender: Any) {
         let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            print("Signed Out!")
-            self.navigationController?.popToRootViewController(animated: true)
-        }
-        catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
+        // Warn the user that they will be signed out.
+        let alert = UIAlertController(title: "You will be signed out!", message: "", preferredStyle: .alert )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            do {
+                try firebaseAuth.signOut()
+                self.navigationController?.popToRootViewController(animated: true)
+                print("Signed Out!")
+            }
+            catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func ChangePasswordClicked(_ sender: Any) {

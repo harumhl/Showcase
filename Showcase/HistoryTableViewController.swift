@@ -57,7 +57,7 @@ class HistoryTableViewController: UITableViewController {
         }
         
         // Embrace nature of syncrhnous programming
-        let when = DispatchTime.now() + 0.5
+        let when = DispatchTime.now() + 0.25
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.title = "Scan history for " + email
             // Get book data from database
