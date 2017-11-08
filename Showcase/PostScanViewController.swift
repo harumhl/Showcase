@@ -25,6 +25,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     var storeAssociateTag: String = ""
     var longitude = 0.0
     var latitude = 0.0
+    var whichVC_itComesFrom: String = "" // whether LoadScanVC or ResultsVC - for "back" button
     
     var reviewArray = [Review]()
     
@@ -136,9 +137,15 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func backToRoot(sender: UIBarButtonItem) {
-        // Go back to the root ViewController
-        let rootVC: RootViewController = (self.navigationController?.viewControllers[1])!  as! RootViewController
-        navigationController?.popToViewController(rootVC, animated: true)
+        if (whichVC_itComesFrom == "LoadScanVC") {
+            // Go back to the root ViewController
+            let rootVC: RootViewController = (self.navigationController?.viewControllers[1])!  as! RootViewController
+            navigationController?.popToViewController(rootVC, animated: true)
+        }
+        else if (whichVC_itComesFrom == "ResultsVC") {
+            // Go back to the ResultsViewController - just go back
+            navigationController?.popViewController(animated: true)
+        }
     }
 
     

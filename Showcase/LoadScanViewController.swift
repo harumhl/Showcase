@@ -143,6 +143,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             postScanVC.storeAddress = self.address
             postScanVC.storeAssociateTag = self.storeAssociateTag
             postScanVC.storeName = self.businessName
+            postScanVC.whichVC_itComesFrom = "LoadScanVC"
         }
         else if(scanBookArray.count > 1){
             let resultsTblVC: ResultsViewController = segue.destination as! ResultsViewController
