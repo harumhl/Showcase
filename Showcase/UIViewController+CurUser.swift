@@ -28,5 +28,5 @@ extension UIViewController {
             curUser.isSignedIn = false
         }
         return curUser
-    }
+    }    
 }
