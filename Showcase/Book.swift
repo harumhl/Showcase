@@ -76,14 +76,14 @@ class Book {
         let notifRefreshDone = Notification.Name("refreshDone")
         
         let theURL = _url
-        print("BP-Review URL: " + theURL)
+        //print("BP-Review URL: " + theURL)
         
         // Skip if the book has no reviews
         if (theURL == "Reviews Not Available") {
             print("Reviews Not Available")
         }
         
-        print("BP-validating URL....")
+        //print("BP-validating URL....")
         // Check the validity of the URL ("guard" checks it)
         guard let url = URL(string: theURL) else {
             print("Error: cannot create URL")
@@ -91,7 +91,7 @@ class Book {
         }
         //print("Done")
         
-        print("BP-get HTML String...")
+        //print("BP-get HTML String...")
         // Get the HTML source from the URL
         var myHTMLString = ""
         do {
@@ -105,13 +105,13 @@ class Book {
         // Use Swift Soup to parse the HTML source
         do {
             // Parse the HTML
-            print("BP-parsing....")
+            //print("BP-parsing....")
             let reviewDoc = try SwiftSoup.parse(myHTMLString)
-            print("BP-done parsing")
+            //print("BP-done parsing")
             
             // Get the total review for the book by using "arp-rating-out-of-text"
             var ratingStr: String = try reviewDoc.getElementsByClass("arp-rating-out-of-text").text()
-            print("BP-RatingStr: ", ratingStr)
+            //print("BP-RatingStr: ", ratingStr)
             ratingStr = ratingStr.substring(to: ratingStr.index(of: " ")!)
             let ratingUnformatted = Double(ratingStr)
             self.rating = Double(String(format: "%.1f", ratingUnformatted!))!
@@ -133,7 +133,7 @@ class Book {
                 
                 // "review-title" gives us the <a> tag which has the title text
                 let reviewTitle = try review.getElementsByClass("review-title").text()
-                print("BP-Review Title: " + reviewTitle)
+                //print("BP-Review Title: " + reviewTitle)
                 
                 // "a-icon-alt" gives you the rating ex: "5.0 out of 5 stars"
                 // then we can check for the first part of that string to assign to a Double variable
@@ -141,17 +141,17 @@ class Book {
                 //email = email.substring(to: email.index(of: "@")!)
                 reviewRatingStr = reviewRatingStr.substring(to: reviewRatingStr.index(of: " ")!)
                 let reviewRating = Double(reviewRatingStr)
-                print ("BP-Review Rating: \(String(describing: reviewRating))")
+                //print ("BP-Review Rating: \(String(describing: reviewRating))")
                 
                 // "review-date"
                 var reviewDate = try review.getElementsByClass("review-date").text()
                 reviewDate = reviewDate.substring(from: reviewDate.index(of: " ")!)
-                print("BP-Review Date: " + reviewDate)
+                //print("BP-Review Date: " + reviewDate)
                 
                 
                 let reviewText = try review.getElementsByClass("review-text").text()
-                print("BP-Review: " + reviewText)
-                print("BP----------------------------------------------")
+                //print("BP-Review: " + reviewText)
+                //print("BP----------------------------------------------")
                 
                 let tmpReview = Review.init(_title: reviewTitle, _rating: reviewRating!, _date: reviewDate, _review: reviewText)
                 self.reviews.append(tmpReview)
@@ -173,7 +173,7 @@ class Book {
 //                }
 //            }
             
-            print("BP-WOO HOO I AM DONE PARSING")
+            //print("BP-WOO HOO I AM DONE PARSING")
             // Post notification
             NotificationCenter.default.post(name: notifRefreshDone, object: nil)
             self.doneParse = true
