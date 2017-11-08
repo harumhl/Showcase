@@ -41,8 +41,6 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
     @IBOutlet weak var storeParticipation: UILabel!
-    @IBOutlet weak var storeLoc: UILabel!
-    
     @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
     
     @IBAction func PurchaseBook(_ sender: Any) {
