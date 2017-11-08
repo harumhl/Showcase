@@ -129,6 +129,10 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             print("*** store nme prepare \(self.businessName)")
             resultsTblVC.storeName = self.businessName
             resultsTblVC.storeAssociateTag = self.storeAssociateTag
+        }else{
+            // no book found
+            print("segue back to root")
+            let rootVC: RootViewController = segue.destination as! RootViewController
         }
     }
     
@@ -153,6 +157,9 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         } else{
             // OOPS we did not find there book.
             // segue to the scanner or the main menu and notify user that we did not find the book
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "BackToRoot", sender: nil)
+            }
         }
     }
     
@@ -460,6 +467,12 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             handleComplete()
             //print("CHECK THE BOOKS")
             
+            if (self.scanBookArray.count == 0) {
+                let alert = UIAlertController(title: "No Book Found", message: "No book was found at Amazon.com", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
             // This stores the author, book title, etc
             let responseBook = responseItems["Item"]["ItemAttributes"]
         }
@@ -491,56 +504,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     
     
     
-    
-    // Will not be used
-    /*
-    func goodReadsSearch(handleComplete:(()->())) {
-        // https://www.goodreads.com/api
-        var theURL = "https://www.goodreads.com/book/isbn/ISBN?"
-        theURL += "format=xml&"
-        theURL += "key=" + goodReadsKey + "&"
-        theURL += "isbn=" + theBarcodeData
-        print("good reads URL: " + theURL)
-        
-        // Check the validity of the URL ("guard" checks it)
-        guard let url = URL(string: theURL) else {
-            print("Error: cannot create URL")
-            return
-        }
-        // Start URL session
-        let urlRequest = URLRequest(url: url)
-        let session = URLSession.shared
-        
-        // Unpack the returned XML data
-        let task = session.dataTask(with: urlRequest) {
-            (data, response, error) in
-            // check for any errors
-            guard error == nil else {
-                print("error calling GET on /todos/1")
-                print(error!)
-                return
-            }
-            // make sure we got data
-            guard let responseData = data else {
-                print("Error: did not receive data")
-                return
-            }
-            let parser = XMLParser(data: responseData)
-            if parser.parse() {
-                print("GoodReads HTTP call parse success")
-                //print(parser.Items.Request.ItemLookupRequest.ItemId)
-            }
-            else {
-                print("GoodReads HTTP call parse failure")
-            }
-            
-            // data gives:
-            // author, book title, image url default size and small
-            let xml = XML.parse(data!)
-        }
-        task.resume()
-        handleComplete()
-    } */ // End of goodReadsSearch()
 
     /*
     // MARK: - Navigation

@@ -406,6 +406,7 @@
                     <connections>
                         <segue destination="uOD-w7-Izs" kind="show" identifier="LoadToPost" id="c9n-G5-1Sd"/>
                         <segue destination="Mof-WC-P6d" kind="show" identifier="LoadToResults" id="Z2p-ts-37R"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="BackToRoot" id="qsg-Sj-SfY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNW-9Y-ZTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1020,7 +1021,7 @@
         <image name="password" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c9n-G5-1Sd"/>
-        <segue reference="64y-7R-X3N"/>
+        <segue reference="SMw-y1-bM6"/>
+        <segue reference="qsg-Sj-SfY"/>
     </inferredMetricsTieBreakers>
 </document>
