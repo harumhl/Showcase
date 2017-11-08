@@ -86,7 +86,12 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         self.displayBookInfo()
         
         // if reviews already loaded dont start animation
-        activityIndicatorView.startAnimating()
+        if(bookData.rating != -1){
+            refreshRating()
+        }
+        if(!bookData.doneParse){
+            activityIndicatorView.startAnimating()
+        }
         
         // Display the view controller's title
         if !fromHistory {
@@ -125,6 +130,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             self.cosmosView.rating = self.bookData.rating
             self.cosmosView.text = String(format:"%.2f", self.bookData.rating)
             self.cosmosView.performSelector(onMainThread: #selector(CosmosView.update), with: nil, waitUntilDone: true)
+            print("-- rating: \(self.bookData.rating)")
         }
     }
     

@@ -36,6 +36,7 @@ class Book {
     var ASIN: String
     var location: Location
     var reviews = [Review]()
+    var doneParse = false
     
     init() {
         title = "N/A"
@@ -175,6 +176,7 @@ class Book {
             print("BP-WOO HOO I AM DONE PARSING")
             // Post notification
             NotificationCenter.default.post(name: notifRefreshDone, object: nil)
+            self.doneParse = true
 
             
         } catch {
