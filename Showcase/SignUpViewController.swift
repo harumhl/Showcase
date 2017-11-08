@@ -23,7 +23,7 @@ class SignUpViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
+        self.navigationController?.isNavigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
