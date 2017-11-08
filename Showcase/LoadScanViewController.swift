@@ -96,21 +96,21 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         findStoreAssociateTag()
         
         // ************************************* TEST 1 *******************
-//        self.getLocation{ () -> () in
-//            print("store::: \(self.businessName)")
-//            // using closures to construct our object then perform the function selectBook()
-//            self.amazonSearch { () -> () in
-//                self.selectBook()
-//            }
-//        }
-        
-        // ************************************* TEST 2 *******************
-        amazonSearch()
-        // user defined functions
         self.getLocation{ () -> () in
             print("store::: \(self.businessName)")
+            // using closures to construct our object then perform the function selectBook()
+            self.amazonSearch { () -> () in
                 self.selectBook()
+            }
         }
+//
+        // ************************************* TEST 2 *******************
+//        amazonSearch()
+//        // user defined functions
+//        self.getLocation{ () -> () in
+//            print("store::: \(self.businessName)")
+//                self.selectBook()
+//        }
         
         // ************************************* TEST 3 *******************
 //        getLocation()
@@ -346,8 +346,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
   
     
 // ****************************************** Book Search Functions ***************************************************
-    //func amazonSearch(handleComplete:@escaping (()->())) {
-    func amazonSearch(){
+    func amazonSearch(handleComplete:@escaping (()->())) {
+    //func amazonSearch(){
         print("Start Amazon ")
         /* http://docs.aws.amazon.com/AWSECommerceService/latest/DG/rest-signature.html */
         
@@ -495,7 +495,12 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     print("NOPE NOTE EQUAL")
                 }
             }
-           // handleComplete()
+            handleComplete()
+            
+            for tmpBook in self.scanBookArray {
+                tmpBook.parse(_url: tmpBook.reviewURL)
+            }
+           
 
             // No book was found, so alert the user as going back to the root VC
             if (self.scanBookArray.count == 0) {

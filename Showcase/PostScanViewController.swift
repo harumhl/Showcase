@@ -66,6 +66,16 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Update the table with review data
+        // Define identifier
+        let notifRefreshRating = Notification.Name("refreshRating")
+        let notifRefreshTable = Notification.Name("refreshTable")
+        let notifRefreshDone = Notification.Name("refreshDone")
+        // Register to receive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(PostScanViewController.refreshRating), name: notifRefreshRating, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PostScanViewController.refreshTable), name: notifRefreshTable, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PostScanViewController.refreshDone), name: notifRefreshDone, object: nil)
+        
         print("****** store: \(self.storeName)")
         
         // Getting the setting for Star Rating display
@@ -74,6 +84,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Updating the Display
         self.displayBookInfo()
+        
+        // if reviews already loaded dont start animation
         activityIndicatorView.startAnimating()
         
         // Display the view controller's title
@@ -93,9 +105,12 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         self.reviewsTable.rowHeight = UITableViewAutomaticDimension
         
         // Update reviews
-        DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
-            self.getReviewsFromReviewURL()
-        }
+//        DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
+//            self.getReviewsFromReviewURL()
+//        }
+        
+        
+
     }
     
     // Built in XCode function
@@ -105,19 +120,42 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
 //****************************************** REVIEW TABLE FUNCTIONS ******************************************
+    func refreshRating(){
+        DispatchQueue.main.async {
+            self.cosmosView.rating = self.bookData.rating
+            self.cosmosView.text = String(format:"%.2f", self.bookData.rating)
+            self.cosmosView.performSelector(onMainThread: #selector(CosmosView.update), with: nil, waitUntilDone: true)
+        }
+    }
+    
+    func refreshTable(){
+        DispatchQueue.main.async {
+            self.reviewsTable.reloadData()
+        }
+    }
+    
+    func refreshDone(){
+        DispatchQueue.main.async {
+            self.reviewsTable.reloadData()
+            let animating = self.activityIndicatorView.animating
+            if(animating){
+                self.self.activityIndicatorView.stopAnimating()
+            }
+        }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reviewArray.count
+        return bookData.reviews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell:ReviewTableViewCell = self.reviewsTable.dequeueReusableCell(withIdentifier: "cell") as! ReviewTableViewCell
         
-        cell.reviewTitle.text = reviewArray[indexPath.row].title
-        cell.reviewDate.text = reviewArray[indexPath.row].date
-        cell.reviewText.text = reviewArray[indexPath.row].review
-        cell.reviewRating.rating = reviewArray[indexPath.row].rating
+        cell.reviewTitle.text = bookData.reviews[indexPath.row].title
+        cell.reviewDate.text = bookData.reviews[indexPath.row].date
+        cell.reviewText.text = bookData.reviews[indexPath.row].review
+        cell.reviewRating.rating = bookData.reviews[indexPath.row].rating
         
         cell.reviewRating.settings.updateOnTouch = false
         
@@ -148,104 +186,104 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func getReviewsFromReviewURL() {
-            let theURL = bookData.reviewURL
-            print("Review URL: " + theURL)
-            
-            // Skip if the book has no reviews
-            if (theURL == "Reviews Not Available") {
-                print("Reviews Not Available")
-            }
+        let theURL = bookData.reviewURL
+        print("Review URL: " + theURL)
         
-            print("validating URL....")
-            // Check the validity of the URL ("guard" checks it)
-            guard let url = URL(string: theURL) else {
-                print("Error: cannot create URL")
-                return
-            }
-            print("Done")
+        // Skip if the book has no reviews
+        if (theURL == "Reviews Not Available") {
+            print("Reviews Not Available")
+        }
         
-            print("get HTML String...")
-            // Get the HTML source from the URL
-            var myHTMLString = ""
-            do {
-                myHTMLString = try String(contentsOf: url)
-                //print("HTML : \(myHTMLString)")
-            } catch let error as NSError {
-                print("Error: \(error)")
-            }
-            print("Done ")
+        print("validating URL....")
+        // Check the validity of the URL ("guard" checks it)
+        guard let url = URL(string: theURL) else {
+            print("Error: cannot create URL")
+            return
+        }
+        print("Done")
+        
+        print("get HTML String...")
+        // Get the HTML source from the URL
+        var myHTMLString = ""
+        do {
+            myHTMLString = try String(contentsOf: url)
+            //print("HTML : \(myHTMLString)")
+        } catch let error as NSError {
+            print("Error: \(error)")
+        }
+        print("Done ")
+        
+        // Use Swift Soup to parse the HTML source
+        do {
+            // Parse the HTML
+            print("parsing....")
+            let reviewDoc = try SwiftSoup.parse(myHTMLString)
+            print("done parsing")
             
-            // Use Swift Soup to parse the HTML source
-            do {
-                // Parse the HTML
-                print("parsing....")
-                let reviewDoc = try SwiftSoup.parse(myHTMLString)
-                print("done parsing")
-                
-                // Get the total review for the book by using "arp-rating-out-of-text"
-                var ratingStr: String = try reviewDoc.getElementsByClass("arp-rating-out-of-text").text()
-                print("RatingStr: ", ratingStr)
-                ratingStr = ratingStr.substring(to: ratingStr.index(of: " ")!)
-                let ratingUnformatted = Double(ratingStr)
-                bookData.rating = Double(String(format: "%.1f", ratingUnformatted!))!
-                
-                // Display the rating with stars (not the number)
-                // https://github.com/evgenyneu/Cosmos
-                DispatchQueue.main.async {
-                    self.cosmosView.rating = self.bookData.rating
-                    self.cosmosView.text = String(format:"%.2f", self.bookData.rating)
-                    self.cosmosView.performSelector(onMainThread: #selector(CosmosView.update), with: nil, waitUntilDone: true)
-                }
-                
-                
-                // "review" gives us the entire review data
-                let elems: Elements = try reviewDoc.getElementsByClass("review")
-                for review: Element in elems.array(){
-                    
-                    // "review-title" gives us the <a> tag which has the title text
-                    let reviewTitle = try review.getElementsByClass("review-title").text()
-                    print("Review Title: " + reviewTitle)
-                    
-                    // "a-icon-alt" gives you the rating ex: "5.0 out of 5 stars"
-                        // then we can check for the first part of that string to assign to a Double variable
-                    var reviewRatingStr = try review.getElementsByClass("review-rating").text()
-                    //email = email.substring(to: email.index(of: "@")!)
-                    reviewRatingStr = reviewRatingStr.substring(to: reviewRatingStr.index(of: " ")!)
-                    let reviewRating = Double(reviewRatingStr)
-                    print ("Review Rating: \(String(describing: reviewRating))")
-                
-                    // "review-date"
-                    var reviewDate = try review.getElementsByClass("review-date").text()
-                    reviewDate = reviewDate.substring(from: reviewDate.index(of: " ")!)
-                    print("Review Date: " + reviewDate)
-                
-                
-                    let reviewText = try review.getElementsByClass("review-text").text()
-                    print("Review: " + reviewText)
-                    print("---------------------------------------------")
-                    
-                    let tmpReview = Review.init(_title: reviewTitle, _rating: reviewRating!, _date: reviewDate, _review: reviewText)
-                    self.reviewArray.append(tmpReview)
-                    
-                    
-                    DispatchQueue.main.async {
-                        // refreshes tableView with data
-                        self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-                    }
-                    
-                }
-                
-                // hide the activity indicator once all reviews are loaded
-                DispatchQueue.main.async {
-                    let animating = self.activityIndicatorView.animating
-                    if(animating){
-                        self.self.activityIndicatorView.stopAnimating()
-                    }
-                }
-                
-            } catch {
-                print("error")
+            // Get the total review for the book by using "arp-rating-out-of-text"
+            var ratingStr: String = try reviewDoc.getElementsByClass("arp-rating-out-of-text").text()
+            print("RatingStr: ", ratingStr)
+            ratingStr = ratingStr.substring(to: ratingStr.index(of: " ")!)
+            let ratingUnformatted = Double(ratingStr)
+            bookData.rating = Double(String(format: "%.1f", ratingUnformatted!))!
+            
+            // Display the rating with stars (not the number)
+            // https://github.com/evgenyneu/Cosmos
+            DispatchQueue.main.async {
+                self.cosmosView.rating = self.bookData.rating
+                self.cosmosView.text = String(format:"%.2f", self.bookData.rating)
+                self.cosmosView.performSelector(onMainThread: #selector(CosmosView.update), with: nil, waitUntilDone: true)
             }
+            
+            
+            // "review" gives us the entire review data
+            let elems: Elements = try reviewDoc.getElementsByClass("review")
+            for review: Element in elems.array(){
+                
+                // "review-title" gives us the <a> tag which has the title text
+                let reviewTitle = try review.getElementsByClass("review-title").text()
+                print("Review Title: " + reviewTitle)
+                
+                // "a-icon-alt" gives you the rating ex: "5.0 out of 5 stars"
+                // then we can check for the first part of that string to assign to a Double variable
+                var reviewRatingStr = try review.getElementsByClass("review-rating").text()
+                //email = email.substring(to: email.index(of: "@")!)
+                reviewRatingStr = reviewRatingStr.substring(to: reviewRatingStr.index(of: " ")!)
+                let reviewRating = Double(reviewRatingStr)
+                print ("Review Rating: \(String(describing: reviewRating))")
+                
+                // "review-date"
+                var reviewDate = try review.getElementsByClass("review-date").text()
+                reviewDate = reviewDate.substring(from: reviewDate.index(of: " ")!)
+                print("Review Date: " + reviewDate)
+                
+                
+                let reviewText = try review.getElementsByClass("review-text").text()
+                print("Review: " + reviewText)
+                print("---------------------------------------------")
+                
+                let tmpReview = Review.init(_title: reviewTitle, _rating: reviewRating!, _date: reviewDate, _review: reviewText)
+                self.reviewArray.append(tmpReview)
+                
+                
+                DispatchQueue.main.async {
+                    // refreshes tableView with data
+                    self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+                }
+                
+            }
+            
+            // hide the activity indicator once all reviews are loaded
+            DispatchQueue.main.async {
+                let animating = self.activityIndicatorView.animating
+                if(animating){
+                    self.self.activityIndicatorView.stopAnimating()
+                }
+            }
+            
+        } catch {
+            print("error")
+        }
 
     }
     

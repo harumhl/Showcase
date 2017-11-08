@@ -28,4 +28,5 @@ class Review{
         self.date = _date
         self.review = _review
     }
+    
 }
