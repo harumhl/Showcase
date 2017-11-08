@@ -23,6 +23,12 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Custom "back" button
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ResultsViewController.backToRoot(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+
         self.title = "Scan Results"
         
         tableView.delegate = self
@@ -32,6 +38,13 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
     }
+    
+    func backToRoot(sender: UIBarButtonItem) {
+        // Go back to the root ViewController
+        let rootVC: RootViewController = (self.navigationController?.viewControllers[1])!  as! RootViewController
+        navigationController?.popToViewController(rootVC, animated: true)
+    }
+
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scanBookArray.count
