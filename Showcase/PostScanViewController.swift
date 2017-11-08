@@ -40,47 +40,29 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var bookPrice: UILabel!
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
+    @IBOutlet weak var storeParticipation: UILabel!
     @IBOutlet weak var storeLoc: UILabel!
     
     @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
     
     @IBAction func PurchaseBook(_ sender: Any) {
-        // Set Firebase DB reference
-        ref = Database.database().reference()
-        self.ref?.child("store").observe(DataEventType.value, with: { (snapshot) in
-            // grab the list of all books
-            let allStores = snapshot.value as? NSDictionary
-            if (allStores == nil) { return }
-            
-            // Loop through the stores and grab the storeKey value. A store entry is a dictionary ('storeID' -> 'storeKey')
-            print("self store address")
-            print(self.storeAddress)
-            for (_, value) in allStores! {
-                let dbStore = value as! NSDictionary
-                let dbStoreAddress = dbStore["address"] as! String
-                print(dbStoreAddress)
-                
-                if (dbStoreAddress == self.storeAddress) { // storeAddress is the current store address
-                    self.storeAssociateTag = dbStore["associateTag"] as! String
-                }
-            }
-            
-            if (self.storeAssociateTag != "") {
-                self.bookData.purchaseURL = ""
-                self.bookData.purchaseURL = "https://www.amazon.com/gp/product/"
-                self.bookData.purchaseURL += self.bookData.ASIN
-                self.bookData.purchaseURL += "/ref=as_li_tl?ie=UTF8&tag="
-                self.bookData.purchaseURL += self.storeAssociateTag
-                self.bookData.purchaseURL += "&camp=1789&creative=9325&linkCode=as2&creativeASIN="
-                self.bookData.purchaseURL += self.bookData.ASIN
-            }
-            
-            //storeAddress
-            print("Purchase clicked")
-            print(self.bookData.purchaseURL)
-            let svc = SFSafariViewController(url: URL(string: self.bookData.purchaseURL)!)
-            self.present(svc, animated: true, completion: nil)
-        })
+        print("Purchase clicked!!")
+        
+        var theURL = self.bookData.purchaseURL
+        
+        if (storeAssociateTag != "") {
+            theURL = "https://www.amazon.com/gp/product/"
+            theURL += self.bookData.ASIN
+            theURL += "/ref=as_li_tl?ie=UTF8&tag="
+            theURL += self.storeAssociateTag
+            theURL += "&camp=1789&creative=9325&linkCode=as2&creativeASIN="
+            theURL += self.bookData.ASIN
+
+        }
+        
+        print(theURL)
+        let svc = SFSafariViewController(url: URL(string: theURL)!)
+        self.present(svc, animated: true, completion: nil)
     }
     
     // Stuff that runs when the VC is loaded
@@ -173,6 +155,15 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 self.bookImage.image = UIImage(data: data as Data)
             }
         }
+        
+        // Display whether the store participates in our Amazon-affiliated service
+        if (storeAssociateTag == "") {
+            storeParticipation.text = "The store DOES NOT participate in our affiliation service"
+        }
+        else {
+            storeParticipation.text = "The store participates in our affiliation service!"
+        }
+        
         bookTitle.text = bookData.title
         bookAuthor.text = bookData.author
         bookPrice.text = bookData.price
@@ -283,6 +274,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             }
 
     }
+    
 
 //****************************************** Database Functions **********************************************
     func addDataToDB() {

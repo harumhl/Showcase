@@ -19,6 +19,8 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
+    var storeAssociateTag: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Scan Results"
@@ -74,7 +76,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         postScanVC.bookData = bookToPass
         postScanVC.storeAddress = self.storeAddress
         postScanVC.storeName = self.storeName
-        
+        postScanVC.storeAssociateTag = self.storeAssociateTag
     }
     
     

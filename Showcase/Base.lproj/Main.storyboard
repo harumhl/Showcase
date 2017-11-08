@@ -669,6 +669,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txR-JW-Z8q" userLabel="storeParticipation">
+                                <rect key="frame" x="107" y="164" width="198" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -721,6 +728,7 @@
                         <outlet property="bookTitle" destination="Gcb-Rb-vlH" id="nZu-xR-zH6"/>
                         <outlet property="cosmosView" destination="ZbE-A1-Uej" id="ADQ-fM-nsN"/>
                         <outlet property="reviewsTable" destination="WIh-V4-VKh" id="7jq-bd-7aC"/>
+                        <outlet property="storeParticipation" destination="txR-JW-Z8q" id="qL7-S6-WLI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCa-wn-RAf" userLabel="First Responder" sceneMemberID="firstResponder"/>

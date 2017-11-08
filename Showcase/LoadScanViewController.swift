@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import MapKit
 import CoreLocation
 import AddressBookUI
@@ -82,12 +83,17 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     
     var scanBookArray = [Book]()
     var bookToPass: Int = -1
-    
+
+    var ref: DatabaseReference!
+    var storeAssociateTag: String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Start the spinning of the inidicator - stop it if we show the table
         ViewControllerUtils().showActivityIndicator(uiView: self.view)
+        
+        findStoreAssociateTag()
         
         // user defined functions
         self.getLocation{ () -> () in
@@ -113,6 +119,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             print(self.address)
             // Need to pass longitude and latitude
             postScanVC.storeAddress = self.address
+            postScanVC.storeAssociateTag = self.storeAssociateTag
             print("*** store nme prepare \(self.businessName)")
             postScanVC.storeName = self.businessName
         }else if(scanBookArray.count > 1){
@@ -121,6 +128,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             resultsTblVC.storeAddress = self.address
             print("*** store nme prepare \(self.businessName)")
             resultsTblVC.storeName = self.businessName
+            resultsTblVC.storeAssociateTag = self.storeAssociateTag
         }
     }
     
@@ -457,9 +465,29 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         }
         task.resume() // start the XML parser
     }
-    
-    
-    
+
+    func findStoreAssociateTag () {
+        // Set Firebase DB reference
+        ref = Database.database().reference()
+        self.ref?.child("store").observe(DataEventType.value, with: { (snapshot) in
+            // grab the list of all books
+            let allStores = snapshot.value as? NSDictionary
+            if (allStores == nil) { return }
+            
+            // Loop through the stores and grab the storeKey value. A store entry is a dictionary ('storeID' -> 'storeKey')
+            print("self store address")
+            print(self.address)
+            for (_, value) in allStores! {
+                let dbStore = value as! NSDictionary
+                let dbStoreAddress = dbStore["address"] as! String
+                print(dbStoreAddress)
+                
+                if (dbStoreAddress == self.address) { // storeAddress is the current store address
+                    self.storeAssociateTag = dbStore["associateTag"] as! String
+                }
+            }
+        })
+   }
     
     
     
