@@ -90,6 +90,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         postScanVC.storeAddress = self.storeAddress
         postScanVC.storeName = self.storeName
         postScanVC.storeAssociateTag = self.storeAssociateTag
+        postScanVC.whichVC_itComesFrom = "ResultsVC"
     }
     
     
