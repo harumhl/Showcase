@@ -24,11 +24,11 @@
 		4E24E08A1F8BDF8B005D1EAD /* LoadScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */; };
 		4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E257A011F731F4B00012F2D /* LoginViewController.swift */; };
 		4E55C0BE1FAA798600044ADD /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E55C0BD1FAA798600044ADD /* ViewControllerUtils.swift */; };
+		4EAA3E561FB388EB00742851 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAA3E551FB388EB00742851 /* Keys.swift */; };
 		4EADBFC81F97FE3A001386D6 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADBFC71F97FE3A001386D6 /* Review.swift */; };
 		4EADBFCA1F980713001386D6 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADBFC91F980713001386D6 /* ReviewTableViewCell.swift */; };
 		4ED24BC81F8EB216000407C2 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED24BC71F8EB216000407C2 /* ResultsViewController.swift */; };
 		4ED24BCE1F8EB40B000407C2 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED24BCD1F8EB40B000407C2 /* ResultsTableViewCell.swift */; };
-		5010F1671FACEAFB0035689B /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5010F1661FACEAFB0035689B /* Keys.swift */; };
 		5010F16B1FACFACA0035689B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5010F16A1FACFACA0035689B /* ChangePasswordViewController.swift */; };
 		50ED73B01F85ACE100E4531F /* UIViewController+CurUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */; };
 		5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */; };
@@ -87,11 +87,11 @@
 		4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScanViewController.swift; sourceTree = "<group>"; };
 		4E257A011F731F4B00012F2D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4E55C0BD1FAA798600044ADD /* ViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
+		4EAA3E551FB388EB00742851 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../Downloads/Keys.swift; sourceTree = "<group>"; };
 		4EADBFC71F97FE3A001386D6 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		4EADBFC91F980713001386D6 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		4ED24BC71F8EB216000407C2 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		4ED24BCD1F8EB40B000407C2 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
-		5010F1661FACEAFB0035689B /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		5010F16A1FACFACA0035689B /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+CurUser.swift"; path = "Showcase/UIViewController+CurUser.swift"; sourceTree = SOURCE_ROOT; };
 		5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				5E0CEEE51F730FD7009EADF6 /* Constants.swift */,
-				5010F1661FACEAFB0035689B /* Keys.swift */,
+				4EAA3E551FB388EB00742851 /* Keys.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -623,6 +623,7 @@
 				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
 				5E47E7311F739485002B703D /* MaterialButton.swift in Sources */,
 				081A46D41FAB7A6600A4FBEA /* Location.swift in Sources */,
+				4EAA3E561FB388EB00742851 /* Keys.swift in Sources */,
 				08C66B101F8F16120036FA82 /* HistoryTableViewCell.swift in Sources */,
 				08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */,
 				5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */,
@@ -641,7 +642,6 @@
 				4E24E08A1F8BDF8B005D1EAD /* LoadScanViewController.swift in Sources */,
 				4EADBFCA1F980713001386D6 /* ReviewTableViewCell.swift in Sources */,
 				5E0CEEE61F730FD7009EADF6 /* Constants.swift in Sources */,
-				5010F1671FACEAFB0035689B /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

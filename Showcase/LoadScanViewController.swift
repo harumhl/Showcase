@@ -95,13 +95,35 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         
         findStoreAssociateTag()
         
+        // ************************************* TEST 1 *******************
+//        self.getLocation{ () -> () in
+//            print("store::: \(self.businessName)")
+//            // using closures to construct our object then perform the function selectBook()
+//            self.amazonSearch { () -> () in
+//                self.selectBook()
+//            }
+//        }
+        
+        // ************************************* TEST 2 *******************
+        amazonSearch()
         // user defined functions
         self.getLocation{ () -> () in
-            // using closures to construct our object then perform the function selectBook()
-            self.amazonSearch { () -> () in
+            print("store::: \(self.businessName)")
                 self.selectBook()
-            }
         }
+        
+        // ************************************* TEST 3 *******************
+//        getLocation()
+//        print("done location::: \(self.businessName)")
+//        // user defined functions
+//        //self.getLocation{ () -> () in
+//            // using closures to construct our object then perform the function selectBook()
+//        self.amazonSearch { () -> () in
+//            self.selectBook()
+//            //}
+//        }
+
+        
         // Do any additional setup after loading the view.
     }
 
@@ -170,6 +192,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
 // ****************************************** GPS Functions ***************************************************
     // gets the GPS longitude and latitude, then passes to function to determine the business you are in
     func getLocation(handleComplete:@escaping (()->())){
+    //func getLocation(){
         // get Longitude and Latitude
         locManager.delegate = self as! CLLocationManagerDelegate
         locManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -193,7 +216,12 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 } else if let placemark = originPlacemark {
                     //print(placemark.name)
                     self.placemarkToAddress(placemark: placemark)
-                    self.getBusiness()
+                    print("done getting address")
+                    self.getBusiness{ () -> () in
+                        print("handleComplete address \(self.businessName)")
+                        handleComplete()
+                    }
+                    
                     print("done getting business")
                 }
             }
@@ -203,12 +231,12 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             print("did not allow gps")
         }
         
-        // wait a little bit for the gps to get the book store address.
-         let when = DispatchTime.now() + 2.0
-         DispatchQueue.main.asyncAfter(deadline: when) {
-            print("handle complete")
-            handleComplete()
-         }
+         //wait a little bit for the gps to get the book store address.
+//         let when = DispatchTime.now() + 1.5
+//         DispatchQueue.main.asyncAfter(deadline: when) {
+//            print("handle complete")
+//            //handleComplete()
+//         }
    
     }
     
@@ -236,6 +264,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     
     // Converts placemarker to a physical address
     func placemarkToAddress(placemark: CLPlacemark) -> Void{
+        print("Start placemarkToAddress")
         // Location name
         if let locationName = placemark.addressDictionary?["Name"] as? String {
             self.address += locationName + ", "
@@ -269,10 +298,14 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             self.address += country
             currentAddr["country"] = country
         }
+        
+        print("Done placemarkToAddress")
     }
     
     // Determines if user is in a bookstore
-    func getBusiness(){
+    //func getBusiness(){
+    func getBusiness(handleComplete:@escaping (()->())){
+        print("start getBusiness")
         //https://stackoverflow.com/questions/42570636/can-i-get-a-store-name-restaurant-name-with-mapkitswift
         //https://www.youtube.com/watch?v=VZZ76kAdhNA
         let request = MKLocalSearchRequest()
@@ -300,17 +333,22 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 print("You are in \(buisness) \n")
                 self.businessName = buisness
                 print("placeholder: " + self.businessName)
+                handleComplete()
             } else {
                 //print("Sorry we could not determine your location \n")
                 print("placeholder: Sorry we could not determine your location"
                         + "\n-----------------------")
             }
         }
+        print("done getBusiness")
+        
     }
   
     
 // ****************************************** Book Search Functions ***************************************************
-    func amazonSearch(handleComplete:@escaping (()->())) {
+    //func amazonSearch(handleComplete:@escaping (()->())) {
+    func amazonSearch(){
+        print("Start Amazon ")
         /* http://docs.aws.amazon.com/AWSECommerceService/latest/DG/rest-signature.html */
         
         // Other ingo
@@ -457,7 +495,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     print("NOPE NOTE EQUAL")
                 }
             }
-            handleComplete()
+           // handleComplete()
 
             // No book was found, so alert the user as going back to the root VC
             if (self.scanBookArray.count == 0) {
@@ -465,11 +503,9 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-            
-            // This stores the author, book title, etc
-            let responseBook = responseItems["Item"]["ItemAttributes"]
         }
         task.resume() // start the XML parser
+        print("Done Amazon")
     }
 
     func findStoreAssociateTag () {
