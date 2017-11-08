@@ -115,7 +115,12 @@ class HistoryTableViewController: UITableViewController {
         self.ref?.child("location").child("loc" + locationKey).observe(DataEventType.value, with: { (snapshot) in
             let theLocation = snapshot.value as! NSDictionary
             // Grab Location StoreName field from DB
-            tempBook.location.storeName = theLocation.value(forKey: "StoreName") as! String
+            if (theLocation.value(forKey: "StoreName") != nil) {
+                tempBook.location.storeName = theLocation.value(forKey: "StoreName") as! String
+            }
+            else {
+                tempBook.location.storeName = "Not searched at a store"
+            }
         })
         self.userBookArray.append(tempBook)
     }
