@@ -57,7 +57,6 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             theURL += self.storeAssociateTag
             theURL += "&camp=1789&creative=9325&linkCode=as2&creativeASIN="
             theURL += self.bookData.ASIN
-
         }
         
         print(theURL)
@@ -71,8 +70,6 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         
         print("****** store: \(self.storeName)")
         
-        // Do any additional setup after loading the view.
-        
         // Getting the setting for Star Rating display
         cosmosView.settings.updateOnTouch = false
         cosmosView.settings.fillMode = .precise
@@ -80,8 +77,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         // Updating the Display
         self.displayBookInfo()
         activityIndicatorView.startAnimating()
-        //ViewControllerUtils().showActivityIndicator(uiView: self.view)
         
+        // Display the view controller's title
         if !fromHistory {
             self.title = "Store: " + self.storeName
             addDataToDB()
@@ -94,29 +91,13 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         // for the ReviewTable
         self.reviewsTable.delegate = self
         self.reviewsTable.dataSource = self
-        
         self.reviewsTable.estimatedRowHeight = 100.0
         self.reviewsTable.rowHeight = UITableViewAutomaticDimension
         
-        
-        //self.getReviewsFromReviewURL()
-
+        // Update reviews
         DispatchQueue.global(qos: .background).async { // Use background threads so book info is displayed while parsing reviews
             self.getReviewsFromReviewURL()
-            DispatchQueue.main.async {
-                //self.cosmosView.performSelector(onMainThread: #selector(CosmosView.update), with: nil, waitUntilDone: true)
-                self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-            }
-            
-
         }
-//        DispatchQueue.main.async {
-//            self.cosmosView.performSelector(onMainThread: #selector(CosmosView.reloadInputViews), with: nil, waitUntilDone: true) // DOESN'T WORK
-//            self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-//        }
-//        print("hide activity")
-//        //ViewControllerUtils().hideActivityIndicator(uiView: self.view)
-//        print("hide activity 2")
     }
     
     // Built in XCode function
@@ -132,16 +113,14 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell:ReviewTableViewCell = self.reviewsTable.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ReviewTableViewCell
+
         let cell:ReviewTableViewCell = self.reviewsTable.dequeueReusableCell(withIdentifier: "cell") as! ReviewTableViewCell
         
         cell.reviewTitle.text = reviewArray[indexPath.row].title
-        
         cell.reviewDate.text = reviewArray[indexPath.row].date
-        
         cell.reviewText.text = reviewArray[indexPath.row].review
-        
         cell.reviewRating.rating = reviewArray[indexPath.row].rating
+        
         cell.reviewRating.settings.updateOnTouch = false
         
         return cell
@@ -205,7 +184,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 let reviewDoc = try SwiftSoup.parse(myHTMLString)
                 print("done parsing")
                 
-                //get the total review for the book by using "arp-rating-out-of-text"
+                // Get the total review for the book by using "arp-rating-out-of-text"
                 var ratingStr: String = try reviewDoc.getElementsByClass("arp-rating-out-of-text").text()
                 print("RatingStr: ", ratingStr)
                 ratingStr = ratingStr.substring(to: ratingStr.index(of: " ")!)
@@ -214,13 +193,12 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 // Display the rating with stars (not the number)
                 // https://github.com/evgenyneu/Cosmos
-                cosmosView.rating = bookData.rating
-                cosmosView.text = String(format:"%.2f", bookData.rating)
                 DispatchQueue.main.async {
+                    self.cosmosView.rating = self.bookData.rating
+                    self.cosmosView.text = String(format:"%.2f", self.bookData.rating)
                     self.cosmosView.performSelector(onMainThread: #selector(CosmosView.update), with: nil, waitUntilDone: true)
                 }
                 
-
                 
                 // "review" gives us the entire review data
                 let elems: Elements = try reviewDoc.getElementsByClass("review")
@@ -259,16 +237,14 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                     
                 }
                 
+                // hide the activity indicator once all reviews are loaded
                 DispatchQueue.main.async {
-                    // hide the activity indicator once all reviews are loaded
                     let animating = self.activityIndicatorView.animating
                     if(animating){
                         self.self.activityIndicatorView.stopAnimating()
                     }
                 }
                 
-               
-
             } catch {
                 print("error")
             }

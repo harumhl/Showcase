@@ -114,22 +114,24 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         if(scanBookArray.count == 1){
             // Pass in the Book object that the user selects
             let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
-            postScanVC.bookData = scanBookArray[bookToPass]
-            print("segue")
-            print(self.address)
+            print("segue to post scan")
+            
             // Need to pass longitude and latitude
+            postScanVC.bookData = scanBookArray[bookToPass]
             postScanVC.storeAddress = self.address
             postScanVC.storeAssociateTag = self.storeAssociateTag
-            print("*** store nme prepare \(self.businessName)")
             postScanVC.storeName = self.businessName
-        }else if(scanBookArray.count > 1){
+        }
+        else if(scanBookArray.count > 1){
             let resultsTblVC: ResultsViewController = segue.destination as! ResultsViewController
+            print("segue to result table")
+
             resultsTblVC.scanBookArray = scanBookArray
             resultsTblVC.storeAddress = self.address
-            print("*** store nme prepare \(self.businessName)")
             resultsTblVC.storeName = self.businessName
             resultsTblVC.storeAssociateTag = self.storeAssociateTag
-        }else{
+        }
+        else{
             // no book found
             print("segue back to root")
             let rootVC: RootViewController = segue.destination as! RootViewController
@@ -145,7 +147,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "LoadToPost", sender: nil)
             }
-        }else if(scanBookArray.count > 1){
+        }
+        else if(scanBookArray.count > 1){
             // hide load indicator animaiton
             ViewControllerUtils().hideActivityIndicator(uiView: self.view)
             
@@ -154,9 +157,10 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "LoadToResults", sender: nil)
             }
-        } else{
+        }
+        else{
             // OOPS we did not find there book.
-            // segue to the scanner or the main menu and notify user that we did not find the book
+            // segue back to the main menu and notify user that we did not find the book
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "BackToRoot", sender: nil)
             }
@@ -285,19 +289,11 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             print ("-----------------------")
             //print ("getBusiness()\n")
             for item in (response?.mapItems)! {
-                //                print ("-----------------------\n")
-                //                print(item.placemark)
-                //                print("\n")
-                //                print(item.name!)
-                //                print("\n")
-                //                print(item.placemark.title!)
-                //                print("\n")
                 let responseAddr = item.placemark.title!
                 if(responseAddr == self.address){
                     print("Found Location\n")
                     buisness = item.name!
                     foundBusn = true
-                    
                 }
             }
             if(foundBusn){
@@ -310,7 +306,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                         + "\n-----------------------")
             }
         }
-        
     }
   
     
@@ -457,16 +452,14 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     
                     // insert item into array of books
                     self.scanBookArray.append(tmpBook)
-                    //print("book: Found a Match")
-                    
                 }
                 else{
                     print("NOPE NOTE EQUAL")
                 }
             }
             handleComplete()
-            //print("CHECK THE BOOKS")
-            
+
+            // No book was found, so alert the user as going back to the root VC
             if (self.scanBookArray.count == 0) {
                 let alert = UIAlertController(title: "No Book Found", message: "No book was found at Amazon.com", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
@@ -490,6 +483,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             // Loop through the stores and grab the storeKey value. A store entry is a dictionary ('storeID' -> 'storeKey')
             print("self store address")
             print(self.address)
+            
             for (_, value) in allStores! {
                 let dbStore = value as! NSDictionary
                 let dbStoreAddress = dbStore["address"] as! String
@@ -503,8 +497,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
    }
     
     
-    
-
     /*
     // MARK: - Navigation
 
