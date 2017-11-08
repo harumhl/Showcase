@@ -68,6 +68,11 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         
         print("****** store: \(self.storeName)")
         
+        // Custom "back" button
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PostScanViewController.backToRoot(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+        
         // Getting the setting for Star Rating display
         cosmosView.settings.updateOnTouch = false
         cosmosView.settings.fillMode = .precise
@@ -103,6 +108,13 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func backToRoot(sender: UIBarButtonItem) {
+        // Go back to the root ViewController
+        let rootVC: RootViewController = (self.navigationController?.viewControllers[1])!  as! RootViewController
+        navigationController?.popToViewController(rootVC, animated: true)
+    }
+
     
 //****************************************** REVIEW TABLE FUNCTIONS ******************************************
 
