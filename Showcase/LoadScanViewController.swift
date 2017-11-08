@@ -130,14 +130,18 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         if(scanBookArray.count == 1){
             // send the book data to the controller using prepare()
             bookToPass = 0
-            performSegue(withIdentifier: "LoadToPost", sender: nil)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "LoadToPost", sender: nil)
+            }
         }else if(scanBookArray.count > 1){
             // hide load indicator animaiton
             ViewControllerUtils().hideActivityIndicator(uiView: self.view)
             
             // load the table with scanBookArray
             // segue to resultstable view controller
-            performSegue(withIdentifier: "LoadToResults", sender: nil)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "LoadToResults", sender: nil)
+            }
         } else{
             // OOPS we did not find there book.
             // segue to the scanner or the main menu and notify user that we did not find the book
