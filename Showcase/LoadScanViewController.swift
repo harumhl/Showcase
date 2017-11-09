@@ -93,16 +93,17 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         // Start the spinning of the inidicator - stop it if we show the table
         ViewControllerUtils().showActivityIndicator(uiView: self.view)
         
-        findStoreAssociateTag()
-        
         // ************************************* TEST 1 *******************
         self.getLocation{ () -> () in
             print("store::: \(self.businessName)")
-            // using closures to construct our object then perform the function selectBook()
-            self.amazonSearch { () -> () in
-                self.selectBook()
+            self.findStoreAssociateTag{ () -> () in
+                // using closures to construct our object then perform the function selectBook()
+                self.amazonSearch { () -> () in
+                    self.selectBook()
+                }
             }
         }
+        
 //
         // ************************************* TEST 2 *******************
 //        amazonSearch()
@@ -142,6 +143,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             postScanVC.bookData = scanBookArray[bookToPass]
             postScanVC.storeAddress = self.address
             postScanVC.storeAssociateTag = self.storeAssociateTag
+            print("here; \(self.storeAssociateTag)")
             postScanVC.storeName = self.businessName
         }
         else if(scanBookArray.count > 1){
@@ -299,7 +301,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             currentAddr["country"] = country
         }
         
-        print("Done placemarkToAddress")
+        
+        print("Done placemarkToAddress \(self.address)")
     }
     
     // Determines if user is in a bookstore
@@ -513,7 +516,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         print("Done Amazon")
     }
 
-    func findStoreAssociateTag () {
+    func findStoreAssociateTag(handleComplete:@escaping (()->())) {
         // Set Firebase DB reference
         ref = Database.database().reference()
         self.ref?.child("store").observe(DataEventType.value, with: { (snapshot) in
@@ -527,14 +530,18 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             
             for (_, value) in allStores! {
                 let dbStore = value as! NSDictionary
-                let dbStoreAddress = dbStore["address"] as! String
-                print(dbStoreAddress)
+                print(dbStore["address"] as! String)
                 
-                if (dbStoreAddress == self.address) { // storeAddress is the current store address
+                if (dbStore["address"] as! String == self.address) { // storeAddress is the current store address
+                    print ("found123")
                     self.storeAssociateTag = dbStore["associateTag"] as! String
+                    print (dbStore["associateTag"])
+                    handleComplete()
+                    break
                 }
             }
         })
+        
    }
     
     

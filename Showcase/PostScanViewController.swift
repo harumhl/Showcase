@@ -40,8 +40,9 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var bookPrice: UILabel!
     @IBOutlet weak var bookPurchase: UIButton!
     @IBOutlet weak var bookReviews: UITableView!
-    @IBOutlet weak var storeParticipation: UILabel!
     @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
+    @IBOutlet weak var storePlacemarkImg: UIImageView!
+    @IBOutlet weak var storeNameLbl: UILabel!
     
     @IBAction func PurchaseBook(_ sender: Any) {
         print("Purchase clicked!!")
@@ -87,6 +88,15 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         if (storeAssociateTag == "") {
             bookPurchase.backgroundColor = UIColor.gray
             bookPurchase.isEnabled = false
+            storePlacemarkImg.image = UIImage(named: "redPlacemark")
+            storeNameLbl.text = "This store does not participate with Showcase"
+        } else {
+            
+            if !fromHistory {
+                storeNameLbl.text = self.storeName
+            }else {
+                storeNameLbl.text = self.bookData.location.storeName
+            }
         }
 
         // Getting the setting for Star Rating display
@@ -106,12 +116,12 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Display the view controller's title
         if !fromHistory {
-            self.title = "Store: " + self.storeName
+            //self.title = "Store: " + self.storeName
             addDataToDB()
             fromHistory = false
         } else {
             // Maybe our Location object will have this information.
-            self.title = self.bookData.location.storeName
+            //self.title = self.bookData.location.storeName
         }
         
         // for the ReviewTable
@@ -193,14 +203,6 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             if let data = NSData(contentsOf: url as URL) {
                 self.bookImage.image = UIImage(data: data as Data)
             }
-        }
-        
-        // Display whether the store participates in our Amazon-affiliated service
-        if (storeAssociateTag == "") {
-            storeParticipation.text = "The store DOES NOT participate in our affiliation service"
-        }
-        else {
-            storeParticipation.text = "The store participates in our affiliation service!"
         }
         
         bookTitle.text = bookData.title
