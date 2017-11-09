@@ -142,7 +142,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             let rootVC: RootViewController = (self.navigationController?.viewControllers[1])!  as! RootViewController
             navigationController?.popToViewController(rootVC, animated: true)
         }
-        else if (whichVC_itComesFrom == "ResultsVC") {
+        else if (whichVC_itComesFrom == "ResultsVC" || fromHistory == true) {
             // Go back to the ResultsViewController - just go back
             navigationController?.popViewController(animated: true)
         }
