@@ -115,6 +115,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         self.performSegue(withIdentifier: "LoginToSignUp", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "LoginToSignUp"){
+             if let tabVC = segue.destination as? UITabBarController{
+                tabVC.selectedIndex = 0
+            }
+        }
+    }
+
     
     // presses the return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

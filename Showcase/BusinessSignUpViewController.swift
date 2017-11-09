@@ -1,25 +1,27 @@
 //
-//  SignUpViewController.swift
+//  BusinessSignUpViewController.swift
 //  Showcase
 //
-//  Created by Brian Ta on 9/25/17.
+//  Created by froob on 11/8/17.
 //  Copyright © 2017 TamuCpse482. All rights reserved.
 //
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
-class SignUpViewController: UIViewController {
+class BusinessSignUpViewController: UIViewController {
 
-    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var businessName: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var amazonAscTag: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
-    @IBOutlet weak var registerBtn: MaterialButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         self.navigationController?.isNavigationBarHidden = false
+        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,7 +42,6 @@ class SignUpViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
     // Show a popup alert.
     // aSegue is an optional parameter, you can supply one if you want to perform
     // a segue and then show an alert.
@@ -55,40 +56,38 @@ class SignUpViewController: UIViewController {
     }
     
     
-    // This function is called after a user hits the register button
-    // Based on Firebase authentication, signups will fail if they don't 
-    // meet a certain criteria (if an errorCode is given)
-    // 
-    @IBAction func registerUser(_ sender: Any) {
+    @IBAction func businessRegister(_ sender: Any) {
         print("*** Sign Up Fields ***")
-        print("\tEmail: "      + emailField.text!)
-        print("\tPassword: "   + passwordField.text!)
+        print("\nBusnessName: "      + businessName.text!)
+        print("\tEmail: "   + email.text!)
+        print("\tAmazon Asc Tag: " + amazonAscTag.text!)
+        print("\tPW: " + passwordField.text!)
         print("\tConfirm PW: " + confirmPasswordField.text!)
         print("\n")
         // Check for password confirmation
         if passwordField.text == confirmPasswordField.text {
             // Create the user
-            Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
+            Auth.auth().createUser(withEmail: email.text!, password: passwordField.text!) { (user, error) in
                 if error != nil {
                     if let errorCode = AuthErrorCode(rawValue: (error?._code)!) {
                         switch errorCode {
-                            case .invalidEmail:
-                                print ("Invalid Email")
-                                self.showAlert(title: "Error", message: "That email sucked, try again.")
-                            case .weakPassword:
-                                print ("Weak Password")
-                                self.showAlert(title: "Error", message: "Password is too weak. Try 6 or more characters.")
-                            // Type "case ." to see all of the different error codes.
-                            default:
-                                print("Unknown authentication error: ", errorCode)
-                                break
+                        case .invalidEmail:
+                            print ("Invalid Email")
+                            self.showAlert(title: "Error", message: "That email sucked, try again.")
+                        case .weakPassword:
+                            print ("Weak Password")
+                            self.showAlert(title: "Error", message: "Password is too weak. Try 6 or more characters.")
+                        // Type "case ." to see all of the different error codes.
+                        default:
+                            print("Unknown authentication error: ", errorCode)
+                            break
                         }
                     }
                 }
-                // There were no errors from authentication
+                    // There were no errors from authentication
                 else {
                     print ("User creation successful.")
-                    self.performSegueAndShowAlert(title: "Success", message: "User creation successful.", segueName: "signUpToRootSegue")
+                    self.performSegueAndShowAlert(title: "Success", message: "Business creation successful.", segueName: "businessSignUpToRootSegue")
                 }
             }
         }
@@ -98,9 +97,10 @@ class SignUpViewController: UIViewController {
         
         // End registerUser button function
     }
-
+    
     /*
     // MARK: - Navigation
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.

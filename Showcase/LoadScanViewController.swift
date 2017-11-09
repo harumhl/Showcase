@@ -14,6 +14,7 @@ import AddressBookUI
 import SwiftyXMLParser
 import SwiftSoup
 import Firebase
+import NVActivityIndicatorView
 
 /******************************** HMAC algorithm for Amazon REST call Signature ********************************/
 enum HMACAlgorithm {
@@ -71,7 +72,7 @@ extension String {
 /******************************** (end of) HMAC algorithm for Amazon REST call Signature ******************************/
 
 class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
-    //@IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
+    
     
     var theBarcodeData: String = ""
     
@@ -87,11 +88,14 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     var ref: DatabaseReference!
     var storeAssociateTag: String = ""
 
+    @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Start the spinning of the inidicator - stop it if we show the table
-        ViewControllerUtils().showActivityIndicator(uiView: self.view)
+        //ViewControllerUtils().showActivityIndicator(uiView: self.view)
+        activityIndicator.startAnimating()
         
         // ************************************* TEST 1 *******************
         self.getLocation{ () -> () in
@@ -145,6 +149,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             postScanVC.storeAssociateTag = self.storeAssociateTag
             print("here; \(self.storeAssociateTag)")
             postScanVC.storeName = self.businessName
+            postScanVC.whichVC_itComesFrom = "LoadScanVC"
         }
         else if(scanBookArray.count > 1){
             let resultsTblVC: ResultsViewController = segue.destination as! ResultsViewController
@@ -174,7 +179,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         }
         else if(scanBookArray.count > 1){
             // hide load indicator animaiton
-            ViewControllerUtils().hideActivityIndicator(uiView: self.view)
+            //ViewControllerUtils().hideActivityIndicator(uiView: self.view)
             
             // load the table with scanBookArray
             // segue to resultstable view controller
