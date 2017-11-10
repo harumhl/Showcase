@@ -1449,7 +1449,6 @@
         <image name="user" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="shh-RK-V0N"/>
         <segue reference="SMw-y1-bM6"/>
         <segue reference="qsg-Sj-SfY"/>
     </inferredMetricsTieBreakers>
