@@ -109,7 +109,7 @@ class BusinessSignUpViewController: UIViewController {
         // Write a business to db
         let userData =  ["AssociateTag"    : amazonAscTag.text,
                          "BusinessName"    : businessName.text,
-                         "IsBusiness"      :  true
+                         "IsBusiness"      : true
             ] as [String : Any]
         ref.child("/user/" + businessEmailShort).setValue(userData)
     }
