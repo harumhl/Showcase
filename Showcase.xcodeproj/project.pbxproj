@@ -181,20 +181,20 @@
 		08BA96E21F7071F9001875BF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				08BA96DE1F706C71001875BF /* PostScanViewController.swift */,
-				4E2254791F70514000DE1D93 /* ContributionsViewController.swift */,
-				4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */,
-				4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */,
-				4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */,
-				085F5E611F7C5150003200C5 /* SignUpViewController.swift */,
 				4E257A011F731F4B00012F2D /* LoginViewController.swift */,
+				085F5E611F7C5150003200C5 /* SignUpViewController.swift */,
+				1A4FDBA21FB3B19A00FC5648 /* BusinessSignUpViewController.swift */,
 				5E47E72C1F7383C2002B703D /* RootViewController.swift */,
-				49EC73261F82DA49003737F9 /* Showcase-Bridging-Header.h */,
+				4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */,
 				4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */,
 				4ED24BC71F8EB216000407C2 /* ResultsViewController.swift */,
+				08BA96DE1F706C71001875BF /* PostScanViewController.swift */,
+				4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */,
+				4E2254791F70514000DE1D93 /* ContributionsViewController.swift */,
+				4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */,
 				5010F16A1FACFACA0035689B /* ChangePasswordViewController.swift */,
-				1A4FDBA21FB3B19A00FC5648 /* BusinessSignUpViewController.swift */,
 				50451D811FB637E600418C89 /* UpdateAssociateTagViewController.swift */,
+				49EC73261F82DA49003737F9 /* Showcase-Bridging-Header.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
