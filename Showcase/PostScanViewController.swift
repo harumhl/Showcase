@@ -185,11 +185,11 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         //check if we need to write reviews to
-//        var reviewInDB = isReviewInDB()
-//        if (!reviewInDB){
-//            //write reviews (self.bookData.reviews) to the db
+        var reviewInDB = isReviewInDB()
+        if (!reviewInDB){
+            //write reviews (self.bookData.reviews) to the db
             writeReviewsToDB()
-//        }
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -331,9 +331,32 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
 //****************************************** Database Functions **********************************************
     func isReviewInDB() -> Bool {
         // using the bookData.reviewURL check if the review object already exists in the database
+        var foundBook = false
+        // Set Firebase DB reference
+        ref = Database.database().reference()
+        self.ref?.child("review").observe(DataEventType.value, with: { (snapshot) in
+            // grab all book reviews
+            let allBooks = snapshot.value as? NSDictionary
+            if(allBooks == nil) { return }
+            
+            // loop through and try to find the match for the book currently being searched
+            for (isbn, _) in allBooks! {
+                let isbn_db = isbn as! String
+                print("isbn_db: \(isbn)")
+                if(isbn_db == self.bookData.ISBN){
+                    print("found ISBN in ReviewDB no need to write to DB")
+                    foundBook = true
+                    return
+                }
+            }
+        })
         
-        
-        return false
+        if(foundBook){
+            return true
+        }
+        else{
+            return false
+        }
     }
     
     
