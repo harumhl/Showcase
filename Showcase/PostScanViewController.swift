@@ -183,6 +183,13 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 self.self.activityIndicatorView.stopAnimating()
             }
         }
+        
+        //check if we need to write reviews to
+//        var reviewInDB = isReviewInDB()
+//        if (!reviewInDB){
+//            //write reviews (self.bookData.reviews) to the db
+            writeReviewsToDB()
+//        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -322,6 +329,58 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     
 
 //****************************************** Database Functions **********************************************
+    func isReviewInDB() -> Bool {
+        // using the bookData.reviewURL check if the review object already exists in the database
+        
+        
+        return false
+    }
+    
+    
+    
+    func writeReviewsToDB(){
+        ref = Database.database().reference()
+        
+        // write the bookData.reviews array list into the database
+        let revKey = bookData.ISBN
+        
+        // prepare array of arrays of Reviews to write to database
+        // - revKey: www.reviewurl.com
+        //      - review_1
+        //          - review_title: titel
+        //          - review_rating: 1.0
+        //          - review_date: "october 21, 2013"
+        //          - review_text: "asojvafbhadfnbajfnblkahfblaksfhjbvalsfkbhasfkaj"
+        //      - review_2
+        //          - review_title: titel
+        //          - review_rating: 1.0
+        //          - review_date: "october 21, 2013"
+        //          - review_text: "asojvafbhadfnbajfnblkahfblaksfhjbvalsfkbhasfkaj"
+        //      - ...
+        
+        var reviewDict = [String : Dictionary<String, Any>]()
+        var counter = 0
+        for review in bookData.reviews {
+            
+            let reviewData = [
+                "reviewTitle" : review.title,
+                "reviewRating" : review.rating,
+                "reviewDate" : review.date,
+                "reviewText" : review.review
+            ] as [String : Any]
+            
+            // append review object into our dictionary
+            reviewDict["review_"+String(counter)] = reviewData
+            
+            // increment counter for rievew id
+            counter += 1
+        }
+        
+        // Write a book to the DB
+        ref.child("/review/" + revKey).setValue(reviewDict)
+        
+    }
+    
     func addDataToDB() {
         ref = Database.database().reference()
         let user = getUser()
