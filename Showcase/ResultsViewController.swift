@@ -19,6 +19,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
+    var whichVC_itComesFrom: String = ""
     var storeAssociateTag: String = ""
     
     override func viewDidLoad() {
@@ -41,8 +42,16 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func backToRoot(sender: UIBarButtonItem) {
         // Go back to the root ViewController
-        let rootVC: RootViewController = (self.navigationController?.viewControllers[1])!  as! RootViewController
-        navigationController?.popToViewController(rootVC, animated: true)
+        if (whichVC_itComesFrom == "") {
+            let rootVC: RootViewController = (self.navigationController?.viewControllers[1])!  as! RootViewController
+            navigationController?.popToViewController(rootVC, animated: true)
+        }
+        else if (whichVC_itComesFrom == "SignUpVC") {
+            // Go back to the ResultsViewController - just go back
+            let rootVC: RootViewController = (self.navigationController?.viewControllers[2])! as! RootViewController
+            navigationController?.popToViewController(rootVC, animated: true)
+        }
+
     }
 
 

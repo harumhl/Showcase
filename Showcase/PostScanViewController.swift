@@ -145,16 +145,21 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    // TODO: broken when logging in as business and scanning a book.
     func backToRoot(sender: UIBarButtonItem) {
         if (whichVC_itComesFrom == "LoadScanVC") {
             // Go back to the root ViewController
-            let rootVC: RootViewController = (self.navigationController?.viewControllers[1])!  as! RootViewController
+            let rootVC: RootViewController = (self.navigationController?.viewControllers[1])! as! RootViewController
             navigationController?.popToViewController(rootVC, animated: true)
         }
         else if (whichVC_itComesFrom == "ResultsVC" || fromHistory == true) {
             // Go back to the ResultsViewController - just go back
             navigationController?.popViewController(animated: true)
+        }
+        else if (whichVC_itComesFrom == "SignUpVC") {
+            // Go back to the ResultsViewController - just go back
+            let rootVC: RootViewController = (self.navigationController?.viewControllers[2])! as! RootViewController
+            navigationController?.popToViewController(rootVC, animated: true)
         }
     }
 
