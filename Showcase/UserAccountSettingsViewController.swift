@@ -10,11 +10,44 @@ import UIKit
 import Firebase
 
 class UserAccountSettingsViewController: UIViewController {
-
+    
+    @IBOutlet weak var updateAmazonTagButton: UIButton!
+    var ref: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        ref = Database.database().reference()
+        
+        let user = Auth.auth().currentUser
+        var emailShort = ""
+        if let user = user {
+            var email = user.email!
+            emailShort = email.substring(to: email.index(of: "@")!)
+        }
+        print("email short is ", emailShort)
+        self.ref?.child("user").observe(DataEventType.value, with: { (snapshot) in
+            let businessData = snapshot.value as? NSDictionary
+            if (!snapshot.hasChild(emailShort)) {
+                self.updateAmazonTagButton.isHidden = true
+                print("email didnt exist (user hasnot scanned) :: The user is NOT a Business")
+                return
+            }
+            
+            self.ref?.child("user").child(emailShort).observe(DataEventType.value, with: { (snapshot) in
+                if (!snapshot.hasChild("IsBusiness")) {
+                    self.updateAmazonTagButton.isHidden = true
+                    print("The user is NOT a Business")
+                }
+                else {
+                    self.updateAmazonTagButton.isHidden = false
+                }
+            })
+        })
+        
+      
+        
     }
 
     override func didReceiveMemoryWarning() {
