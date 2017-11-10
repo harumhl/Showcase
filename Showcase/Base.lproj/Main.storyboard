@@ -208,13 +208,14 @@
         <!--User Account Settings View Controller-->
         <scene sceneID="Y1U-wG-Nbf">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tve-02-EYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="0hh-du-6d5" customClass="UserAccountSettingsViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d1p-yr-13n"/>
                         <viewControllerLayoutGuide type="bottom" id="L8v-d5-w5s"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="y55-3c-jM1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rjr-Cq-jzW">
@@ -246,29 +247,27 @@
                                     <segue destination="Toh-Gu-C4D" kind="show" id="EtG-do-d3J"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHf-Q1-Vb7">
-                                <rect key="frame" x="143" y="386" width="60" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign Out"/>
-                                <connections>
-                                    <action selector="signOutButton:" destination="0hh-du-6d5" eventType="touchUpInside" id="ICt-Ka-mWm"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="1aB-Fp-Ark"/>
-                    </toolbarItems>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="O6P-D3-EXs">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out" id="uvd-TC-Xxk">
+                            <connections>
+                                <action selector="signOutBtn:" destination="0hh-du-6d5" id="s1b-zf-dSE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="signOutButton" destination="uvd-TC-Xxk" id="ZZS-Va-ynj"/>
                         <outlet property="updateAmazonTagButton" destination="zka-a4-KJE" id="kCh-ty-hzO"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tve-02-EYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2121" y="-972"/>
+            <point key="canvasLocation" x="2120.8000000000002" y="-972.86356821589209"/>
         </scene>
         <!--Update Associate Tag View Controller-->
         <scene sceneID="xxi-fJ-ybz">

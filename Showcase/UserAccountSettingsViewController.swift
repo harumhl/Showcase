@@ -14,6 +14,7 @@ class UserAccountSettingsViewController: UIViewController {
     @IBOutlet weak var updateAmazonTagButton: UIButton!
     var ref: DatabaseReference!
     
+    @IBOutlet weak var signOutButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,7 +57,7 @@ class UserAccountSettingsViewController: UIViewController {
     }
     
 
-    @IBAction func signOutButton(_ sender: Any) {
+    @IBAction func signOutBtn(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         // Warn the user that they will be signed out.
         let alert = UIAlertController(title: "You will be signed out!", message: "", preferredStyle: .alert )
