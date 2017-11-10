@@ -12,15 +12,17 @@ import FacebookCore
 import FacebookLogin
 import FBSDKCoreKit
 
-
-class HistoryTableViewController: UITableViewController {
-
+class HistoryTableViewController: UITableViewController, UISearchResultsUpdating {
+    
     var userBookArray : [Book] = []
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
     @IBOutlet var historyTable: UITableView!
     let cellReuseIdentifier = "cell"
     var selectedBookIndex = -1
+    
+    var filteredBooks : [Book] = [] // userBookArray contains all history. But this is the array that is displayed (always)
+    var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,20 +42,18 @@ class HistoryTableViewController: UITableViewController {
         } else {
             // The user might be logged in with Facebook
             let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
-                req.start({ (response, result) in
-                    switch result {
-                    case .success(let graphResponse) :
-                        if let resultDict = graphResponse.dictionaryValue {
-                            email = resultDict["email"] as! String
-                            print("FB Email1: ", email)
-                            email = email.substring(to: email.index(of: "@")!)
-                            print("FB Email2: ", email)
-                        }
-                    case .failed(_): break
-                        
+            req.start({ (response, result) in
+                switch result {
+                case .success(let graphResponse) :
+                    if let resultDict = graphResponse.dictionaryValue {
+                        email = resultDict["email"] as! String
+                        print("FB Email1: ", email)
+                        email = email.substring(to: email.index(of: "@")!)
+                        print("FB Email2: ", email)
                     }
-                })
-            
+                case .failed(_): break
+                }
+            })
         }
         
         // Embrace nature of syncrhnous programming
@@ -82,14 +82,17 @@ class HistoryTableViewController: UITableViewController {
                             self.getBookAttributes(aUserBook: aUserBook)
                         }
                     }
-                    // Reload the table view
                     // If the seconds since 1970 is a greater value, then it is more recent
                     self.userBookArray.sort { $0.SecondsSince1970 > $1.SecondsSince1970 }
+                    
+                    // Reload the table view
+                    self.filteredBooks = self.userBookArray
                     self.historyTable.reloadData()
                 })
             })
         }
 
+        configureSearchController()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -139,22 +142,21 @@ class HistoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return userBookArray.count
+        return self.filteredBooks.count //return userBookArray.count
     }
 
   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let cell:HistoryTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! HistoryTableViewCell
-        cell.bookTitle.text = userBookArray[indexPath.row].title
-        cell.author.text = userBookArray[indexPath.row].author
-        cell.bookPrice.text = userBookArray[indexPath.row].price
-        if let url = NSURL(string: userBookArray[indexPath.row].imageURL) {
+        
+        cell.bookTitle?.text = filteredBooks[indexPath.row].title
+        cell.author?.text = filteredBooks[indexPath.row].author
+        cell.bookPrice?.text = filteredBooks[indexPath.row].price
+        if let url = NSURL(string: filteredBooks[indexPath.row].imageURL) {
             if let data = NSData(contentsOf: url as URL) {
-                cell.bookImage.image = UIImage(data: data as Data)
+                cell.bookImage?.image = UIImage(data: data as Data)
             }
         }
-        
         return cell
     }
  
@@ -162,6 +164,27 @@ class HistoryTableViewController: UITableViewController {
         print("you tapped cell number \(indexPath.row)")
         selectedBookIndex = indexPath.row
         performSegue(withIdentifier: "HistoryToPost", sender: self)
+    }
+    
+    func configureSearchController() { // Initialize and perform a minimum configuration to the search controller.
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    func updateSearchResults(for searchController: UISearchController) {
+        // If we haven't typed anything into the search bar then do not filter the results
+        if searchController.searchBar.text! == "" {
+            filteredBooks = userBookArray
+        } else {
+            // Filter the results
+            filteredBooks = userBookArray.filter {
+                $0.title.lowercased().contains(searchController.searchBar.text!.lowercased()) ||
+                $0.author.lowercased().contains(searchController.searchBar.text!.lowercased())
+            }
+        }
+        historyTable.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
