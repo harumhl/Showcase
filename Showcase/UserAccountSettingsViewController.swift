@@ -26,13 +26,24 @@ class UserAccountSettingsViewController: UIViewController {
             var email = user.email!
             emailShort = email.substring(to: email.index(of: "@")!)
         }
-        
-        self.ref?.child("user").child(emailShort).observe(DataEventType.value, with: { (snapshot) in
+        print("email short is ", emailShort)
+        self.ref?.child("user").observe(DataEventType.value, with: { (snapshot) in
             let businessData = snapshot.value as? NSDictionary
-            if (!snapshot.hasChild(emailShort) || !snapshot.hasChild("IsBusiness")) {
-                self.updateAmazonTagButton.isEnabled = false
-                print("The user is NOT a Business")
+            if (!snapshot.hasChild(emailShort)) {
+                self.updateAmazonTagButton.isHidden = true
+                print("email didnt exist (user hasnot scanned) :: The user is NOT a Business")
+                return
             }
+            
+            self.ref?.child("user").child(emailShort).observe(DataEventType.value, with: { (snapshot) in
+                if (!snapshot.hasChild("IsBusiness")) {
+                    self.updateAmazonTagButton.isHidden = true
+                    print("The user is NOT a Business")
+                }
+                else {
+                    self.updateAmazonTagButton.isHidden = false
+                }
+            })
         })
         
       
