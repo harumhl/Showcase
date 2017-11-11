@@ -449,23 +449,34 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             for items in xml["ItemLookupResponse", "Items", "Item"]{
                 let itemAttributes = items["ItemAttributes"]
                 var itemISBN = "-1"
-                itemISBN ?= itemAttributes["EAN"].text
+                
+                if (itemAttributes["EAN"].text != nil) {
+                    itemISBN ?= itemAttributes["EAN"].text
+                }
                 
                 // create a book object when a match is found (can be more than one)
-                if(itemISBN != nil && itemId == itemISBN){
+                if(itemId == itemISBN){
                     var title = "Title Not Available"
-                    title ?= itemAttributes["Title"].text!
+                    if (itemAttributes["Title"].text != nil) {
+                        title ?= itemAttributes["Title"].text!
+                    }
                     
                     var author = "Author Not Available"
-                    author ?= itemAttributes["Author"].text!
+                    if (itemAttributes["Author"].text != nil) {
+                        author ?= itemAttributes["Author"].text!
+                    }
                     
                     let ISBN = self.theBarcodeData
                     
                     var price = "Price Not Available"
-                    price ?= itemAttributes["ListPrice", "FormattedPrice"].text
+                    if (itemAttributes["ListPrice", "FormattedPrice"].text != nil) {
+                        price ?= itemAttributes["ListPrice", "FormattedPrice"].text
+                    }
                     
                     var imageURL = "DefaultImage.jpg"
-                    imageURL ?= items["MediumImage", "URL"].text
+                    if (items["MediumImage", "URL"].text != nil) {
+                        imageURL ?= items["MediumImage", "URL"].text
+                    }
                     
                     var reviewURL = "Reviews Not Available"
                     
@@ -483,10 +494,14 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     print("Book was created at: ", dateCreatedAt)
                     
                     var purchaseURL = "Purchase URL Not Available"
-                    purchaseURL ?= items["DetailPageURL"].text
+                    if (items["DetailPageURL"].text != nil) {
+                        purchaseURL ?= items["DetailPageURL"].text
+                    }
                     
                     var ASIN = "ASIN Not Available"
-                    ASIN ?= items["ASIN"].text
+                    if (items["ASIN"].text != nil) {
+                        ASIN ?= items["ASIN"].text
+                    }
                     
                     let loc = Location()
                     loc.lat = self.latitude

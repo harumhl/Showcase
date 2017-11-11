@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import FirebaseAuth
 class ChangePasswordViewController: UIViewController {
 
     @IBOutlet weak var curPasswordField: UITextField!
@@ -60,9 +60,8 @@ class ChangePasswordViewController: UIViewController {
         }
         
         // check to see if the password entered is correct
-       // var credential: AuthCredential
+       /* var credential: AuthCredential
         
-        /*
         curUser?.reauthenticate(with: credential) { error in
             if let error = error {
                 // An error happened.
@@ -71,8 +70,8 @@ class ChangePasswordViewController: UIViewController {
                 // User re-authenticated.
                 print("user has been reauthenticated");
             }
-        }
-         */
+        }*/
+        
         // change current password to new password
  
         curUser?.updatePassword(to: newPasswordField.text!) { (error) in

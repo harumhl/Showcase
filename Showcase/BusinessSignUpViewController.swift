@@ -18,6 +18,8 @@ class BusinessSignUpViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+    var ref: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
@@ -86,7 +88,7 @@ class BusinessSignUpViewController: UIViewController {
                 }
                     // There were no errors from authentication
                 else {
-                    print ("User creation successful.")
+                    self.addBusinessToDB()
                     self.performSegueAndShowAlert(title: "Success", message: "Business creation successful.", segueName: "businessSignUpToRootSegue")
                 }
             }
@@ -96,6 +98,20 @@ class BusinessSignUpViewController: UIViewController {
         }
         
         // End registerUser button function
+    }
+    
+    func addBusinessToDB() {
+        
+        ref = Database.database().reference()
+        let businessEmailShort = email.text!.substring(to: email.text!.index(of: "@")!)
+        print("business email: ", businessEmailShort)
+
+        // Write a business to db
+        let userData =  ["AssociateTag"    : amazonAscTag.text,
+                         "BusinessName"    : businessName.text,
+                         "IsBusiness"      : true
+            ] as [String : Any]
+        ref.child("/user/" + businessEmailShort).setValue(userData)
     }
     
     /*

@@ -41,8 +41,15 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func backToRoot(sender: UIBarButtonItem) {
         // Go back to the root ViewController
-        let rootVC: RootViewController = (self.navigationController?.viewControllers[1])!  as! RootViewController
-        navigationController?.popToViewController(rootVC, animated: true)
+        let vcIndex = self.navigationController?.viewControllers.index(where: { (viewController) -> Bool in
+            if let _ = viewController as? RootViewController {
+                return true
+            }
+            return false
+        })
+        let rootVC = self.navigationController?.viewControllers[vcIndex!] as! RootViewController
+        
+        self.navigationController?.popToViewController(rootVC, animated: true)
     }
 
 
