@@ -523,13 +523,14 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             for tmpBook in self.scanBookArray {
                 
                 // if book is already in db then load reviews from db otherwise parse the html
-                if(isReviewInDB(bookData: tmpBook)){
-                    print("WOO")
-                    loadBookReview(tempBook: tmpBook)
-                } else {
-                    print("DAMN")
-                    tmpBook.parse(_url: tmpBook.reviewURL)
-                }
+                isReviewInDB(bookData: tmpBook)
+                    if(tmpBook.reviewExist){
+                        print("WOO")
+                        loadBookReview(tempBook: tmpBook)
+                    } else {
+                        print("DAMN")
+                        tmpBook.parse(_url: tmpBook.reviewURL)
+                    }
             }
            
 

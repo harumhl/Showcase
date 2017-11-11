@@ -37,6 +37,7 @@ class Book {
     var location: Location
     var reviews = [Review]()
     var doneParse = false
+    var reviewExist = false
     
     init() {
         title = "N/A"

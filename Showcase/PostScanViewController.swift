@@ -192,9 +192,10 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         //check if we need to write reviews to
-        var reviewInDB = isReviewInDB(bookData: self.bookData)
-        if (!reviewInDB){
+        isReviewInDB(bookData: self.bookData)
+        if (!bookData.reviewExist){
             //write reviews (self.bookData.reviews) to the db
+            print("write reviews")
             writeReviewsToDB()
         }
     }
