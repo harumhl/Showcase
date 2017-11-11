@@ -132,33 +132,6 @@ class HistoryTableViewController: UITableViewController {
         self.userBookArray.append(tempBook)
     }
     
-    func loadBookReview(tempBook: Book){
-        // Set Firebase DB reference
-        ref = Database.database().reference()
-        self.ref?.child("review").observe(DataEventType.value, with: { (snapshot) in
-            // grab all book reviews
-            let allBooks = snapshot.value as? NSDictionary
-            if(allBooks == nil) { return }
-            
-            // loop through and try to find the match for the book currently being searched
-            for (_isbn, _reviews) in allBooks! {
-                let isbn_db = _isbn as! String
-                if(isbn_db == tempBook.ISBN){
-                    var tmpReview = Review()
-                    // read the reviews and append to reviews array
-                    for (_key, review) in _reviews as! NSDictionary{
-                        tmpReview.title = (review as! NSDictionary)["reviewTitle"] as! String
-                        tmpReview.date = (review as! NSDictionary)["reviewDate"] as! String
-                        tmpReview.review = (review as! NSDictionary)["reviewText"] as! String
-                        tmpReview.rating = (review as! NSDictionary)["reviewRating"] as! Double
-                        tempBook.reviews.append(tmpReview)
-                    }
-                }
-            }
-        })
-        
-    }
-    
 //    func readReviews(_ reviews: inout [Review], bookISBN: String, handleComplete:@escaping (()->())){
 //
 ////          var tmpreviews = [Review]()

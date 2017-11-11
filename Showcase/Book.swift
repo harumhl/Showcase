@@ -156,24 +156,8 @@ class Book {
                 let tmpReview = Review.init(_title: reviewTitle, _rating: reviewRating!, _date: reviewDate, _review: reviewText)
                 self.reviews.append(tmpReview)
                 NotificationCenter.default.post(name: notifRefreshTable, object: nil)
-                
-                
-//                DispatchQueue.main.async {
-//                    // refreshes tableView with data
-//                    self.reviewsTable.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-//                }
-                
             }
             
-            // hide the activity indicator once all reviews are loaded
-//            DispatchQueue.main.async {
-//                let animating = self.activityIndicatorView.animating
-//                if(animating){
-//                    self.self.activityIndicatorView.stopAnimating()
-//                }
-//            }
-            
-            //print("BP-WOO HOO I AM DONE PARSING")
             // Post notification
             NotificationCenter.default.post(name: notifRefreshDone, object: nil)
             self.doneParse = true
