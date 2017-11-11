@@ -14,17 +14,19 @@ class Location {
     var long: Double
     var lat: Double
     var storeName: String
-    
+    var address: String
     init() {
         long      = -1.0
         lat       = -1.0
         storeName = "Unidentified Store"
+        address = "Address Unavailable"
     }
     
-    init(_long: Double, _lat: Double, _storeName: String){
+    init(_long: Double, _lat: Double, _storeName: String, _address: String){
         self.long      = _long
         self.lat       = _lat
         self.storeName = _storeName
+        self.address = _address
     }
     
 }

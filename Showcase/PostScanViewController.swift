@@ -193,6 +193,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Reviews count: \(bookData.reviews.count)")
         return bookData.reviews.count
     }
     
@@ -458,7 +459,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             let locationData = ["LocationID": locKey,
                                 "Long": self.bookData.location.long,
                                 "Lat": self.bookData.location.lat,
-                                "StoreName": self.bookData.location.storeName
+                                "StoreName": self.bookData.location.storeName,
+                                "Address" : self.storeAddress
             ] as [String : Any]
             
             let userBookData = ["bookID": "bookKey" + bookKey]

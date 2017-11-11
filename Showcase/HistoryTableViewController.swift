@@ -101,7 +101,7 @@ class HistoryTableViewController: UITableViewController {
     // Update the local copy of the user's book array.
     // Make sure to update this function as more attributes are gathered from the Database
     func getBookAttributes(aUserBook: NSDictionary) {
-        let tempBook = Book()
+        var tempBook = Book()
         tempBook.ISBN = aUserBook.value(forKey: "BookISBN") as! String
         tempBook.author = aUserBook.value(forKey: "Author") as! String
         tempBook.title = aUserBook.value(forKey: "Title") as! String
@@ -117,13 +117,77 @@ class HistoryTableViewController: UITableViewController {
             // Grab Location StoreName field from DB
             if (theLocation.value(forKey: "StoreName") != nil) {
                 tempBook.location.storeName = theLocation.value(forKey: "StoreName") as! String
+                tempBook.location.lat = theLocation.value(forKey: "Lat") as! Double
+                tempBook.location.long = theLocation.value(forKey: "Long") as! Double
+                //tempBook.location.address = theLocation.value(forKey: "Address") as! String
             }
             else {
                 tempBook.location.storeName = "Not searched at a store"
+                tempBook.location.lat = -1
+                tempBook.location.long = -1
+                tempBook.location.address = "Address Unavailable"
             }
         })
+        loadBookReview(tempBook: tempBook)
         self.userBookArray.append(tempBook)
     }
+    
+    func loadBookReview(tempBook: Book){
+        // Set Firebase DB reference
+        ref = Database.database().reference()
+        self.ref?.child("review").observe(DataEventType.value, with: { (snapshot) in
+            // grab all book reviews
+            let allBooks = snapshot.value as? NSDictionary
+            if(allBooks == nil) { return }
+            
+            // loop through and try to find the match for the book currently being searched
+            for (_isbn, _reviews) in allBooks! {
+                let isbn_db = _isbn as! String
+                if(isbn_db == tempBook.ISBN){
+                    var tmpReview = Review()
+                    // read the reviews and append to reviews array
+                    for (_key, review) in _reviews as! NSDictionary{
+                        tmpReview.title = (review as! NSDictionary)["reviewTitle"] as! String
+                        tmpReview.date = (review as! NSDictionary)["reviewDate"] as! String
+                        tmpReview.review = (review as! NSDictionary)["reviewText"] as! String
+                        tmpReview.rating = (review as! NSDictionary)["reviewRating"] as! Double
+                        tempBook.reviews.append(tmpReview)
+                    }
+                }
+            }
+        })
+        
+    }
+    
+//    func readReviews(_ reviews: inout [Review], bookISBN: String, handleComplete:@escaping (()->())){
+//
+////          var tmpreviews = [Review]()
+//        // Set Firebase DB reference
+//        ref = Database.database().reference()
+//        self.ref?.child("review").observe(DataEventType.value, with: { (snapshot) in
+//            // grab all book reviews
+//            let allBooks = snapshot.value as? NSDictionary
+//            if(allBooks == nil) { return }
+//
+//            // loop through and try to find the match for the book currently being searched
+//            for (_isbn, _reviews) in allBooks! {
+//                let isbn_db = _isbn as! String
+//                if(isbn_db == bookISBN){
+//                    var tmpReview = Review()
+//                    // read the reviews and append to reviews array
+//                    for (_key, review) in _reviews as! NSDictionary{
+//                        tmpReview.title = (review as! NSDictionary)["reviewTitle"] as! String
+//                        tmpReview.date = (review as! NSDictionary)["reviewDate"] as! String
+//                        tmpReview.review = (review as! NSDictionary)["reviewText"] as! String
+//                        tmpReview.rating = (review as! NSDictionary)["reviewRating"] as! Double
+//                    }
+////                    tmpreviews.append(tmpReview)
+////                    reviews = tmpreviews
+//                    reviews.append(tmpReview)
+//                }
+//            }
+//        })
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -139,6 +203,7 @@ class HistoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print("History Table Count \(userBookArray.count)")
         return userBookArray.count
     }
 
@@ -172,6 +237,7 @@ class HistoryTableViewController: UITableViewController {
         print("Book from History to Post: ", bookToPass)
         postScanVC.bookData = bookToPass
         postScanVC.fromHistory = true
+        // find associate tag
     }
 
     /*
