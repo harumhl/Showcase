@@ -24,31 +24,33 @@ class UserAccountSettingsViewController: UIViewController {
         let user = Auth.auth().currentUser
         var emailShort = ""
         if let user = user {
-            var email = user.email!
+            let email = user.email!
             emailShort = email.substring(to: email.index(of: "@")!)
         }
         print("email short is ", emailShort)
-        self.ref?.child("user").observe(DataEventType.value, with: { (snapshot) in
-            let businessData = snapshot.value as? NSDictionary
-            if (!snapshot.hasChild(emailShort)) {
-                self.updateAmazonTagButton.isHidden = true
-                print("email didnt exist (user hasnot scanned) :: The user is NOT a Business")
-                return
-            }
-            
-            self.ref?.child("user").child(emailShort).observe(DataEventType.value, with: { (snapshot) in
-                if (!snapshot.hasChild("IsBusiness")) {
+        if ("" != emailShort) {
+            // See if this user exists in the DB
+            self.ref?.child("user").observe(DataEventType.value, with: { (snapshot) in
+                if (!snapshot.hasChild(emailShort)) {
                     self.updateAmazonTagButton.isHidden = true
-                    print("The user is NOT a Business")
+                    print("email didnt exist (user hasnot scanned) :: The user is NOT a Business")
+                    return
                 }
-                else {
-                    self.updateAmazonTagButton.isHidden = false
-                }
+                // If the user exists, see if the user is a Business user
+                // Hide the UpdateAmazonTag button if the user is not a business.
+                self.ref?.child("user").child(emailShort).observe(DataEventType.value, with: { (snapshot) in
+                    if (!snapshot.hasChild("IsBusiness")) {
+                        self.updateAmazonTagButton.isHidden = true
+                        print("The user is NOT a Business")
+                    }
+                    else {
+                        self.updateAmazonTagButton.isHidden = false
+                    }
+                })
             })
-        })
-        
-      
-        
+        } else {
+            self.updateAmazonTagButton.isHidden = true
+        }
     }
 
     override func didReceiveMemoryWarning() {

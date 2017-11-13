@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -149,7 +149,7 @@
         <!--Root View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="RootViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RootViewController" id="BYZ-38-t0r" customClass="RootViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -208,7 +208,6 @@
         <!--User Account Settings View Controller-->
         <scene sceneID="Y1U-wG-Nbf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tve-02-EYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="0hh-du-6d5" customClass="UserAccountSettingsViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d1p-yr-13n"/>
@@ -231,6 +230,9 @@
                                 <rect key="frame" x="133" y="288" width="94" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Change Email"/>
+                                <connections>
+                                    <segue destination="jCO-9k-vkc" kind="show" id="Hxu-sT-JeV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USER ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRk-Q7-abZ">
                                 <rect key="frame" x="117" y="170" width="234" height="21"/>
@@ -266,8 +268,99 @@
                         <outlet property="updateAmazonTagButton" destination="zka-a4-KJE" id="kCh-ty-hzO"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tve-02-EYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2120.8000000000002" y="-972.86356821589209"/>
+        </scene>
+        <!--Change Email View Controller-->
+        <scene sceneID="ucZ-Rh-BNf">
+            <objects>
+                <viewController id="jCO-9k-vkc" customClass="ChangeEmailViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2po-pR-CF0"/>
+                        <viewControllerLayoutGuide type="bottom" id="kyo-j1-Ai7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lwR-G6-QMr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Confirm New Email" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="6nl-JL-QNs" customClass="ImageTextField" customModule="ImageTextField">
+                                <rect key="frame" x="28" y="346" width="310" height="31"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fieldImage" value="email"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="padding">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="New Email" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="KQr-UU-4YZ" customClass="ImageTextField" customModule="ImageTextField">
+                                <rect key="frame" x="28" y="237" width="310" height="31"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fieldImage" value="email"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="padding">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrp-Vl-gKP">
+                                <rect key="frame" x="37" y="131.5" width="310" height="38.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQ1-fg-x5o">
+                                <rect key="frame" x="37" y="533" width="310" height="35"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                <state key="normal" title="Change Email">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeEmailButtonClicked:" destination="jCO-9k-vkc" eventType="touchUpInside" id="owa-7k-b19"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.33333333329999998" green="0.83921568629999999" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bQ1-fg-x5o" firstAttribute="leading" secondItem="lwR-G6-QMr" secondAttribute="leadingMargin" constant="21" id="4Ac-OO-BQ8"/>
+                            <constraint firstItem="kyo-j1-Ai7" firstAttribute="top" secondItem="bQ1-fg-x5o" secondAttribute="bottom" constant="55" id="4Ir-UF-cev"/>
+                            <constraint firstItem="Rrp-Vl-gKP" firstAttribute="leading" secondItem="lwR-G6-QMr" secondAttribute="leadingMargin" constant="21" id="5JP-Rk-EBS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rrp-Vl-gKP" secondAttribute="trailing" constant="12" id="6cc-Gh-xOi"/>
+                            <constraint firstItem="KQr-UU-4YZ" firstAttribute="leading" secondItem="lwR-G6-QMr" secondAttribute="leadingMargin" constant="12" id="Apw-OT-iwS"/>
+                            <constraint firstItem="6nl-JL-QNs" firstAttribute="leading" secondItem="lwR-G6-QMr" secondAttribute="leadingMargin" constant="12" id="BDf-i4-gyd"/>
+                            <constraint firstItem="6nl-JL-QNs" firstAttribute="top" secondItem="KQr-UU-4YZ" secondAttribute="bottom" constant="78" id="F5g-UG-Lfe"/>
+                            <constraint firstItem="6nl-JL-QNs" firstAttribute="top" secondItem="KQr-UU-4YZ" secondAttribute="bottom" constant="78" id="PYb-Yj-R5v"/>
+                            <constraint firstItem="bQ1-fg-x5o" firstAttribute="top" secondItem="6nl-JL-QNs" secondAttribute="bottom" constant="156" id="Peg-cz-kOJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bQ1-fg-x5o" secondAttribute="trailing" constant="12" id="THM-fS-B2m"/>
+                            <constraint firstItem="KQr-UU-4YZ" firstAttribute="top" secondItem="Rrp-Vl-gKP" secondAttribute="bottom" constant="67" id="TSS-na-idZ"/>
+                            <constraint firstItem="bQ1-fg-x5o" firstAttribute="top" secondItem="6nl-JL-QNs" secondAttribute="bottom" constant="156" id="e1k-Ut-Mkn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6nl-JL-QNs" secondAttribute="trailing" constant="21" id="pgz-We-HK1"/>
+                            <constraint firstItem="Rrp-Vl-gKP" firstAttribute="top" secondItem="2po-pR-CF0" secondAttribute="bottom" constant="67.5" id="sfO-ke-J3r"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KQr-UU-4YZ" secondAttribute="trailing" constant="21" id="wB3-Xa-DFQ"/>
+                            <constraint firstItem="KQr-UU-4YZ" firstAttribute="top" secondItem="Rrp-Vl-gKP" secondAttribute="bottom" constant="67" id="xgL-Hj-dh6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="changeEmailButton" destination="bQ1-fg-x5o" id="fe0-PA-XA6"/>
+                        <outlet property="confirmEmailField" destination="6nl-JL-QNs" id="xqE-xB-AUQ"/>
+                        <outlet property="newEmailField" destination="KQr-UU-4YZ" id="7PT-Zu-xda"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8G1-7m-plc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3470" y="-1330"/>
         </scene>
         <!--Update Associate Tag View Controller-->
         <scene sceneID="xxi-fJ-ybz">
@@ -350,7 +443,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0E-Ce-KUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3556" y="-1395.6521739130435"/>
+            <point key="canvasLocation" x="3470" y="-2219"/>
         </scene>
         <!--Change Password View Controller-->
         <scene sceneID="D32-od-gIB">
@@ -365,39 +458,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="New Password" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="boK-nk-Oj9" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="23" y="275" width="310" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="fieldImage" value="password"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="padding">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Confirm New Password" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="J2L-pP-cpe" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="22" y="382" width="310" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="fieldImage" value="password"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="padding">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Current Password" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="0Gz-jC-zec" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="23" y="180" width="310" height="43"/>
+                                <rect key="frame" x="32" y="191" width="310" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -431,18 +492,33 @@
                                     <action selector="changePasswordClicked:" destination="ZDA-Lw-p6S" eventType="touchUpInside" id="Smj-UT-4gw"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Confirm New Password" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="J2L-pP-cpe" customClass="ImageTextField" customModule="ImageTextField">
+                                <rect key="frame" x="32" y="284" width="310" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fieldImage" value="password"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="padding">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.33333333329999998" green="0.83921568629999999" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="confirmNewPasswordField" destination="J2L-pP-cpe" id="87S-TI-cFk"/>
-                        <outlet property="curPasswordField" destination="0Gz-jC-zec" id="eCN-EQ-mYe"/>
                         <outlet property="newPasswordField" destination="boK-nk-Oj9" id="Z1P-ZF-odc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t0V-gL-9ki" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3677.5999999999999" y="-633.73313343328346"/>
+            <point key="canvasLocation" x="3470" y="-544"/>
         </scene>
         <!--Scanner View Controller-->
         <scene sceneID="BbN-d9-MhJ">
@@ -633,19 +709,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcb-Rb-vlH" userLabel="bookTitle">
-                                <rect key="frame" x="148" y="72" width="211" height="21"/>
+                                <rect key="frame" x="148" y="28" width="211" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHh-Fk-zx1" userLabel="bookAuthor">
-                                <rect key="frame" x="148" y="104" width="211" height="18"/>
+                                <rect key="frame" x="148" y="60" width="211" height="18"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                 <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbE-A1-Uej" userLabel="bookRating" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="148" y="142" width="125" height="21"/>
+                                <rect key="frame" x="148" y="98" width="125" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
@@ -669,14 +745,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kos-cJ-pRp" userLabel="bookImage">
-                                <rect key="frame" x="8" y="72" width="130" height="200"/>
+                                <rect key="frame" x="8" y="28" width="130" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="DM5-ZW-o3E"/>
                                     <constraint firstAttribute="width" constant="130" id="avd-bN-eHy"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-5t-S0o" userLabel="bookPurchase">
-                                <rect key="frame" x="8" y="280" width="359" height="30"/>
+                                <rect key="frame" x="8" y="236" width="359" height="30"/>
                                 <color key="backgroundColor" red="0.5483074104403991" green="1" blue="0.56352840300104834" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Purchase">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -686,7 +762,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WIh-V4-VKh">
-                                <rect key="frame" x="8" y="360" width="359" height="297"/>
+                                <rect key="frame" x="8" y="316" width="359" height="341"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -777,26 +853,26 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3K-a8-zfc">
-                                <rect key="frame" x="148" y="327" width="79" height="24.5"/>
+                                <rect key="frame" x="148" y="283" width="79" height="24.5"/>
                                 <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenPlacemark" translatesAutoresizingMaskIntoConstraints="NO" id="Meb-CU-hCl">
-                                <rect key="frame" x="143" y="238" width="30" height="30"/>
+                                <rect key="frame" x="143" y="194" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Kd4-jt-uKa"/>
                                     <constraint firstAttribute="height" constant="30" id="ZsK-S2-rlD"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txR-JW-Z8q" userLabel="storeParticipation">
-                                <rect key="frame" x="181" y="252" width="186" height="17"/>
+                                <rect key="frame" x="181" y="208" width="186" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7m8-TO-bHc" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
-                                <rect key="frame" x="143" y="342" width="89" height="82"/>
+                                <rect key="frame" x="143" y="391" width="89" height="82"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="82" id="SkE-h0-DbB"/>
@@ -809,7 +885,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-39-3Da" userLabel="bookPrice">
-                                <rect key="frame" x="148" y="171" width="81" height="21"/>
+                                <rect key="frame" x="148" y="127" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.91943359375" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1466,9 +1542,8 @@
         <image name="user" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gMe-Lp-xC9"/>
-        <segue reference="EtG-do-d3J"/>
-        <segue reference="SMw-y1-bM6"/>
-        <segue reference="RNX-nM-ibK"/>
+        <segue reference="shh-RK-V0N"/>
+        <segue reference="c9n-G5-1Sd"/>
+        <segue reference="qsg-Sj-SfY"/>
     </inferredMetricsTieBreakers>
 </document>

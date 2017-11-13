@@ -11,7 +11,6 @@ import Firebase
 import FirebaseAuth
 class ChangePasswordViewController: UIViewController {
 
-    @IBOutlet weak var curPasswordField: UITextField!
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var confirmNewPasswordField: UITextField!
     
@@ -38,7 +37,6 @@ class ChangePasswordViewController: UIViewController {
     /* TODO: resets password but does not check old password */
     @IBAction func changePasswordClicked(_ sender: Any) {
         print("*** change password Fields ***")
-        print("\tCurrent Password: "   + curPasswordField.text!)
         print("\tNew Password: "   + newPasswordField.text!)
         print("\tConfirm New PW: " + confirmNewPasswordField.text!)
         print("\n")

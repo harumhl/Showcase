@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import IQKeyboardManagerSwift
 import FBSDKLoginKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // connect to Firebase
         FirebaseApp.configure()
+        
+        // Grab user's current email
+        let curUser = Auth.auth().currentUser
+        var curEmail = ""
+        if let user = curUser {
+            curEmail = user.email!
+            // Access the storyboard and fetch an instance of the view controller
+            let storyboard = UIStoryboard(name: "Main", bundle: nil);
+            let viewController: RootViewController = storyboard.instantiateViewController(withIdentifier: "RootViewController") as! RootViewController;
+
+            // Then push that view controller onto the navigation stack
+            let rootViewController = self.window!.rootViewController as! UINavigationController;
+            rootViewController.pushViewController(viewController, animated: true);
+        }
         
         // Set the keyboard to use IQKeyboardManager
         IQKeyboardManager.sharedManager().enable = true
