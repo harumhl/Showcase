@@ -450,8 +450,13 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 let itemAttributes = items["ItemAttributes"]
                 var itemISBN = "-1"
                 
+                // Regular books
                 if (itemAttributes["EAN"].text != nil) {
                     itemISBN ?= itemAttributes["EAN"].text
+                }
+                // eBooks
+                if (itemISBN == "-1" && itemAttributes["EISBN"].text != nil) {
+                    itemISBN ?= itemAttributes["EISBN"].text
                 }
                 
                 // create a book object when a match is found (can be more than one)
@@ -461,9 +466,19 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                         title ?= itemAttributes["Title"].text!
                     }
                     
-                    var author = "Author Not Available"
-                    if (itemAttributes["Author"].text != nil) {
-                        author ?= itemAttributes["Author"].text!
+                    // There can be more than one authors
+                    var author = ""
+                    var index = 0
+                    for element in itemAttributes["Author"] {
+                        author += element.text! + "\n"
+                        index += 1
+                        if (index >= 2) { break } // Keep up to 2 authors
+                    }
+                    if (author != "") { // Get rid of the last "\n"
+                        author = author.substring(to: author.index(before: author.endIndex))
+                    }
+                    else { // No author?
+                        author = "Author Not Available"
                     }
                     
                     let ISBN = self.theBarcodeData
@@ -479,7 +494,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     
                     var reviewURL = "Reviews Not Available"
-                    
                     for itemLink in items["ItemLinks", "ItemLink"]{
                         if (itemLink["Description"].text == "All Customer Reviews"){
                             reviewURL ?= itemLink["URL"].text
@@ -507,7 +521,15 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     loc.lat = self.latitude
                     loc.long = self.longitude
                     loc.storeName = self.businessName
-                    
+                    /*
+                    print("1. Title: \(title)")
+                    print("2. Author: \(author)")
+                    print("3. ISBN: \(ISBN)")
+                    print("4. Price: \(price)")
+                    print("5. Image: \(imageURL)")
+                    print("6. Review: \(reviewURL)")
+                    print("7. Purchase: \(purchaseURL)")
+                    print("8. ASIN: \(ASIN)\n") */
                     let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL,
                                             _DateCreatedAt: dateCreatedAt, _SecondsSince1970: secsSince1970, _purchaseURL: purchaseURL, _ASIN: ASIN, _location: loc)
                     

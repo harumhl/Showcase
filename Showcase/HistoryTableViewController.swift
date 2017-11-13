@@ -225,9 +225,11 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let postScanVC: PostScanViewController = segue.destination as! PostScanViewController
+        //let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow! as NSIndexPath
         let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow! as NSIndexPath
+        print(indexPath.row)
         var bookToPass : Book
-        bookToPass = userBookArray[indexPath.row]
+        bookToPass = filteredBooks[indexPath.row]
         print("Book from History to Post: ", bookToPass)
         postScanVC.bookData = bookToPass
         postScanVC.fromHistory = true
