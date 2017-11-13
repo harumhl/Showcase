@@ -49,7 +49,7 @@ func isReviewInDB(bookData: Book) {
         // loop through and try to find the match for the book currently being searched
         for (isbn, _) in allBooks! {
             let isbn_db = isbn as! String
-            print("isbn_db: \(isbn)")
+            //print("isbn_db: \(isbn)")
             if(isbn_db == bookData.ISBN){
                 print("found ISBN in ReviewDB no need to write to DB")
                 bookData.reviewExist = true
@@ -75,7 +75,7 @@ func isReview(bookData: Book, completionHandler:@escaping (_ flag: Bool)->()) {
         // loop through and try to find the match for the book currently being searched
         for (isbn, _) in allBooks! {
             let isbn_db = isbn as! String
-            print("isbn_db: \(isbn)")
+            //print("isbn_db: \(isbn)")
             if(isbn_db == bookData.ISBN){
                 print("found ISBN in ReviewDB no need to write to DB")
                 bookData.reviewExist = true
