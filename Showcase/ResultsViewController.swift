@@ -67,6 +67,8 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.bookAuthor.text = scanBookArray[indexPath.row].author
         
+        cell.bookPrice.text = scanBookArray[indexPath.row].price
+        
         
         if let url = NSURL(string: scanBookArray[indexPath.row].imageURL) {
             if let data = NSData(contentsOf: url as URL) {
