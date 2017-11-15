@@ -44,6 +44,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
     @IBOutlet weak var storePlacemarkImg: UIImageView!
     @IBOutlet weak var storeNameLbl: UILabel!
+    @IBOutlet weak var noReviewLabel: UILabel!
     
     @IBAction func PurchaseBook(_ sender: Any) {
         print("Purchase clicked!!")
@@ -188,6 +189,12 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             let animating = self.activityIndicatorView.animating
             if(animating){
                 self.self.activityIndicatorView.stopAnimating()
+            }
+            
+            // if no reviews hide the table and display a label
+            if(self.bookData.reviews.count == 0){
+                self.reviewsTable.isHidden = true
+                self.noReviewLabel.isHidden = false
             }
         }
         
