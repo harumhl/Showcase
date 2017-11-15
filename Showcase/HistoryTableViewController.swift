@@ -30,7 +30,8 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
         
         historyTable.delegate = self
         historyTable.dataSource = self
-        
+        self.tableView.estimatedRowHeight = 120.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         // Set Firebase DB reference
         ref = Database.database().reference()
         

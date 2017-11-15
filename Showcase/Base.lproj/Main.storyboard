@@ -993,7 +993,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWH-n3-GGM">
-                                            <rect key="frame" x="113" y="36" width="204" height="21"/>
+                                            <rect key="frame" x="114" y="36" width="203" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="203" id="odU-Yp-8sl"/>
                                             </constraints>
@@ -1001,8 +1001,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="bookTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PR4-bn-yUP">
-                                            <rect key="frame" x="113" y="8" width="231" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="bookTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PR4-bn-yUP">
+                                            <rect key="frame" x="114" y="8" width="230" height="20.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="cFN-c9-uSV"/>
                                             </constraints>
@@ -1010,11 +1010,11 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-Rd-3Mf">
-                                            <rect key="frame" x="8" y="8" width="98" height="160"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-Rd-3Mf">
+                                            <rect key="frame" x="8" y="8" width="99" height="160"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alp-yF-Bne">
-                                            <rect key="frame" x="113" y="65" width="140" height="14"/>
+                                            <rect key="frame" x="113" y="65" width="140" height="20.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="01I-rY-Ypa"/>
                                             </constraints>
@@ -1024,21 +1024,22 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="ZWH-n3-GGM" firstAttribute="top" secondItem="PR4-bn-yUP" secondAttribute="bottom" constant="7.5" id="6EW-sJ-cgY"/>
-                                        <constraint firstItem="alp-yF-Bne" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="8" id="8wM-4D-EwL"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="ZWH-n3-GGM" secondAttribute="trailing" constant="50" id="Kja-xZ-P6C"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="PR4-bn-yUP" secondAttribute="trailing" constant="23" id="Kr4-Jc-LOB"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="alp-yF-Bne" secondAttribute="bottom" constant="88.5" id="L5H-gT-rlS"/>
-                                        <constraint firstItem="PR4-bn-yUP" firstAttribute="top" secondItem="ots-VW-D02" secondAttribute="topMargin" id="UFa-co-BC4"/>
-                                        <constraint firstItem="PR4-bn-yUP" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="8" id="bgI-q0-npy"/>
-                                        <constraint firstItem="ZWH-n3-GGM" firstAttribute="top" secondItem="PR4-bn-yUP" secondAttribute="bottom" constant="7.5" id="ccJ-UO-v4h"/>
-                                        <constraint firstItem="ZWH-n3-GGM" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="8" id="ddS-sS-Jlm"/>
-                                        <constraint firstItem="alp-yF-Bne" firstAttribute="top" secondItem="ZWH-n3-GGM" secondAttribute="bottom" constant="8" id="lbu-MQ-dY8"/>
-                                        <constraint firstItem="g4x-Rd-3Mf" firstAttribute="top" secondItem="ots-VW-D02" secondAttribute="top" constant="8" id="sXm-yo-mVQ"/>
-                                        <constraint firstItem="g4x-Rd-3Mf" firstAttribute="leading" secondItem="ots-VW-D02" secondAttribute="leading" constant="8" id="ulZ-7y-Ycz"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="alp-yF-Bne" secondAttribute="trailing" constant="114" id="wdE-8w-hKW"/>
-                                        <constraint firstAttribute="bottom" secondItem="g4x-Rd-3Mf" secondAttribute="bottom" constant="6.5" id="xHD-8K-Btr"/>
-                                        <constraint firstItem="alp-yF-Bne" firstAttribute="top" secondItem="ZWH-n3-GGM" secondAttribute="bottom" constant="8" id="yqu-e9-ur0"/>
+                                        <constraint firstAttribute="bottom" secondItem="g4x-Rd-3Mf" secondAttribute="bottom" constant="7.5" id="4Wf-bS-IUk"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="alp-yF-Bne" secondAttribute="bottom" constant="82" id="Ayc-Nv-Sm9"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="alp-yF-Bne" secondAttribute="trailing" constant="114" id="Cxg-zn-ria"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="PR4-bn-yUP" secondAttribute="trailing" constant="23" id="Gme-yQ-iAW"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ZWH-n3-GGM" secondAttribute="trailing" constant="50" id="KaV-hz-0He"/>
+                                        <constraint firstItem="alp-yF-Bne" firstAttribute="top" secondItem="ZWH-n3-GGM" secondAttribute="bottom" constant="8" id="NhT-rc-wC8"/>
+                                        <constraint firstItem="ZWH-n3-GGM" firstAttribute="top" secondItem="PR4-bn-yUP" secondAttribute="bottom" constant="7.5" id="Pcj-Oj-VEk"/>
+                                        <constraint firstItem="ZWH-n3-GGM" firstAttribute="top" secondItem="PR4-bn-yUP" secondAttribute="bottom" constant="7.5" id="VNt-Ap-zf7"/>
+                                        <constraint firstItem="PR4-bn-yUP" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="7" id="Vsq-Hm-duu"/>
+                                        <constraint firstItem="g4x-Rd-3Mf" firstAttribute="top" secondItem="ots-VW-D02" secondAttribute="top" constant="8" id="WBb-c7-MOm"/>
+                                        <constraint firstItem="g4x-Rd-3Mf" firstAttribute="leading" secondItem="ots-VW-D02" secondAttribute="leading" constant="8" id="Yji-MQ-EgK"/>
+                                        <constraint firstItem="ZWH-n3-GGM" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="7" id="gMF-y8-V3t"/>
+                                        <constraint firstItem="alp-yF-Bne" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="6" id="gbj-nr-LzQ"/>
+                                        <constraint firstItem="PR4-bn-yUP" firstAttribute="top" secondItem="ots-VW-D02" secondAttribute="topMargin" id="lZG-oi-hZN"/>
+                                        <constraint firstItem="alp-yF-Bne" firstAttribute="top" secondItem="ZWH-n3-GGM" secondAttribute="bottom" constant="8" id="lme-MB-6zG"/>
+                                        <constraint firstItem="ZWH-n3-GGM" firstAttribute="leading" secondItem="g4x-Rd-3Mf" secondAttribute="trailing" constant="7" id="nQj-hs-RV3"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1575,8 +1576,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SMw-y1-bM6"/>
-        <segue reference="RNX-nM-ibK"/>
-        <segue reference="HJt-qb-diX"/>
         <segue reference="gMe-Lp-xC9"/>
     </inferredMetricsTieBreakers>
 </document>
