@@ -653,6 +653,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0u-qR-Grf">
+                                                    <rect key="frame" x="137" y="65" width="160" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="EJN-Pg-hUu" firstAttribute="leading" secondItem="uDA-Kx-zmv" secondAttribute="trailing" constant="25" id="35g-Vt-662"/>
@@ -672,6 +679,7 @@
                                         <connections>
                                             <outlet property="bookAuthor" destination="EJN-Pg-hUu" id="MlJ-M7-n5o"/>
                                             <outlet property="bookImage" destination="uDA-Kx-zmv" id="bsw-df-gcX"/>
+                                            <outlet property="bookPrice" destination="D0u-qR-Grf" id="twQ-uW-blJ"/>
                                             <outlet property="bookTitle" destination="VyA-oW-S50" id="JCo-da-OfY"/>
                                             <segue destination="uOD-w7-Izs" kind="show" identifier="ResultsToPost" id="HJt-qb-diX"/>
                                         </connections>
@@ -762,7 +770,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WIh-V4-VKh">
-                                <rect key="frame" x="8" y="267" width="359" height="390"/>
+                                <rect key="frame" x="8" y="267.5" width="359" height="389.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -982,7 +990,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWH-n3-GGM">
-                                            <rect key="frame" x="114" y="36" width="203" height="21"/>
+                                            <rect key="frame" x="113" y="36" width="204" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="203" id="odU-Yp-8sl"/>
                                             </constraints>
@@ -991,7 +999,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="bookTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PR4-bn-yUP">
-                                            <rect key="frame" x="114" y="8" width="230" height="20.5"/>
+                                            <rect key="frame" x="113" y="8" width="231" height="20.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="cFN-c9-uSV"/>
                                             </constraints>
@@ -1003,9 +1011,9 @@
                                             <rect key="frame" x="8" y="8" width="98" height="160"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alp-yF-Bne">
-                                            <rect key="frame" x="114" y="65" width="139" height="14"/>
+                                            <rect key="frame" x="113" y="65" width="140" height="14"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="139" id="01I-rY-Ypa"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="01I-rY-Ypa"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.91764705882352937" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1563,7 +1571,7 @@
         <image name="user" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SMw-y1-bM6"/>
+        <segue reference="HJt-qb-diX"/>
         <segue reference="gMe-Lp-xC9"/>
     </inferredMetricsTieBreakers>
 </document>
