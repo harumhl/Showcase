@@ -20,6 +20,7 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
     @IBOutlet var historyTable: UITableView!
     let cellReuseIdentifier = "cell"
     var selectedBookIndex = -1
+    let myGroup = DispatchGroup()
     
     var filteredBooks : [Book] = [] // userBookArray contains all history. But this is the array that is displayed (always)
     var searchController: UISearchController!
@@ -85,6 +86,8 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
                     // If the seconds since 1970 is a greater value, then it is more recent
                     self.userBookArray.sort { $0.SecondsSince1970 > $1.SecondsSince1970 }
                     
+                    self.myGroup.wait() // wait for all findStoreAssociateTag() calls
+                    
                     // Reload the table view
                     self.filteredBooks = self.userBookArray
                     self.historyTable.reloadData()
@@ -114,6 +117,7 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
         tempBook.SecondsSince1970 = UInt(aUserBook.value(forKey: "CreationSecondsSince1970") as! Int)
         tempBook.purchaseURL = aUserBook.value(forKey: "PurchaseURL") as! String
         
+
         let locationKey = aUserBook.value(forKey: "LocationID") as! String
         self.ref?.child("location").child("loc" + locationKey).observe(DataEventType.value, with: { (snapshot) in
             let theLocation = snapshot.value as! NSDictionary
@@ -122,13 +126,21 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
                 tempBook.location.storeName = theLocation.value(forKey: "StoreName") as! String
                 tempBook.location.lat = theLocation.value(forKey: "Lat") as! Double
                 tempBook.location.long = theLocation.value(forKey: "Long") as! Double
-                //tempBook.location.address = theLocation.value(forKey: "Address") as! String
+                tempBook.location.address = theLocation.value(forKey: "Address") as! String
+                
+                // find associate tag - use myGroup to make VC wait before going to PostScan
+                self.myGroup.enter()
+                findStoreAssociateTag(address: tempBook.location.address, location: tempBook.location, handleComplete: {
+                    self.myGroup.leave()
+                })
             }
             else {
                 tempBook.location.storeName = "Not searched at a store"
                 tempBook.location.lat = -1
                 tempBook.location.long = -1
                 tempBook.location.address = "Address Unavailable"
+                tempBook.location.associateTag = "AssociateTag Not Available"
+                self.myGroup.leave()
             }
         })
         loadBookReview(tempBook: tempBook)
@@ -230,10 +242,10 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
         print(indexPath.row)
         var bookToPass : Book
         bookToPass = filteredBooks[indexPath.row]
-        print("Book from History to Post: ", bookToPass)
-        postScanVC.bookData = bookToPass
         postScanVC.fromHistory = true
-        // find associate tag
+        print("Book from History to Post: ", bookToPass.title)
+
+        postScanVC.bookData = bookToPass
     }
 
     /*

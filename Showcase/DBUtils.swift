@@ -86,3 +86,32 @@ func isReview(bookData: Book, completionHandler:@escaping (_ flag: Bool)->()) {
         completionHandler(flag)
     })
 }
+
+func findStoreAssociateTag(address: String, location: Location, handleComplete:@escaping (()->())) {
+    var ref: DatabaseReference!
+    
+    // Set Firebase DB reference
+    ref = Database.database().reference()
+    ref?.child("store").observe(DataEventType.value, with: { (snapshot) in
+        // grab the list of all books
+        let allStores = snapshot.value as? NSDictionary
+        if (allStores == nil) { return }
+        
+        // Loop through the stores and grab the storeKey value. A store entry is a dictionary ('storeID' -> 'storeKey')
+        print("self store address")
+        print(address)
+        
+        for (_, value) in allStores! {
+            let dbStore = value as! NSDictionary
+            print(dbStore["address"] as! String)
+            
+            if (dbStore["address"] as! String == address) { // storeAddress is the current store address
+                print ("found123")
+                location.associateTag = dbStore["associateTag"] as! String
+                //print (dbStore["associateTag"])
+                handleComplete()
+                break
+            }
+        }
+    })
+}

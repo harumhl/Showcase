@@ -17,12 +17,8 @@ import FBSDKCoreKit
 import NVActivityIndicatorView
 
 class PostScanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    var theBarcodeData: String = ""
     var fromHistory: Bool = false
     var bookData = Book()
-    var storeAddress: String = ""
-    var storeName: String = "nnnnn"
-    var storeAssociateTag: String = ""
     var longitude = 0.0
     var latitude = 0.0
     var whichVC_itComesFrom: String = "" // whether LoadScanVC or ResultsVC - for "back" button
@@ -50,11 +46,11 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         
         var theURL = self.bookData.purchaseURL
         
-        if (storeAssociateTag != "") {
+        if (bookData.location.associateTag != "AssociateTag Not Available") {
             theURL = "https://www.amazon.com/gp/product/"
             theURL += self.bookData.ASIN
             theURL += "/ref=as_li_tl?ie=UTF8&tag="
-            theURL += self.storeAssociateTag
+            theURL += self.bookData.location.associateTag
             theURL += "&camp=1789&creative=9325&linkCode=as2&creativeASIN="
             theURL += self.bookData.ASIN
         }
@@ -78,15 +74,16 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         NotificationCenter.default.addObserver(self, selector: #selector(PostScanViewController.refreshTable), name: notifRefreshTable, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(PostScanViewController.refreshDone), name: notifRefreshDone, object: nil)
         
-        print("****** store: \(self.storeName)")
-        
+        print("****** store: \(self.bookData.location.storeName)")
+        print("****** store: \(self.bookData.location.associateTag)")
+
         // Custom "back" button
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PostScanViewController.backToRoot(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
         
         // Grey out the Purchase button and disable it
-        if (storeAssociateTag == "") {
+        if (bookData.location.associateTag == "AssociateTag Not Available") {
             bookPurchase.backgroundColor = UIColor.gray
             bookPurchase.isEnabled = false
             storePlacemarkImg.image = UIImage(named: "redPlacemark")
@@ -94,7 +91,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             
             if !fromHistory {
-                storeNameLbl.text = self.storeName
+                storeNameLbl.text = self.bookData.location.storeName
             }else {
                 storeNameLbl.text = self.bookData.location.storeName
             }
@@ -437,7 +434,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                                 "Long": self.bookData.location.long,
                                 "Lat": self.bookData.location.lat,
                                 "StoreName": self.bookData.location.storeName,
-                                "Address" : self.storeAddress
+                                "Address" : self.bookData.location.address
             ] as [String : Any]
             
             let userBookData = ["bookID": "bookKey" + bookKey]

@@ -100,12 +100,12 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         // ************************************* TEST 1 *******************
         self.getLocation{ () -> () in
             print("store::: \(self.businessName)")
-            self.findStoreAssociateTag{ () -> () in
+//            self.findStoreAssociateTag{ () -> () in
                 // using closures to construct our object then perform the function selectBook()
                 self.amazonSearch { () -> () in
                     self.selectBook()
                 }
-            }
+//            }
         }
         
 //
@@ -145,10 +145,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             
             // Need to pass longitude and latitude
             postScanVC.bookData = scanBookArray[bookToPass]
-            postScanVC.storeAddress = self.address
-            postScanVC.storeAssociateTag = self.storeAssociateTag
             print("here; \(self.storeAssociateTag)")
-            postScanVC.storeName = self.businessName
             postScanVC.whichVC_itComesFrom = "LoadScanVC"
         }
         else if(scanBookArray.count > 1){
@@ -306,8 +303,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             currentAddr["country"] = country
         }
         
-        
         print("Done placemarkToAddress \(self.address)")
+    
     }
     
     // Determines if user is in a bookstore
@@ -444,7 +441,23 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             
             // this is the list of items or books in the reponse
             let responseItems = xml["ItemLookupResponse"]["Items"]
+
+            let loc = Location()
+            loc.lat = self.latitude
+            loc.long = self.longitude
+            loc.storeName = self.businessName
+            loc.address = self.address
+
+            // Thread control
+            /* Making LoadScanVC to wait for both findStoreAssociateTag() as well as the rest of the code in this function (so call handleComplete() when both are done) */
+            let myGroup = DispatchGroup()
             
+            myGroup.enter()
+            findStoreAssociateTag(address: loc.address, location: loc, handleComplete: {
+                myGroup.leave()
+            })
+            
+            myGroup.enter()
             // loop through responseItems to find the correct Book
             for items in xml["ItemLookupResponse", "Items", "Item"]{
                 let itemAttributes = items["ItemAttributes"]
@@ -517,10 +530,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                         ASIN ?= items["ASIN"].text
                     }
                     
-                    let loc = Location()
-                    loc.lat = self.latitude
-                    loc.long = self.longitude
-                    loc.storeName = self.businessName
                     /*
                     print("1. Title: \(title)")
                     print("2. Author: \(author)")
@@ -540,7 +549,12 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     print("NOPE NOTE EQUAL")
                 }
             }
-            handleComplete()
+            myGroup.leave()
+            
+            // both findStoreAssociateTag() and above parsing are done
+            myGroup.notify(queue: .main) {
+                handleComplete()
+            }
             
             for tmpBook in self.scanBookArray {
                 
@@ -566,7 +580,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         task.resume() // start the XML parser
         print("Done Amazon")
     }
-
+/*
     func findStoreAssociateTag(handleComplete:@escaping (()->())) {
         // Set Firebase DB reference
         ref = Database.database().reference()
@@ -593,7 +607,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             }
         })
         
-   }
+   }*/
     
     
     /*

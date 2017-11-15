@@ -94,9 +94,6 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         var bookToPass : Book
         bookToPass = scanBookArray[indexPath.row]
         postScanVC.bookData = bookToPass
-        postScanVC.storeAddress = self.storeAddress
-        postScanVC.storeName = self.storeName
-        postScanVC.storeAssociateTag = self.storeAssociateTag
         postScanVC.whichVC_itComesFrom = "ResultsVC"
     }
     
