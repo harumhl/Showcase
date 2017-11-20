@@ -12,6 +12,9 @@
 		085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085F5E611F7C5150003200C5 /* SignUpViewController.swift */; };
 		08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BA96DE1F706C71001875BF /* PostScanViewController.swift */; };
 		08C66B101F8F16120036FA82 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C66B0F1F8F16120036FA82 /* HistoryTableViewCell.swift */; };
+		08F9FA6D1FC34532002921A1 /* ContributionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9FA6C1FC34532002921A1 /* ContributionsTableViewController.swift */; };
+		08F9FA6F1FC34633002921A1 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9FA6E1FC34633002921A1 /* Keys.swift */; };
+		08F9FA711FC3476A002921A1 /* ContributionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9FA701FC3476A002921A1 /* ContributionsTableViewCell.swift */; };
 		1A4FDBA31FB3B19A00FC5648 /* BusinessSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FDBA21FB3B19A00FC5648 /* BusinessSignUpViewController.swift */; };
 		494979251F672BF4005DB65C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494979241F672BF4005DB65C /* AppDelegate.swift */; };
 		4949792A1F672BF4005DB65C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494979281F672BF4005DB65C /* Main.storyboard */; };
@@ -22,11 +25,9 @@
 		4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */; };
 		4E2254741F7050A300DE1D93 /* UserAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */; };
 		4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */; };
-		4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2254791F70514000DE1D93 /* ContributionsViewController.swift */; };
 		4E24E08A1F8BDF8B005D1EAD /* LoadScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */; };
 		4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E257A011F731F4B00012F2D /* LoginViewController.swift */; };
 		4E55C0BE1FAA798600044ADD /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E55C0BD1FAA798600044ADD /* ViewControllerUtils.swift */; };
-		4E9D27D81FBD0A7D00C40811 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9D27D71FBD0A7C00C40811 /* Keys.swift */; };
 		4EADBFC81F97FE3A001386D6 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADBFC71F97FE3A001386D6 /* Review.swift */; };
 		4EADBFCA1F980713001386D6 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADBFC91F980713001386D6 /* ReviewTableViewCell.swift */; };
 		4EC6298C1FB67ACD00965AF1 /* DBUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC6298B1FB67ACD00965AF1 /* DBUtils.swift */; };
@@ -71,6 +72,9 @@
 		085F5E611F7C5150003200C5 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		08BA96DE1F706C71001875BF /* PostScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostScanViewController.swift; sourceTree = "<group>"; };
 		08C66B0F1F8F16120036FA82 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		08F9FA6C1FC34532002921A1 /* ContributionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsTableViewController.swift; sourceTree = "<group>"; };
+		08F9FA6E1FC34633002921A1 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../../Downloads/Keys.swift; sourceTree = "<group>"; };
+		08F9FA701FC3476A002921A1 /* ContributionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsTableViewCell.swift; sourceTree = "<group>"; };
 		1A4FDBA21FB3B19A00FC5648 /* BusinessSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSignUpViewController.swift; sourceTree = "<group>"; };
 		20E198409E5BCE3F72BE52BB /* Pods_ShowcaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowcaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		494979211F672BF4005DB65C /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,11 +93,9 @@
 		4E2254711F704F9D00DE1D93 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountSettingsViewController.swift; sourceTree = "<group>"; };
 		4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
-		4E2254791F70514000DE1D93 /* ContributionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributionsViewController.swift; sourceTree = "<group>"; };
 		4E24E0891F8BDF8B005D1EAD /* LoadScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScanViewController.swift; sourceTree = "<group>"; };
 		4E257A011F731F4B00012F2D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4E55C0BD1FAA798600044ADD /* ViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
-		4E9D27D71FBD0A7C00C40811 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../Downloads/Keys.swift; sourceTree = "<group>"; };
 		4EADBFC71F97FE3A001386D6 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		4EADBFC91F980713001386D6 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		4EC6298B1FB67ACD00965AF1 /* DBUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUtils.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				08C66B0F1F8F16120036FA82 /* HistoryTableViewCell.swift */,
 				4EADBFC91F980713001386D6 /* ReviewTableViewCell.swift */,
 				4E55C0BD1FAA798600044ADD /* ViewControllerUtils.swift */,
+				08F9FA701FC3476A002921A1 /* ContributionsTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -194,12 +197,12 @@
 				4ED24BC71F8EB216000407C2 /* ResultsViewController.swift */,
 				08BA96DE1F706C71001875BF /* PostScanViewController.swift */,
 				4E2254771F70512000DE1D93 /* HistoryTableViewController.swift */,
-				4E2254791F70514000DE1D93 /* ContributionsViewController.swift */,
 				4E2254731F7050A300DE1D93 /* UserAccountSettingsViewController.swift */,
 				5010F16A1FACFACA0035689B /* ChangePasswordViewController.swift */,
 				50451D811FB637E600418C89 /* UpdateAssociateTagViewController.swift */,
 				49EC73261F82DA49003737F9 /* Showcase-Bridging-Header.h */,
 				0803CA931FBA47E200F5DDAB /* ChangeEmailViewController.swift */,
+				08F9FA6C1FC34532002921A1 /* ContributionsTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -275,8 +278,8 @@
 		5E0CEEE41F730FBD009EADF6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4E9D27D71FBD0A7C00C40811 /* Keys.swift */,
 				5E0CEEE51F730FD7009EADF6 /* Constants.swift */,
+				08F9FA6E1FC34633002921A1 /* Keys.swift */,
 				4EC6298B1FB67ACD00965AF1 /* DBUtils.swift */,
 			);
 			name = Utils;
@@ -632,16 +635,16 @@
 				5E47E72D1F7383C2002B703D /* RootViewController.swift in Sources */,
 				5E6C470B1F7588B6002FE561 /* DataService.swift in Sources */,
 				4ED24BCE1F8EB40B000407C2 /* ResultsTableViewCell.swift in Sources */,
-				4E22547A1F70514000DE1D93 /* ContributionsViewController.swift in Sources */,
 				0803CA941FBA47E200F5DDAB /* ChangeEmailViewController.swift in Sources */,
 				5E47E7311F739485002B703D /* MaterialButton.swift in Sources */,
 				081A46D41FAB7A6600A4FBEA /* Location.swift in Sources */,
 				08C66B101F8F16120036FA82 /* HistoryTableViewCell.swift in Sources */,
+				08F9FA6D1FC34532002921A1 /* ContributionsTableViewController.swift in Sources */,
 				08BA96DF1F706C71001875BF /* PostScanViewController.swift in Sources */,
 				5E47E72F1F7391DB002B703D /* MaterialTextField.swift in Sources */,
 				4E2254721F704F9D00DE1D93 /* ScannerViewController.swift in Sources */,
 				5E0CEEE31F730F29009EADF6 /* UserClass.swift in Sources */,
-				4E9D27D81FBD0A7D00C40811 /* Keys.swift in Sources */,
+				08F9FA6F1FC34633002921A1 /* Keys.swift in Sources */,
 				085F5E621F7C5150003200C5 /* SignUpViewController.swift in Sources */,
 				50ED73B01F85ACE100E4531F /* UIViewController+CurUser.swift in Sources */,
 				4E2254781F70512000DE1D93 /* HistoryTableViewController.swift in Sources */,
@@ -652,6 +655,7 @@
 				4ED24BC81F8EB216000407C2 /* ResultsViewController.swift in Sources */,
 				5010F16B1FACFACA0035689B /* ChangePasswordViewController.swift in Sources */,
 				4E257A021F731F4B00012F2D /* LoginViewController.swift in Sources */,
+				08F9FA711FC3476A002921A1 /* ContributionsTableViewCell.swift in Sources */,
 				4E55C0BE1FAA798600044ADD /* ViewControllerUtils.swift in Sources */,
 				50451D821FB637E600418C89 /* UpdateAssociateTagViewController.swift in Sources */,
 				4E24E08A1F8BDF8B005D1EAD /* LoadScanViewController.swift in Sources */,
