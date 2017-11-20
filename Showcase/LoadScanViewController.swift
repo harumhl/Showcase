@@ -87,6 +87,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
 
     var ref: DatabaseReference!
     var storeAssociateTag: String = ""
+    
 
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
     
@@ -450,14 +451,13 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
 
             // Thread control
             /* Making LoadScanVC to wait for both findStoreAssociateTag() as well as the rest of the code in this function (so call handleComplete() when both are done) */
-            let myGroup = DispatchGroup()
+            var myGroup = DispatchGroup()
             
             myGroup.enter()
             findStoreAssociateTag(address: loc.address, location: loc, handleComplete: {
                 myGroup.leave()
             })
             
-            myGroup.enter()
             // loop through responseItems to find the correct Book
             for items in xml["ItemLookupResponse", "Items", "Item"]{
                 let itemAttributes = items["ItemAttributes"]
@@ -549,33 +549,50 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     print("NOPE NOTE EQUAL")
                 }
             }
-            myGroup.leave()
             
             // both findStoreAssociateTag() and above parsing are done
+            myGroup.wait()
             myGroup.notify(queue: .main) {
+                print("done with both findStoreAssociateTag() and book parsing")
                 handleComplete()
             }
             
-            for tmpBook in self.scanBookArray {
-                
-                // if book is already in db then load reviews from db otherwise parse the html
-                isReviewInDB(bookData: tmpBook)
-                    if(tmpBook.reviewExist){
-                        print("WOO")
-                        loadBookReview(tempBook: tmpBook)
-                    } else {
-                        print("DAMN")
-                        tmpBook.parse(_url: tmpBook.reviewURL)
-                    }
-            }
-           
-
             // No book was found, so alert the user as going back to the root VC
             if (self.scanBookArray.count == 0) {
                 let alert = UIAlertController(title: "No Book Found", message: "No book was found at Amazon.com", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
+
+            // Load reviews
+            for tmpBook in self.scanBookArray {
+                print("check reviews")
+                print("count: \(self.scanBookArray.count)")
+                
+                // if book is already in db then load reviews from db otherwise parse the html
+                //myGroup.enter()
+                isReviewInDB(bookData: tmpBook, handleComplete: {
+                    print("done with isReviewInDB()")
+                    print("loadScan done with reviewindB \(tmpBook.reviewExist)")
+                    //myGroup.leave()
+                })
+                //myGroup.wait()
+                //myGroup.notify(queue: .main) { // Wait till we check in the DB whether we have the reviews already
+                    if(tmpBook.reviewExist){
+                        print("review exists")
+                //        myGroup.enter()
+                        loadBookReview(tempBook: tmpBook, handleComplete: {
+                            print("done with loadBookReview()")
+                //            myGroup.leave()
+                        })
+                    } else {
+                        print("review DOESNT exist")
+                        tmpBook.parse(_url: tmpBook.reviewURL)
+                    }
+                //}
+                //myGroup.wait()
+            }
+            //myGroup.wait()
         }
         task.resume() // start the XML parser
         print("Done Amazon")

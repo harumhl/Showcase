@@ -87,8 +87,6 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
                     // If the seconds since 1970 is a greater value, then it is more recent
                     self.userBookArray.sort { $0.SecondsSince1970 > $1.SecondsSince1970 }
                     
-                    self.myGroup.wait() // wait for all findStoreAssociateTag() calls
-                    
                     // Reload the table view
                     self.filteredBooks = self.userBookArray
                     self.historyTable.reloadData()
@@ -130,10 +128,7 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
                 tempBook.location.address = theLocation.value(forKey: "Address") as! String
                 
                 // find associate tag - use myGroup to make VC wait before going to PostScan
-                self.myGroup.enter()
-                findStoreAssociateTag(address: tempBook.location.address, location: tempBook.location, handleComplete: {
-                    self.myGroup.leave()
-                })
+                findStoreAssociateTag(address: tempBook.location.address, location: tempBook.location, handleComplete: {})
             }
             else {
                 tempBook.location.storeName = "Not searched at a store"
@@ -141,10 +136,9 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
                 tempBook.location.long = -1
                 tempBook.location.address = "Address Unavailable"
                 tempBook.location.associateTag = "AssociateTag Not Available"
-                self.myGroup.leave()
             }
         })
-        loadBookReview(tempBook: tempBook)
+        loadBookReview(tempBook: tempBook, handleComplete: {})
         self.userBookArray.append(tempBook)
     }
     

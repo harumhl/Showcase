@@ -10,7 +10,8 @@ import Foundation
 import Firebase
 
 
-func loadBookReview(tempBook: Book){
+func loadBookReview(tempBook: Book, handleComplete:@escaping (()->())){
+    print("in loadBookReview()")
     // Set Firebase DB reference
     var ref = Database.database().reference()
     ref.child("review").observe(DataEventType.value, with: { (snapshot) in
@@ -31,13 +32,16 @@ func loadBookReview(tempBook: Book){
                     tmpReview.rating = (review as! NSDictionary)["reviewRating"] as! Double
                     tempBook.reviews.append(tmpReview)
                 }
+                handleComplete()
+                return
             }
         }
     })
     
 }
 
-func isReviewInDB(bookData: Book) {
+func isReviewInDB(bookData: Book, handleComplete:@escaping (()->())) {
+    print("in isReviewInDB()")
     // using the bookData.reviewURL check if the review object already exists in the database
     // Set Firebase DB reference
     var ref = Database.database().reference()
@@ -53,9 +57,14 @@ func isReviewInDB(bookData: Book) {
             if(isbn_db == bookData.ISBN){
                 print("found ISBN in ReviewDB no need to write to DB")
                 bookData.reviewExist = true
+                handleComplete()
                 return
             }
         }
+        bookData.reviewExist = false
+        print("didn't find ISBN in ReviewDB")
+        handleComplete()
+        return
     })
 }
 

@@ -162,7 +162,7 @@ class Book {
             // Post notification
             NotificationCenter.default.post(name: notifRefreshDone, object: nil)
             self.doneParse = true
-
+            print("done parsing reviews")
             
         } catch {
             print("error")
