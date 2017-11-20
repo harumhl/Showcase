@@ -37,7 +37,7 @@ class Book {
     var location: Location
     var reviews = [Review]()
     var doneParse = false
-    var reviewExist = false
+    var reviewExist: Bool
     
     init() {
         title = "N/A"
@@ -52,6 +52,7 @@ class Book {
         purchaseURL = "N/A"
         ASIN = "N/A"
         location = Location()
+        reviewExist = false
         //reviews = "N/A"
     }
     
@@ -68,6 +69,7 @@ class Book {
         self.purchaseURL = _purchaseURL
         self.ASIN = _ASIN
         self.location = _location
+        self.reviewExist = false
     }
     
     func parse(_url: String){
@@ -162,7 +164,7 @@ class Book {
             // Post notification
             NotificationCenter.default.post(name: notifRefreshDone, object: nil)
             self.doneParse = true
-
+            print("done parsing reviews")
             
         } catch {
             print("error")

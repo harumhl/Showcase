@@ -10,7 +10,8 @@ import Foundation
 import Firebase
 
 
-func loadBookReview(tempBook: Book){
+func loadBookReview(tempBook: Book, handleComplete:@escaping (()->())){
+    print("in loadBookReview()")
     // Set Firebase DB reference
     var ref = Database.database().reference()
     ref.child("review").observe(DataEventType.value, with: { (snapshot) in
@@ -31,13 +32,21 @@ func loadBookReview(tempBook: Book){
                     tmpReview.rating = (review as! NSDictionary)["reviewRating"] as! Double
                     tempBook.reviews.append(tmpReview)
                 }
+                let notifRefreshRating = Notification.Name("refreshRating")
+                let notifRefreshDone = Notification.Name("refreshDone")
+                NotificationCenter.default.post(name: notifRefreshRating, object: nil)
+                NotificationCenter.default.post(name: notifRefreshDone, object: nil)
+                print("refreshDone")
+                handleComplete()
+                return
             }
         }
     })
     
 }
 
-func isReviewInDB(bookData: Book) {
+func isReviewInDB(bookData: Book, handleComplete:@escaping (()->())) {
+    print("in isReviewInDB()")
     // using the bookData.reviewURL check if the review object already exists in the database
     // Set Firebase DB reference
     var ref = Database.database().reference()
@@ -53,39 +62,44 @@ func isReviewInDB(bookData: Book) {
             if(isbn_db == bookData.ISBN){
                 print("found ISBN in ReviewDB no need to write to DB")
                 bookData.reviewExist = true
+                handleComplete()
                 return
             }
         }
+        //bookData.reviewExist = false
+        print("didn't find ISBN in ReviewDB")
+        handleComplete()
+        return
     })
 }
 
 // Try to find a way to use the function below?? maybe this is how we need to control running the full function before returning see: https://stackoverflow.com/questions/41262793/swift-wait-for-firebase-to-load-before-return-a-function 
 
-func isReview(bookData: Book, completionHandler:@escaping (_ flag: Bool)->()) {
-    
-    // using the bookData.reviewURL check if the review object already exists in the database
-    var flag = false
-    // Set Firebase DB reference
-    var ref = Database.database().reference()
-    ref.child("review").observe(DataEventType.value, with: { (snapshot) in
-        // grab all book reviews
-        let allBooks = snapshot.value as? NSDictionary
-        if(allBooks == nil) { return }
-        
-        // loop through and try to find the match for the book currently being searched
-        for (isbn, _) in allBooks! {
-            let isbn_db = isbn as! String
-            //print("isbn_db: \(isbn)")
-            if(isbn_db == bookData.ISBN){
-                print("found ISBN in ReviewDB no need to write to DB")
-                bookData.reviewExist = true
-                flag = true
-                completionHandler(flag)
-            }
-        }
-        completionHandler(flag)
-    })
-}
+//func isReview(bookData: Book, completionHandler:@escaping (_ flag: Bool)->()) {
+//
+//    // using the bookData.reviewURL check if the review object already exists in the database
+//    var flag = false
+//    // Set Firebase DB reference
+//    var ref = Database.database().reference()
+//    ref.child("review").observe(DataEventType.value, with: { (snapshot) in
+//        // grab all book reviews
+//        let allBooks = snapshot.value as? NSDictionary
+//        if(allBooks == nil) { return }
+//
+//        // loop through and try to find the match for the book currently being searched
+//        for (isbn, _) in allBooks! {
+//            let isbn_db = isbn as! String
+//            //print("isbn_db: \(isbn)")
+//            if(isbn_db == bookData.ISBN){
+//                print("found ISBN in ReviewDB no need to write to DB")
+//                bookData.reviewExist = true
+//                flag = true
+//                completionHandler(flag)
+//            }
+//        }
+//        completionHandler(flag)
+//    })
+//}
 
 func findStoreAssociateTag(address: String, location: Location, handleComplete:@escaping (()->())) {
     var ref: DatabaseReference!

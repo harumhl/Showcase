@@ -112,6 +112,9 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         if(!bookData.doneParse){
             activityIndicatorView.startAnimating()
         }
+        if(fromHistory){
+            activityIndicatorView.stopAnimating()
+        }
         
         // Display the view controller's title
         if !fromHistory {
@@ -167,6 +170,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
 //****************************************** REVIEW TABLE FUNCTIONS ******************************************
     func refreshRating(){
         DispatchQueue.main.async {
+            self.reviewsTable.isHidden = false
+            self.noReviewLabel.isHidden = true
             self.cosmosView.rating = self.bookData.rating
             self.cosmosView.text = String(format:"%.2f", self.bookData.rating)
             self.cosmosView.performSelector(onMainThread: #selector(CosmosView.update), with: nil, waitUntilDone: true)
@@ -176,12 +181,16 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     
     func refreshTable(){
         DispatchQueue.main.async {
+            self.noReviewLabel.isHidden = true
+            self.reviewsTable.isHidden = false
             self.reviewsTable.reloadData()
         }
     }
     
     func refreshDone(){
         DispatchQueue.main.async {
+            self.noReviewLabel.isHidden = true
+            self.reviewsTable.isHidden = false
             self.reviewsTable.reloadData()
             let animating = self.activityIndicatorView.animating
             if(animating){
@@ -196,7 +205,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         //check if we need to write reviews to
-        isReviewInDB(bookData: self.bookData)
+        //isReviewInDB(bookData: self.bookData, handleComplete: {})
+        print("should we write reviews: \(!bookData.reviewExist)")
         if (!bookData.reviewExist){
             //write reviews (self.bookData.reviews) to the db
             print("write reviews")
