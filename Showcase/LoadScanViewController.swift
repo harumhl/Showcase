@@ -570,13 +570,14 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 print("count: \(self.scanBookArray.count)")
                 
                 // if book is already in db then load reviews from db otherwise parse the html
-                //myGroup.enter()
+                myGroup.enter()
                 isReviewInDB(bookData: tmpBook, handleComplete: {
                     print("done with isReviewInDB()")
                     print("loadScan done with reviewindB \(tmpBook.reviewExist)")
                     //myGroup.leave()
                 })
-                //myGroup.wait()
+                myGroup.leave()
+                myGroup.wait()
                 //myGroup.notify(queue: .main) { // Wait till we check in the DB whether we have the reviews already
                     if(tmpBook.reviewExist){
                         print("review exists")

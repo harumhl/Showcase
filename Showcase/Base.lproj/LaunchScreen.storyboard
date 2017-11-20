@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -26,8 +27,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork@1x" translatesAutoresizingMaskIntoConstraints="NO" id="yJj-sK-dLw">
+                                <rect key="frame" x="67.5" y="269.5" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="Y90-63-HY3"/>
+                                    <constraint firstAttribute="width" constant="240" id="kyd-ZJ-BDC"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Showcase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XY-uq-Cjh">
-                                <rect key="frame" x="81.5" y="299.5" width="212" height="69.5"/>
+                                <rect key="frame" x="81" y="192" width="212" height="69.5"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="49"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -35,8 +43,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.47843137254901957" green="0.82745098039215681" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6XY-uq-Cjh" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="OP1-jA-zEM"/>
-                            <constraint firstItem="6XY-uq-Cjh" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Vxk-ov-sli"/>
+                            <constraint firstItem="yJj-sK-dLw" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="2c8-en-Jc6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6XY-uq-Cjh" secondAttribute="trailing" constant="66" id="87h-SY-Cu1"/>
+                            <constraint firstItem="6XY-uq-Cjh" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="65" id="EC1-e7-j4Z"/>
+                            <constraint firstItem="yJj-sK-dLw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="O9q-3h-DlL"/>
+                            <constraint firstItem="yJj-sK-dLw" firstAttribute="top" secondItem="6XY-uq-Cjh" secondAttribute="bottom" constant="8" id="WLu-Ip-8nH"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -45,4 +56,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iTunesArtwork@1x" width="512" height="512"/>
+    </resources>
 </document>
