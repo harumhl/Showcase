@@ -443,7 +443,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                              "ReviewURL" : self.bookData.reviewURL,
                              "DateCreated" : self.bookData.DateCreatedAt,
                              "CreationSecondsSince1970" : self.bookData.SecondsSince1970,
-                             "PurchaseURL": self.bookData.purchaseURL
+                             "PurchaseURL": self.bookData.purchaseURL,
+                             "ASIN": self.bookData.ASIN
             ] as [String : Any]
             
             

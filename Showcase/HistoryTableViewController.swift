@@ -115,6 +115,7 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
         tempBook.reviewURL = aUserBook.value(forKey: "ReviewURL") as! String
         tempBook.SecondsSince1970 = UInt(aUserBook.value(forKey: "CreationSecondsSince1970") as! Int)
         tempBook.purchaseURL = aUserBook.value(forKey: "PurchaseURL") as! String
+        tempBook.ASIN = aUserBook.value(forKey: "ASIN") as! String
         
 
         let locationKey = aUserBook.value(forKey: "LocationID") as! String
