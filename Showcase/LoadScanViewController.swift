@@ -98,18 +98,26 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         //ViewControllerUtils().showActivityIndicator(uiView: self.view)
         activityIndicator.startAnimating()
         
-        // ************************************* TEST 1 *******************
-        self.getLocation{ () -> () in
-            print("store::: \(self.businessName)")
-//            self.findStoreAssociateTag{ () -> () in
-                // using closures to construct our object then perform the function selectBook()
-                self.amazonSearch { () -> () in
-                    self.selectBook()
-                }
-//            }
+        
+        
+        self.amazonSearch { () -> () in
+            self.selectBook()
         }
         
+        
+        
+//        // ************************************* TEST 1 *******************
+//        self.getLocation{ () -> () in
+//            print("store::: \(self.businessName)")
+////            self.findStoreAssociateTag{ () -> () in
+//                // using closures to construct our object then perform the function selectBook()
+//                self.amazonSearch { () -> () in
+//                    self.selectBook()
+//                }
+////            }
+//        }
 //
+////
         // ************************************* TEST 2 *******************
 //        amazonSearch()
 //        // user defined functions
@@ -444,6 +452,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             let responseItems = xml["ItemLookupResponse"]["Items"]
 
             let loc = Location()
+            print("amazonSearch: a:\(self.address) b:\(self.businessName) lo:\(self.longitude) la:\(self.latitude)")
             loc.lat = self.latitude
             loc.long = self.longitude
             loc.storeName = self.businessName
