@@ -244,7 +244,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         
         bookTitle.text = bookData.title
         bookAuthor.text = bookData.author
-        bookPrice.text = bookData.price
+        bookPrice.text = "price of book"//= bookData.price
     }
     
     
