@@ -35,6 +35,7 @@
 		4ED24BCE1F8EB40B000407C2 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED24BCD1F8EB40B000407C2 /* ResultsTableViewCell.swift */; };
 		5010F16B1FACFACA0035689B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5010F16A1FACFACA0035689B /* ChangePasswordViewController.swift */; };
 		50451D821FB637E600418C89 /* UpdateAssociateTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50451D811FB637E600418C89 /* UpdateAssociateTagViewController.swift */; };
+		5098FF561FCCAECE0033CB49 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098FF551FCCAECE0033CB49 /* Keys.swift */; };
 		50ED73B01F85ACE100E4531F /* UIViewController+CurUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */; };
 		5E0CEEE11F72F985009EADF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */; };
 		5E0CEEE31F730F29009EADF6 /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0CEEE21F730F29009EADF6 /* UserClass.swift */; };
@@ -103,6 +104,7 @@
 		4ED24BCD1F8EB40B000407C2 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		5010F16A1FACFACA0035689B /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		50451D811FB637E600418C89 /* UpdateAssociateTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAssociateTagViewController.swift; sourceTree = "<group>"; };
+		5098FF551FCCAECE0033CB49 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		50ED73AF1F85ACE100E4531F /* UIViewController+CurUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+CurUser.swift"; path = "Showcase/UIViewController+CurUser.swift"; sourceTree = SOURCE_ROOT; };
 		5E0CEEE01F72F985009EADF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5E0CEEE21F730F29009EADF6 /* UserClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
