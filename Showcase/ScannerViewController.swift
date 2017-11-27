@@ -17,6 +17,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var previewLayerCameraUI: AVCaptureVideoPreviewLayer!
     var scannedBarcodeData: String = ""
     
+    var myLoc = Location()
+    
     @IBOutlet weak var cameraUIview: UIImageView!
     
     override func viewDidLoad() {
@@ -122,6 +124,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let loadScanVC: LoadScanViewController = segue.destination as! LoadScanViewController
         loadScanVC.theBarcodeData = scannedBarcodeData
+        print("scanner: a:\(self.myLoc.address) b:\(self.myLoc.storeName) lo:\(self.myLoc.longitude) la:\(self.myLoc.latitude)")
+        
+        loadScanVC.myLoc = self.myLoc
     }
     
 

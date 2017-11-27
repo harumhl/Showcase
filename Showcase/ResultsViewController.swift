@@ -13,9 +13,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var scanBookArray = [Book]()
     var selectedBookIndex = -1
     
-    var storeAddress: String = ""
     let cellReuseIdentifier = "cell"
-    var storeName: String = ""
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -97,6 +95,8 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         bookToPass = scanBookArray[indexPath.row]
         postScanVC.bookData = bookToPass
         postScanVC.whichVC_itComesFrom = "ResultsVC"
+        let notifRefreshTag = Notification.Name("refreshTag")
+        NotificationCenter.default.post(name: notifRefreshTag, object: nil)
     }
     
     

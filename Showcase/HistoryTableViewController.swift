@@ -124,8 +124,8 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
             // Grab Location StoreName field from DB
             if (theLocation.value(forKey: "StoreName") != nil) {
                 tempBook.location.storeName = theLocation.value(forKey: "StoreName") as! String
-                tempBook.location.lat = theLocation.value(forKey: "Lat") as! Double
-                tempBook.location.long = theLocation.value(forKey: "Long") as! Double
+                tempBook.location.latitude = theLocation.value(forKey: "Lat") as! Double
+                tempBook.location.longitude = theLocation.value(forKey: "Long") as! Double
                 tempBook.location.address = theLocation.value(forKey: "Address") as! String
                 
                 // find associate tag - use myGroup to make VC wait before going to PostScan
@@ -133,8 +133,8 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
             }
             else {
                 tempBook.location.storeName = "Not searched at a store"
-                tempBook.location.lat = -1
-                tempBook.location.long = -1
+                tempBook.location.latitude = -1
+                tempBook.location.longitude = -1
                 tempBook.location.address = "Address Unavailable"
                 tempBook.location.associateTag = "AssociateTag Not Available"
             }

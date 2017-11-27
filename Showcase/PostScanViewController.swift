@@ -70,10 +70,12 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         let notifRefreshRating = Notification.Name("refreshRating")
         let notifRefreshTable = Notification.Name("refreshTable")
         let notifRefreshDone = Notification.Name("refreshDone")
+        let notifRefreshTag = Notification.Name("refreshTag")
         // Register to receive notification
         NotificationCenter.default.addObserver(self, selector: #selector(PostScanViewController.refreshRating), name: notifRefreshRating, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(PostScanViewController.refreshTable), name: notifRefreshTable, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(PostScanViewController.refreshDone), name: notifRefreshDone, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PostScanViewController.refreshTag), name: notifRefreshTag, object: nil)
         
         print("****** store: \(self.bookData.location.storeName)")
         print("****** store: \(self.bookData.location.associateTag)")
@@ -166,7 +168,15 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
-    
+    func refreshTag(){
+        DispatchQueue.main.async {
+            self.bookPurchase.backgroundColor = UIColor(red:0.55, green:1.00, blue:0.56, alpha:1.0)
+            self.bookPurchase.isEnabled = true
+            
+            self.storePlacemarkImg.image = UIImage(named: "greenPlacemark")
+            self.storeNameLbl.text = self.bookData.location.storeName
+        }
+    }
 //****************************************** REVIEW TABLE FUNCTIONS ******************************************
     func refreshRating(){
         DispatchQueue.main.async {
@@ -449,8 +459,8 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             
             
             let locationData = ["LocationID": locKey,
-                                "Long": self.bookData.location.long,
-                                "Lat": self.bookData.location.lat,
+                                "Long": self.bookData.location.longitude,
+                                "Lat": self.bookData.location.latitude,
                                 "StoreName": self.bookData.location.storeName,
                                 "Address" : self.bookData.location.address
             ] as [String : Any]

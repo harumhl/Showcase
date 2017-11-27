@@ -167,7 +167,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="New Search" image="barcode-scan"/>
                                 <connections>
-                                    <segue destination="RuQ-d1-mhr" kind="show" identifier="MainMenu" id="shh-RK-V0N"/>
+                                    <action selector="toScanner:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3aq-rj-P32"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i89-DW-OFU">
@@ -212,6 +212,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="userNameLabel" destination="8TG-Ss-Bsj" id="dMm-kT-iiR"/>
+                        <segue destination="RuQ-d1-mhr" kind="show" identifier="RootToScanner" id="Guo-bB-gbM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -570,7 +571,7 @@
         <!--Scanner View Controller-->
         <scene sceneID="BbN-d9-MhJ">
             <objects>
-                <viewController id="RuQ-d1-mhr" customClass="ScannerViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScannerViewController" id="RuQ-d1-mhr" customClass="ScannerViewController" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Oa9-vo-afW"/>
                         <viewControllerLayoutGuide type="bottom" id="qdc-Tl-1Pg"/>
@@ -764,19 +765,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcb-Rb-vlH" userLabel="bookTitle">
-                                <rect key="frame" x="148" y="28" width="211" height="21"/>
+                                <rect key="frame" x="148" y="72" width="211" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book author" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHh-Fk-zx1" userLabel="bookAuthor">
-                                <rect key="frame" x="148" y="60" width="211" height="18"/>
+                                <rect key="frame" x="148" y="104" width="211" height="18"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                 <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbE-A1-Uej" userLabel="bookRating" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="148" y="98" width="125" height="21"/>
+                                <rect key="frame" x="148" y="142" width="125" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
@@ -803,15 +804,15 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kos-cJ-pRp" userLabel="bookImage">
-                                <rect key="frame" x="8" y="28" width="130" height="200"/>
+                                <rect key="frame" x="8" y="72" width="130" height="151"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="DM5-ZW-o3E"/>
                                     <constraint firstAttribute="width" constant="130" id="avd-bN-eHy"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-5t-S0o" userLabel="bookPurchase">
-                                <rect key="frame" x="8" y="236" width="359" height="30"/>
-                                <color key="backgroundColor" red="0.5483074104403991" green="1" blue="0.56352840300104834" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="8" y="231" width="359" height="30"/>
+                                <color key="backgroundColor" red="0.5490196078431373" green="1" blue="0.56470588235294117" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="kWJ-3l-e1b"/>
                                 </constraints>
@@ -914,20 +915,20 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Customer Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3K-a8-zfc">
-                                <rect key="frame" x="102.5" y="283" width="171" height="25"/>
+                                <rect key="frame" x="102.5" y="278" width="171" height="30"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenPlacemark" translatesAutoresizingMaskIntoConstraints="NO" id="Meb-CU-hCl">
-                                <rect key="frame" x="143" y="194" width="30" height="30"/>
+                                <rect key="frame" x="143" y="189" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Kd4-jt-uKa"/>
                                     <constraint firstAttribute="height" constant="30" id="ZsK-S2-rlD"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txR-JW-Z8q" userLabel="storeParticipation">
-                                <rect key="frame" x="181" y="208" width="186" height="17"/>
+                                <rect key="frame" x="181" y="203" width="186" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -946,7 +947,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-39-3Da" userLabel="bookPrice">
-                                <rect key="frame" x="148" y="127" width="211" height="21"/>
+                                <rect key="frame" x="148" y="171" width="211" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.91943359375" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1676,5 +1677,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="SMw-y1-bM6"/>
         <segue reference="qsg-Sj-SfY"/>
+        <segue reference="z5p-Eo-907"/>
+        <segue reference="HJt-qb-diX"/>
+        <segue reference="RNX-nM-ibK"/>
+>>>>>>> f9b1cb1f9dde8d5a049e21918bec7875d66e0085
     </inferredMetricsTieBreakers>
 </document>
