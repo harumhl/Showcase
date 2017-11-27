@@ -124,8 +124,8 @@ class ContributionsTableViewController: UITableViewController {
             // Populate the location array
             let theLocation = snapshot.value as! NSDictionary
             location.storeName = theLocation.value(forKey: "StoreName") as! String
-            location.lat = theLocation.value(forKey: "Lat") as! Double
-            location.long = theLocation.value(forKey: "Long") as! Double
+            location.latitude = theLocation.value(forKey: "Lat") as! Double
+            location.longitude = theLocation.value(forKey: "Long") as! Double
             location.address = theLocation.value(forKey: "Address") as! String
         })
         
@@ -135,8 +135,8 @@ class ContributionsTableViewController: UITableViewController {
             if (loc.storeName == location.storeName && loc.address == location.address) {
                 print ("got to here")
                 // threshold for lat and logitude to decide if two stores are the same
-                if (abs(loc.lat - location.lat) <= LAT_THRESHOLD &&
-                    abs(loc.long - location.long) <= LONG_THRESHOLD) {
+                if (abs(loc.latitude - location.latitude) <= LAT_THRESHOLD &&
+                    abs(loc.longitude - location.longitude) <= LONG_THRESHOLD) {
                     // same store
                     print("got to here 2")
                     storeExists = true
@@ -177,8 +177,8 @@ class ContributionsTableViewController: UITableViewController {
             if (loc.storeName == location.storeName && loc.address == location.address) {
                
                 // threshold for lat and logitude to decide if two stores are the same
-                if (abs(loc.lat - location.lat) <= LAT_THRESHOLD &&
-                    abs(loc.long - location.long) <= LONG_THRESHOLD) {
+                if (abs(loc.latitude - location.latitude) <= LAT_THRESHOLD &&
+                    abs(loc.longitude - location.longitude) <= LONG_THRESHOLD) {
                     // same store
                     numVisits += 1
                 }

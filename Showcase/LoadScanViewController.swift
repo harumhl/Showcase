@@ -76,11 +76,8 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
     
     var theBarcodeData: String = ""
     
-    var address: String = ""
-    var businessName: String = ""
-    var currentAddr = [String : String]()
-    var longitude: Double = 0.0
-    var latitude: Double = 0.0
+    //var currentAddr = [String : String]()
+    var myLoc = Location()
     
     var scanBookArray = [Book]()
     var bookToPass: Int = -1
@@ -98,7 +95,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         //ViewControllerUtils().showActivityIndicator(uiView: self.view)
         activityIndicator.startAnimating()
         
-        
+        print("viewcontroller: a:\(self.myLoc.address) b:\(self.myLoc.storeName) lo:\(self.myLoc.longitude) la:\(self.myLoc.latitude)")
         
         self.amazonSearch { () -> () in
             self.selectBook()
@@ -162,8 +159,6 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             print("segue to result table")
 
             resultsTblVC.scanBookArray = scanBookArray
-            resultsTblVC.storeAddress = self.address
-            resultsTblVC.storeName = self.businessName
             resultsTblVC.storeAssociateTag = self.storeAssociateTag
         }
         else{
@@ -202,163 +197,163 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-// ****************************************** GPS Functions ***************************************************
-    // gets the GPS longitude and latitude, then passes to function to determine the business you are in
-    func getLocation(handleComplete:@escaping (()->())){
-    //func getLocation(){
-        // get Longitude and Latitude
-        locManager.delegate = self as! CLLocationManagerDelegate
-        locManager.desiredAccuracy = kCLLocationAccuracyBest
-        locManager.requestWhenInUseAuthorization()
-        
-        if( (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse) ||
-            (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways)){
-            
-            //currentLocation = locManager.location
-            longitude = (locManager.location?.coordinate.longitude)!
-            latitude = (locManager.location?.coordinate.latitude)!
-            
-            // let originLocation = CLLocation(latitude: latitude, longitude: longitude)
-               let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)
-            //let originLocation = CLLocation(latitude: 30.624211, longitude: -96.329536)
-            
-            getPlacemark(forLocation: originLocation) {
-                (originPlacemark, error) in
-                if let err = error {
-                    print(err)
-                } else if let placemark = originPlacemark {
-                    //print(placemark.name)
-                    self.placemarkToAddress(placemark: placemark)
-                    print("done getting address")
-                    self.getBusiness{ () -> () in
-                        print("handleComplete address \(self.businessName)")
-                        handleComplete()
-                    }
-                    
-                    print("done getting business")
-                }
-            }
-        } else {
-            
-            // Ask Brian how did a pop up
-            print("did not allow gps")
-        }
-        
-         //wait a little bit for the gps to get the book store address.
-//         let when = DispatchTime.now() + 1.5
-//         DispatchQueue.main.asyncAfter(deadline: when) {
-//            print("handle complete")
-//            //handleComplete()
-//         }
-   
-    }
-    
-    // Gets the placemarker data
-    func getPlacemark(forLocation location: CLLocation, completionHandler: @escaping (CLPlacemark?, String?) -> ()) {
-        let geocoder = CLGeocoder()
-        
-        geocoder.reverseGeocodeLocation(location, completionHandler: {
-            placemarks, error in
-            
-            if let err = error {
-                completionHandler(nil, err.localizedDescription)
-            } else if let placemarkArray = placemarks {
-                if let placemark = placemarkArray.first {
-                    completionHandler(placemark, nil)
-                } else {
-                    completionHandler(nil, "Placemark was nil")
-                }
-            } else {
-                completionHandler(nil, "Unknown error")
-            }
-        })
-    }
-    
-    
-    // Converts placemarker to a physical address
-    func placemarkToAddress(placemark: CLPlacemark) -> Void{
-        print("Start placemarkToAddress")
-        // Location name
-        if let locationName = placemark.addressDictionary?["Name"] as? String {
-            self.address += locationName + ", "
-            currentAddr["locationName"] = locationName
-        }
-        
-        // Street address
-        // if let street = placemark.addressDictionary?["Thoroughfare"] as? String {
-        //      self.address += street + ", "
-        //      currentAddr["street"] = street
-        // }
-        
-        // City
-        if let city = placemark.addressDictionary?["City"] as? String {
-            self.address += city + ", "
-            currentAddr["city"] = city
-        }
-        if let state = placemark.addressDictionary?["State"] as? String {
-            self.address += state + "  "
-            currentAddr["state"] = state
-        }
-        
-        // Zip code
-        if let zip = placemark.addressDictionary?["ZIP"] as? String {
-            self.address += zip + ", "
-            currentAddr["zip"] = zip
-        }
-        
-        // Country
-        if let country = placemark.addressDictionary?["Country"] as? String {
-            self.address += country
-            currentAddr["country"] = country
-        }
-        
-        print("Done placemarkToAddress \(self.address)")
-    
-    }
-    
-    // Determines if user is in a bookstore
-    //func getBusiness(){
-    func getBusiness(handleComplete:@escaping (()->())){
-        print("start getBusiness")
-        //https://stackoverflow.com/questions/42570636/can-i-get-a-store-name-restaurant-name-with-mapkitswift
-        //https://www.youtube.com/watch?v=VZZ76kAdhNA
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = "bookstores"  // or whatever you're searching for
-        request.region = MKCoordinateRegion()
-        request.region.center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        var buisness = ""
-        var foundBusn = false
-        let search = MKLocalSearch(request: request)
-        search.start { response, error in
-            
-            // Prints out a list of the bookstores around you
-            //print(response?.mapItems)
-            print ("-----------------------")
-            //print ("getBusiness()\n")
-            for item in (response?.mapItems)! {
-                let responseAddr = item.placemark.title!
-                if(responseAddr == self.address){
-                    print("Found Location\n")
-                    buisness = item.name!
-                    foundBusn = true
-                }
-            }
-            if(foundBusn){
-                print("You are in \(buisness) \n")
-                self.businessName = buisness
-                print("placeholder: " + self.businessName)
-                handleComplete()
-            } else {
-                //print("Sorry we could not determine your location \n")
-                print("placeholder: Sorry we could not determine your location"
-                        + "\n-----------------------")
-            }
-        }
-        print("done getBusiness")
-        
-    }
-  
-    
+//// ****************************************** GPS Functions ***************************************************
+//    // gets the GPS longitude and latitude, then passes to function to determine the business you are in
+//    func getLocation(handleComplete:@escaping (()->())){
+//    //func getLocation(){
+//        // get Longitude and Latitude
+//        locManager.delegate = self as! CLLocationManagerDelegate
+//        locManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locManager.requestWhenInUseAuthorization()
+//
+//        if( (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse) ||
+//            (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways)){
+//
+//            //currentLocation = locManager.location
+//            longitude = (locManager.location?.coordinate.longitude)!
+//            latitude = (locManager.location?.coordinate.latitude)!
+//
+//            // let originLocation = CLLocation(latitude: latitude, longitude: longitude)
+//               let originLocation = CLLocation(latitude: 30.626792, longitude: -96.330823)
+//            //let originLocation = CLLocation(latitude: 30.624211, longitude: -96.329536)
+//
+//            getPlacemark(forLocation: originLocation) {
+//                (originPlacemark, error) in
+//                if let err = error {
+//                    print(err)
+//                } else if let placemark = originPlacemark {
+//                    //print(placemark.name)
+//                    self.placemarkToAddress(placemark: placemark)
+//                    print("done getting address")
+//                    self.getBusiness{ () -> () in
+//                        print("handleComplete address \(self.businessName)")
+//                        handleComplete()
+//                    }
+//
+//                    print("done getting business")
+//                }
+//            }
+//        } else {
+//
+//            // Ask Brian how did a pop up
+//            print("did not allow gps")
+//        }
+//
+//         //wait a little bit for the gps to get the book store address.
+////         let when = DispatchTime.now() + 1.5
+////         DispatchQueue.main.asyncAfter(deadline: when) {
+////            print("handle complete")
+////            //handleComplete()
+////         }
+//
+//    }
+//
+//    // Gets the placemarker data
+//    func getPlacemark(forLocation location: CLLocation, completionHandler: @escaping (CLPlacemark?, String?) -> ()) {
+//        let geocoder = CLGeocoder()
+//
+//        geocoder.reverseGeocodeLocation(location, completionHandler: {
+//            placemarks, error in
+//
+//            if let err = error {
+//                completionHandler(nil, err.localizedDescription)
+//            } else if let placemarkArray = placemarks {
+//                if let placemark = placemarkArray.first {
+//                    completionHandler(placemark, nil)
+//                } else {
+//                    completionHandler(nil, "Placemark was nil")
+//                }
+//            } else {
+//                completionHandler(nil, "Unknown error")
+//            }
+//        })
+//    }
+//
+//
+//    // Converts placemarker to a physical address
+//    func placemarkToAddress(placemark: CLPlacemark) -> Void{
+//        print("Start placemarkToAddress")
+//        // Location name
+//        if let locationName = placemark.addressDictionary?["Name"] as? String {
+//            self.address += locationName + ", "
+//            currentAddr["locationName"] = locationName
+//        }
+//
+//        // Street address
+//        // if let street = placemark.addressDictionary?["Thoroughfare"] as? String {
+//        //      self.address += street + ", "
+//        //      currentAddr["street"] = street
+//        // }
+//
+//        // City
+//        if let city = placemark.addressDictionary?["City"] as? String {
+//            self.address += city + ", "
+//            currentAddr["city"] = city
+//        }
+//        if let state = placemark.addressDictionary?["State"] as? String {
+//            self.address += state + "  "
+//            currentAddr["state"] = state
+//        }
+//
+//        // Zip code
+//        if let zip = placemark.addressDictionary?["ZIP"] as? String {
+//            self.address += zip + ", "
+//            currentAddr["zip"] = zip
+//        }
+//
+//        // Country
+//        if let country = placemark.addressDictionary?["Country"] as? String {
+//            self.address += country
+//            currentAddr["country"] = country
+//        }
+//
+//        print("Done placemarkToAddress \(self.address)")
+//
+//    }
+//
+//    // Determines if user is in a bookstore
+//    //func getBusiness(){
+//    func getBusiness(handleComplete:@escaping (()->())){
+//        print("start getBusiness")
+//        //https://stackoverflow.com/questions/42570636/can-i-get-a-store-name-restaurant-name-with-mapkitswift
+//        //https://www.youtube.com/watch?v=VZZ76kAdhNA
+//        let request = MKLocalSearchRequest()
+//        request.naturalLanguageQuery = "bookstores"  // or whatever you're searching for
+//        request.region = MKCoordinateRegion()
+//        request.region.center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+//        var buisness = ""
+//        var foundBusn = false
+//        let search = MKLocalSearch(request: request)
+//        search.start { response, error in
+//
+//            // Prints out a list of the bookstores around you
+//            //print(response?.mapItems)
+//            print ("-----------------------")
+//            //print ("getBusiness()\n")
+//            for item in (response?.mapItems)! {
+//                let responseAddr = item.placemark.title!
+//                if(responseAddr == self.address){
+//                    print("Found Location\n")
+//                    buisness = item.name!
+//                    foundBusn = true
+//                }
+//            }
+//            if(foundBusn){
+//                print("You are in \(buisness) \n")
+//                self.businessName = buisness
+//                print("placeholder: " + self.businessName)
+//                handleComplete()
+//            } else {
+//                //print("Sorry we could not determine your location \n")
+//                print("placeholder: Sorry we could not determine your location"
+//                        + "\n-----------------------")
+//            }
+//        }
+//        print("done getBusiness")
+//
+//    }
+//
+//
 // ****************************************** Book Search Functions ***************************************************
     func amazonSearch(handleComplete:@escaping (()->())) {
     //func amazonSearch(){
@@ -451,21 +446,16 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             // this is the list of items or books in the reponse
             let responseItems = xml["ItemLookupResponse"]["Items"]
 
-            let loc = Location()
-            print("amazonSearch: a:\(self.address) b:\(self.businessName) lo:\(self.longitude) la:\(self.latitude)")
-            loc.lat = self.latitude
-            loc.long = self.longitude
-            loc.storeName = self.businessName
-            loc.address = self.address
+            print("amazonSearch: a:\(self.myLoc.address) b:\(self.myLoc.storeName) lo:\(self.myLoc.longitude) la:\(self.myLoc.latitude)")
 
             // Thread control
             /* Making LoadScanVC to wait for both findStoreAssociateTag() as well as the rest of the code in this function (so call handleComplete() when both are done) */
-            var myGroup = DispatchGroup()
+//            var myGroup = DispatchGroup()
             
-            myGroup.enter()
-            findStoreAssociateTag(address: loc.address, location: loc, handleComplete: {
-                myGroup.leave()
-            })
+//            myGroup.enter()
+//            findStoreAssociateTag(address: self.myLoc.address, location: self.myLoc, handleComplete: {
+//                myGroup.leave()
+//            })
             
             // loop through responseItems to find the correct Book
             for items in xml["ItemLookupResponse", "Items", "Item"]{
@@ -549,7 +539,7 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                     print("7. Purchase: \(purchaseURL)")
                     print("8. ASIN: \(ASIN)\n") */
                     let tmpBook = Book.init(_title: title, _author: author, _ISBN: ISBN, _price: price, _imageURL: imageURL, _rating: -1, _reviewURL: reviewURL,
-                                            _DateCreatedAt: dateCreatedAt, _SecondsSince1970: secsSince1970, _purchaseURL: purchaseURL, _ASIN: ASIN, _location: loc)
+                                            _DateCreatedAt: dateCreatedAt, _SecondsSince1970: secsSince1970, _purchaseURL: purchaseURL, _ASIN: ASIN, _location: self.myLoc)
                     
                     // insert item into array of books
                     self.scanBookArray.append(tmpBook)
@@ -560,11 +550,11 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             // both findStoreAssociateTag() and above parsing are done
-            myGroup.wait()
-            myGroup.notify(queue: .main) {
-                print("done with both findStoreAssociateTag() and book parsing")
+//            myGroup.wait()
+//            myGroup.notify(queue: .main) {
+//                print("done with both findStoreAssociateTag() and book parsing")
                 handleComplete()
-            }
+//            }
             
             // No book was found, so alert the user as going back to the root VC
             if (self.scanBookArray.count == 0) {
@@ -578,29 +568,31 @@ class LoadScanViewController: UIViewController, CLLocationManagerDelegate {
                 print("check reviews")
                 print("count: \(self.scanBookArray.count)")
                 
-                // if book is already in db then load reviews from db otherwise parse the html
-                myGroup.enter()
-                isReviewInDB(bookData: tmpBook, handleComplete: {
-                    print("done with isReviewInDB()")
-                    print("loadScan done with reviewindB \(tmpBook.reviewExist)")
-                    //myGroup.leave()
-                })
-                myGroup.leave()
-                myGroup.wait()
-                //myGroup.notify(queue: .main) { // Wait till we check in the DB whether we have the reviews already
-                    if(tmpBook.reviewExist){
-                        print("review exists")
-                //        myGroup.enter()
-                        loadBookReview(tempBook: tmpBook, handleComplete: {
-                            print("done with loadBookReview()")
-                //            myGroup.leave()
-                        })
-                    } else {
-                        print("review DOESNT exist")
-                        tmpBook.parse(_url: tmpBook.reviewURL)
-                    }
-                //}
-                //myGroup.wait()
+                tmpBook.parse(_url: tmpBook.reviewURL)
+                
+//                // if book is already in db then load reviews from db otherwise parse the html
+//                myGroup.enter()
+//                isReviewInDB(bookData: tmpBook, handleComplete: {
+//                    print("done with isReviewInDB()")
+//                    print("loadScan done with reviewindB \(tmpBook.reviewExist)")
+//                    //myGroup.leave()
+//                })
+//                myGroup.leave()
+//                myGroup.wait()
+//                //myGroup.notify(queue: .main) { // Wait till we check in the DB whether we have the reviews already
+//                    if(tmpBook.reviewExist){
+//                        print("review exists")
+//                //        myGroup.enter()
+//                        loadBookReview(tempBook: tmpBook, handleComplete: {
+//                            print("done with loadBookReview()")
+//                //            myGroup.leave()
+//                        })
+//                    } else {
+//                        print("review DOESNT exist")
+//                        tmpBook.parse(_url: tmpBook.reviewURL)
+//                    }
+//                //}
+//                //myGroup.wait()
             }
             //myGroup.wait()
         }

@@ -22,6 +22,7 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
     var currentAddr = [String : String]()
     var longitude: Double = 0.0
     var latitude: Double = 0.0
+    var myLoc = Location()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +38,26 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
         locManager.requestWhenInUseAuthorization()
         // getUser()
         
+    }
+    @IBAction func toScanner(_ sender: Any) {
         // get user location
-        self.getLocation()
+        self.getLocation{ () -> () in
+            print("prepare: a:\(self.address) b:\(self.businessName) lo:\(self.longitude) la:\(self.latitude)")
+            let scannerVC: ScannerViewController = self.storyboard?.instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController
+            //let scannerVC = ScannerViewController()
+            // pass the address long and lat and business name
+            self.myLoc = Location(_long: self.longitude, _lat: self.latitude, _storeName: self.businessName, _address: self.address, _associateTag: "null")
+            
+            scannerVC.myLoc = self.myLoc
+            self.navigationController?.pushViewController(scannerVC, animated: true)
+            
+            findStoreAssociateTag(address: self.myLoc.address, location: self.myLoc, handleComplete: {
+                //send notification to PostScan
+                let notifRefreshTag = Notification.Name("refreshTag")
+                NotificationCenter.default.post(name: notifRefreshTag, object: nil)
+            })
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,19 +85,12 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        print("prepare: a:\(self.address) b:\(self.businessName) lo:\(self.longitude) la:\(self.latitude)")
-        let loadScanVC: LoadScanViewController = segue.destination as! LoadScanViewController
         
-        // pass the address long and lat and business name
-        loadScanVC.address = self.address
-        loadScanVC.businessName = self.businessName
-        loadScanVC.longitude = self.longitude
-        loadScanVC.latitude = self.latitude
     }
     
     // ****************************************** GPS Functions ***************************************************
     // gets the GPS longitude and latitude, then passes to function to determine the business you are in
-    func getLocation(){
+    func getLocation(handleComplete:@escaping (()->())){
         //func getLocation(){
         // get Longitude and Latitude
         locManager.delegate = self as! CLLocationManagerDelegate
@@ -106,6 +118,7 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
                     print("done getting address")
                     self.getBusiness{ () -> () in
                         print("handleComplete address \(self.businessName)")
+                        handleComplete()
                     }
                     
                     print("done getting business")
@@ -150,6 +163,7 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
     
     // Converts placemarker to a physical address
     func placemarkToAddress(placemark: CLPlacemark) -> Void{
+        self.address = ""
         print("Start placemarkToAddress")
         // Location name
         if let locationName = placemark.addressDictionary?["Name"] as? String {
@@ -225,6 +239,7 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
                 //print("Sorry we could not determine your location \n")
                 print("placeholder: Sorry we could not determine your location"
                     + "\n-----------------------")
+                handleComplete()
             }
         }
         print("done getBusiness")
