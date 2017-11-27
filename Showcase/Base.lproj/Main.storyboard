@@ -753,20 +753,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="book title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcb-Rb-vlH" userLabel="bookTitle">
-                                <rect key="frame" x="148" y="72" width="211" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcb-Rb-vlH" userLabel="bookTitle">
+                                <rect key="frame" x="148" y="28" width="211" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="book author" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHh-Fk-zx1" userLabel="bookAuthor">
-                                <rect key="frame" x="148" y="104" width="211" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book author" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHh-Fk-zx1" userLabel="bookAuthor">
+                                <rect key="frame" x="148" y="60" width="211" height="18"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                 <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZbE-A1-Uej" userLabel="bookRating" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="148" y="142" width="125" height="21"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbE-A1-Uej" userLabel="bookRating" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="148" y="98" width="125" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
@@ -793,14 +793,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kos-cJ-pRp" userLabel="bookImage">
-                                <rect key="frame" x="8" y="72" width="130" height="132"/>
+                                <rect key="frame" x="8" y="28" width="130" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="DM5-ZW-o3E"/>
                                     <constraint firstAttribute="width" constant="130" id="avd-bN-eHy"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-5t-S0o" userLabel="bookPurchase">
-                                <rect key="frame" x="8" y="212" width="359" height="30"/>
+                                <rect key="frame" x="8" y="236" width="359" height="30"/>
                                 <color key="backgroundColor" red="0.5483074104403991" green="1" blue="0.56352840300104834" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="kWJ-3l-e1b"/>
@@ -904,20 +904,20 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Customer Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3K-a8-zfc">
-                                <rect key="frame" x="102.5" y="259" width="171" height="0.0"/>
+                                <rect key="frame" x="102.5" y="283" width="171" height="25"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenPlacemark" translatesAutoresizingMaskIntoConstraints="NO" id="Meb-CU-hCl">
-                                <rect key="frame" x="143" y="170" width="30" height="30"/>
+                                <rect key="frame" x="143" y="194" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Kd4-jt-uKa"/>
                                     <constraint firstAttribute="height" constant="30" id="ZsK-S2-rlD"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txR-JW-Z8q" userLabel="storeParticipation">
-                                <rect key="frame" x="181" y="184" width="186" height="17"/>
+                                <rect key="frame" x="181" y="208" width="186" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -935,8 +935,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="book price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-39-3Da" userLabel="bookPrice">
-                                <rect key="frame" x="148" y="150" width="81" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="book price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-39-3Da" userLabel="bookPrice">
+                                <rect key="frame" x="148" y="127" width="211" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.91943359375" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -981,7 +981,7 @@
                             <constraint firstItem="Gcb-Rb-vlH" firstAttribute="leading" secondItem="kos-cJ-pRp" secondAttribute="trailing" constant="10" id="VJg-oi-W89"/>
                             <constraint firstItem="iin-Je-ukg" firstAttribute="top" secondItem="geX-hc-jGo" secondAttribute="bottom" constant="169" id="YDN-FX-e5V"/>
                             <constraint firstItem="Ik4-5t-S0o" firstAttribute="top" secondItem="Meb-CU-hCl" secondAttribute="bottom" constant="12" id="YQH-Oi-d4o"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="x0h-39-3Da" secondAttribute="trailing" constant="130" id="ZsD-kd-qgD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="x0h-39-3Da" secondAttribute="trailing" id="ZsD-kd-qgD"/>
                             <constraint firstItem="kos-cJ-pRp" firstAttribute="top" secondItem="4vd-5v-jcM" secondAttribute="bottom" constant="8" id="dA8-rf-hA7"/>
                             <constraint firstItem="zHh-Fk-zx1" firstAttribute="leading" secondItem="kos-cJ-pRp" secondAttribute="trailing" constant="10" id="edL-OC-xUY"/>
                             <constraint firstItem="Gcb-Rb-vlH" firstAttribute="top" secondItem="4vd-5v-jcM" secondAttribute="bottom" constant="8" id="guf-dp-KRj"/>
@@ -993,7 +993,7 @@
                             <constraint firstItem="x0h-39-3Da" firstAttribute="top" secondItem="ZbE-A1-Uej" secondAttribute="bottom" constant="8" id="r2i-u0-bk0"/>
                             <constraint firstAttribute="bottom" secondItem="WIh-V4-VKh" secondAttribute="bottom" constant="10" id="rrb-7J-6Tg"/>
                             <constraint firstItem="V3K-a8-zfc" firstAttribute="top" secondItem="Ik4-5t-S0o" secondAttribute="bottom" constant="17" id="vcJ-44-Fux"/>
-                            <constraint firstItem="Meb-CU-hCl" firstAttribute="top" secondItem="x0h-39-3Da" secondAttribute="bottom" constant="46" id="wZc-uQ-xmY"/>
+                            <constraint firstItem="Meb-CU-hCl" firstAttribute="top" relation="lessThanOrEqual" secondItem="x0h-39-3Da" secondAttribute="bottom" constant="46" id="wZc-uQ-xmY"/>
                             <constraint firstItem="ZbE-A1-Uej" firstAttribute="top" secondItem="zHh-Fk-zx1" secondAttribute="bottom" constant="20" id="yZN-cs-azH"/>
                         </constraints>
                     </view>
@@ -1499,7 +1499,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" First Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Am-YA-1pH" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="9" y="134.5" width="350" height="31"/>
+                                <rect key="frame" x="9" y="134.5" width="350" height="41"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -1513,7 +1513,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Last Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="8KJ-2V-Ytr" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="9" y="177.5" width="350" height="31"/>
+                                <rect key="frame" x="9" y="187.5" width="350" height="41"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -1527,7 +1527,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="L9X-Pl-bpN" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="9" y="230.5" width="350" height="37"/>
+                                <rect key="frame" x="9" y="250.5" width="350" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="W6b-vf-g4D"/>
                                 </constraints>
@@ -1545,7 +1545,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="sOg-GB-arN" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="9" y="293.5" width="350" height="37"/>
+                                <rect key="frame" x="9" y="313.5" width="350" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="kk0-fV-hUo"/>
                                 </constraints>
@@ -1563,7 +1563,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Confirm Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="YFW-Ug-bbJ" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="9" y="354.5" width="350" height="37"/>
+                                <rect key="frame" x="9" y="374.5" width="350" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="Ntf-JR-J2d"/>
                                 </constraints>
@@ -1581,7 +1581,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Wu-N8-IfV" customClass="MaterialButton" customModule="Showcase" customModuleProvider="target">
-                                <rect key="frame" x="29" y="445.5" width="303" height="35"/>
+                                <rect key="frame" x="29" y="465.5" width="303" height="35"/>
                                 <color key="backgroundColor" red="0.18039215689999999" green="0.36862745099999999" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1664,5 +1664,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="SMw-y1-bM6"/>
         <segue reference="7cx-JA-gcc"/>
+        <segue reference="HJt-qb-diX"/>
+        <segue reference="RNX-nM-ibK"/>
     </inferredMetricsTieBreakers>
 </document>
