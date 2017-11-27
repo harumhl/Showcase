@@ -17,16 +17,13 @@ var locManager: CLLocationManager!
 
 class RootViewController: UIViewController, CLLocationManagerDelegate {
     
-<<<<<<< HEAD
     @IBOutlet weak var userNameLabel: UILabel!
-=======
     var address: String = ""
     var businessName: String = ""
     var currentAddr = [String : String]()
     var longitude: Double = 0.0
     var latitude: Double = 0.0
     var myLoc = Location()
->>>>>>> f9b1cb1f9dde8d5a049e21918bec7875d66e0085
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +37,9 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
         locManager = CLLocationManager()
         locManager.delegate = self
         locManager.requestWhenInUseAuthorization()
-<<<<<<< HEAD
         let email = getUser().email
         let shortEmail = email.substring(to: email.index(of: "@")!)
-        
         userNameLabel.text = userNameLabel.text! + " " + shortEmail + "!"
-=======
         // getUser()
         
     }
@@ -68,7 +62,6 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
             })
             
         }
->>>>>>> f9b1cb1f9dde8d5a049e21918bec7875d66e0085
     }
     
     override func viewWillAppear(_ animated: Bool) {
