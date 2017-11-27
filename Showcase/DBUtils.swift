@@ -20,21 +20,29 @@ func loadBookReview(tempBook: Book, handleComplete:@escaping (()->())){
         if(allBooks == nil) { return }
         
         // loop through and try to find the match for the book currently being searched
-        for (_isbn, _reviews) in allBooks! {
+        for (_isbn, _reviewData) in allBooks! {
             let isbn_db = _isbn as! String
             if(isbn_db == tempBook.ISBN){
-                var tmpReview = Review()
+                
+                // get rating
+                tempBook.rating = (_reviewData as! NSDictionary).value(forKey: "rating") as! Double
+                let _reviews = (_reviewData as! NSDictionary).value(forKey: "reviews") as! [String : Any]
+                
                 // read the reviews and append to reviews array
                 for (_key, review) in _reviews as! NSDictionary{
+                    var tmpReview = Review()
                     tmpReview.title = (review as! NSDictionary)["reviewTitle"] as! String
                     tmpReview.date = (review as! NSDictionary)["reviewDate"] as! String
                     tmpReview.review = (review as! NSDictionary)["reviewText"] as! String
                     tmpReview.rating = (review as! NSDictionary)["reviewRating"] as! Double
                     tempBook.reviews.append(tmpReview)
+                    let notifRefreshRating = Notification.Name("refreshRating")
+                    NotificationCenter.default.post(name: notifRefreshRating, object: nil)
                 }
-                let notifRefreshRating = Notification.Name("refreshRating")
+                
+                print("check tempBook")
+                
                 let notifRefreshDone = Notification.Name("refreshDone")
-                NotificationCenter.default.post(name: notifRefreshRating, object: nil)
                 NotificationCenter.default.post(name: notifRefreshDone, object: nil)
                 print("refreshDone")
                 handleComplete()

@@ -217,7 +217,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
         //check if we need to write reviews to
         //isReviewInDB(bookData: self.bookData, handleComplete: {})
         print("should we write reviews: \(!bookData.reviewExist)")
-        if (!bookData.reviewExist){
+        if (!bookData.reviewExist && !self.fromHistory){
             //write reviews (self.bookData.reviews) to the db
             print("write reviews")
             writeReviewsToDB()
@@ -401,8 +401,17 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             counter += 1
         }
         
+        
+        // "reviews" : reviewDict
+        // "rating"  : self.bookData.rating
+        
+        let bookReviewData = [
+            "rating" : self.bookData.rating,
+            "reviews" : reviewDict
+            ] as [String : Any]
+        
         // Write a book to the DB
-        ref.child("/review/" + revKey).setValue(reviewDict)
+        ref.child("/review/" + revKey).setValue(bookReviewData)
         
     }
     
