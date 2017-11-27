@@ -38,7 +38,11 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
         locManager.delegate = self
         locManager.requestWhenInUseAuthorization()
         let email = getUser().email
-        let shortEmail = email.substring(to: email.index(of: "@")!)
+        
+        //for testing
+            //let shortEmail = email.substring(to: email.index(of: "@")!)
+            let shortEmail = "User"
+        
         userNameLabel.text = userNameLabel.text! + " " + shortEmail + "!"
         // getUser()
         
