@@ -21,8 +21,8 @@ class ContributionsTableViewController: UITableViewController {
     var allBookLocationArray : [Location] = []
     @IBOutlet var contributionsTable: UITableView!
     
-    let LAT_THRESHOLD = 0.0
-    let LONG_THRESHOLD = 0.0
+    let LAT_THRESHOLD = 5.0
+    let LONG_THRESHOLD = 5.0
     
     
     override func viewDidLoad() {
@@ -185,8 +185,8 @@ class ContributionsTableViewController: UITableViewController {
             }
         }
         
-        cell.numVisits?.text = "Visits: "+String(numVisits)
-        cell.amtContributed?.text = "$0.99"
+        cell.numVisits?.text = "Number of books scanned : "+String(numVisits)
+        cell.amtContributed?.text = "$35.99"
         return cell
     }
  

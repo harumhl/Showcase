@@ -14,6 +14,8 @@ var locManager: CLLocationManager!
 
 class RootViewController: UIViewController, CLLocationManagerDelegate {
     
+    @IBOutlet weak var userNameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,7 +28,10 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
         locManager = CLLocationManager()
         locManager.delegate = self
         locManager.requestWhenInUseAuthorization()
-        // getUser()
+        let email = getUser().email
+        let shortEmail = email.substring(to: email.index(of: "@")!)
+        
+        userNameLabel.text = userNameLabel.text! + " " + shortEmail + "!"
     }
     
     override func viewWillAppear(_ animated: Bool) {

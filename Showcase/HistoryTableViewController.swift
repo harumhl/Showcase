@@ -106,7 +106,7 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
     // Update the local copy of the user's book array.
     // Make sure to update this function as more attributes are gathered from the Database
     func getBookAttributes(aUserBook: NSDictionary) {
-        var tempBook = Book()
+        let tempBook = Book()
         tempBook.ISBN = aUserBook.value(forKey: "BookISBN") as! String
         tempBook.author = aUserBook.value(forKey: "Author") as! String
         tempBook.title = aUserBook.value(forKey: "Title") as! String
