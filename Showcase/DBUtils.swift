@@ -36,14 +36,14 @@ func loadBookReview(tempBook: Book, handleComplete:@escaping (()->())){
                     tmpReview.review = (review as! NSDictionary)["reviewText"] as! String
                     tmpReview.rating = (review as! NSDictionary)["reviewRating"] as! Double
                     tempBook.reviews.append(tmpReview)
-                    let notifRefreshRating = Notification.Name("refreshRating")
-                    NotificationCenter.default.post(name: notifRefreshRating, object: nil)
+//                    let notifRefreshRating = Notification.Name("refreshRating")
+//                    NotificationCenter.default.post(name: notifRefreshRating, object: nil)
                 }
                 
                 print("check tempBook")
                 
-                let notifRefreshDone = Notification.Name("refreshDone")
-                NotificationCenter.default.post(name: notifRefreshDone, object: nil)
+//                let notifRefreshDone = Notification.Name("refreshDone")
+//                NotificationCenter.default.post(name: notifRefreshDone, object: nil)
                 print("refreshDone")
                 handleComplete()
                 return
@@ -51,6 +51,55 @@ func loadBookReview(tempBook: Book, handleComplete:@escaping (()->())){
         }
     })
     
+}
+
+
+func loadBookReview(bookarray: [Book], handleComplete:@escaping (()->())){
+   
+    print("in loadBookReview()")
+    // Set Firebase DB reference
+    var ref = Database.database().reference()
+    ref.child("review").observe(DataEventType.value, with: { (snapshot) in
+        for tempBook in bookarray {
+            // grab all book reviews
+            let allBooks = snapshot.value as? NSDictionary
+            if(allBooks == nil) { return }
+            
+            // loop through and try to find the match for the book currently being searched
+            for (_isbn, _reviewData) in allBooks! {
+                let isbn_db = _isbn as! String
+                if(isbn_db == tempBook.ISBN){
+                    
+                    // get rating
+                    tempBook.rating = (_reviewData as! NSDictionary).value(forKey: "rating") as! Double
+                    let _reviews = (_reviewData as! NSDictionary).value(forKey: "reviews") as! [String : Any]
+                    
+                    // read the reviews and append to reviews array
+                    for (_key, review) in _reviews as! NSDictionary{
+                        var tmpReview = Review()
+                        tmpReview.title = (review as! NSDictionary)["reviewTitle"] as! String
+                        tmpReview.date = (review as! NSDictionary)["reviewDate"] as! String
+                        tmpReview.review = (review as! NSDictionary)["reviewText"] as! String
+                        tmpReview.rating = (review as! NSDictionary)["reviewRating"] as! Double
+                        tempBook.reviews.append(tmpReview)
+//                        let notifRefreshRating = Notification.Name("refreshHistRating")
+//                        NotificationCenter.default.post(name: notifRefreshRating, object: nil)
+                        
+                    }
+                    let notifRefreshTable = Notification.Name("refreshHistTable")
+                    NotificationCenter.default.post(name: notifRefreshTable, object: nil)
+                    print("check tempBook")
+                    
+                    
+                    print("refreshDone")
+                    return
+                }
+            }
+        }
+        let notifRefreshDone = Notification.Name("refreshHistDone")
+        NotificationCenter.default.post(name: notifRefreshDone, object: nil)
+        handleComplete()
+    })
 }
 
 func isReviewInDB(bookData: Book, handleComplete:@escaping (()->())) {

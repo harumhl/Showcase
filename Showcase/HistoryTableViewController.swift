@@ -28,6 +28,13 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //let notifRefreshRating = Notification.Name("refreshHistRating")
+        let notifRefreshTable = Notification.Name("refreshHistTable")
+        let notifRefreshDone = Notification.Name("refreshHistDone")
+        //NotificationCenter.default.addObserver(self, selector: #selector(HistoryTableViewController.refreshRating), name: notifRefreshRating, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HistoryTableViewController.refreshTable), name: notifRefreshTable, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HistoryTableViewController.refreshDone), name: notifRefreshDone, object: nil)
+        
         historyTable.delegate = self
         historyTable.dataSource = self
         self.tableView.estimatedRowHeight = 120.0
@@ -82,6 +89,7 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
                             let aUserBook = allBooks![theUserBookKey!] as! NSDictionary
                             // Grab Book fields from DB
                             self.getBookAttributes(aUserBook: aUserBook)
+                            //loadBookReview(bookarray: self.userBookArray, handleComplete: {})
                         }
                     }
                     // If the seconds since 1970 is a greater value, then it is more recent
@@ -139,9 +147,29 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
                 tempBook.location.associateTag = "AssociateTag Not Available"
             }
         })
-        loadBookReview(tempBook: tempBook, handleComplete: {})
+        loadBookReview(tempBook: tempBook, handleComplete: {
+            print("refresh table")
+            self.tableView.reloadData()
+        })
         self.userBookArray.append(tempBook)
     }
+    
+    
+//****************************************** REVIEW TABLE FUNCTIONS ******************************************
+    func refreshTable() {
+        DispatchQueue.main.async {
+            self.tableView.isHidden = false
+            self.tableView.reloadData()
+        }
+    }
+    
+    func refreshDone() {
+        DispatchQueue.main.async {
+            self.tableView.isHidden = false
+            self.tableView.reloadData()
+        }
+    }
+    
     
 //    func readReviews(_ reviews: inout [Review], bookISBN: String, handleComplete:@escaping (()->())){
 //
