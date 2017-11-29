@@ -26,7 +26,14 @@ func loadBookReview(tempBook: Book, handleComplete:@escaping (()->())){
                 
                 // get rating
                 tempBook.rating = (_reviewData as! NSDictionary).value(forKey: "rating") as! Double
-                let _reviews = (_reviewData as! NSDictionary).value(forKey: "reviews") as! [String : Any]
+                var _reviews = [String : Any]()
+                
+                if((_reviewData as! NSDictionary).value(forKey: "reviews") == nil) {
+                    continue
+                }
+                else {
+                    _reviews = (_reviewData as! NSDictionary).value(forKey: "reviews") as! [String : Any]
+                }
                 
                 // read the reviews and append to reviews array
                 for (_key, review) in _reviews as! NSDictionary{
@@ -72,7 +79,15 @@ func loadBookReview(bookarray: [Book], handleComplete:@escaping (()->())){
                     
                     // get rating
                     tempBook.rating = (_reviewData as! NSDictionary).value(forKey: "rating") as! Double
-                    let _reviews = (_reviewData as! NSDictionary).value(forKey: "reviews") as! [String : Any]
+                    var _reviews: [String : Any]
+                    do {
+                        try _reviews = (_reviewData as! NSDictionary).value(forKey: "reviews") as! [String : Any]
+                    }
+                    catch {
+                        // No reviews found. Continue with the next book
+                        continue
+                    }
+                    
                     
                     // read the reviews and append to reviews array
                     for (_key, review) in _reviews as! NSDictionary{
