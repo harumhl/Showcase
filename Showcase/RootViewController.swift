@@ -12,6 +12,8 @@ import Firebase
 import MapKit
 import CoreLocation
 import AddressBookUI
+import FacebookCore
+import FacebookLogin
 
 var locManager: CLLocationManager!
 
@@ -37,16 +39,38 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
         locManager = CLLocationManager()
         locManager.delegate = self
         locManager.requestWhenInUseAuthorization()
-        let email = getUser().email
-        
-        //for testing
-            //let shortEmail = email.substring(to: email.index(of: "@")!)
-            let shortEmail = "User"
-        
-        userNameLabel.text = userNameLabel.text! + " " + shortEmail + "!"
-        // getUser()
-        
+        var email = getUser().email
+        var shortEmail = ""
+
+        if email == "" {
+            let myGroup = DispatchGroup() // Wait till email is fetched
+            myGroup.enter()
+            // The user is signed in with FaceBook
+            let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
+            req.start({ (response, result) in
+                switch result {
+                case .success(let graphResponse) :
+                    if let resultDict = graphResponse.dictionaryValue {
+                        email = resultDict["email"] as! String
+                        print("FB Email1: ", email)
+                        myGroup.leave()
+                    }
+                case .failed(_): break
+                }
+            })
+            myGroup.notify(queue: .main) {
+                print("FB Email2: ", email)
+                shortEmail = email.substring(to: email.index(of: "@")!)
+                self.userNameLabel.text = shortEmail
+            }
+        } else {
+            // Regular login
+            shortEmail = email.substring(to: email.index(of: "@")!)
+            self.userNameLabel.text = shortEmail
+        }
     }
+    
+    
     @IBAction func toScanner(_ sender: Any) {
         // get user location
         self.getLocation{ () -> () in

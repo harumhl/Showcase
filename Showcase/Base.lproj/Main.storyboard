@@ -183,15 +183,26 @@
                                     <segue destination="Wop-2g-19n" kind="show" id="AZR-Jh-3Fk"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Howdy," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TG-Ss-Bsj">
-                                <rect key="frame" x="40" y="114" width="293" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Howdy!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Auj-wg-fKM">
+                                <rect key="frame" x="132" y="114" width="111.5" height="50"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="35"/>
-                                <color key="textColor" red="0.33333333329999998" green="0.83921568629999999" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.33349448440000001" green="0.83762669560000003" blue="0.74573761220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TG-Ss-Bsj">
+                                <rect key="frame" x="187.5" y="170" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="35"/>
+                                <color key="textColor" red="0.33349448440000001" green="0.83762669560000003" blue="0.74573761220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Auj-wg-fKM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="Hjz-gX-Rqf"/>
+                            <constraint firstItem="8TG-Ss-Bsj" firstAttribute="top" secondItem="Auj-wg-fKM" secondAttribute="bottom" constant="6" id="b9i-0x-ezN"/>
+                            <constraint firstItem="Auj-wg-fKM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hv0-qn-6wi"/>
+                            <constraint firstItem="8TG-Ss-Bsj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="v2S-eD-rYn"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="cAy-h2-gRC">

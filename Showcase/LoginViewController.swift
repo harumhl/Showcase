@@ -101,10 +101,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 self.performSegue(withIdentifier: "loginToRootSegue", sender: nil)
             }
             else {
-                print("Invalid credentials but logging in anyway.")
-                // self.showAlert(title: "Authentication Error", message: "Invalid credentials but logging in anyway.");
+                 self.showAlert(title: "Authentication Error", message: "Invalid credentials! Please try again.");
                 // Log in anyway for debugging purposes
-                self.performSegue(withIdentifier: "loginToRootSegue", sender: nil)
+                // self.performSegue(withIdentifier: "loginToRootSegue", sender: nil)
             }
         }
         
