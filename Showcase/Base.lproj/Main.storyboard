@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="MLa-Pi-8la" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="12" y="385" width="350" height="37"/>
+                                <rect key="frame" x="12" y="380" width="350" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="nbh-Sv-4ry"/>
                                 </constraints>
@@ -68,7 +68,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="2j7-FP-Alm" customClass="ImageTextField" customModule="ImageTextField">
-                                <rect key="frame" x="12" y="442" width="350" height="37"/>
+                                <rect key="frame" x="12" y="437" width="350" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="6Tz-5R-D1F"/>
                                 </constraints>
@@ -86,9 +86,9 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EU-Yq-cev" customClass="MaterialButton" customModule="Showcase" customModuleProvider="target">
-                                <rect key="frame" x="36" y="516" width="303" height="39"/>
+                                <rect key="frame" x="36" y="511" width="303" height="41"/>
                                 <color key="backgroundColor" red="0.1803921568627451" green="0.36862745098039218" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -96,9 +96,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLC-Dz-aAa" customClass="MaterialButton" customModule="Showcase" customModuleProvider="target">
-                                <rect key="frame" x="36" y="582" width="303" height="38"/>
+                                <rect key="frame" x="36" y="579" width="303" height="41"/>
                                 <color key="backgroundColor" red="0.18039215689999999" green="0.36862745099999999" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Signup">
                                     <color key="titleShadowColor" red="0.47826388478279114" green="0.82846617698669434" blue="0.74913275241851807" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -298,13 +298,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="New Email" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="KQr-UU-4YZ" customClass="ImageTextField" customModule="ImageTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" New Email" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="KQr-UU-4YZ" customClass="ImageTextField" customModule="ImageTextField">
                                 <rect key="frame" x="26" y="193" width="323" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="ACE-LY-3uG"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="fieldImage" value="email"/>
@@ -333,13 +333,13 @@
                                     <action selector="changeEmailButtonClicked:" destination="jCO-9k-vkc" eventType="touchUpInside" id="owa-7k-b19"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Confirm New Email" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="6nl-JL-QNs" customClass="ImageTextField" customModule="ImageTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Confirm New Email" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="6nl-JL-QNs" customClass="ImageTextField" customModule="ImageTextField">
                                 <rect key="frame" x="26" y="245" width="323" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="7L0-9o-nse"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="fieldImage" value="email"/>
@@ -490,7 +490,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="New Password" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="boK-nk-Oj9" customClass="ImageTextField" customModule="ImageTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" New Password" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="boK-nk-Oj9" customClass="ImageTextField" customModule="ImageTextField">
                                 <rect key="frame" x="24" y="191" width="327" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="NbV-YU-lkb"/>
@@ -514,7 +514,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Confirm New Password" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="J2L-pP-cpe" customClass="ImageTextField" customModule="ImageTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Confirm New Password" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="J2L-pP-cpe" customClass="ImageTextField" customModule="ImageTextField">
                                 <rect key="frame" x="24" y="236" width="327" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="VL1-uc-kpG"/>
@@ -1676,8 +1676,7 @@
         <image name="user" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EtG-do-d3J"/>
         <segue reference="HJt-qb-diX"/>
-        <segue reference="RNX-nM-ibK"/>
+        <segue reference="Vbo-XZ-KDs"/>
     </inferredMetricsTieBreakers>
 </document>
