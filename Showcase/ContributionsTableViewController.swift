@@ -49,34 +49,66 @@ class ContributionsTableViewController: UITableViewController {
     // - "You contributed xxx amount to this store!"
     func getStoresFromDB() {
         print("**************Authenticating user\n")
-        authenticateUser()
-        print("**************Getting Stores\n")
-        getStores()
+        authenticateUser{ () -> () in
+            print("**************Getting Stores\n")
+            self.getStores()
+        }
+        
+        
     }
     
-    func authenticateUser() {
+    func authenticateUser(handleComplete:@escaping (()->())) {
         // Set up user account
         let user = Auth.auth().currentUser
         // email = ""
+        
         if let user = user {
             self.email = user.email!
             self.email = email.substring(to: email.index(of: "@")!)
+            let letters = CharacterSet.letters
+            let digits = CharacterSet.decimalDigits
+            var tempEmail = ""
+            // Remove special characters from the email (Firebase)
+            for c in self.email.unicodeScalars {
+                if letters.contains(c) || digits.contains(c) {
+                    tempEmail += String(UnicodeScalar(c))
+                }
+            }
+            self.email = tempEmail
+            handleComplete()
         } else {
             // The user might be logged in with Facebook
-            let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
-            req.start({ (response, result) in
-                switch result {
-                case .success(let graphResponse) :
-                    if let resultDict = graphResponse.dictionaryValue {
-                        self.email = resultDict["email"] as! String
-                        print("FB Email1: ", self.email)
-                        self.email = self.email.substring(to: self.email.index(of: "@")!)
-                        print("FB Email2: ", self.email)
+            getFBEmail{ () -> () in
+                let letters = CharacterSet.letters
+                let digits = CharacterSet.decimalDigits
+                var tempEmail = ""
+                // Remove special characters from the email (Firebase)
+                for c in self.email.unicodeScalars {
+                    if letters.contains(c) || digits.contains(c) {
+                        tempEmail += String(UnicodeScalar(c))
                     }
-                case .failed(_): break
                 }
-            })
+                self.email = tempEmail
+                handleComplete()
+            }
         }
+    }
+    
+    func getFBEmail(handleComplete:@escaping (()->())) {
+        let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
+        req.start({ (response, result) in
+            switch result {
+            case .success(let graphResponse) :
+                if let resultDict = graphResponse.dictionaryValue {
+                    self.email = resultDict["email"] as! String
+                    print("FB Email1: ", self.email)
+                    self.email = self.email.substring(to: self.email.index(of: "@")!)
+                    print("FB Email2: ", self.email)
+                    handleComplete()
+                }
+            case .failed(_): break
+            }
+        })
     }
     
     func getStores() {

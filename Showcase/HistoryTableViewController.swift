@@ -68,6 +68,18 @@ class HistoryTableViewController: UITableViewController, UISearchResultsUpdating
         // Embrace nature of syncrhnous programming
         let when = DispatchTime.now() + 0.25
         DispatchQueue.main.asyncAfter(deadline: when) {
+            let letters = CharacterSet.letters
+            let digits = CharacterSet.decimalDigits
+            var tempEmail = ""
+            // Remove special characters from the email (Firebase)
+            for c in email.unicodeScalars {
+                if letters.contains(c) || digits.contains(c) {
+                    tempEmail += String(UnicodeScalar(c))
+                }
+            }
+            email = tempEmail
+            
+            
             self.title = "Scan history for " + email
             // Get book data from database
             self.ref?.child("user").child(email + "/books").observe(DataEventType.value, with: { (snapshot) in

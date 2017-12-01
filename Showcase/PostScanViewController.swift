@@ -416,6 +416,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func addDataToDB() {
+        var myGroup = DispatchGroup()
         ref = Database.database().reference()
         let user = getUser()
         var email = ""
@@ -424,7 +425,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
             print("substring email: ", email)
         } else {
              // The user might be logged in with Facebook
-        
+            myGroup.enter()
             let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
             
                 req.start({ (response, result) in
@@ -435,22 +436,35 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                             print("FB Email1: ", email)
                             email = email.substring(to: email.index(of: "@")!)
                             print("FB Email2: ", email)
+                            myGroup.leave()
                         }
                     case .failed(_): break
                         
                     }
                 })
-            
         }
-            
         
+        myGroup.notify(queue: .main) {
+            let letters = CharacterSet.letters
+            let digits = CharacterSet.decimalDigits
+            
+            var tempEmail = ""
+            // Remove special characters from the email (Firebase)
+            for c in email.unicodeScalars {
+                if letters.contains(c) || digits.contains(c) {
+                    tempEmail += String(UnicodeScalar(c))
+                }
+            }
+            
+            email = tempEmail
+            
             /*************** WRITTEN TO DB ****************/
             
-            let locKey = ref.childByAutoId().key
-            let bookKey = ref.childByAutoId().key
-        
+            let locKey = self.ref.childByAutoId().key
+            let bookKey = self.ref.childByAutoId().key
+            
             print("Location Object in current book: ", self.bookData.location)
-        
+            
             let bookData =  ["BookID"    : bookKey,
                              "Title"     : self.bookData.title,
                              "Author"    : self.bookData.author,
@@ -464,7 +478,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                              "CreationSecondsSince1970" : self.bookData.SecondsSince1970,
                              "PurchaseURL": self.bookData.purchaseURL,
                              "ASIN": self.bookData.ASIN
-            ] as [String : Any]
+                ] as [String : Any]
             
             
             let locationData = ["LocationID": locKey,
@@ -472,15 +486,15 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                                 "Lat": self.bookData.location.latitude,
                                 "StoreName": self.bookData.location.storeName,
                                 "Address" : self.bookData.location.address
-            ] as [String : Any]
+                ] as [String : Any]
             
             let userBookData = ["bookID": "bookKey" + bookKey]
             
             // Write a book to the DB
-            ref.child("/book/bookKey" + bookKey).setValue(bookData)
+            self.ref.child("/book/bookKey" + bookKey).setValue(bookData)
             
             // Write a location to the DB
-            ref.child("/location/loc" + locKey).setValue(locationData)
+            self.ref.child("/location/loc" + locKey).setValue(locationData)
             
             // Ensure that no book gets overwritten for a user
             // Embrace nature of syncrhnous programming
@@ -492,6 +506,7 @@ class PostScanViewController: UIViewController, UITableViewDelegate, UITableView
                 thisBookRef.setValue(userBookData)
             }
             /***********************************************/
+        }
     }
     
 

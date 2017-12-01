@@ -20,12 +20,21 @@ class UserAccountSettingsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         ref = Database.database().reference()
-        
+        let letters = CharacterSet.letters
+        let digits = CharacterSet.decimalDigits
         let user = Auth.auth().currentUser
         var emailShort = ""
         if let user = user {
             let email = user.email!
             emailShort = email.substring(to: email.index(of: "@")!)
+            var tempEmail = ""
+            // Remove special characters from the email (Firebase)
+            for c in emailShort.unicodeScalars {
+                if letters.contains(c) || digits.contains(c) {
+                    tempEmail += String(UnicodeScalar(c))
+                }
+            }
+            emailShort = tempEmail
         }
         print("email short is ", emailShort)
         if ("" != emailShort) {

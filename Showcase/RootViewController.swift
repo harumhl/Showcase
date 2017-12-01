@@ -41,6 +41,8 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
         locManager.requestWhenInUseAuthorization()
         var email = getUser().email
         var shortEmail = ""
+        let letters = CharacterSet.letters
+        let digits = CharacterSet.decimalDigits
 
         if email == "" {
             let myGroup = DispatchGroup() // Wait till email is fetched
@@ -61,11 +63,27 @@ class RootViewController: UIViewController, CLLocationManagerDelegate {
             myGroup.notify(queue: .main) {
                 print("FB Email2: ", email)
                 shortEmail = email.substring(to: email.index(of: "@")!)
+                var tempEmail = ""
+                // Remove special characters from the email (Firebase)
+                for c in shortEmail.unicodeScalars {
+                    if letters.contains(c) || digits.contains(c) {
+                        tempEmail += String(UnicodeScalar(c))
+                    }
+                }
+                shortEmail = tempEmail
                 self.userNameLabel.text = shortEmail
             }
         } else {
             // Regular login
             shortEmail = email.substring(to: email.index(of: "@")!)
+            var tempEmail = ""
+            // Remove special characters from the email (Firebase)
+            for c in shortEmail.unicodeScalars {
+                if letters.contains(c) || digits.contains(c) {
+                    tempEmail += String(UnicodeScalar(c))
+                }
+            }
+            shortEmail = tempEmail
             self.userNameLabel.text = shortEmail
         }
     }
